@@ -1,0 +1,459 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* [ ############################ START PUBLIC ############################ ] */
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.align-items-flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.justify-content-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.ml-50 {
+  margin-left: 50px;
+}
+
+.g-20 {
+  gap: 20px;
+}
+/* [ ############################ END PUBLIC ############################ ] */
+
+
+/* colors mtu */
+:root {
+  --white: #ffffff;
+  --red-700: #d32f2f;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+/* input-number */
+input[type="number"],
+input#instagram,
+input[type="password"],
+input#email {
+  direction: ltr;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+main.css-zxdg2z {
+  background: rgb(245, 245, 245);
+  min-height: 100vh;
+}
+
+.css-hpwf91-MuiGrid-root,
+.css-13uwxtv-MuiGrid-root {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.MuiBox-root.muirtl-0 .rmdp-container {
+  width: 95%;
+  max-width: 360px;
+}
+
+/* Table List */
+#table-list {
+  box-shadow: unset !important;
+  border: 1px solid #f5f5f5;
+}
+
+#table-list table,
+#table-list tbody,
+#table-list tr,
+#table-list th {
+  border: 0 !important;
+}
+
+#table-list table tr td {
+  border-bottom: 0 !important;
+}
+
+/* DatePicker */
+#orders-input .rmdp-container {
+  width: 100% !important;
+}
+
+#datePicker-label {
+  top: -10px;
+}
+
+#datePicker-input {
+  height: 56px;
+  width: 100% !important;
+  position: relative;
+  top: -8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.rmdp-time-picker.bottom {
+  padding: 15px 20px;
+}
+
+.rmdp-action-buttons.rmdp-border-top {
+  justify-content: start !important;
+}
+
+.rmdp-button.rmdp-action-button {
+  color: #fff;
+  background-color: #2e7d32;
+  height: 36.5px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  border-radius: 4px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  width: 60px;
+  line-height: 10px;
+  width: 88px;
+}
+
+.rmdp-button.rmdp-action-button:hover {
+  background-color: #1b5e20;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.rmdp-button.rmdp-action-button:nth-child(1) {
+  background-color: #d32f2f;
+  margin-right: 10px;
+}
+.rmdp-button.rmdp-action-button:nth-child(1):hover {
+  background-color: #d32f2f;
+}
+
+.rmdp-time-picker.bottom .dvdr {
+  font-size: 30px;
+}
+
+.rmdp-time-picker.bottom input {
+  font-size: 20px;
+  width: 50px;
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.rmdp-time-picker.bottom input:focus-visible {
+  outline: 0px;
+  border-bottom-color: rgb(118, 118, 118);
+}
+
+.rmdp-calendar-container-mobile {
+  z-index: 1500 !important;
+}
+
+/* daily-message */
+#daily-message .css-ee20y-MuiPaper-root {
+  background: transparent;
+  margin-left: 16px !important;
+  color: #fff;
+}
+
+#daily-message.css-1v5z4dq-MuiPaper-root-MuiCard-root {
+  background: #168203;
+  color: #fff;
+}
+
+/* scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff334b #dfe9eb;
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #ff334b;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #bb1428;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #ca2135;
+}
+
+/* list books */
+#book-item button {
+  flex-grow: 1;
+}
+
+#book-item button {
+  border-color: var(--red-700);
+}
+
+#book-item .MuiButtonBase-root:hover,
+#book-item .MuiButtonBase-root.Mui-selected {
+  background-color: var(--red-700);
+}
+
+#book-item .MuiButtonBase-root:hover svg,
+#book-item .MuiButtonBase-root.Mui-selected svg {
+  color: var(--white);
+}
+
+#book-item .MuiCardContent-root.css-16q47u3-MuiCardContent-root {
+  padding-top: 0;
+}
+
+ul#payment-details > li {
+  font-size: 18px;
+}
+
+/* flowchart */
+#flowchart .MuiCardContent-root {
+  margin-top: -70px;
+}
+
+.tree {
+  transform: rotate(180deg);
+  transform-origin: 50%;
+  direction: ltr;
+}
+.tree ul {
+  position: relative;
+  padding: 1em 0;
+  white-space: nowrap;
+  margin: 0 auto;
+  text-align: center;
+}
+.tree ul::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.tree li {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 1em 0.5em 0 0.5em;
+}
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 1em;
+}
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+.tree li:only-child {
+  padding-top: 0;
+}
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+.tree ul ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 1em;
+}
+.tree li a {
+  border: 1px solid #ccc;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  color: #333;
+  position: relative;
+  top: 1px;
+  transform: rotate(180deg);
+  min-width: 160px;
+}
+.tree li a:hover,
+.tree li a:hover + ul li a {
+  background: #e9453f;
+  color: #fff;
+  border: 1px solid #e9453f;
+}
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul::before,
+.tree li a:hover + ul ul::before {
+  border-color: #e9453f;
+}
+
+.type1-space {
+  border-left: 1px solid #ccc;
+  border-radius: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 0;
+  right: 0px;
+  height: 37px;
+  top: -1px;
+  padding: 0;
+  width: 0px;
+}
+
+#teacher-times .MuiPaper-elevation {
+  box-shadow: unset !important;
+}
+
+.reserved {
+  background: #008b8b;
+  width: 100%;
+  position: absolute;
+  opacity: 0.6;
+  color: #fff;
+  height: 28.75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* list-red-bullet */
+ul#list-red-bullet {
+  list-style: none;
+  margin-left: -2em;
+}
+
+ul#list-red-bullet li {
+  padding-bottom: 8px;
+}
+
+ul#list-red-bullet li:last-child {
+  padding-bottom: 0px;
+}
+
+ul#list-red-bullet li::before {
+  content: "\2022";
+  color: var(--red-700);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* table-report */
+.table-Wrong {
+  background: #fceeee;
+}
+.table-Wrong:hover {
+  background: #c53a35 !important;
+  color: #fff !important;
+}
+
+.table-Correct {
+  background: #edfced;
+}
+.table-Correct:hover {
+  background: #1b7b1a !important;
+}
+
+#table-questions thead {
+  background: #008b8b;
+}
+#table-questions thead th {
+  font-weight: bolder;
+  color: #ffffff;
+}
+
+.table-Wrong:hover td,
+.table-Wrong:hover th,
+.table-Correct:hover td,
+.table-Correct:hover th {
+  color: #ffffff;
+}
+
+/* marker */
+.active-box-marker {
+  background: #4093e5 !important;
+  border-color: #1976d2 !important;
+  color: #ffffff !important;
+}
+
+.active-box-marker svg {
+  color: #ffffff;
+}
