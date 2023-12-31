@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 // mtu
+import "@/services/Translate/i18nextInit";
+
 import MainRoutes from "@/routes/MainRoutes";
 import { store } from '@/store/store'
 
@@ -45,7 +47,7 @@ const App = () => {
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
       onSuccess: (data) => {
-        console.log(data);
+        // console.log(data);
         // handleClick()
       },
       onError: (error): any => {

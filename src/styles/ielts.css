@@ -8,7 +8,7 @@ html[data-theme="light"] {
   --color-07: #484545;
   --color-08: #1976d2;
   --color-09: #000000;
-  --color-10: #c0e0ff
+  --color-10: #c0e0ff;
 }
 
 /* html[data-theme="dark"] {
@@ -167,8 +167,22 @@ html.ielts {
   height: 100vh;
 }
 
+.ielts h1,
+.ielts h2,
+.ielts h3,
+.ielts h4,
+.ielts h5,
+.ielts h6 {
+  margin: 0;
+}
+
 .ielts-contaner {
   padding: 0 20px;
+}
+
+.ielts-contaner.full-w {
+  height: calc(100vh - 390px);
+  overflow-y: scroll;
 }
 
 .ielts-header {
@@ -338,7 +352,6 @@ html.ielts {
   padding: 0 !important;
 }
 
-
 /* [ ############################ START FONTSIZE ############################ ] */
 .regular {
   font-size: var(--font-regular) !important;
@@ -352,31 +365,29 @@ html.ielts {
   font-size: var(--font-extraLarge) !important;
 }
 
-
 .ielts-contaner {
   font-size: var(--font-size) !important;
 }
 
-#ielts-modal-options.regular .css-10hburv-MuiTypography-root, 
+#ielts-modal-options.regular .css-10hburv-MuiTypography-root,
 #ielts-modal-options.regular .css-2ulfj5-MuiTypography-root,
 #ielts-modal-options.regular .css-dmjlb7-MuiTypography-root {
   font-size: var(--font-regular) !important;
 }
 
-#ielts-modal-options.large .css-10hburv-MuiTypography-root, 
+#ielts-modal-options.large .css-10hburv-MuiTypography-root,
 #ielts-modal-options.large .css-2ulfj5-MuiTypography-root,
 #ielts-modal-options.large .css-dmjlb7-MuiTypography-root {
   font-size: var(--font-large) !important;
 }
 
-#ielts-modal-options.extraLarge .css-10hburv-MuiTypography-root, 
+#ielts-modal-options.extraLarge .css-10hburv-MuiTypography-root,
 #ielts-modal-options.extraLarge .css-2ulfj5-MuiTypography-root,
 #ielts-modal-options.extraLarge .css-dmjlb7-MuiTypography-root {
   font-size: var(--font-extraLarge) !important;
 }
 
 /* [ ############################ END FONTSIZE ############################ ] */
-
 
 .ielts-question-title {
   font-weight: bolder;
@@ -400,7 +411,7 @@ html.ielts {
 }
 
 .ielts .input-radio label.active {
-  background: var(--color-10)
+  background: var(--color-10);
 }
 
 .ielts .input-radio label input {
@@ -428,11 +439,11 @@ html.ielts {
 }
 
 .ielts .checkbox-item.active {
-  background: var(--color-10)
+  background: var(--color-10);
 }
 
 .ielts .checkbox-item label:after {
-  content: '';
+  content: "";
   width: 100%;
   display: flow-root;
   position: relative;
@@ -442,9 +453,8 @@ html.ielts {
   height: 44px;
 }
 
-
 /* text-input */
-.ielts-contaner .MuiInputBase-input{
+.ielts-contaner .MuiInputBase-input {
   padding: 5px 10px !important;
   width: 180px !important;
   margin: unset !important;
@@ -466,4 +476,17 @@ html.ielts {
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+
+#ielts-list-text-input .css-ahj2mt-MuiTypography-root {
+  display: flex;
+  align-items: center;
+  min-height: 33px;
 }

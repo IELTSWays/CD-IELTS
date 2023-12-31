@@ -62,6 +62,14 @@ a {
   text-decoration: inherit;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
+}
+
 /* input-number */
 input[type="number"],
 input#instagram,

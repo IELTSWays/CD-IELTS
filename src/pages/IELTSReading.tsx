@@ -6,10 +6,17 @@ import { SplitView } from "@/components/IELTS/SplitView";
 
 import QRadio from '@/components/IELTS/QRadio';
 import QMultiCheckBox from '@/components/IELTS/QMultiCheckBox';
+import QTextInput from '@/components/IELTS/QTextInput';
+
+import useExam3 from "@/services/Requests/useExam3"
 
 const IELTSReading = () => {
 
+  const { data, isLoading } = useExam3()
+
+
   const fontSize = useAppSelector((state) => state.user.fontSize)
+  const Q = useAppSelector((state) => state.ielts.questions)
 
   const options = [
     { text: "Priority 1", value: "P1", selected: false },
@@ -23,6 +30,12 @@ const IELTSReading = () => {
     { label: 'NOT GIVEN', value: 'NOT GIVEN' },
   ]
 
+  console.log(data?.questions[0]?.question);
+
+  // Write ONE WORD AND/OR A NUMBER for each answer. \n Type of crime:        theft\n Personal information\n Example\n Name                   Louise …Taylor…\n Nationality           1 ………………. \n Date of birth        14 December 1977 \n Occupation           interior designer \n Reason for visit    business (to buy antique 2………………) \n Length of stay       two months \n Current address    3 ………………. Apartments (No 15) \n Details of theft \n Items stolen \n – a wallet containing approximately 4 £ ……………. – a 5 ……………… \n Date of theft         6 ……………… \n Possible time and place of theft \n Location                    outside the 7…………… at about 4 pm \n Details of suspect    – some boys asked for the 8……………. then ran off – one had a T-shirt with a picture of a tiger – he was about 12, slim build with 9…………… hair \n Crime reference number allocated. \n  10…………….
+
+  console.log('[IELTSReading]', Q);
+
   return (
     <>
       <div className={`ielts-contaner ${fontSize}`}>
@@ -34,7 +47,39 @@ const IELTSReading = () => {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, et deserunt nostrum vel vitae in reprehenderit sunt quidem! Recusandae, laboriosam dolorum nam aspernatur libero dicta quaerat incidunt optio odio debitis perspiciatis laudantium aliquid rem eum praesentium suscipit consequuntur tenetur quisquam ullam quos quam temporibus nostrum repudiandae nisi. Provident, repudiandae! Quo tempora nam ducimus sed fugit at debitis incidunt minus molestias dicta alias vel voluptates repellat, quos maiores maxime nisi est beatae, aspernatur modi praesentium quaerat animi? Doloribus perferendis iure corrupti repellendus, reiciendis laudantium distinctio qui vitae adipisci at rem hic nemo quae. Repudiandae debitis ratione dolorem laboriosam neque temporibus placeat?
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, et deserunt nostrum vel vitae in reprehenderit sunt quidem! Recusandae, laboriosam dolorum nam aspernatur libero dicta quaerat incidunt optio odio debitis perspiciatis laudantium aliquid rem eum praesentium suscipit consequuntur tenetur quisquam ullam quos quam temporibus nostrum repudiandae nisi. Provident, repudiandae! Quo tempora nam ducimus sed fugit at debitis incidunt minus molestias dicta alias vel voluptates repellat, quos maiores maxime nisi est beatae, aspernatur modi praesentium quaerat animi? Doloribus perferendis iure corrupti repellendus, reiciendis laudantium distinctio qui vitae adipisci at rem hic nemo quae. Repudiandae debitis ratione dolorem laboriosam neque temporibus placeat?
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, et deserunt nostrum vel vitae in reprehenderit sunt quidem! Recusandae, laboriosam dolorum nam aspernatur libero dicta quaerat incidunt optio odio debitis perspiciatis laudantium aliquid rem eum praesentium suscipit consequuntur tenetur quisquam ullam quos quam temporibus nostrum repudiandae nisi. Provident, repudiandae! Quo tempora nam ducimus sed fugit at debitis incidunt minus molestias dicta alias vel voluptates repellat, quos maiores maxime nisi est beatae, aspernatur modi praesentium quaerat animi? Doloribus perferendis iure corrupti repellendus, reiciendis laudantium distinctio qui vitae adipisci at rem hic nemo quae. Repudiandae debitis ratione dolorem laboriosam neque temporibus placeat?
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, et deserunt nostrum vel vitae in reprehenderit sunt quidem! Recusandae, laboriosam dolorum nam aspernatur libero dicta quaerat incidunt optio odio debitis perspiciatis laudantium aliquid rem eum praesentium suscipit consequuntur tenetur quisquam ullam quos quam temporibus nostrum repudiandae nisi. Provident, repudiandae! Quo tempora nam ducimus sed fugit at debitis incidunt minus molestias dicta alias vel voluptates repellat, quos maiores maxime nisi est beatae, aspernatur modi praesentium quaerat animi? Doloribus perferendis iure corrupti repellendus, reiciendis laudantium distinctio qui vitae adipisci at rem hic nemo quae. Repudiandae debitis ratione dolorem laboriosam neque temporibus placeat?
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>3<em>3333</em>3</p>
+
+                      <p><strong>444444</strong></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <p>6</p>
+
+                      <p>&nbsp;- ggg ${1}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, et deserunt nostrum vel vitae in reprehenderit sunt quidem! Recusandae, laboriosam dolorum nam aspernatur libero dicta quaerat incidunt optio odio debitis perspiciatis laudantium aliquid rem eum praesentium suscipit consequuntur tenetur quisquam ullam quos quam temporibus nostrum repudiandae nisi. Provident, repudiandae! Quo tempora nam ducimus sed fugit at debitis incidunt minus molestias dicta alias vel voluptates repellat, quos maiores maxime nisi est beatae, aspernatur modi praesentium quaerat animi? Doloribus perferendis iure corrupti repellendus, reiciendis laudantium distinctio qui vitae adipisci at rem hic nemo quae. Repudiandae debitis ratione dolorem laboriosam neque temporibus placeat?
             </div>}
           right={
@@ -57,6 +102,14 @@ const IELTSReading = () => {
               <div id="q-2">
                 <h2>section-two</h2>
                 <QMultiCheckBox options={options} />
+              </div>
+              <div id="q-3">
+                <h2>section-three</h2>
+                <QTextInput number="1" textBefore="BEFORE" textAfter="AFTER" init="aa" final={Q}
+                />
+                {/* <div className='text-field'>
+                  <input name="answer1" value={formData.answer1} onChange={handleChange} />
+                </div> */}
               </div>
               <section>
                 <h2>section-three</h2>

@@ -4,8 +4,6 @@ const index = ({ options, init }: any) => {
 
   const [radioValue, setRadioValue] = useState(init);
 
-  console.log(radioValue);
-
   return <div className="App">
     <div className="input-radio">
       {options.map((option: any) => (
