@@ -1,7 +1,10 @@
 import { useState, forwardRef } from 'react';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { QueryClient, QueryCache, QueryClientProvider } from '@tanstack/react-query'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Navigate } from 'react-router-dom';
+
 // mtu
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
@@ -59,7 +62,7 @@ const App = () => {
           setMessage(error.message)
           if (error?.request?.status === 401) {
             localStorage.removeItem('token');
-            window.location.href = '/otp'; 
+            window.location.href = '/otp';
           }
           handleClick()
         }
@@ -83,17 +86,19 @@ const App = () => {
   return (
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
-        <MainRoutes />
-        <Snackbar
-          open={open}
-          autoHideDuration={2000}
-          onClose={handleClose}
-          action={action}
-        >
-          <Alert onClose={handleClose} severity="error">
-            {message}
-          </Alert>
-        </Snackbar>
+        <DndProvider backend={HTML5Backend}>
+          <MainRoutes />
+          <Snackbar
+            open={open}
+            autoHideDuration={2000}
+            onClose={handleClose}
+            action={action}
+          >
+            <Alert onClose={handleClose} severity="error">
+              {message}
+            </Alert>
+          </Snackbar>
+        </DndProvider>
       </QueryClientProvider>
     </ReduxProvider>
 

@@ -13,6 +13,7 @@ import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
 import IELTSReading from "@/pages/IELTSReading";
 import L1401 from "@/pages/IELTS/14/01/IELTSListening";
+import DD from "@/pages/IELTS/14/01/DragDrop";
 
 const MainRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const MainRoutes = () => {
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<IELTSReading />} path="/IELTS/Reading" />
           <Route element={<L1401 />} path="/IELTS/Listening" />
+          <Route element={<DD />} path="/DD" />
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route element={<Otp />} path="/otp" />

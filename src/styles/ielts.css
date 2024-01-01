@@ -499,3 +499,17 @@ td {
   align-items: center;
   min-height: 33px;
 }
+
+.ielts-dragbox {
+  border: 1px solid var(--color-04);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.ielts-dragbox.active {
+  border-width: 2px;
+}
+
+.ielts-dragbox:hover, .ielts-dragbox.active {
+  border-color: var(--color-08)
+}

@@ -14,6 +14,7 @@ import Title from '@/components/IELTS/Title';
 import QRadio from '@/components/IELTS/QRadio';
 import QTextInput from '@/components/IELTS/QTextInput';
 import QMultiCheckBox from '@/components/IELTS/QMultiCheckBox';
+import DND from '@/pages/IELTS/14/01/DragDrop';
 
 const IELTSListening = () => {
   const { t } = useTranslation();
@@ -576,6 +577,9 @@ const IELTSListening = () => {
                       </Stack>
                     </Paper>
                   </Stack>
+                  <div>
+                    <DND/>
+                  </div>
                 </Box>
               </div>
             </Box>
