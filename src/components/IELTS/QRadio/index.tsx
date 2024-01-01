@@ -4,7 +4,7 @@ const index = ({ options, init }: any) => {
 
   const [radioValue, setRadioValue] = useState(init);
 
-  return <div className="App">
+  return (
     <div className="input-radio">
       {options.map((option: any) => (
         <label className={radioValue === option.value && 'active'}
@@ -15,11 +15,11 @@ const index = ({ options, init }: any) => {
             checked={radioValue === option.value}
             onChange={(e) => setRadioValue(e.target.value)}
           />
-          {option.label}
+          {option.text}
         </label>
       ))}
     </div>
-  </div>
+  )
 
 };
 

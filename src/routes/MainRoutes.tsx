@@ -12,7 +12,7 @@ import Tickets from "@/pages/Tickets";
 import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
 import IELTSReading from "@/pages/IELTSReading";
-import IELTSListening from "@/pages/IELTSListening";
+import L1401 from "@/pages/IELTS/14/01/IELTSListening";
 
 const MainRoutes = () => {
   return (
@@ -29,7 +29,7 @@ const MainRoutes = () => {
           <Route element={<Tickets />} path="/tickets" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<IELTSReading />} path="/IELTS/Reading" />
-          <Route element={<IELTSListening />} path="/IELTS/Listening" />
+          <Route element={<L1401 />} path="/IELTS/Listening" />
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route element={<Otp />} path="/otp" />

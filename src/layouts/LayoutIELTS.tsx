@@ -38,12 +38,12 @@ const LayoutIELTS = ({ children }: any) => {
         </div>
       </div>
       <div className='ielts-main'>
-        <div className='ielts-contaner'>
+        {/* <div className='ielts-contaner'>
           <div className='ielts-title'>
             <div> <strong>Part 1</strong> </div>
             <div> Read the text and answer question 1-13. </div>
           </div>
-        </div>
+        </div> */}
         {children}
       </div>
       <div className='ielts-footer'>

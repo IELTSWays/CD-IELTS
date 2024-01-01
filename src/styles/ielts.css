@@ -398,6 +398,10 @@ html.ielts {
 }
 
 /* radio-button */
+.ielts .input-radio {
+  width: 100%;
+}
+
 .ielts .input-radio label {
   display: flex;
   align-items: center;
@@ -419,6 +423,11 @@ html.ielts {
 }
 
 /* input-checkbox */
+
+.ielts .input-checkbox {
+  width: 100%;
+}
+
 .ielts .checkbox-item {
   position: relative;
   margin: 0px !important;
