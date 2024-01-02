@@ -18,7 +18,7 @@ import DND from '@/pages/IELTS/14/01/DragDrop';
 
 const IELTSListening = () => {
   const { t } = useTranslation();
-  const [part, setPart] = useState(3)
+  const [part, setPart] = useState(4)
 
   const fontSize = useAppSelector((state) => state.user.fontSize)
 
@@ -26,6 +26,7 @@ const IELTSListening = () => {
     { title: "Part 1", description: "Listen and answer question 1-13." },
     { title: "Part 2", description: "Listen and answer question 11-20." },
     { title: "Part 3", description: "Listen and answer question 21-30." },
+    { title: "Part 4", description: "Listen and answer question 31-40." },
   ]
 
   const q11_12 = [
@@ -577,10 +578,425 @@ const IELTSListening = () => {
                       </Stack>
                     </Paper>
                   </Stack>
-                  <div>
-                    <DND/>
-                  </div>
                 </Box>
+              </div>
+            </Box>
+            <Box>
+              <Typography>
+                <h3> Questions 26 - 30 </h3>
+              </Typography>
+              <Typography className='italic'>
+                Choose the correct answer.
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 3 }}>
+              <div>
+                <Box sx={{ p: 1 }}>
+                  {/************************* [26-30] *************************/}
+                  <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
+                    <Paper elevation={0}>
+                      <Typography>
+                        <strong> 26-30 </strong>
+                        <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
+                      </Typography>
+                    </Paper>
+                    <Paper elevation={0}>
+                      <Stack direction="row" alignItems="center">
+                        DRAG-DROP
+                      </Stack>
+                    </Paper>
+                  </Stack>
+                </Box>
+              </div>
+            </Box>
+          </>
+        }
+
+        {part === 4 &&
+          <>
+            <Box>
+              <Typography>
+                <h3> Questions 31 - 40 </h3>
+              </Typography>
+              <Typography sx={{ my: 1.5 }}>
+                Complete the notes below.
+              </Typography>
+              <Typography className='italic'>
+                Write
+                <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
+                for each answer.
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 3 }}>
+              <Typography align="center" sx={{ py: 2 }}>
+                <h3 className='uppercase'>CRIME REPORT FORM</h3>
+              </Typography>
+              <div>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography><strong>Introduction</strong></Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [31] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            More energy required because of growth in population and
+                          </Typography>
+                          <QTextInput number="31" />
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            What’s needed:
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Paper elevation={0}>
+                          <Typography>renewable energy sources</Typography>
+                        </Paper>
+                      </Paper>
+                    </Stack>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Paper elevation={0}>
+                          <Typography>methods that won’t create pollution</Typography>
+                        </Paper>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography><strong>Wave energy</strong></Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [32] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            Advantage: waves provide a
+                          </Typography>
+                          <QTextInput number="32" />
+                          <Typography sx={{ pl: 1 }}>
+                            source of renewable energy
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography>
+                            Electricity can be generated using offshore or onshore systems
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography>
+                            Onshore systems may use a reservoir
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography>
+                            Problems:
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    {/************************* [33] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            waves can move in any
+                          </Typography>
+                          <QTextInput number="33" />
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    {/************************* [34] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            movement of sand, etc. on the
+                          </Typography>
+                          <QTextInput number="34" />
+                          <Typography sx={{ pl: 1 }}>
+                            of the ocean may be affected
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography><strong>Tidal energy</strong></Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [35] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            Tides are more
+                          </Typography>
+                          <QTextInput number="35" />
+                          <Typography sx={{ pl: 1 }}>
+                            than waves
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography>
+                            Planned tidal lagoon in Wales:
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    {/************************* [36] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            will be created in a
+                          </Typography>
+                          <QTextInput number="36" />
+                          <Typography sx={{ pl: 1 }}>
+                            at Swansea
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            breakwater (dam) containing 16 turbines
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            rising tide forces water through turbines, generating electricity
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                    {/************************* [37] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            stored water is released through
+                          </Typography>
+                          <QTextInput number="37" />
+                          <Typography sx={{ pl: 1 }}>
+                            at Swansea
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography>Advantages:</Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography >
+                            not dependent on weather
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [38] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            no
+                          </Typography>
+                          <QTextInput number="38" />
+                          <Typography sx={{ pl: 1 }}>
+                            is required to make it work
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+
+                    {/************************* [39] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            likely to create a number of
+                          </Typography>
+                          <QTextInput number="39" />
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography>Problem:</Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [40] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0} sx={{ width: '15px' }}>
+                        <Typography>●</Typography>
+                      </Paper>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            may ham fish and birds, e.g. by affecting
+                          </Typography>
+                          <QTextInput number="40" />
+                          <Typography sx={{ pl: 1 }}>
+                            and building up silt
+                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
+                <section>
+                  <Box sx={{ px: 1 }}>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                      <Paper elevation={0}>
+                        <Typography>Ocean thermal energy conversion:</Typography>
+                      </Paper>
+                    </Stack>
+                  </Box>
+
+                  <Box sx={{ px: 1 }}>
+                    {/************************* [40] *************************/}
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            Uses a difference in temperature between the surface and lower levels                          </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
+                      <Paper elevation={0}>
+                        <Stack direction="row" alignItems="center">
+                          <Typography sx={{ pr: 1 }}>
+                            Water brought to the surface in a pipe
+                            </Typography>
+                        </Stack>
+                      </Paper>
+                    </Stack>
+                  </Box>
+                </section>
+
               </div>
             </Box>
           </>
