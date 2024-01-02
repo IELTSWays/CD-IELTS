@@ -513,3 +513,30 @@ td {
 .ielts-dragbox:hover, .ielts-dragbox.active {
   border-color: var(--color-08)
 }
+
+.ielts-writing {
+  display: flex;
+  justify-content: center;
+}
+
+.ielts-writing img{
+  width: 100%;
+  max-width: 500px;
+}
+
+.ielts-textarea textarea {
+  resize: vertical;
+  min-height: 200px;
+  width: 100%;
+  border-width: 2px;
+  border-color: var(--color-06);
+  border-radius: 2.5px;
+  padding: 1rem;
+  outline: none !important;
+  font-size: unset !important;
+  font-family: unset !important;
+} 
+
+.ielts-textarea textarea:focus {
+  border-color: var(--color-08);
+}

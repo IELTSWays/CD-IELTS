@@ -12,8 +12,12 @@ import Tickets from "@/pages/Tickets";
 import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
 import IELTSReading from "@/pages/IELTSReading";
-import L1401 from "@/pages/IELTS/14/01/IELTSListening";
+
 import DD from "@/pages/IELTS/14/01/DragDrop";
+
+// Book14 Test 1
+import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
+import Book14_Test_1_Listening from "@/pages/IELTS/14/01/IELTSListening";
 
 const MainRoutes = () => {
   return (
@@ -30,7 +34,8 @@ const MainRoutes = () => {
           <Route element={<Tickets />} path="/tickets" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<IELTSReading />} path="/IELTS/Reading" />
-          <Route element={<L1401 />} path="/IELTS/Listening" />
+          <Route element={<Book14_Test_1_Writing />} path="/IELTS/Writing" />
+          <Route element={<Book14_Test_1_Listening />} path="/IELTS/Listening" />
           <Route element={<DD />} path="/DD" />
         </Route>
         <Route path="*" element={<NotFound />} />
