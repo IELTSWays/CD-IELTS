@@ -18,7 +18,7 @@ import DND from '@/pages/IELTS/14/01/DragDrop';
 
 const IELTSListening = () => {
   const { t } = useTranslation();
-  const [part, setPart] = useState(4)
+  const [part, setPart] = useState(3)
 
   const fontSize = useAppSelector((state) => state.user.fontSize)
 

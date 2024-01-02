@@ -540,3 +540,14 @@ td {
 .ielts-textarea textarea:focus {
   border-color: var(--color-08);
 }
+
+.ielts-paragraph {
+  font-size: 13px;
+}
+
+.ielts-paragraph::before {
+  content: ' ';
+  width: 200px;
+  display: flex;
+  border-top: 1.5px solid var(--color-07);
+}
