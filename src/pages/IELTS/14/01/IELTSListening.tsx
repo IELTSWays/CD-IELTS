@@ -18,12 +18,12 @@ import DND from '@/pages/IELTS/14/01/DragDrop';
 
 const IELTSListening = () => {
   const { t } = useTranslation();
-  const [part, setPart] = useState(3)
+  const [part, setPart] = useState(4)
 
   const fontSize = useAppSelector((state) => state.user.fontSize)
 
   const parts = [
-    { title: "Part 1", description: "Listen and answer question 1-13." },
+    { title: "Part 1", description: "Listen and answer question 1-10." },
     { title: "Part 2", description: "Listen and answer question 11-20." },
     { title: "Part 3", description: "Listen and answer question 21-30." },
     { title: "Part 4", description: "Listen and answer question 31-40." },
@@ -990,7 +990,7 @@ const IELTSListening = () => {
                         <Stack direction="row" alignItems="center">
                           <Typography sx={{ pr: 1 }}>
                             Water brought to the surface in a pipe
-                            </Typography>
+                          </Typography>
                         </Stack>
                       </Paper>
                     </Stack>
@@ -1002,6 +1002,12 @@ const IELTSListening = () => {
           </>
         }
 
+      </div>
+      <div>
+        <button onClick={() => setPart(1)}> 1 </button>
+        <button onClick={() => setPart(2)}> 2 </button>
+        <button onClick={() => setPart(3)}> 3 </button>
+        <button onClick={() => setPart(4)}> 4 </button>
       </div>
       {/* <div className="ielts-navigation">
         <div className="navigation-part active">

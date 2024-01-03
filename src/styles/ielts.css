@@ -537,12 +537,16 @@ td {
   font-family: unset !important;
 } 
 
+.ielts-textarea.error textarea {
+  border-color: red !important;
+}
+
 .ielts-textarea textarea:focus {
   border-color: var(--color-08);
 }
 
 .ielts-paragraph {
-  font-size: 13px;
+  font-size: 13px !important;
 }
 
 .ielts-paragraph::before {
@@ -550,4 +554,49 @@ td {
   width: 200px;
   display: flex;
   border-top: 1.5px solid var(--color-07);
+}
+
+.ielts-answersTable .css-1ps6pg7-MuiPaper-root {
+  box-shadow: unset !important
+}
+
+#ielts-answersTable-first .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
+  display: none;
+}
+
+
+.ielts-answersTable .MuiPaper-elevation{
+  width: 50%;
+  display: flex;
+  border: 1px solid;
+  border-left: 0;
+  border-radius: 0;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.ielts-answersTable label {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  min-width: 50px;
+  border: 1px solid;
+  margin: 0 !important;
+}
+
+#ielts-answersTable-first .MuiPaper-elevation {
+  border-top: 0;
+  border-left: 0;
+}
+
+#ielts-answersTable-first label {
+  border-top: 0;
+}
+
+#ielts-answersTable-first .MuiFormGroup-row {
+  margin-right: 0px;
+}
+
+.ielts-answersTable .css-pl8gqh-MuiStack-root>:not(style)~:not(style) {
+  margin-left: 0 !important
 }

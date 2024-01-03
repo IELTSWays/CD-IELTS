@@ -19,7 +19,7 @@ const IELTSWriting = () => {
 
   const parts = [
     { title: "Part 1", description: "You should spend 20 minutes on this task. Write at last 150 Words." },
-    { title: "Part 2", description: "Listen and answer question 11-20." },
+    { title: "Part 2", description: "You should spend 40 minutes on this task. Write at last 250 Words." },
   ]
 
   return (
@@ -77,6 +77,11 @@ const IELTSWriting = () => {
             </div>
           }
         />
+      </div>
+
+      <div>
+        <button onClick={() => setPart(1)}> 1 </button>
+        <button onClick={() => setPart(2)}> 2 </button>
       </div>
 
       {/* <div className="ielts-navigation">

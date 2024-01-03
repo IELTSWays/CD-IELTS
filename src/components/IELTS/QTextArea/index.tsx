@@ -9,13 +9,14 @@ const index = ({ id }: any) => {
   };
 
   function WordCount(str: string) {
-    return str.split(" ").length;
+    return str.split(/\s+/)
+      .filter(Boolean).length;
   }
 
   return (
-    <div className="ielts-textarea">
+    <div className={`ielts-textarea ${inputText.split(/\s+/).filter(Boolean).length > 10 && 'error'}`}>
       <textarea id={id} value={inputText} onChange={handleChange} />
-      <span> Wordes: {WordCount(inputText) - 1} </span>
+      <span> Words: {WordCount(inputText)} </span>
     </div>
   );
 };
