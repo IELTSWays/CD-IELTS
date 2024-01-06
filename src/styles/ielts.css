@@ -225,6 +225,7 @@ html.ielts {
   height: calc(100vh - 195px);
 }
 
+/* ielts-navigation */
 .ielts-navigation {
   display: flex;
   justify-content: space-between;
@@ -232,47 +233,42 @@ html.ielts {
 }
 
 .ielts-navigation > div {
+  position: relative;
   display: flex;
+  flex-grow: 1;
 }
-
-.ielts-navigation
-  .navigation-part.active:first-child
-  ~ .navigation-part:nth-child(2) {
-  padding-right: 230px;
-}
-
-.ielts-navigation:last-child:not(.active) {
-  padding-right: 200px;
-}
-
 .navigation-part-title {
-  border-top: 2px solid var(--color-01);
-  padding: 10px;
+  border-top: 3px solid var(--color-01);
+  padding: 10px 30px;
   margin-top: 5px;
   display: flex;
   align-items: center;
   color: var(--color-07);
   font-size: 20px;
-}
-
-.navigation-part:nth-child(1) .navigation-part-title {
-  padding: 10px 30px;
+  white-space: nowrap;
+  display: none;
 }
 
 .navigation-part.active .navigation-part-title {
   border-top-color: var(--color-06);
   font-weight: bold;
   color: #000;
+  display: flex;
 }
 
 .navigation-part-items {
   padding-left: 5px;
   display: flex;
   gap: 5px;
+  visibility: hidden;
+}
+
+.navigation-part.active .navigation-part-items {
+  visibility: visible !important;
 }
 
 .navigation-part-items > div {
-  border-top: 2px solid var(--color-06);
+  border-top: 3px solid var(--color-06);
   padding: 15px 0px;
   margin-top: 5px;
 }
@@ -280,6 +276,7 @@ html.ielts {
 .navigation-part-items,
 .navigation-part-items a {
   color: var(--color-07);
+  white-space: nowrap;
 }
 
 .navigation-part-items > div span {
@@ -304,10 +301,47 @@ html.ielts {
   padding-top: 5px;
   color: var(--color-04);
   font-size: 20px;
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  margin-top: 15px;
 }
 
-.navigation-part-counter span {
-  padding: 0 5px;
+.navigation-part.done .navigation-part-counter:after{
+  content: ' ';
+  content: ' ';
+  border-top: 3px solid green;
+  width: 100%;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+}
+
+.navigation-part.active .navigation-part-counter {
+  display: none;
+}
+
+.navigation-part-counter div:nth-child(1) {
+  color: var(--color-07);
+  margin-right: 15px;
+}
+
+/* ielts-navigation- duplicates */
+
+/* [12,14] */
+.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(2),
+.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(4){
+  display: none !important;
+}
+
+/* [11-12] */
+.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(1) span:after {
+  content: '-12'
+}
+
+/* [13-14] */
+.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(3) span:after {
+  content: '-14'
 }
 
 /* modal-option */
@@ -352,7 +386,7 @@ html.ielts {
   padding: 0 !important;
 }
 
-/* [ ############################ START FONTSIZE ############################ ] */
+/* [ ############################ START FOOTSIE ############################ ] */
 .regular {
   font-size: var(--font-regular) !important;
 }
@@ -387,7 +421,7 @@ html.ielts {
   font-size: var(--font-extraLarge) !important;
 }
 
-/* [ ############################ END FONTSIZE ############################ ] */
+/* [ ############################ END FOOTSIE ############################ ] */
 
 .ielts-question-title {
   font-weight: bolder;
@@ -462,7 +496,7 @@ html.ielts {
   height: 44px;
 }
 
-/* text-input */
+/* text-field */
 .ielts-contaner .MuiInputBase-input {
   padding: 5px 10px !important;
   width: 180px !important;
@@ -485,6 +519,36 @@ html.ielts {
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
+  border-radius: 5px !important;
+  border: 1.5px solid transparent;
+}
+
+.ielts-contaner .text-field input{
+  border-radius: 5px !important;
+  border: 1.5px solid transparent;
+}
+
+.css-1tvkffy-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-08) !important;
+}
+
+.ielts-contaner .text-field.active input{
+  border-color: var(--color-08) !important;
+}
+
+.ielts-contaner .text-field.active input:hover {
+  border-color: var(--color-08) !important;
+}
+
+/* active number question */
+.ielts-contaner .question-now {
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+
+.ielts-contaner .question-now.active {
+  border-color: var(--color-08)
 }
 
 table,
@@ -492,7 +556,6 @@ th,
 td {
   border: 1px solid;
 }
-
 
 #ielts-list-text-input .css-ahj2mt-MuiTypography-root {
   display: flex;
