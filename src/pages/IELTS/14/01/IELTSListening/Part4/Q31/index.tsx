@@ -32,7 +32,7 @@ const index = ({ qn }: any) => {
             <Typography sx={{ pr: 1 }}>
               More energy required because of growth in population and
             </Typography>
-            <div className={`text-field ${currentQuestion === qn && 'active'}`}>
+            <div className={`text-field ${currentQuestion == qn && 'active'}`}>
               <TextField
                 margin="normal"
                 placeholder={qn}

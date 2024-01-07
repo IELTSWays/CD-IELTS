@@ -34,7 +34,7 @@ const index = ({ qn }: any) => {
             <Typography sx={{ pr: 1 }}>
               stored water is released through
             </Typography>
-            <div className={`text-field ${currentQuestion === qn && 'active'}`}>
+            <div className={`text-field ${currentQuestion == qn && 'active'}`}>
               <TextField
                 margin="normal"
                 placeholder={qn}

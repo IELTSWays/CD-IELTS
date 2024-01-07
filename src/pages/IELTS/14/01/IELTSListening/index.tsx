@@ -166,7 +166,7 @@ const index = () => {
 
                 <Box sx={{ p: 1 }}>
                   {/************************* [1] *************************/}
-                  <Q01 qn={questions[0].label} />
+                  <Q01 qn={questions[1].label} />
                   {/************************* [2] *************************/}
                   <Q02 qn={questions[1].label} />
                   {/************************* [3] *************************/}
@@ -450,7 +450,6 @@ const index = () => {
       </div>
 
       <div className="ielts-navigation" id="ielts-listening-1401">
-
         <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
           <div className="navigation-part-title">
             <span>Part 1</span>
@@ -560,9 +559,7 @@ const index = () => {
           <div className='navigation-part-counter'>
             <div>Part 4</div> <div> 0 of 40 </div>
           </div>
-
         </div>
-
       </div>
     </>
   );

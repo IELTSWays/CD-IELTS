@@ -7,15 +7,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+
+// store
+import { useAppSelector } from '@/store/hooks'
+import { useAppDispatch } from '@/store/hooks'
+import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+// store
+
 const questions = [
-  { id: '14', title: 'a description of how people misused a bike-sharing scheme' },
-  { id: '15', title: 'an explanation of why a proposed bike-sharing scheme was turned down' },
-  { id: '16', title: 'a reference to a person being unable to profit their work' },
-  { id: '17', title: 'an explanation of the potential savings a bike-sharing scheme would bring' },
-  { id: '18', title: 'a reference to the problems a bike-sharing scheme was intended to solve' }
+  { id: 14, title: 'a description of how people misused a bike-sharing scheme' },
+  { id: 15, title: 'an explanation of why a proposed bike-sharing scheme was turned down' },
+  { id: 16, title: 'a reference to a person being unable to profit their work' },
+  { id: 17, title: 'an explanation of the potential savings a bike-sharing scheme would bring' },
+  { id: 18, title: 'a reference to the problems a bike-sharing scheme was intended to solve' }
 ]
 
 const AnswersTable = () => {
+
+  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
   return (
     <Card variant="outlined">
       <CardContent sx={{ p: 3 }}>
@@ -45,18 +55,22 @@ const AnswersTable = () => {
               <Stack
                 direction="row"
                 spacing={2}
+                id={`q-${i.id}`}
               >
-                <Paper> <strong>{i.id}</strong> <Typography sx={{ px: 1 }}> {i.title} </Typography> </Paper>
+                <Paper>
+                  <strong className={`question-now ${currentQuestion == i.id && 'active'} `}> {i.id} </strong>
+                  <Typography sx={{ px: 1 }}> {i.title} </Typography> 
+                </Paper>
                 <RadioGroup
                   row
                 >
-                  <FormControlLabel value="A" control={<Radio />} />
-                  <FormControlLabel value="B" control={<Radio />} />
-                  <FormControlLabel value="C" control={<Radio />} />
-                  <FormControlLabel value="D" control={<Radio />} />
-                  <FormControlLabel value="E" control={<Radio />} />
-                  <FormControlLabel value="F" control={<Radio />} />
-                  <FormControlLabel value="G" control={<Radio />} />
+                  <FormControlLabel value="A" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="B" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="C" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="D" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="E" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="F" control={<Radio />} label={undefined} />
+                  <FormControlLabel value="G" control={<Radio />} label={undefined} />
                 </RadioGroup>
               </Stack>
             )

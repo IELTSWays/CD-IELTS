@@ -230,6 +230,7 @@ html.ielts {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+  overflow-x: scroll;
 }
 
 .ielts-navigation > div {
@@ -328,6 +329,8 @@ html.ielts {
 
 /* ielts-navigation- duplicates */
 
+/* [ ==================================== ielts-listening-1401 */
+
 /* [12,14] */
 .ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(2),
 .ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(4){
@@ -342,6 +345,24 @@ html.ielts {
 /* [13-14] */
 .ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(3) span:after {
   content: '-14'
+}
+
+/* [ ==================================== ielts-reading-1401 */
+
+/* [20,22] */
+.ielts-navigation#ielts-reading-1401 #item-20,
+.ielts-navigation#ielts-reading-1401 #item-22 {
+  display: none !important;
+}
+
+/* [19-20] */
+.ielts-navigation#ielts-reading-1401 #item-19 span:after{
+  content: '-20'
+}
+
+/* [21-22] */
+.ielts-navigation#ielts-reading-1401 #item-21 span:after{
+  content: '-22'
 }
 
 /* modal-option */
@@ -545,6 +566,7 @@ html.ielts {
   padding: 5px;
   border-radius: 5px;
   border: 2px solid transparent;
+  white-space: nowrap
 }
 
 .ielts-contaner .question-now.active {
@@ -623,6 +645,10 @@ td {
   box-shadow: unset !important
 }
 
+.ielts-answersTable .question-now {
+  height: 36px;
+}
+
 #ielts-answersTable-first .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
   display: none;
 }
@@ -662,4 +688,43 @@ td {
 
 .ielts-answersTable .css-pl8gqh-MuiStack-root>:not(style)~:not(style) {
   margin-left: 0 !important
+}
+
+/* arrow-currentQuestion */
+.arrow-currentQuestion {
+  position: fixed;
+  right: 100px;
+  bottom: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.arrow-currentQuestion > div {
+  width: 60px;
+  height: 60px;
+  background: var(--color-09);
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.arrow-currentQuestion > div:first-child {
+  background: var(--color-04);
+}
+
+.arrow-currentQuestion a {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.arrow-currentQuestion img {
+  width: 40px;
+  margin: auto;
+}
+
+.arrow-currentQuestion .disable {
+  pointer-events: none;
 }

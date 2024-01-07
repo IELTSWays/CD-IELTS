@@ -36,7 +36,7 @@ const index = ({ qn }: any) => {
             <Stack direction="row" alignItems="center">
               <Typography sx={{ pr: 1 }}> – </Typography>
               <Typography sx={{ pr: 1 }}> {t('00022')} </Typography>
-              <div className={`text-field ${currentQuestion === qn && 'active'}`}>
+              <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                 <TextField
                   margin="normal"
                   placeholder={qn}
