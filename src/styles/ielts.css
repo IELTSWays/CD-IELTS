@@ -238,6 +238,14 @@ html.ielts {
   display: flex;
   flex-grow: 1;
 }
+
+.navigation-part::before {
+  content: '';
+  width: 10px;
+  background: #fff;
+  height: 50px;
+}
+
 .navigation-part-title {
   border-top: 3px solid var(--color-01);
   padding: 10px 30px;
@@ -332,18 +340,18 @@ html.ielts {
 /* [ ==================================== ielts-listening-1401 */
 
 /* [12,14] */
-.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(2),
-.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(4){
+.ielts-navigation#ielts-listening-1401 #item-12,
+.ielts-navigation#ielts-listening-1401 #item-14{
   display: none !important;
 }
 
 /* [11-12] */
-.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(1) span:after {
+.ielts-navigation#ielts-listening-1401 #item-11 span:after {
   content: '-12'
 }
 
 /* [13-14] */
-.ielts-navigation#ielts-listening-1401 .navigation-part:nth-child(2) .navigation-part-items div:nth-child(3) span:after {
+.ielts-navigation#ielts-listening-1401 #item-13 span:after {
   content: '-14'
 }
 

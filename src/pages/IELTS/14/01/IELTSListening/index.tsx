@@ -16,6 +16,9 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
+import iLeft from '@/assets/images/CharmArrowLeft.svg';
+import iRight from '@/assets/images/CharmArrowRight.svg';
+
 import Title from '@/components/IELTS/Title';
 
 import Q00 from './Part1/Q00';
@@ -130,15 +133,42 @@ const index = () => {
   }, [currentQuestion]);
 
 
+  const handlePrevious = () => {
+    if (currentQuestion == 15 || currentQuestion == 13) {
+      dispatch(setCurrentQuestion(+currentQuestion - 2))
+    }
+    else {
+      dispatch(setCurrentQuestion(+currentQuestion - 1))
+    }
+  }
+
+  const handleNext = () => {
+    if (currentQuestion == 11 || currentQuestion == 13) {
+      dispatch(setCurrentQuestion(+currentQuestion + 2))
+    }
+    else {
+      dispatch(setCurrentQuestion(+currentQuestion + 1))
+    }
+  }
+
   return (
     <>
       <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
 
+
       <div className={`ielts-contaner full-w ${fontSize}`} id="ielts-list-text-input">
 
-        <div>
-          <button> - </button>
-          <button onClick={() => dispatch(setCurrentQuestion(+currentQuestion + 1))}> + </button>
+      <div className='arrow-currentQuestion'>
+          <div className={currentQuestion == 1 && 'disable'}>
+            <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>
+              <img src={iLeft} />
+            </HashLink>
+          </div>
+          <div className={currentQuestion == 40 && 'disable'}>
+            <HashLink onClick={handleNext} smooth to={`#q-${currentQuestion + 1}`}>
+              <img src={iRight} />
+            </HashLink>
+          </div>
         </div>
 
         {part === 1 &&
@@ -458,7 +488,7 @@ const index = () => {
 
             {questions.slice(0, 10).map((i) => {
               return (
-                <div className={currentQuestion == `${i.number}` && 'active'}>
+                <div className={currentQuestion == `${i.number}` && 'active'} id={`item-${i.number}`}>
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -488,7 +518,7 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(10, 20).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'}>
+                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -518,7 +548,7 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(20, 30).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'}>
+                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>  
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -548,7 +578,7 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(30, 40).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'}>
+                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.number))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
