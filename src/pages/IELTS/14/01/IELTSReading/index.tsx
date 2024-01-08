@@ -152,7 +152,7 @@ const index = () => {
     <>
       <Title title={parts[part - 1].title} description={parts[part - 1].description} />
 
-      <div className={`ielts-contaner ${fontSize}`} id="ielts-list-text-input">
+      <div className={`ielts-container ${fontSize}`} id="ielts-list-text-input">
         <div className='arrow-currentQuestion'>
           <div className={currentQuestion == 1 && 'disable'}>
             <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>

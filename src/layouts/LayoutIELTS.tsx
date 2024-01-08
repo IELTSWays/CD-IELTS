@@ -1,3 +1,6 @@
+import ReactPlayer from "react-player";
+
+
 // mtu
 import WifiIcon from '@mui/icons-material/Wifi';
 import ForumIcon from '@mui/icons-material/Forum';
@@ -11,11 +14,14 @@ import "@/styles/ielts.css"
 import Logo from '@/assets/images/ielts.png'
 import ModalOptions from '@/components/IELTS/ModalOptions';
 
+
+
 const LayoutIELTS = ({ children }: any) => {
+
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
-        <div className="ielts-contaner">
+        <div className="ielts-container">
           <div className='justify-content-space-between'>
             <div className="d-flex">
               <img src={Logo} alt="ielts" height={40} />
@@ -26,6 +32,12 @@ const LayoutIELTS = ({ children }: any) => {
                   Live proctoring started
                 </div>
               </div>
+              {/* <ReactPlayer
+                className='react-player'
+                url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                width='100%'
+                height='100%'
+              /> */}
             </div>
             <div className='align-items-center g-20'>
               <WifiIcon color="action" fontSize="large" />
@@ -38,16 +50,10 @@ const LayoutIELTS = ({ children }: any) => {
         </div>
       </div>
       <div className='ielts-main'>
-        {/* <div className='ielts-contaner'>
-          <div className='ielts-title'>
-            <div> <strong>Part 1</strong> </div>
-            <div> Read the text and answer question 1-13. </div>
-          </div>
-        </div> */}
         {children}
       </div>
       <div className='ielts-footer'>
-        <div className='ielts-contaner'>
+        <div className='ielts-container'>
           <div className='justify-content-space-between'>
             <div className='align-items-flex-end'>
               inspera assessment

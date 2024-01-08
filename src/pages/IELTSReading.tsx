@@ -38,7 +38,7 @@ const IELTSReading = () => {
 
   return (
     <>
-      <div className={`ielts-contaner ${fontSize}`}>
+      <div className={`ielts-container ${fontSize}`}>
         <SplitView
           left=
           {

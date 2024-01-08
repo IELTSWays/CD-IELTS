@@ -33,7 +33,7 @@ html[data-theme="sunset"] {
   --un: 10px;
 }
 
-/* .ielts-contaner {
+/* .ielts-container {
   font-size: var(--un) !important;
 } */
 
@@ -176,11 +176,11 @@ html.ielts {
   margin: 0;
 }
 
-.ielts-contaner {
+.ielts-container {
   padding: 0 20px;
 }
 
-.ielts-contaner.full-w {
+.ielts-container.full-w {
   height: calc(100vh - 390px);
   overflow-y: scroll;
 }
@@ -415,7 +415,7 @@ html.ielts {
   padding: 0 !important;
 }
 
-/* [ ############################ START FOOTSIE ############################ ] */
+/* [ ############################ START FOOT-SIZE ############################ ] */
 .regular {
   font-size: var(--font-regular) !important;
 }
@@ -428,8 +428,38 @@ html.ielts {
   font-size: var(--font-extraLarge) !important;
 }
 
-.ielts-contaner {
+.ielts-container {
   font-size: var(--font-size) !important;
+}
+
+.ielts-container.regular {
+  font-size: var(--font-regular) !important;
+}
+
+.ielts-container.large {
+  font-size: var(--font-large) !important;
+}
+
+.ielts-container.extraLarge {
+  font-size: var(--font-extraLarge) !important;
+}
+
+/* [font-size: unset] */
+.ielts-container .MuiTypography-body1 {
+  font-size: unset !important;
+}
+
+.ielts-container p {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ielts-container.large .divider::after {
+  padding-top: 5px !important
+}
+
+.ielts-container.extraLarge .divider::after {
+  padding-top: 0px !important
 }
 
 #ielts-modal-options.regular .css-10hburv-MuiTypography-root,
@@ -450,7 +480,7 @@ html.ielts {
   font-size: var(--font-extraLarge) !important;
 }
 
-/* [ ############################ END FOOTSIE ############################ ] */
+/* [ ############################ END FOOT-SIZE ############################ ] */
 
 .ielts-question-title {
   font-weight: bolder;
@@ -526,24 +556,24 @@ html.ielts {
 }
 
 /* text-field */
-.ielts-contaner .MuiInputBase-input {
+.ielts-container .MuiInputBase-input {
   padding: 5px 10px !important;
   width: 180px !important;
   margin: unset !important;
 }
 
-.ielts-contaner .text-field .MuiFormControl-root {
+.ielts-container .text-field .MuiFormControl-root {
   margin: 0 !important;
 }
 
-.ielts-contaner .MuiInputBase-input::placeholder {
+.ielts-container .MuiInputBase-input::placeholder {
   color: var(--color-09);
   opacity: 1;
   font-weight: bolder;
   text-align: center;
 }
 
-.ielts-contaner .text-field {
+.ielts-container .text-field {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -552,7 +582,7 @@ html.ielts {
   border: 1.5px solid transparent;
 }
 
-.ielts-contaner .text-field input{
+.ielts-container .text-field input{
   border-radius: 5px !important;
   border: 1.5px solid transparent;
 }
@@ -561,23 +591,23 @@ html.ielts {
   border-color: var(--color-08) !important;
 }
 
-.ielts-contaner .text-field.active input{
+.ielts-container .text-field.active input{
   border-color: var(--color-08) !important;
 }
 
-.ielts-contaner .text-field.active input:hover {
+.ielts-container .text-field.active input:hover {
   border-color: var(--color-08) !important;
 }
 
 /* active number question */
-.ielts-contaner .question-now {
+.ielts-container .question-now {
   padding: 5px;
   border-radius: 5px;
   border: 2px solid transparent;
   white-space: nowrap
 }
 
-.ielts-contaner .question-now.active {
+.ielts-container .question-now.active {
   border-color: var(--color-08)
 }
 
@@ -654,13 +684,12 @@ td {
 }
 
 .ielts-answersTable .question-now {
-  height: 36px;
+  height: fit-content;
 }
 
 #ielts-answersTable-first .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
   display: none;
 }
-
 
 .ielts-answersTable .MuiPaper-elevation{
   width: 50%;

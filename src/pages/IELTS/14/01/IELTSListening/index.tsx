@@ -16,6 +16,9 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
+import usePostAnswer from '@/services/Requests/usePostAnswer';
+import usePostExamStart from '@/services/Requests/usePostExamStart';
+
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
 
@@ -69,6 +72,9 @@ const index = () => {
     { title: "Part 3", description: "Listen and answer question 21-30." },
     { title: "Part 4", description: "Listen and answer question 31-40." },
   ]
+
+  usePostAnswer()
+  // usePostExamStart()
 
   const [part, setPart] = useState(1)
 
@@ -151,12 +157,15 @@ const index = () => {
     }
   }
 
+  const ali = () => {
+    usePostExamStart()
+  }
+
   return (
     <>
       <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
 
-
-      <div className={`ielts-contaner full-w ${fontSize}`} id="ielts-list-text-input">
+      <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
 
       <div className='arrow-currentQuestion'>
           <div className={currentQuestion == 1 && 'disable'}>
@@ -170,6 +179,8 @@ const index = () => {
             </HashLink>
           </div>
         </div>
+
+        <button onClick={() => ali()}> CLICK </button>
 
         {part === 1 &&
           <>

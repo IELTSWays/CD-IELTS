@@ -55,6 +55,7 @@ const Paragraphs = [
 ]
 
 const Text1 = () => {
+
   return (
     <>
       <Typography sx={{ mb: 2.5 }}>
@@ -66,7 +67,9 @@ const Text1 = () => {
       </Typography>
       {Paragraphs.map((i, index) => {
         return (
-          <Typography key={index} sx={{ mb: 1.5 }}> {i.paragraph} </Typography>
+          <Typography key={index} sx={{ mb: 1.5 }}>
+            {i.paragraph}
+          </Typography>
         )
       })}
       <Typography sx={{ mb: 1.5 }} className="ielts-paragraph">

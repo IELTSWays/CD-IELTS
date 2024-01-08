@@ -26,7 +26,7 @@ const IELTSWriting = () => {
     <>
       <Title title={parts[part - 1].title} description={parts[part - 1].description} />
 
-      <div className={`ielts-contaner ${fontSize}`}>
+      <div className={`ielts-container ${fontSize}`}>
         <SplitView
           left=
           {

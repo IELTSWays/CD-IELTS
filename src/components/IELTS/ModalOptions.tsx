@@ -73,7 +73,7 @@ const ModalOptions = () => {
           alignItems="center" sx={{ mb: 3 }}>
           <ListItemButton
             onClick={() => setOptions(0)}
-            sx={{ maxWidth: '150px', visibility: options === 0 && 'hidden' }}
+            sx={{ maxWidth: '200px', visibility: options === 0 && 'hidden' }}
           >
             <ListItemIcon>
               <ArrowBackIosIcon />
