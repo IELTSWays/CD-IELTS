@@ -7,6 +7,6 @@ export default defineConfig({
     alias: [{ find: '@', replacement: '/src' }]
   },
   optimizeDeps: {
-    exclude: ['js-big-decimal']
+    include: ["fancy-date"],
   }
 });

@@ -9,6 +9,7 @@ html[data-theme="light"] {
   --color-08: #1976d2;
   --color-09: #000000;
   --color-10: #c0e0ff;
+  --color-11: #c4e1ff
 }
 
 /* html[data-theme="dark"] {
@@ -207,7 +208,7 @@ html.ielts {
 
 .ielts-footer-btn {
   border-radius: 2.5px;
-  border: 1.5px solid var(--color-04);
+  border: 2px solid var(--color-04);
   margin: 0px;
   display: flex;
   align-items: center;
@@ -219,6 +220,27 @@ html.ielts {
 
 .ielts-footer-btn:last-child {
   width: 80px;
+}
+
+.ielts-footer-btn .volume-controller {
+  position: absolute;
+  background: var(--color-04);
+  border: 2px solid var(--color-07);
+  padding: 10px 20px;
+  top: -63px
+}
+
+.ielts-footer-btn .volume-controller .css-zayqnb-MuiStack-root {
+  margin-bottom: 0;
+}
+
+.ielts-footer-btn .volume-controller .css-187mznn-MuiSlider-root {
+  color: #fff;
+}
+
+.ielts-footer-btn:hover {
+  border-color: var(--color-08);
+  background: var(--color-11);
 }
 
 .ielts-main {
