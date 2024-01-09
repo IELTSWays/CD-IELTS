@@ -16,10 +16,10 @@ const usePostExamStart = () => {
     queryKey: ['postExamStart'],
     queryFn: async () => {
       const response = await axiosInstance.post('exam/start', {
-          "name":"ielts 14 listening",
-          "skill":"listening",
-          "type":"academic",
-          "book":1
+        "test": "3",
+        "skill": "listening",
+        "type": "academic",
+        "book": 1
       })
       const data = await response.data
       return data

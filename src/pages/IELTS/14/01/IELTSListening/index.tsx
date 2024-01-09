@@ -16,6 +16,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
+import useGetAnswer from '@/services/Requests/useGetAnswer';
 import usePostAnswer from '@/services/Requests/usePostAnswer';
 import usePostExamStart from '@/services/Requests/usePostExamStart';
 
@@ -74,6 +75,7 @@ const index = () => {
   ]
 
   usePostAnswer()
+  useGetAnswer()
   // usePostExamStart()
 
   const [part, setPart] = useState(1)
@@ -167,7 +169,7 @@ const index = () => {
 
       <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
 
-      <div className='arrow-currentQuestion'>
+        <div className='arrow-currentQuestion'>
           <div className={currentQuestion == 1 && 'disable'}>
             <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>
               <img src={iLeft} />
@@ -559,7 +561,7 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(20, 30).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>  
+                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>

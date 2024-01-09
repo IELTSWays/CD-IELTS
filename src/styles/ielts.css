@@ -787,3 +787,46 @@ td {
 .arrow-currentQuestion .disable {
   pointer-events: none;
 }
+
+
+.highlight ::selection {
+  background: var(--color-08);
+  color: #fff;
+}
+
+.highlight-items {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--color-07);
+  gap: 10px;
+  position: relative;
+  top: 15px;
+}
+
+.highlight-items::before {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  clear: both;
+}
+
+.highlight-items > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 50px;
+}
+
+.highlight-items p {
+  margin-top: 5px;
+  font-size: 10px !important;
+}
