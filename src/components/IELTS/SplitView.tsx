@@ -1,5 +1,14 @@
 import React, { createRef, useEffect, useState } from "react";
 
+// mtu
+import Popper from '@mui/material/Popper';
+import Typography from '@mui/material/Typography';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+// mtu
+
 const MIN_WIDTH = 75;
 
 interface SplitViewProps {
@@ -88,21 +97,79 @@ export const SplitView: React.FunctionComponent<SplitViewProps> = ({
   };
 
   React.useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("touchmove", onTouchMove);
-    document.addEventListener("mouseup", onMouseUp);
+    document.getElementById('divider').addEventListener("mousemove", onMouseMove);
+    document.getElementById('divider').addEventListener("touchmove", onTouchMove);
+    document.getElementById('divider').addEventListener("mouseup", onMouseUp);
 
     return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("touchmove", onTouchMove);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.getElementById('divider').removeEventListener("mousemove", onMouseMove);
+      document.getElementById('divider').removeEventListener("touchmove", onTouchMove);
+      document.getElementById('divider').removeEventListener("mouseup", onMouseUp);
     };
   });
+
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // const handleMouseUp = () => {
+  //   console.log(`[Selected text] ${window.getSelection().toString()}`);
+  // }
+
+  const handleClose = () => {
+    setInterval(() => setOpen(false), 3000)
+  };
+
+  const handleMouseUp = () => {
+    const selection = window.getSelection();
+
+    if (!selection || selection.anchorOffset === selection.focusOffset) {
+      handleClose();
+      return;
+    }
+
+    const getBoundingClientRect = () =>
+      selection.getRangeAt(0).getBoundingClientRect();
+
+    setOpen(true);
+    setAnchorEl({
+      getBoundingClientRect,
+    });
+  };
+
+  const id = open ? 'virtual-element-popper' : undefined;
+
 
   return (
     <div className={`splitView ${className ?? ""}`} ref={splitPaneRef}>
       <LeftPane leftWidth={leftWidth} setLeftWidth={setLeftWidth}>
-        {left}
+        <span onMouseLeave={handleClose}>
+          <span aria-describedby={id} onMouseUp={handleMouseUp} className="highlight">
+            {left}
+          </span>
+        </span>
+        <Popper
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          transition
+          placement="bottom-end"
+        >
+          {({ TransitionProps }) => (
+            <Fade {...TransitionProps} timeout={350}>
+            <Paper className="highlight-items"
+            >
+              <div>
+                <FormatQuoteIcon />
+                <Typography> Note </Typography>
+              </div>
+              <div>
+                <BorderColorIcon />
+                <Typography> highlight </Typography>
+              </div>
+            </Paper>
+            </Fade>
+          )}
+        </Popper>
       </LeftPane>
       <div
         className="divider-hitbox"
@@ -110,7 +177,7 @@ export const SplitView: React.FunctionComponent<SplitViewProps> = ({
         onTouchStart={onTouchStart}
         onTouchEnd={onMouseUp}
       >
-        <div className="divider" />
+        <div className="divider" id="divider" />
       </div>
       <div className="rightPane">{right}</div>
     </div>
