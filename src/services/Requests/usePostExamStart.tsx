@@ -12,10 +12,11 @@ const usePostExamStart = () => {
   const fontSize = useAppSelector((state) => state.user.fontSize)
   console.log(fontSize);
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, refetch } = useQuery({
+    enabled: false,
     queryKey: ['postExamStart'],
     queryFn: async () => {
-      const response = await axiosInstance.post('exam/start', {
+      const response = await axiosInstance.post('exam/start-test', {
         "test": "3",
         "skill": "listening",
         "type": "academic",
@@ -25,7 +26,7 @@ const usePostExamStart = () => {
       return data
     },
   })
-  return { isLoading, data };
+  return { isLoading, data, refetch };
 };
 
 export default usePostExamStart;

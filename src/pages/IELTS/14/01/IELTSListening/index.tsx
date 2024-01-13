@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { HashLink } from 'react-router-hash-link';
 
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
+
+
 // mtu
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -13,10 +19,9 @@ import DoneIcon from '@mui/icons-material/Done';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 // store
 
-import useGetAnswer from '@/services/Requests/useGetAnswer';
 import usePostAnswer from '@/services/Requests/usePostAnswer';
 import usePostExamStart from '@/services/Requests/usePostExamStart';
 
@@ -66,6 +71,7 @@ const index = () => {
 
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const answersAll = useAppSelector((state) => state.user.answersAll)
 
   const parts = [
     { title: "Part 1", description: "Listen and answer question 1-10." },
@@ -74,11 +80,51 @@ const index = () => {
     { title: "Part 4", description: "Listen and answer question 31-40." },
   ]
 
-  usePostAnswer()
-  useGetAnswer()
-  // usePostExamStart()
+  const { data: ExamStartData, refetch } = usePostExamStart()
 
+  const getAnswer = useQuery({
+    enabled: true,
+    queryKey: ['getAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.get('exam/answer/YI0ZATYUTNRR')
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
+  const postAnswer = useQuery({
+    enabled: true,
+    queryKey: ['postAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.post('exam/answer/YI0ZATYUTNRR', {
+        "test_done": false,
+        "answers": answersAll,
+      })
+      const data = await response.data
+      return data
+    },
+  })
+  
+  const init  = {
+    '00001': null,
+    '00002': null,
+    '00003': null,
+    '00004': null,
+    '00005': null,
+    '00006': null,
+    '00007': null,
+    '00008': null,
+    '00009': null,
+    '00010': null,
+  }
+  
   const [part, setPart] = useState(1)
+
+  useEffect(() => {
+    getAnswer.isFetching
+    postAnswer.refetch()
+  }, [part])
 
   const questions = [
     { number: 1, label: "1" },
@@ -137,7 +183,6 @@ const index = () => {
     if (currentQuestion > 30 && currentQuestion < 41) {
       setPart(4)
     }
-    console.log(currentQuestion)
   }, [currentQuestion]);
 
 
@@ -159,8 +204,9 @@ const index = () => {
     }
   }
 
-  const ali = () => {
-    usePostExamStart()
+  const startExamHandler = () => {
+    refetch()
+    dispatch(setAnswersAll(init)) 
   }
 
   return (
@@ -182,314 +228,318 @@ const index = () => {
           </div>
         </div>
 
-        <button onClick={() => ali()}> CLICK </button>
+        <button onClick={() => startExamHandler()}> START EXAM </button>
 
-        {part === 1 &&
+        {getAnswer.isLoading && <div> LOADING... </div>}
+        {getAnswer.isSuccess &&
           <>
-            <Box>
-              <Typography>
-                <h3> Questions 1 - 10 </h3>
-              </Typography>
-              <Typography sx={{ my: 1.5 }}>
-                Complete the notes.
-              </Typography>
-              <Typography className='italic'>
-                Write
-                <Typography sx={{ px: 1 }}> <strong className='uppercase'> one word and/or a number </strong> </Typography>
-                for each answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <Typography align="center" sx={{ py: 2 }}>
-                <h3 className='uppercase'>CRIME REPORT FORM</h3>
-              </Typography>
-              <div>
-                {/************************* [0] *************************/}
-                <Q00 />
+            {part === 1 &&
+              <>
+                <Box>
+                  <Typography>
+                    <h3> Questions 1 - 10 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> one word and/or a number </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
+                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
+                  </Typography>
+                  <div>
+                    {/************************* [0] *************************/}
+                    <Q00 />
 
-                <Box sx={{ p: 1 }}>
-                  {/************************* [1] *************************/}
-                  <Q01 qn={questions[1].label} />
-                  {/************************* [2] *************************/}
-                  <Q02 qn={questions[1].label} />
-                  {/************************* [3] *************************/}
-                  <Q03 qn={questions[2].label} />
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [1] *************************/}
+                      <Q01 qn={questions[0].label} />
+                      {/************************* [2] *************************/}
+                      <Q02 qn={questions[1].label} />
+                      {/************************* [3] *************************/}
+                      <Q03 qn={questions[2].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [4] *************************/}
+                      <Q04 qn={questions[3].label} />
+                      {/************************* [5] *************************/}
+                      <Q05 qn={questions[4].label} />
+                      {/************************* [6] *************************/}
+                      <Q06 qn={questions[5].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [7] *************************/}
+                      <Q07 qn={questions[6].label} />
+                      {/************************* [8] *************************/}
+                      <Q08 qn={questions[7].label} />
+                      {/************************* [9] *************************/}
+                      <Q09 qn={questions[8].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [10] *************************/}
+                      <Q10 qn={questions[9].label} />
+                    </Box>
+                  </div>
+                </Box>
+              </>
+            }
+
+            {part === 2 &&
+              <>
+                <Box>
+                  <Typography>
+                    <h3> Questions 11 - 14 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> two </strong> </Typography>
+                    correct answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [11-12] *************************/}
+                      <Q11_12 qn="11-12" />
+
+                      {/************************* [13-14] *************************/}
+                      <Q13_14 qn="13-14" />
+                    </Box>
+                  </div>
                 </Box>
 
-                <Box sx={{ p: 1 }}>
-                  {/************************* [4] *************************/}
-                  <Q04 qn={questions[3].label} />
-                  {/************************* [5] *************************/}
-                  <Q05 qn={questions[4].label} />
-                  {/************************* [6] *************************/}
-                  <Q06 qn={questions[5].label} />
+                <Box>
+                  <Typography>
+                    <h3> Questions 15 - 20 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
                 </Box>
-
-                <Box sx={{ p: 1 }}>
-                  {/************************* [7] *************************/}
-                  <Q07 qn={questions[6].label} />
-                  {/************************* [8] *************************/}
-                  <Q08 qn={questions[7].label} />
-                  {/************************* [9] *************************/}
-                  <Q09 qn={questions[8].label} />
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [15] *************************/}
+                      <Q15 qn={questions[14].label} />
+                      {/************************* [16] *************************/}
+                      <Q16 qn={questions[15].label} />
+                      {/************************* [17] *************************/}
+                      <Q17 qn={questions[16].label} />
+                      {/************************* [18] *************************/}
+                      <Q18 qn={questions[17].label} />
+                      {/************************* [19] *************************/}
+                      <Q19 qn={questions[18].label} />
+                      {/************************* [20] *************************/}
+                      <Q20 qn={questions[19].label} />
+                    </Box>
+                  </div>
                 </Box>
+              </>
+            }
 
-                <Box sx={{ p: 1 }}>
-                  {/************************* [10] *************************/}
-                  <Q10 qn={questions[9].label} />
+            {part === 3 &&
+              <>
+                <Box>
+                  <Typography>
+                    <h3> Questions 21 - 25 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
                 </Box>
-              </div>
-            </Box>
-          </>
-        }
-
-        {part === 2 &&
-          <>
-            <Box>
-              <Typography>
-                <h3> Questions 11 - 14 </h3>
-              </Typography>
-              <Typography className='italic'>
-                Choose
-                <Typography sx={{ px: 1 }}> <strong className='uppercase'> two </strong> </Typography>
-                correct answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <div>
-                <Box sx={{ p: 1 }}>
-                  {/************************* [11-12] *************************/}
-                  <Q11_12 qn="11-12" />
-
-                  {/************************* [13-14] *************************/}
-                  <Q13_14 qn="13-14" />
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [21] *************************/}
+                      <Q21 qn={questions[20].label} />
+                      {/************************* [22] *************************/}
+                      <Q22 qn={questions[21].label} />
+                      {/************************* [23] *************************/}
+                      <Q23 qn={questions[22].label} />
+                      {/************************* [24] *************************/}
+                      <Q24 qn={questions[23].label} />
+                      {/************************* [25] *************************/}
+                      <Q25 qn={questions[24].label} />
+                    </Box>
+                  </div>
                 </Box>
-              </div>
-            </Box>
-
-            <Box>
-              <Typography>
-                <h3> Questions 15 - 20 </h3>
-              </Typography>
-              <Typography className='italic'>
-                Choose the correct answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <div>
-                <Box sx={{ p: 1 }}>
-                  {/************************* [15] *************************/}
-                  <Q15 qn={questions[14].label} />
-                  {/************************* [16] *************************/}
-                  <Q16 qn={questions[15].label} />
-                  {/************************* [17] *************************/}
-                  <Q17 qn={questions[16].label} />
-                  {/************************* [18] *************************/}
-                  <Q18 qn={questions[17].label} />
-                  {/************************* [19] *************************/}
-                  <Q19 qn={questions[18].label} />
-                  {/************************* [20] *************************/}
-                  <Q20 qn={questions[19].label} />
+                <Box>
+                  <Typography>
+                    <h3> Questions 26 - 30 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
                 </Box>
-              </div>
-            </Box>
-          </>
-        }
-
-        {part === 3 &&
-          <>
-            <Box>
-              <Typography>
-                <h3> Questions 21 - 25 </h3>
-              </Typography>
-              <Typography className='italic'>
-                Choose the correct answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <div>
-                <Box sx={{ p: 1 }}>
-                  {/************************* [21] *************************/}
-                  <Q21 qn={questions[20].label} />
-                  {/************************* [22] *************************/}
-                  <Q22 qn={questions[21].label} />
-                  {/************************* [23] *************************/}
-                  <Q23 qn={questions[22].label} />
-                  {/************************* [24] *************************/}
-                  <Q24 qn={questions[23].label} />
-                  {/************************* [25] *************************/}
-                  <Q25 qn={questions[24].label} />
-                </Box>
-              </div>
-            </Box>
-            <Box>
-              <Typography>
-                <h3> Questions 26 - 30 </h3>
-              </Typography>
-              <Typography className='italic'>
-                Choose the correct answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <div>
-                <Box sx={{ p: 1 }}>
-                  {/************************* [26-30] *************************/}
-                  <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
-                    <Paper elevation={0}>
-                      <Typography>
-                        <strong> 26-30 </strong>
-                        <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
-                      </Typography>
-                    </Paper>
-                    <Paper elevation={0}>
-                      <Stack direction="row" alignItems="center">
-                        DRAG-DROP
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [26-30] *************************/}
+                      <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
+                        <Paper elevation={0}>
+                          <Typography>
+                            <strong> 26-30 </strong>
+                            <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
+                          </Typography>
+                        </Paper>
+                        <Paper elevation={0}>
+                          <Stack direction="row" alignItems="center">
+                            DRAG-DROP
+                          </Stack>
+                        </Paper>
                       </Stack>
-                    </Paper>
-                  </Stack>
+                    </Box>
+                  </div>
                 </Box>
-              </div>
-            </Box>
+              </>
+            }
+
+            {part === 4 &&
+              <>
+                <Box>
+                  <Typography>
+                    <h3> Questions 31 - 40 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes below.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
+                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
+                  </Typography>
+                  <div>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography><strong>Introduction</strong></Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [31] *************************/}
+                        <Q31 qn={questions[30].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography><strong>Wave energy</strong></Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [32] *************************/}
+                        <Q32 qn={questions[31].label} />
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Electricity can be generated using offshore or onshore systems
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Onshore systems may use a reservoir
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Problems:
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        {/************************* [33] *************************/}
+                        <Q33 qn={questions[32].label} />
+
+                        {/************************* [34] *************************/}
+                        <Q34 qn={questions[33].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      {/************************* [35] *************************/}
+                      <Q35 qn={questions[34].label} />
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [36] *************************/}
+                        <Q36 qn={questions[35].label} />
+
+                        {/************************* [37] *************************/}
+                        <Q37 qn={questions[36].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography>Advantages:</Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography >
+                                not dependent on weather
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [38] *************************/}
+                        <Q38 qn={questions[37].label} />
+                        {/************************* [39] *************************/}
+                        <Q39 qn={questions[38].label} />
+                      </Box>
+                    </section>
+
+                    {/************************* [40] *************************/}
+                    <Q40 qn={questions[39].label} />
+                  </div>
+                </Box>
+              </>
+            }
           </>
         }
-
-        {part === 4 &&
-          <>
-            <Box>
-              <Typography>
-                <h3> Questions 31 - 40 </h3>
-              </Typography>
-              <Typography sx={{ my: 1.5 }}>
-                Complete the notes below.
-              </Typography>
-              <Typography className='italic'>
-                Write
-                <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
-                for each answer.
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 3 }}>
-              <Typography align="center" sx={{ py: 2 }}>
-                <h3 className='uppercase'>CRIME REPORT FORM</h3>
-              </Typography>
-              <div>
-
-                <section>
-                  <Box sx={{ px: 1 }}>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                      <Paper elevation={0}>
-                        <Typography><strong>Introduction</strong></Typography>
-                      </Paper>
-                    </Stack>
-                  </Box>
-
-                  <Box sx={{ px: 1 }}>
-                    {/************************* [31] *************************/}
-                    <Q31 qn={questions[30].label} />
-                  </Box>
-                </section>
-
-                <section>
-                  <Box sx={{ px: 1 }}>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                      <Paper elevation={0}>
-                        <Typography><strong>Wave energy</strong></Typography>
-                      </Paper>
-                    </Stack>
-                  </Box>
-
-                  <Box sx={{ px: 1 }}>
-                    {/************************* [32] *************************/}
-                    <Q32 qn={questions[31].label} />
-                  </Box>
-
-                  <Box sx={{ px: 1 }}>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-                      <Paper elevation={0}>
-                        <Stack direction="row" alignItems="center">
-                          <Typography>
-                            Electricity can be generated using offshore or onshore systems
-                          </Typography>
-                        </Stack>
-                      </Paper>
-                    </Stack>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-                      <Paper elevation={0}>
-                        <Stack direction="row" alignItems="center">
-                          <Typography>
-                            Onshore systems may use a reservoir
-                          </Typography>
-                        </Stack>
-                      </Paper>
-                    </Stack>
-
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-                      <Paper elevation={0}>
-                        <Stack direction="row" alignItems="center">
-                          <Typography>
-                            Problems:
-                          </Typography>
-                        </Stack>
-                      </Paper>
-                    </Stack>
-
-                    {/************************* [33] *************************/}
-                    <Q33 qn={questions[32].label} />
-
-                    {/************************* [34] *************************/}
-                    <Q34 qn={questions[33].label} />
-                  </Box>
-                </section>
-
-                <section>
-                  {/************************* [35] *************************/}
-                  <Q35 qn={questions[34].label} />
-
-                  <Box sx={{ px: 1 }}>
-                    {/************************* [36] *************************/}
-                    <Q36 qn={questions[35].label} />
-
-                    {/************************* [37] *************************/}
-                    <Q37 qn={questions[36].label} />
-                  </Box>
-                </section>
-
-                <section>
-                  <Box sx={{ px: 1 }}>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                      <Paper elevation={0}>
-                        <Typography>Advantages:</Typography>
-                      </Paper>
-                    </Stack>
-                  </Box>
-
-                  <Box sx={{ px: 1 }}>
-                    <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-                      <Paper elevation={0}>
-                        <Stack direction="row" alignItems="center">
-                          <Typography >
-                            not dependent on weather
-                          </Typography>
-                        </Stack>
-                      </Paper>
-                    </Stack>
-                  </Box>
-
-                  <Box sx={{ px: 1 }}>
-                    {/************************* [38] *************************/}
-                    <Q38 qn={questions[37].label} />
-                    {/************************* [39] *************************/}
-                    <Q39 qn={questions[38].label} />
-                  </Box>
-                </section>
-
-                {/************************* [40] *************************/}
-                <Q40 qn={questions[39].label} />
-              </div>
-            </Box>
-          </>
-        }
-
       </div>
 
       <div className="ielts-navigation" id="ielts-listening-1401">

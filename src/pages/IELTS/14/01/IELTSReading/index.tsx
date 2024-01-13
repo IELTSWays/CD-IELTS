@@ -125,7 +125,6 @@ const index = () => {
     if (currentQuestion > 26 && currentQuestion < 41) {
       setPart(3)
     }
-    console.log(currentQuestion)
   }, [currentQuestion]);
 
 
@@ -165,7 +164,6 @@ const index = () => {
             </HashLink>
           </div>
         </div>
-
 
         <SplitView
           left=

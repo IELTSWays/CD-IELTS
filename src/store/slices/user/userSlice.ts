@@ -10,7 +10,9 @@ export interface UserState {
   permissions: any[];
   listCourses: any[];
   listCoursesStatus: any;
-  currentQuestion: number
+  currentQuestion: number;
+  answersOld: any;
+  answersAll: any;
 }
 
 const initialState: UserState = {
@@ -21,7 +23,9 @@ const initialState: UserState = {
   permissions: [],
   listCourses: [],
   listCoursesStatus: "",
-  currentQuestion: 1
+  currentQuestion: 1,
+  answersOld: {},
+  answersAll: {},
 };
 
 export const userSlice = createSlice({
@@ -51,7 +55,13 @@ export const userSlice = createSlice({
     },
     setCurrentQuestion: (state, action: PayloadAction<any>) => {
       state.currentQuestion = action.payload;
-    }
+    },
+    setAnswersOld: (state, action: PayloadAction<any>) => {
+      state.answersOld = action.payload;
+    },
+    setAnswersAll: (state, action: PayloadAction<any>) => {
+      state.answersAll = {...action.payload};
+    },
   },
 });
 
@@ -63,7 +73,9 @@ export const {
   setPermissions,
   setListCourses,
   setlistCoursesStatus,
-  setCurrentQuestion
+  setCurrentQuestion,
+  setAnswersOld,
+  setAnswersAll
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -75,6 +87,8 @@ export const selectCurrentUser = (state: RootState) => state.user.currentUser;
 export const selectListCourses = (state: RootState) => state.user.listCourses;
 export const selectListCoursesStatus = (state: RootState) =>
   state.user.listCoursesStatus;
-export const selectCurrentQuestion = (state: RootState) => state.user.currentQuestion;
-
+export const selectCurrentQuestion = (state: RootState) =>
+  state.user.currentQuestion;
+export const selectAnswersOld = (state: RootState) => state.user.answersOld;
+export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export default userSlice.reducer;
