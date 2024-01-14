@@ -26,7 +26,7 @@ const index = ({ qn }: any) => {
 
   const answerHandler = (e: any) => {
     setAnswer(e.target.value)
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00006': e.target.value})))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00006': e.target.value.trim().toLowerCase()})))
   }
 
   return (

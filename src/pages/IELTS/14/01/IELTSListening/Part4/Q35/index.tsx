@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // mtu
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -9,13 +11,22 @@ import TextField from '@mui/material/TextField';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
 
   const dispatch = useAppDispatch()
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
+
+  const [answer, setAnswer] = useState<any>(answersAll['00035'])
+
+  const answerHandler = (e: any) => {
+    setAnswer((e.target.value))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00035': (e.target.value).trim().toLowerCase() })))
+  }
 
   return (
     <>
@@ -38,6 +49,8 @@ const index = ({ qn }: any) => {
                 <TextField
                   margin="normal"
                   placeholder={qn}
+                  value={answer}
+                  onChange={(e) => answerHandler(e)}
                   onClick={() => dispatch(setCurrentQuestion(qn))}
                 />
               </div>

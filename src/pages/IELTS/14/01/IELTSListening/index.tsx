@@ -22,7 +22,6 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 // store
 
-import usePostAnswer from '@/services/Requests/usePostAnswer';
 import usePostExamStart from '@/services/Requests/usePostExamStart';
 
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
@@ -80,33 +79,9 @@ const index = () => {
     { title: "Part 4", description: "Listen and answer question 31-40." },
   ]
 
-  const { data: ExamStartData, refetch } = usePostExamStart()
+  const { refetch } = usePostExamStart()
 
-  const getAnswer = useQuery({
-    enabled: true,
-    queryKey: ['getAnswer'],
-    queryFn: async () => {
-      const response = await axiosInstance.get('exam/answer/YI0ZATYUTNRR')
-      const data = await response.data.answers
-      dispatch(setAnswersAll(data))
-      return data
-    },
-  })
-
-  const postAnswer = useQuery({
-    enabled: true,
-    queryKey: ['postAnswer'],
-    queryFn: async () => {
-      const response = await axiosInstance.post('exam/answer/YI0ZATYUTNRR', {
-        "test_done": false,
-        "answers": answersAll,
-      })
-      const data = await response.data
-      return data
-    },
-  })
-  
-  const init  = {
+  const init = {
     '00001': null,
     '00002': null,
     '00003': null,
@@ -117,8 +92,74 @@ const index = () => {
     '00008': null,
     '00009': null,
     '00010': null,
+    '00011': null,
+    '00012': null,
+    '00013': null,
+    '00014': null,
+    '00015': null,
+    '00016': null,
+    '00017': null,
+    '00018': null,
+    '00019': null,
+    '00020': null,
+    '00021': null,
+    '00022': null,
+    '00023': null,
+    '00024': null,
+    '00025': null,
+    '00026': null,
+    '00027': null,
+    '00028': null,
+    '00029': null,
+    '00030': null,
+    '00031': null,
+    '00032': null,
+    '00033': null,
+    '00034': null,
+    '00035': null,
+    '00036': null,
+    '00037': null,
+    '00038': null,
+    '00039': null,
+    '00040': null,
   }
-  
+
+  const initPostAnswer = useQuery({
+    enabled: false,
+    queryKey: ['initPostAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.post('exam/answer/7HHPABQUL294', {
+        "test_done": false,
+        "answers": init,
+      })
+      const data = await response.data
+      return data
+    },
+  })
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.get('exam/answer/7HHPABQUL294')
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.post('exam/answer/7HHPABQUL294', {
+        "test_done": false,
+        "answers": answersAll,
+      })
+      const data = await response.data
+      return data
+    },
+  })
+
   const [part, setPart] = useState(1)
 
   useEffect(() => {
@@ -206,7 +247,7 @@ const index = () => {
 
   const startExamHandler = () => {
     refetch()
-    dispatch(setAnswersAll(init)) 
+    initPostAnswer.refetch()
   }
 
   return (
@@ -536,6 +577,7 @@ const index = () => {
                     <Q40 qn={questions[39].label} />
                   </div>
                 </Box>
+                <button onClick={() => postAnswer.refetch()}> FINISH </button>
               </>
             }
           </>
