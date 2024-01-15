@@ -24,6 +24,7 @@ const index = ({ qn }: any) => {
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
+
   const [answer, setAnswer] = useState<any>(answersAll['00011'])
 
   const [state, setState] = useState({
@@ -39,7 +40,7 @@ const index = ({ qn }: any) => {
       setState(answer)
     }
   }, []);
-
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,

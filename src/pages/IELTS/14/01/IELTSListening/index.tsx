@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
 // api
 
-
 // mtu
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -19,7 +18,7 @@ import DoneIcon from '@mui/icons-material/Done';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setTestInfo } from '@/store/slices/user/userSlice'
 // store
 
 import usePostExamStart from '@/services/Requests/usePostExamStart';
@@ -53,6 +52,7 @@ import Q22 from './Part3/Q22';
 import Q23 from './Part3/Q23';
 import Q24 from './Part3/Q24';
 import Q25 from './Part3/Q25';
+import Q26_27_28_29_30 from './Part3/Q26_27_28_29_30';
 import Q31 from './Part4/Q31';
 import Q32 from './Part4/Q32';
 import Q33 from './Part4/Q33';
@@ -71,6 +71,7 @@ const index = () => {
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const answersAll = useAppSelector((state) => state.user.answersAll)
+  const testInfo = useAppSelector((state) => state.user.testInfo)
 
   const parts = [
     { title: "Part 1", description: "Listen and answer question 1-10." },
@@ -124,11 +125,13 @@ const index = () => {
     '00040': null,
   }
 
+  const [test_id, setTest_id] = useState('')
+  
   const initPostAnswer = useQuery({
     enabled: false,
     queryKey: ['initPostAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.post('exam/answer/7HHPABQUL294', {
+      const response = await axiosInstance.post('exam/answer/KO38USF4B8SU', {
         "test_done": false,
         "answers": init,
       })
@@ -140,7 +143,7 @@ const index = () => {
   const getAnswer = useQuery({
     queryKey: ['getAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.get('exam/answer/7HHPABQUL294')
+      const response = await axiosInstance.get(`exam/answer/KO38USF4B8SU`)
       const data = await response.data.answers
       dispatch(setAnswersAll(data))
       return data
@@ -151,7 +154,7 @@ const index = () => {
     enabled: false,
     queryKey: ['postAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.post('exam/answer/7HHPABQUL294', {
+      const response = await axiosInstance.post('exam/answer/KO38USF4B8SU', {
         "test_done": false,
         "answers": answersAll,
       })
@@ -163,9 +166,13 @@ const index = () => {
   const [part, setPart] = useState(1)
 
   useEffect(() => {
-    getAnswer.isFetching
+    test_id && getAnswer.isFetching
     postAnswer.refetch()
   }, [part])
+
+  useEffect(() => {
+    setTest_id(localStorage.getItem('test_id'))
+  }, [])
 
   const questions = [
     { number: 1, label: "1" },
@@ -245,10 +252,10 @@ const index = () => {
     }
   }
 
-  const startExamHandler = () => {
-    refetch()
-    initPostAnswer.refetch()
-  }
+  // const startExamHandler = () => {
+  //   refetch()
+  //   initPostAnswer.refetch()
+  // }
 
   return (
     <>
@@ -433,7 +440,7 @@ const index = () => {
                         </Paper>
                         <Paper elevation={0}>
                           <Stack direction="row" alignItems="center">
-                            DRAG-DROP
+                            <Q26_27_28_29_30 />
                           </Stack>
                         </Paper>
                       </Stack>

@@ -14,39 +14,43 @@ import FormControl from '@mui/material/FormControl';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
 
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { text: t('00068'), value: "P01", selected: false },
-    { text: t('00069'), value: "P02", selected: false },
-    { text: t('00070'), value: "P03", selected: false },
+    { label: t('00068'), value: "A", },
+    { label: t('00069'), value: "B", },
+    { label: t('00070'), value: "C", },
   ];
 
-  const [value, setValue] = useState('female');
+  // answer, setAnswer
+  const [answer, setAnswer] = useState(answersAll['00025']);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    setAnswer((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00025': ((event.target as HTMLInputElement).value) })))
   };
 
   return (
-    <Stack 
-      spacing={{ xs: 1, sm: 2 }} 
-      direction="column" 
-      useFlexGap 
-      flexWrap="wrap" 
+    <Stack
+      spacing={{ xs: 1, sm: 2 }}
+      direction="column"
+      useFlexGap
+      flexWrap="wrap"
       sx={{ py: 1 }}
       id={`q-${qn}`}
     >
       <Paper elevation={0}>
         <Typography>
-        <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-
+          <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
           <Typography sx={{ px: 1 }}> {t('00067')} </Typography>
         </Typography>
       </Paper>
@@ -54,12 +58,17 @@ const index = ({ qn }: any) => {
         <Stack direction="row" alignItems="center">
           <FormControl>
             <RadioGroup
-              value={value}
+              value={answer}
               onChange={handleChange}
             >
               {options.map((i) => {
                 return (
-                  <FormControlLabel value={i.value} control={<Radio />} label={i.text} />
+                  <FormControlLabel
+                    value={i.value}
+                    control={<Radio />}
+                    label={i.label}
+                    onClick={() => dispatch(setCurrentQuestion(25))}
+                  />
                 )
               })}
             </RadioGroup>
