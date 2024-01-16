@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
+
 // mtu
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,50 +7,62 @@ import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
 // mtu
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
-
-import QMultiCheckBox from '@/components/IELTS/QMultiCheckBox';
-
 
 const index = ({ qn }: any) => {
 
-  const { t } = useTranslation();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const options = [
-    {
-      text: "It was initially opposed by a government department.",
-      value: "P06",
-      selected: false
-    },
-    {
-      text: "It failed when a partner in the scheme withdrew support.",
-      value: "P07",
-      selected: false
-    },
-    {
-      text: "It aimed to be more successful than the Copenhagen scheme.",
-      value: "P08",
-      selected: false
-    },
-    {
-      text: "It was made possible by a change in people’s attitudes.",
-      value: "P09",
-      selected: false
-    },
-    {
-      text: "It attracted interest from a range of bike designers.",
-      value: "P10",
-      selected: false
+  const [answer, setAnswer] = useState<any>(answersAll['00019'])
+
+  const [state, setState] = useState({
+    A: false,
+    B: false,
+    C: false,
+    D: false,
+    E: false
+  });
+
+  useEffect(() => {
+    if (answer !== null) {
+      setState(answer)
     }
-  ];
+  }, []);
+  
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+    setAnswer({
+      ...state,
+      [event.target.name]: event.target.checked,
+    })
+    dispatch(setAnswersAll(Object.assign({}, answersAll, {
+      '00019': {
+        ...state,
+        [event.target.name]: event.target.checked,
+      }
+    })))
+  };
+
+  const list = [
+    { value: state?.A, name: 'A', label: 'It was initially opposed by a government department.' },
+    { value: state?.B, name: 'B', label: 'It failed when a partner in the scheme withdrew support.' },
+    { value: state?.C, name: 'C', label: 'It aimed to be more successful than the Copenhagen scheme.' },
+    { value: state?.D, name: 'D', label: 'It was made possible by a change in people’s attitudes.' },
+    { value: state?.E, name: 'E', label: 'It attracted interest from a range of bike designers.' },
+  ]
 
   return (
     <Stack
@@ -71,13 +83,27 @@ const index = ({ qn }: any) => {
       </Paper>
       <Paper elevation={0}>
         <Stack direction="row" alignItems="center">
-          <FormGroup>
-            {options.map((i) => {
-              return (
-                <FormControlLabel control={<Checkbox />} label={i.text} />
-              )
-            })}
-          </FormGroup>
+          <FormControl variant="standard">
+            {state &&
+              <FormGroup>
+                {list.map((i) => {
+                  return (
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name={(i.name)}
+                          checked={i.value}
+                          onChange={handleChange}
+                          onClick={() => dispatch(setCurrentQuestion(19))}
+                        />
+                      }
+                      label={i.label}
+                    />
+                  )
+                })}
+              </FormGroup>
+            }
+          </FormControl>
         </Stack>
       </Paper>
     </Stack>

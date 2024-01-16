@@ -13,23 +13,28 @@ import FormControl from '@mui/material/FormControl';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
 
+  const dispatch = useAppDispatch();
+
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { text: "TRUE", value: "P01", selected: false },
-    { text: "FALSE", value: "P02", selected: false },
-    { text: "NOT GIVEN", value: "P03", selected: false },
+    { label: 'TRUE', value: "A", },
+    { label: 'FALSE', value: "B", },
+    { label: 'NOT GIVEN', value: "C", },
   ];
 
-  const [value, setValue] = useState('female');
+  // answer, setAnswer
+  const [answer, setAnswer] = useState(answersAll['00012']);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    setAnswer((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00012': ((event.target as HTMLInputElement).value) })))
   };
 
   return (
@@ -52,13 +57,18 @@ const index = ({ qn }: any) => {
       <Paper elevation={0}>
         <Stack direction="row" alignItems="center">
           <FormControl>
-            <RadioGroup
-              value={value}
+          <RadioGroup
+              value={answer}
               onChange={handleChange}
             >
               {options.map((i) => {
                 return (
-                  <FormControlLabel value={i.value} control={<Radio />} label={i.text} />
+                  <FormControlLabel
+                    value={i.value}
+                    control={<Radio />}
+                    label={i.label}
+                    onClick={() => dispatch(setCurrentQuestion(12))}
+                  />
                 )
               })}
             </RadioGroup>

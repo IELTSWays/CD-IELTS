@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 // mtu
 import Paper from '@mui/material/Paper';
@@ -18,40 +19,39 @@ import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlic
 
 const index = ({ qn }: any) => {
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { label: 'TRUE', value: "A", },
-    { label: 'FALSE', value: "B", },
-    { label: 'NOT GIVEN', value: "C", },
+    { label: t('00043'), value: "A",},
+    { label: t('00044'), value: "B",},
+    { label: t('00045'), value: "C",},
   ];
 
   // answer, setAnswer
-  const [answer, setAnswer] = useState(answersAll['00032']);
+  const [answer, setAnswer] = useState(answersAll['00019']);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00032': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00019': ((event.target as HTMLInputElement).value) })))
   };
 
   return (
-    <Stack
-      spacing={{ xs: 1, sm: 2 }}
-      direction="column"
-      useFlexGap
-      flexWrap="wrap"
+    <Stack 
+      spacing={{ xs: 1, sm: 2 }} 
+      direction="column" 
+      useFlexGap 
+      flexWrap="wrap" 
       sx={{ py: 1 }}
       id={`q-${qn}`}
     >
       <Paper elevation={0}>
         <Typography>
           <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-          <Typography sx={{ px: 1 }}>
-            One reason for high staff turnover in the hospitality industry is poor morale.
-          </Typography>
+          <Typography sx={{ px: 1 }}> {t('00049')} </Typography>
         </Typography>
       </Paper>
       <Paper elevation={0}>
@@ -63,11 +63,11 @@ const index = ({ qn }: any) => {
             >
               {options.map((i) => {
                 return (
-                  <FormControlLabel
-                    value={i.value}
-                    control={<Radio />}
-                    label={i.label}
-                    onClick={() => dispatch(setCurrentQuestion(32))}
+                  <FormControlLabel 
+                    value={i.value} 
+                    control={<Radio />} 
+                    label={i.label} 
+                    onClick={() => dispatch(setCurrentQuestion(19))}
                   />
                 )
               })}
