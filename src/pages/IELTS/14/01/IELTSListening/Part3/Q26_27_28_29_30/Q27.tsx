@@ -32,6 +32,7 @@ const Q27 = ({ qn }: any) => {
     },
     drop: (item: any, _monitor) => {
       setItem(item);
+      localStorage.setItem('[00027]', JSON.stringify(item))
       dispatch(setAnswersAll(Object.assign({}, answersAll, { '00027': item })))
       dispatch(setCurrentQuestion(27))
     },
