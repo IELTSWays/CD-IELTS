@@ -30,11 +30,27 @@ const LayoutIELTS = ({ children }: any) => {
     setVolume(newValue as number);
   };
 
-  const [playSound] = useSound(mySound, { volume: (volume / 100) })
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const handleClick = () => {
-    playSound()
+  const [playSound, { pause }] = useSound(mySound,
+    {
+      volume: (volume / 100)
+    },
+    {
+      onplay: () => setIsPlaying(true),
+      onend: () => setIsPlaying(false),
+    })
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      pause();
+    } else {
+      playSound();
+    }
+    setIsPlaying(!isPlaying);
   }
+
+  console.log(isPlaying)
 
   return (
     <html data-theme='light' className='ielts'>
@@ -52,15 +68,15 @@ const LayoutIELTS = ({ children }: any) => {
               </div>
             </div>
             <div className='align-items-center g-20'>
+              <button onClick={() => togglePlay()} style={{ width: '70px' }}>
+                {isPlaying ? 'pause' : 'Play'}
+              </button>
               <WifiIcon color="action" fontSize="large" />
               <NotificationsNoneIcon color="action" fontSize="large" />
               <ModalOptions />
               <ForumIcon color="action" fontSize="large" />
               <EditCalendarIcon color="action" fontSize="large" />
             </div>
-            <button onClick={() => handleClick()}>
-              Play Sound
-            </button>
           </div>
         </div>
       </div>

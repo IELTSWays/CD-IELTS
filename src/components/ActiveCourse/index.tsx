@@ -109,9 +109,9 @@ const ActiveCourse = () => {
     },
   })
 
-  const postExamStart = useQuery({
+  const postExamStartListening = useQuery({
     enabled: false,
-    queryKey: ['postExamStart'],
+    queryKey: ['postExamStartListening'],
     queryFn: async () => {
       dispatch(setTestInfo({}))
       const response = await axiosInstance.post('exam/start-test', {
@@ -123,16 +123,62 @@ const ActiveCourse = () => {
       const data = await response.data
       dispatch(setTestInfo(data))
       navigate("/IELTS/Listening")
+      localStorage.setItem('test_id', data.test_id);
+      location.reload();
+      return data
+    },
+  })
+  
+  const postExamStartReading = useQuery({
+    enabled: false,
+    queryKey: ['postExamStartReading'],
+    queryFn: async () => {
+      dispatch(setTestInfo({}))
+      const response = await axiosInstance.post('exam/start-test', {
+        "test": "3",
+        "skill": "listening",
+        "type": "academic",
+        "book": 1
+      })
+      const data = await response.data
+      dispatch(setTestInfo(data))
+      navigate("/IELTS/Reading")
+      localStorage.setItem('test_id', data.test_id);
       location.reload();
       return data
     },
   })
 
-  console.log(testInfoId.test_id);
-  
+  const postExamStartWriting = useQuery({
+    enabled: false,
+    queryKey: ['postExamStartWriting'],
+    queryFn: async () => {
+      dispatch(setTestInfo({}))
+      const response = await axiosInstance.post('exam/start-test', {
+        "test": "3",
+        "skill": "listening",
+        "type": "academic",
+        "book": 1
+      })
+      const data = await response.data
+      dispatch(setTestInfo(data))
+      navigate("/IELTS/writing")
+      localStorage.setItem('test_id', data.test_id);
+      location.reload();
+      return data
+    },
+  })
 
-  const startExamHandler = () => {
-    postExamStart.refetch()
+  const startExamHandlerListening = () => {
+    postExamStartListening.refetch()
+  }
+
+  const startExamHandlerReading = () => {
+    postExamStartReading.refetch()
+  }
+
+  const startExamHandlerWriting = () => {
+    postExamStartWriting.refetch()
   }
 
   useEffect(() => {
@@ -182,9 +228,31 @@ const ActiveCourse = () => {
               color="success"
               sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
               startIcon={<RocketIcon />}
-              onClick={() => startExamHandler()}
+              onClick={() => startExamHandlerListening()}
             >
-              Let's Go
+              Let's Go - Listening
+            </Button>
+            <br/>
+            <Button
+              variant="outlined"
+              size="small"
+              color="success"
+              sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
+              startIcon={<RocketIcon />}
+              onClick={() => startExamHandlerReading()}
+            >
+              Let's Go - Reading
+            </Button>
+            <br/>
+            <Button
+              variant="outlined"
+              size="small"
+              color="success"
+              sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
+              startIcon={<RocketIcon />}
+              onClick={() => startExamHandlerWriting()}
+            >
+              Let's Go - Writing
             </Button>
           </List>
         </Grid>

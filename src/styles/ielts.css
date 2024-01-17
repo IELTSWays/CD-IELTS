@@ -738,6 +738,10 @@ td {
   box-shadow: unset !important;
 }
 
+.ielts-answersTable .css-dmmspl-MuiFormGroup-root {
+  flex-direction: row;
+}
+
 .ielts-answersTable .question-now {
   height: fit-content;
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 
@@ -11,7 +13,7 @@ import CardContent from '@mui/material/CardContent';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
 
 const questions = [
@@ -22,10 +24,54 @@ const questions = [
   { id: 18, title: 'a reference to the problems a bike-sharing scheme was intended to solve' }
 ]
 
+const options = [
+  { label: 'A', value: "A", },
+  { label: 'B', value: "B", },
+  { label: 'C', value: "C", },
+  { label: 'D', value: "D", },
+  { label: 'E', value: "E", },
+  { label: 'F', value: "F", },
+  { label: 'G', value: "G", },
+];
+
 const index = () => {
 
+  const dispatch = useAppDispatch();
+
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
+  const [answer14, setAnswer14] = useState(answersAll['00014']);
+  const [answer15, setAnswer15] = useState(answersAll['00015']);
+  const [answer16, setAnswer16] = useState(answersAll['00016']);
+  const [answer17, setAnswer17] = useState(answersAll['00017']);
+  const [answer18, setAnswer18] = useState(answersAll['00018']);
+
+  const handleChange14 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer14((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00014': ((event.target as HTMLInputElement).value) })))
+  };
+
+  const handleChange15 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer15((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00015': ((event.target as HTMLInputElement).value) })))
+  };
+
+  const handleChange16 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer16((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00016': ((event.target as HTMLInputElement).value) })))
+  };
+
+  const handleChange17 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer17((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00017': ((event.target as HTMLInputElement).value) })))
+  };
+
+  const handleChange18 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer18((event.target as HTMLInputElement).value);
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00018': ((event.target as HTMLInputElement).value) })))
+  };
+  
   return (
     <Card variant="outlined">
       <CardContent sx={{ p: 3 }}>
@@ -50,31 +96,156 @@ const index = () => {
             </RadioGroup>
           </Stack>
 
-          {questions.map((i) => {
-            return (
-              <Stack
-                direction="row"
-                spacing={2}
-                id={`q-${i.id}`}
+          {/************************* [14] *************************/}
+          <Stack
+            direction="row"
+            spacing={2}
+            id={`q-${questions[0].id}`}
+          >
+            <Paper>
+              <strong className={`question-now ${currentQuestion == questions[0].id && 'active'} `}>
+                {questions[0].id}
+              </strong>
+              <Typography sx={{ px: 1 }}> {questions[0].title} </Typography>
+            </Paper>
+            <RadioGroup
+              row
+            >
+              <RadioGroup
+                value={answer14}
+                onChange={handleChange14}
               >
-                <Paper>
-                  <strong className={`question-now ${currentQuestion == i.id && 'active'} `}> {i.id} </strong>
-                  <Typography sx={{ px: 1 }}> {i.title} </Typography>
-                </Paper>
-                <RadioGroup
-                  row
-                >
-                  
-                  <FormControlLabel value="B" control={<Radio />} label={undefined} />
-                  <FormControlLabel value="C" control={<Radio />} label={undefined} />
-                  <FormControlLabel value="D" control={<Radio />} label={undefined} />
-                  <FormControlLabel value="E" control={<Radio />} label={undefined} />
-                  <FormControlLabel value="F" control={<Radio />} label={undefined} />
-                  <FormControlLabel value="G" control={<Radio />} label={undefined} />
-                </RadioGroup>
-              </Stack>
-            )
-          })}
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </RadioGroup>
+          </Stack>
+          {/************************* [15] *************************/}
+          <Stack
+            direction="row"
+            spacing={2}
+            id={`q-${questions[1].id}`}
+          >
+            <Paper>
+              <strong className={`question-now ${currentQuestion == questions[1].id && 'active'} `}>
+                {questions[1].id}
+              </strong>
+              <Typography sx={{ px: 1 }}> {questions[1].title} </Typography>
+            </Paper>
+            <RadioGroup
+              row
+            >
+              <RadioGroup
+                value={answer15}
+                onChange={handleChange15}
+              >
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </RadioGroup>
+          </Stack>
+          {/************************* [16] *************************/}
+          <Stack
+            direction="row"
+            spacing={2}
+            id={`q-${questions[2].id}`}
+          >
+            <Paper>
+              <strong className={`question-now ${currentQuestion == questions[2].id && 'active'} `}>
+                {questions[2].id}
+              </strong>
+              <Typography sx={{ px: 1 }}> {questions[2].title} </Typography>
+            </Paper>
+            <RadioGroup
+              row
+            >
+              <RadioGroup
+                value={answer16}
+                onChange={handleChange16}
+              >
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </RadioGroup>
+          </Stack>
+          {/************************* [17] *************************/}
+          <Stack
+            direction="row"
+            spacing={2}
+            id={`q-${questions[3].id}`}
+          >
+            <Paper>
+              <strong className={`question-now ${currentQuestion == questions[3].id && 'active'} `}>
+                {questions[3].id}
+              </strong>
+              <Typography sx={{ px: 1 }}> {questions[3].title} </Typography>
+            </Paper>
+            <RadioGroup
+              row
+            >
+              <RadioGroup
+                value={answer17}
+                onChange={handleChange17}
+              >
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </RadioGroup>
+          </Stack>
+          {/************************* [18] *************************/}
+          <Stack
+            direction="row"
+            spacing={2}
+            id={`q-${questions[4].id}`}
+          >
+            <Paper>
+              <strong className={`question-now ${currentQuestion == questions[4].id && 'active'} `}>
+                {questions[4].id}
+              </strong>
+              <Typography sx={{ px: 1 }}> {questions[4].title} </Typography>
+            </Paper>
+            <RadioGroup
+              row
+            >
+              <RadioGroup
+                value={answer18}
+                onChange={handleChange18}
+              >
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </RadioGroup>
+          </Stack>
         </div>
       </CardContent>
     </Card>
@@ -82,3 +253,88 @@ const index = () => {
 };
 
 export default index;
+
+
+
+// import { useState } from "react";
+
+// // mtu
+// import Paper from '@mui/material/Paper';
+// import Stack from '@mui/material/Stack';
+// import Typography from '@mui/material/Typography';
+// import Radio from '@mui/material/Radio';
+// import RadioGroup from '@mui/material/RadioGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControl from '@mui/material/FormControl';
+// // mtu
+
+// // store
+// import { useAppSelector } from '@/store/hooks'
+// import { useAppDispatch } from '@/store/hooks'
+// import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+// // store
+
+// const index = ({ qn }: any) => {
+
+//   const dispatch = useAppDispatch();
+
+//   const answersAll = useAppSelector((state: any) => state.user.answersAll)
+//   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
+//   const options = [
+//     { label: 'TRUE', value: "A", },
+//     { label: 'FALSE', value: "B", },
+//     { label: 'NOT GIVEN', value: "C", },
+//   ];
+
+//   // answer, setAnswer
+//   const [answer, setAnswer] = useState(answersAll['00012']);
+
+//   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     setAnswer((event.target as HTMLInputElement).value);
+//     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00012': ((event.target as HTMLInputElement).value) })))
+//   };
+
+//   return (
+//     <Stack
+//       spacing={{ xs: 1, sm: 2 }}
+//       direction="column"
+//       useFlexGap
+//       flexWrap="wrap"
+//       sx={{ py: 1 }}
+//       id={`q-${qn}`}
+//     >
+//       <Paper elevation={0}>
+//         <Typography>
+//           <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+//           <Typography sx={{ px: 1 }}>
+//           Children had problems thinking up ideas when they first created the story with Lego.
+//           </Typography>
+//         </Typography>
+//       </Paper>
+//       <Paper elevation={0}>
+//         <Stack direction="row" alignItems="center">
+//           <FormControl>
+//           <RadioGroup
+//               value={answer}
+//               onChange={handleChange}
+//             >
+//               {options.map((i) => {
+//                 return (
+//                   <FormControlLabel
+//                     value={i.value}
+//                     control={<Radio />}
+//                     label={i.label}
+//                     onClick={() => dispatch(setCurrentQuestion(12))}
+//                   />
+//                 )
+//               })}
+//             </RadioGroup>
+//           </FormControl>
+//         </Stack>
+//       </Paper>
+//     </Stack>
+//   );
+// };
+
+// export default index;

@@ -14,12 +14,12 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
 // store
 
-const Q26 = ({ qn }: any) => {
+const Q30 = ({ qn }: any) => {
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const [item, setItem] = useState(answersAll['00026']);
+  const [item, setItem] = useState(answersAll['00030']);
 
   const dispatch = useAppDispatch();
 
@@ -32,14 +32,12 @@ const Q26 = ({ qn }: any) => {
     },
     drop: (item: any, _monitor) => {
       setItem(item);
-      dispatch(setAnswersAll(Object.assign({}, answersAll, { '00026': item })))
-      dispatch(setCurrentQuestion(26))
+      dispatch(setAnswersAll(Object.assign({}, answersAll, { '00030': item })))
+      dispatch(setCurrentQuestion(30))
     },
   }));
 
-  console.log(answersAll);
-
-  hover && dispatch(setCurrentQuestion(26))
+  hover && dispatch(setCurrentQuestion(30))
 
   return (
     <Stack
@@ -52,7 +50,7 @@ const Q26 = ({ qn }: any) => {
       className="drop-container"
     >
       <Paper elevation={0} className="drop-container-text">
-        <Typography>Historical background</Typography>
+        <Typography>Staff are less likely to change jobs if cooperation is encouraged.</Typography>
       </Paper>
       <Paper elevation={0}>
         <Box ref={drop} >
@@ -72,4 +70,4 @@ const Q26 = ({ qn }: any) => {
   );
 };
 
-export default Q26;
+export default Q30;

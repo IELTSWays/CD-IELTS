@@ -18,10 +18,8 @@ import DoneIcon from '@mui/icons-material/Done';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, setTestInfo } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 // store
-
-import usePostExamStart from '@/services/Requests/usePostExamStart';
 
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
@@ -71,7 +69,6 @@ const index = () => {
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const answersAll = useAppSelector((state) => state.user.answersAll)
-  const testInfo = useAppSelector((state) => state.user.testInfo)
 
   const parts = [
     { title: "Part 1", description: "Listen and answer question 1-10." },
@@ -80,70 +77,12 @@ const index = () => {
     { title: "Part 4", description: "Listen and answer question 31-40." },
   ]
 
-  const { refetch } = usePostExamStart()
-
-  const init = {
-    '00001': null,
-    '00002': null,
-    '00003': null,
-    '00004': null,
-    '00005': null,
-    '00006': null,
-    '00007': null,
-    '00008': null,
-    '00009': null,
-    '00010': null,
-    '00011': null,
-    '00012': null,
-    '00013': null,
-    '00014': null,
-    '00015': null,
-    '00016': null,
-    '00017': null,
-    '00018': null,
-    '00019': null,
-    '00020': null,
-    '00021': null,
-    '00022': null,
-    '00023': null,
-    '00024': null,
-    '00025': null,
-    '00026': null,
-    '00027': null,
-    '00028': null,
-    '00029': null,
-    '00030': null,
-    '00031': null,
-    '00032': null,
-    '00033': null,
-    '00034': null,
-    '00035': null,
-    '00036': null,
-    '00037': null,
-    '00038': null,
-    '00039': null,
-    '00040': null,
-  }
-
-  const [test_id, setTest_id] = useState('')
+  const [test_id, setTest_id] = useState<any>('')
   
-  const initPostAnswer = useQuery({
-    enabled: false,
-    queryKey: ['initPostAnswer'],
-    queryFn: async () => {
-      const response = await axiosInstance.post('exam/answer/KO38USF4B8SU', {
-        "test_done": false,
-        "answers": init,
-      })
-      const data = await response.data
-      return data
-    },
-  })
-
   const getAnswer = useQuery({
     queryKey: ['getAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.get(`exam/answer/KO38USF4B8SU`)
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
       const data = await response.data.answers
       dispatch(setAnswersAll(data))
       return data
@@ -154,7 +93,7 @@ const index = () => {
     enabled: false,
     queryKey: ['postAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.post('exam/answer/KO38USF4B8SU', {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
         "test_done": false,
         "answers": answersAll,
       })
@@ -167,11 +106,12 @@ const index = () => {
 
   useEffect(() => {
     test_id && getAnswer.isFetching
-    postAnswer.refetch()
+    test_id && postAnswer.refetch()
   }, [part])
 
   useEffect(() => {
     setTest_id(localStorage.getItem('test_id'))
+    test_id && getAnswer.refetch()
   }, [])
 
   const questions = [
@@ -252,11 +192,6 @@ const index = () => {
     }
   }
 
-  // const startExamHandler = () => {
-  //   refetch()
-  //   initPostAnswer.refetch()
-  // }
-
   return (
     <>
       <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
@@ -275,8 +210,6 @@ const index = () => {
             </HashLink>
           </div>
         </div>
-
-        <button onClick={() => startExamHandler()}> START EXAM </button>
 
         {getAnswer.isLoading && <div> LOADING... </div>}
         {getAnswer.isSuccess &&

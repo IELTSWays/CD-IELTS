@@ -227,7 +227,7 @@ const LayoutDashborad = ({ children }: any) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* show left menu in dsektop */}
+      {/* show left menu in desktop */}
       <AppBarDesktop position="fixed" open={open} sx={{ display: { xs: 'none', sm: 'flex', background: red[700] } }}>
         <Toolbar>
           <IconButton
