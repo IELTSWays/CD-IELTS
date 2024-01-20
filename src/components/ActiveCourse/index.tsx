@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
 
 // mtu
 import Card from '@mui/material/Card';
@@ -22,17 +21,11 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HistoryIcon from '@mui/icons-material/History';
 // mtu
 
-// api
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from '@/services/API'
-// api
-
 // store
 import { useAppSelector } from '@/store/hooks'
-import { useAppDispatch } from '@/store/hooks'
-import { setTestInfo } from '@/store/slices/user/userSlice'
 // store
 
+import useGetAnswer from '@/services/Requests/useGetAnswer';
 import usePostExamStart from '@/services/Requests/usePostExamStart';
 
 import Book18 from '@/assets/images/Books/18.jpg'
@@ -47,144 +40,15 @@ const items = [
 
 const ActiveCourse = () => {
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch()
   const { refetch } = usePostExamStart()
-
-  const init = {
-    '00001': null,
-    '00002': null,
-    '00003': null,
-    '00004': null,
-    '00005': null,
-    '00006': null,
-    '00007': null,
-    '00008': null,
-    '00009': null,
-    '00010': null,
-    '00011': null,
-    '00012': null,
-    '00013': null,
-    '00014': null,
-    '00015': null,
-    '00016': null,
-    '00017': null,
-    '00018': null,
-    '00019': null,
-    '00020': null,
-    '00021': null,
-    '00022': null,
-    '00023': null,
-    '00024': null,
-    '00025': null,
-    '00026': null,
-    '00027': null,
-    '00028': null,
-    '00029': null,
-    '00030': null,
-    '00031': null,
-    '00032': null,
-    '00033': null,
-    '00034': null,
-    '00035': null,
-    '00036': null,
-    '00037': null,
-    '00038': null,
-    '00039': null,
-    '00040': null,
-  }
+  const { refetch: refetchGetAnswer } = useGetAnswer()
 
   const testInfoId = useAppSelector((state) => state.user.testInfo)
-
-  const initPostAnswer = useQuery({
-    enabled: false,
-    queryKey: ['initPostAnswer'],
-    queryFn: async () => {
-      const response = await axiosInstance.post(`exam/answer/${testInfoId.test_id}`, {
-        "test_done": false,
-        "answers": init,
-      })
-      const data = await response.data
-      return data
-    },
-  })
-
-  const postExamStartListening = useQuery({
-    enabled: false,
-    queryKey: ['postExamStartListening'],
-    queryFn: async () => {
-      dispatch(setTestInfo({}))
-      const response = await axiosInstance.post('exam/start-test', {
-        "test": "3",
-        "skill": "listening",
-        "type": "academic",
-        "book": 1
-      })
-      const data = await response.data
-      dispatch(setTestInfo(data))
-      navigate("/IELTS/Listening")
-      localStorage.setItem('test_id', data.test_id);
-      location.reload();
-      return data
-    },
-  })
-  
-  const postExamStartReading = useQuery({
-    enabled: false,
-    queryKey: ['postExamStartReading'],
-    queryFn: async () => {
-      dispatch(setTestInfo({}))
-      const response = await axiosInstance.post('exam/start-test', {
-        "test": "3",
-        "skill": "listening",
-        "type": "academic",
-        "book": 1
-      })
-      const data = await response.data
-      dispatch(setTestInfo(data))
-      navigate("/IELTS/Reading")
-      localStorage.setItem('test_id', data.test_id);
-      location.reload();
-      return data
-    },
-  })
-
-  const postExamStartWriting = useQuery({
-    enabled: false,
-    queryKey: ['postExamStartWriting'],
-    queryFn: async () => {
-      dispatch(setTestInfo({}))
-      const response = await axiosInstance.post('exam/start-test', {
-        "test": "3",
-        "skill": "listening",
-        "type": "academic",
-        "book": 1
-      })
-      const data = await response.data
-      dispatch(setTestInfo(data))
-      navigate("/IELTS/writing")
-      localStorage.setItem('test_id', data.test_id);
-      location.reload();
-      return data
-    },
-  })
-
-  const startExamHandlerListening = () => {
-    postExamStartListening.refetch()
-  }
-
-  const startExamHandlerReading = () => {
-    postExamStartReading.refetch()
-  }
-
-  const startExamHandlerWriting = () => {
-    postExamStartWriting.refetch()
-  }
 
   useEffect(() => {
     if (testInfoId.test_id) {
       localStorage.setItem('test_id', testInfoId.test_id);
-      initPostAnswer.refetch()
+      refetchGetAnswer()
     }
   }, [testInfoId.test_id])
 
@@ -210,9 +74,9 @@ const ActiveCourse = () => {
         </Grid>
         <Grid item xs={4} sm={8} md={9}>
           <List>
-            {items.map((i) => {
+            {items.map((i, index) => {
               return (
-                <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                <ListItem key={index} sx={{ padding: 0, marginBottom: '10px' }}>
                   <ListItemIcon sx={{ minWidth: 0 }}>
                     {i.icon}
                   </ListItemIcon>
@@ -228,31 +92,9 @@ const ActiveCourse = () => {
               color="success"
               sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
               startIcon={<RocketIcon />}
-              onClick={() => startExamHandlerListening()}
+              onClick={() => refetch()}
             >
-              Let's Go - Listening
-            </Button>
-            <br/>
-            <Button
-              variant="outlined"
-              size="small"
-              color="success"
-              sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
-              startIcon={<RocketIcon />}
-              onClick={() => startExamHandlerReading()}
-            >
-              Let's Go - Reading
-            </Button>
-            <br/>
-            <Button
-              variant="outlined"
-              size="small"
-              color="success"
-              sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
-              startIcon={<RocketIcon />}
-              onClick={() => startExamHandlerWriting()}
-            >
-              Let's Go - Writing
+              Let's Go 
             </Button>
           </List>
         </Grid>

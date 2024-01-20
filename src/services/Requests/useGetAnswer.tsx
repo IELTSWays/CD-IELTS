@@ -4,32 +4,25 @@ import axiosInstance from '@/services/API'
 // api
 
 // store
-import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setAnswersOld } from '@/store/slices/user/userSlice'
+import { setTestInfo } from '@/store/slices/user/userSlice'
 // store
 
-const usePostAnswer = () => {
+const useGetAnswer = () => {
 
   const dispatch = useAppDispatch()
 
-  const fontSize = useAppSelector((state) => state.user.fontSize)
-
-  const { isLoading, data } = useQuery({
+  const { isLoading, isSuccess, data, refetch } = useQuery({
+    enabled: false,
     queryKey: ['getAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.get('exam/answer/81088FF0ATPH')
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
       const data = await response.data.answers
-      dispatch(setAnswersOld(data))
-      
-      console.log('[useGetAnswer', data);
-      
-
+      dispatch(setTestInfo(data))
       return data
     },
   })
-  return { isLoading, data };
+  return { isLoading, isSuccess, data, refetch };
 };
 
-
-export default usePostAnswer;
+export default useGetAnswer;

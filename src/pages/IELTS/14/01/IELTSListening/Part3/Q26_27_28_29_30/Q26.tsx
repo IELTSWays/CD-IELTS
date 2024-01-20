@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 
 // mtu
@@ -7,6 +7,11 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 // mtu
+
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
 
 // store
 import { useAppSelector } from '@/store/hooks'
@@ -19,9 +24,36 @@ const Q26 = ({ qn }: any) => {
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const [item, setItem] = useState(answersAll['00026']);
-
+  const [item, setItem] = useState(JSON.parse((localStorage.getItem('00026'))));
   const dispatch = useAppDispatch();
+
+  console.log(JSON.parse((localStorage.getItem('00026'))))
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer'],
+    queryFn: async () => {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+        "test_done": false,
+        "answers": {
+          "00026": localStorage.getItem('00026')
+        }
+      })
+      const data = await response.data
+      getAnswer.refetch()
+      return data
+    },
+  })
 
   const [{ hover }, drop] = useDrop(() => ({
     accept: "ielts",
@@ -30,14 +62,19 @@ const Q26 = ({ qn }: any) => {
         hover: monitor.isOver({ shallow: true })
       }
     },
-    drop: (item: any, _monitor) => {
-      setItem(item);
-      dispatch(setAnswersAll(Object.assign({}, answersAll, { '00026': item })))
+    drop: (data: any, _monitor) => {
+      setItem(data);
+      localStorage.setItem('00026', JSON.stringify(data));
+      postAnswer.refetch()
       dispatch(setCurrentQuestion(26))
     },
   }));
 
   console.log(answersAll);
+
+  useEffect(() => {
+    localStorage.setItem('00026', JSON.stringify(item));
+  }, [item]);
 
   hover && dispatch(setCurrentQuestion(26))
 

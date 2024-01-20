@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useTranslation } from 'react-i18next';
 
 // mtu
@@ -10,6 +10,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 // mtu
+
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
 
 // store
 import { useAppSelector } from '@/store/hooks'
@@ -34,10 +39,43 @@ const index = ({ qn }: any) => {
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll['00021']);
 
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer21'],
+    queryFn: async () => {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+        "test_done": false,
+        "answers": {
+          "00021": localStorage.getItem('00021')
+        }
+      })
+      const data = await response.data
+      getAnswer.refetch()
+      return data
+    },
+  })
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer21'],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer((event.target as HTMLInputElement).value);
+    localStorage.setItem('00021', event.target.value);
+    postAnswer.refetch()
     dispatch(setAnswersAll(Object.assign({}, answersAll, {'00021': ((event.target as HTMLInputElement).value) })))
+    getAnswer.refetch()
   };
+
+  useEffect(() => {
+    getAnswer.refetch()
+  }, []);
 
   return (
     <Stack 

@@ -24,13 +24,11 @@ const index = ({ qn }: any) => {
 
   const [answer, setAnswer] = useState<any>(answersAll['00002'])
 
-  const answerHandler = (e :any) => {
+  const answerHandler = (e: any) => {
     setAnswer(e.target.value)
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00002': e.target.value.trim().toLowerCase()})))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00002': e.target.value.trim().toLowerCase() })))
 
   }
-  
-  console.log(useAppSelector((state: any) => state.user.answersAll));
 
   return (
     <>

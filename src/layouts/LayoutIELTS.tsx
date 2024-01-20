@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSound from 'use-sound'
-import mySound from '@/assets/sounds/01.mp3'
+import { useNavigate } from 'react-router-dom';
 
 // mtu
 import Box from '@mui/material/Box';
@@ -19,14 +19,16 @@ import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 
 import "@/styles/ielts.css"
 import Logo from '@/assets/images/ielts.png'
+import mySound from '@/assets/sounds/14/1/section-1.mp3'
 import ModalOptions from '@/components/IELTS/ModalOptions';
 
 const LayoutIELTS = ({ children }: any) => {
 
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState<number>(50);
+  const navigate = useNavigate();
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
+  const handleChange = (_event: Event, newValue: number | number[]) => {
     setVolume(newValue as number);
   };
 
@@ -50,15 +52,13 @@ const LayoutIELTS = ({ children }: any) => {
     setIsPlaying(!isPlaying);
   }
 
-  console.log(isPlaying)
-
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
         <div className="ielts-container">
           <div className='justify-content-space-between'>
             <div className="d-flex">
-              <img src={Logo} alt="ielts" height={40} />
+              <img src={Logo} alt="ielts" height={40} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
                 <div>59 minutes remaining</div>
                 <div className="d-flex ml-20">

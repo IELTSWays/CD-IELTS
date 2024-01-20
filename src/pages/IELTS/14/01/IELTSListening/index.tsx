@@ -21,6 +21,8 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 // store
 
+import useGetAnswer from '@/services/Requests/useGetAnswer';
+
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
 
@@ -78,16 +80,8 @@ const index = () => {
   ]
 
   const [test_id, setTest_id] = useState<any>('')
-  
-  const getAnswer = useQuery({
-    queryKey: ['getAnswer'],
-    queryFn: async () => {
-      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
-      const data = await response.data.answers
-      dispatch(setAnswersAll(data))
-      return data
-    },
-  })
+
+  const { refetch: refetchGetAnswer, isLoading, isSuccess } = useGetAnswer()
 
   const postAnswer = useQuery({
     enabled: false,
@@ -105,13 +99,13 @@ const index = () => {
   const [part, setPart] = useState(1)
 
   useEffect(() => {
-    test_id && getAnswer.isFetching
+    test_id && refetchGetAnswer()
     test_id && postAnswer.refetch()
   }, [part])
 
   useEffect(() => {
     setTest_id(localStorage.getItem('test_id'))
-    test_id && getAnswer.refetch()
+    test_id && refetchGetAnswer()
   }, [])
 
   const questions = [
@@ -211,8 +205,8 @@ const index = () => {
           </div>
         </div>
 
-        {getAnswer.isLoading && <div> LOADING... </div>}
-        {getAnswer.isSuccess &&
+        {isLoading && <div> LOADING... </div>}
+        {isSuccess &&
           <>
             {part === 1 &&
               <>

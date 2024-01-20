@@ -9,10 +9,9 @@ const PrivateRoutes = () => {
 
   const location = useLocation();
 
-
-  // useEffect(() => {
-  //   localStorage.getItem("token") ? setAuth(true) : setAuth(false);
-  // }, [])    <>
+  useEffect(() => {
+    localStorage.getItem("token") ? setAuth(true) : setAuth(false);
+  }, [])
 
   useEffect(() => {
     setPathIELTS(location.pathname.includes('IELTS'))

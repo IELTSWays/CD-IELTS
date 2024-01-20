@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoutes from "./PrivateRoutes";
+import IELTSRoutes from "./IELTSRoutes";
 import Otp from "@/pages/Otp";
 import Dashboard from "@/pages/Dashboard";
 import Profile from "@/pages/Profile";
@@ -11,9 +12,6 @@ import Speaking from "@/pages/Speaking";
 import Tickets from "@/pages/Tickets";
 import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
-import IELTSReading from "@/pages/IELTSReading";
-
-import DD from "@/pages/IELTS/14/01/DragDrop";
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -34,16 +32,12 @@ const MainRoutes = () => {
           <Route element={<Speaking />} path="/speaking" />
           <Route element={<Tickets />} path="/tickets" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
-          {/* <Route element={<IELTSReading />} path="/IELTS/Reading" /> */}
-
+        </Route>
+        <Route element={<IELTSRoutes />}>
           {/* 14-01 */}
           <Route element={<Book14_Test_1_Reading />} path="/IELTS/Reading" />
           <Route element={<Book14_Test_1_Writing />} path="/IELTS/Writing" />
           <Route element={<Book14_Test_1_Listening />} path="/IELTS/Listening" />
-
-
-
-          <Route element={<DD />} path="/DD" />
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route element={<Otp />} path="/otp" />

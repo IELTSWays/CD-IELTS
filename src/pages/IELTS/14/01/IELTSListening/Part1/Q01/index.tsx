@@ -24,11 +24,9 @@ const index = ({ qn }: any) => {
 
   const answerHandler = (e: any) => {
     setAnswer((e.target.value))
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00001': (e.target.value).trim().toLowerCase()})))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00001': (e.target.value).trim().toLowerCase() })))
   }
 
-  console.log(answersAll);
-  
   return (
     <Stack
       spacing={{ xs: 1, sm: 2 }}

@@ -47,6 +47,11 @@
 .relative {
   position: relative;
 }
+
+.pointer {
+cursor: pointer;
+}
+
 /* [ ############################ END PUBLIC ############################ ] */
 
 

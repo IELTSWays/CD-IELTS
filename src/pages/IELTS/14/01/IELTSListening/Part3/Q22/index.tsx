@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
 // mtu
@@ -10,6 +10,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 // mtu
+
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
 
 // store
 import { useAppSelector } from '@/store/hooks'
@@ -26,25 +31,58 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { label: t('00056'), value: "A",},
-    { label: t('00057'), value: "B",},
-    { label: t('00058'), value: "C",},
+    { label: t('00056'), value: "A", },
+    { label: t('00057'), value: "B", },
+    { label: t('00058'), value: "C", },
   ];
 
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll['00022']);
 
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer22'],
+    queryFn: async () => {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+        "test_done": false,
+        "answers": {
+          "00022": localStorage.getItem('00022')
+        }
+      })
+      const data = await response.data
+      getAnswer.refetch()
+      return data
+    },
+  })
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer22'],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00022': ((event.target as HTMLInputElement).value) })))
+    localStorage.setItem('00022', event.target.value);
+    postAnswer.refetch()
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00022': ((event.target as HTMLInputElement).value) })))
+    getAnswer.refetch()
   };
 
+  useEffect(() => {
+    getAnswer.refetch()
+  }, []);
+
   return (
-    <Stack 
-      spacing={{ xs: 1, sm: 2 }} 
-      direction="column" 
-      useFlexGap 
-      flexWrap="wrap" 
+    <Stack
+      spacing={{ xs: 1, sm: 2 }}
+      direction="column"
+      useFlexGap
+      flexWrap="wrap"
       sx={{ py: 1 }}
       id={`q-${qn}`}
     >
@@ -63,10 +101,10 @@ const index = ({ qn }: any) => {
             >
               {options.map((i) => {
                 return (
-                  <FormControlLabel 
-                    value={i.value} 
-                    control={<Radio />} 
-                    label={i.label} 
+                  <FormControlLabel
+                    value={i.value}
+                    control={<Radio />}
+                    label={i.label}
                     onClick={() => dispatch(setCurrentQuestion(22))}
                   />
                 )
