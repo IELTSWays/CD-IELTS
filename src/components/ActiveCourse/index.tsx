@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 // mtu
 import Card from '@mui/material/Card';
@@ -38,12 +38,39 @@ const items = [
   { title: 'You have participated in this exam 3 times before', icon: <HistoryIcon /> },
 ]
 
+const listTests: any = [
+  {
+    book: 1,
+    skill: "listening",
+    test: "1",
+    type: "academic"
+  },
+  {
+    book: 1,
+    skill: "reading",
+    test: "2",
+    type: "academic"
+  },
+  {
+    book: 1,
+    skill: "listening",
+    test: "3",
+    type: "academic"
+  }
+]
+
 const ActiveCourse = () => {
 
-  const { refetch } = usePostExamStart()
+  const [test, setTest] = useState(null)
+
+  const { refetch } = usePostExamStart(test)
   const { refetch: refetchGetAnswer } = useGetAnswer()
 
   const testInfoId = useAppSelector((state) => state.user.testInfo)
+
+  useEffect(() => {
+    test && refetch()
+  }, [test])
 
   useEffect(() => {
     if (testInfoId.test_id) {
@@ -92,9 +119,9 @@ const ActiveCourse = () => {
               color="success"
               sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
               startIcon={<RocketIcon />}
-              onClick={() => refetch()}
+              onClick={() => setTest(listTests[1])}
             >
-              Let's Go 
+              Let's Go
             </Button>
           </List>
         </Grid>
