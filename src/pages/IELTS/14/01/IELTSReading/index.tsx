@@ -424,7 +424,6 @@ const index = () => {
                         </Typography>
                       </Box>
 
-                      <div> DROP-DOWN </div>
                       <Q27_28_29_30_31 />
                     </Box>
 

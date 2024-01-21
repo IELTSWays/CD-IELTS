@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 // mtu
 import Paper from '@mui/material/Paper';
@@ -10,6 +11,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 // mtu
 
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
+
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
@@ -18,6 +24,7 @@ import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlic
 
 const index = ({ qn }: any) => {
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
@@ -32,10 +39,43 @@ const index = ({ qn }: any) => {
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll['00033']);
 
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer33'],
+    queryFn: async () => {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+        "test_done": false,
+        "answers": {
+          "00033": localStorage.getItem('00033')
+        }
+      })
+      const data = await response.data
+      getAnswer.refetch()
+      return data
+    },
+  })
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer33'],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer((event.target as HTMLInputElement).value);
+    localStorage.setItem('00033', event.target.value);
+    postAnswer.refetch()
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00033': ((event.target as HTMLInputElement).value) })))
+    getAnswer.refetch()
   };
+
+  useEffect(() => {
+    getAnswer.refetch()
+  }, []);
 
   return (
     <Stack
@@ -49,9 +89,7 @@ const index = ({ qn }: any) => {
       <Paper elevation={0}>
         <Typography>
           <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-          <Typography sx={{ px: 1 }}>
-            Research has shown that staff have a tendency to dislike their workplace.
-          </Typography>
+          <Typography sx={{ px: 1 }}> {t('00073')} </Typography>
         </Typography>
       </Paper>
       <Paper elevation={0}>

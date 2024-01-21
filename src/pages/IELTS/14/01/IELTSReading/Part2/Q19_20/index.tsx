@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 // mtu
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
 // mtu
 
 // store
@@ -18,51 +17,51 @@ import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlic
 
 const index = ({ qn }: any) => {
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const [answer, setAnswer] = useState<any>(answersAll['00019'])
+  const checkList = [t('00030'), t('00031'), t('00032'), t('00033'), t('00034')];
 
-  const [state, setState] = useState({
-    A: false,
-    B: false,
-    C: false,
-    D: false,
-    E: false
-  });
+  let init;
+  if (answersAll['00019'] == null) {
+    init = []
+  }
+  else {
+    init = answersAll['00019']
+  }
 
-  useEffect(() => {
-    if (answer !== null) {
-      setState(answer)
+  const [checked, setChecked] = useState(init);
+
+  const handleCheck = (event: { target: { checked: any; value: any; }; }) => {
+    var updatedList = [...checked];
+    if (event.target.checked) {
+      updatedList = [...checked, event.target.value];
+    } else {
+      updatedList.splice(checked.indexOf(event.target.value), 1);
     }
-  }, []);
-  
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-    setAnswer({
-      ...state,
-      [event.target.name]: event.target.checked,
-    })
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {
-      '00019': {
-        ...state,
-        [event.target.name]: event.target.checked,
-      }
-    })))
+    setChecked(updatedList);
   };
 
-  const list = [
-    { value: state?.A, name: 'A', label: 'It was initially opposed by a government department.' },
-    { value: state?.B, name: 'B', label: 'It failed when a partner in the scheme withdrew support.' },
-    { value: state?.C, name: 'C', label: 'It aimed to be more successful than the Copenhagen scheme.' },
-    { value: state?.D, name: 'D', label: 'It was made possible by a change in people’s attitudes.' },
-    { value: state?.E, name: 'E', label: 'It attracted interest from a range of bike designers.' },
-  ]
+  const checkedItems = checked?.length
+    ? checked?.reduce((total: string, item: string) => {
+      return total + ", " + item;
+    })
+    : "";
+
+  if (checked?.length > 2) {
+    const array = checkedItems.split(", ");
+    const newArray = array.slice(1);
+    setChecked(newArray)
+  }
+
+  useEffect(() => {
+    dispatch(setAnswersAll(Object.assign({}, answersAll, {
+      '00019': checked
+    })))
+  }, [checked]);
 
   return (
     <Stack
@@ -76,36 +75,27 @@ const index = ({ qn }: any) => {
       <Paper elevation={0}>
         <Typography>
           <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong>
-          <Typography sx={{ px: 1 }}> Which </Typography>
+          <Typography sx={{ px: 1 }}> {t('00028')} </Typography>
           <strong className='uppercase'> two </strong>
-          <Typography sx={{ pl: 1 }}> of the following statements are made in the text about the Amsterdam bike-sharing scheme of 1999? </Typography>
+          <Typography sx={{ pl: 1 }}> {t('00029')} </Typography>
         </Typography>
       </Paper>
-      <Paper elevation={0}>
-        <Stack direction="row" alignItems="center">
-          <FormControl variant="standard">
-            {state &&
-              <FormGroup>
-                {list.map((i) => {
-                  return (
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          name={(i.name)}
-                          checked={i.value}
-                          onChange={handleChange}
-                          onClick={() => dispatch(setCurrentQuestion(19))}
-                        />
-                      }
-                      label={i.label}
-                    />
-                  )
-                })}
-              </FormGroup>
+      {checkList.map((item, index) => (
+        <Paper elevation={0} key={index}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                name={(item)}
+                checked={checked?.includes(item)}
+                value={item}
+                onChange={handleCheck}
+                onClick={() => dispatch(setCurrentQuestion(19))}
+              />
             }
-          </FormControl>
-        </Stack>
-      </Paper>
+            label={item}
+          />
+        </Paper>
+      ))}
     </Stack>
   )
 };

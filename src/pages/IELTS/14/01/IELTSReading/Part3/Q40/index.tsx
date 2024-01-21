@@ -5,6 +5,11 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 // mtu
 
+// api
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from '@/services/API'
+// api
+
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
@@ -20,14 +25,43 @@ const index = ({ qn }: any) => {
 
   const [answer, setAnswer] = useState<any>(answersAll['00040'])
 
+  const postAnswer = useQuery({
+    enabled: false,
+    queryKey: ['postAnswer40'],
+    queryFn: async () => {
+      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+        "test_done": false,
+        "answers": {
+          "00040": localStorage.getItem('00040')
+        }
+      })
+      const data = await response.data
+      getAnswer.refetch()
+      return data
+    },
+  })
+
+  const getAnswer = useQuery({
+    queryKey: ['getAnswer40'],
+    queryFn: async () => {
+      const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
+      const data = await response.data.answers
+      dispatch(setAnswersAll(data))
+      return data
+    },
+  })
+
   const answerHandler = (e: any) => {
     setAnswer((e.target.value))
+    localStorage.setItem('00040', e.target.value);
+    postAnswer.refetch()
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00040': (e.target.value).trim().toLowerCase() })))
+    getAnswer.refetch()
   }
 
   return (
     <>
-      <Typography sx={{ pr: 1, py: 1 }} id={`q-${qn}`}>
+      <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
         and the
       </Typography>
       <div className={`text-field ${currentQuestion == qn && 'active'}`}>
