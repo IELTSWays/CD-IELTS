@@ -17,6 +17,11 @@
   display: flex;
 }
 
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .align-items-center {
   display: flex;
   align-items: center;
@@ -30,6 +35,14 @@
 .justify-content-space-between {
   display: flex;
   justify-content: space-between;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.mt-20 {
+  margin-top: 20px;
 }
 
 .ml-20 {
@@ -50,6 +63,10 @@
 
 .pointer {
 cursor: pointer;
+}
+
+.text-align-left {
+  text-align: left;
 }
 
 /* [ ############################ END PUBLIC ############################ ] */
@@ -474,3 +491,12 @@ ul#list-red-bullet li::before {
 .active-box-marker svg {
   color: #ffffff;
 }
+
+.pieChart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 330px;
+  margin: auto
+}
+
