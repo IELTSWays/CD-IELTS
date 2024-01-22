@@ -97,14 +97,14 @@ export const SplitView: React.FunctionComponent<SplitViewProps> = ({
   };
 
   React.useEffect(() => {
-    document.getElementById('divider').addEventListener("mousemove", onMouseMove);
-    document.getElementById('divider').addEventListener("touchmove", onTouchMove);
-    document.getElementById('divider').addEventListener("mouseup", onMouseUp);
+    document.getElementById('divider')?.addEventListener("mousemove", onMouseMove);
+    document.getElementById('divider')?.addEventListener("touchmove", onTouchMove);
+    document.getElementById('divider')?.addEventListener("mouseup", onMouseUp);
 
     return () => {
-      document.getElementById('divider').removeEventListener("mousemove", onMouseMove);
-      document.getElementById('divider').removeEventListener("touchmove", onTouchMove);
-      document.getElementById('divider').removeEventListener("mouseup", onMouseUp);
+      document.getElementById('divider')?.removeEventListener("mousemove", onMouseMove);
+      document.getElementById('divider')?.removeEventListener("touchmove", onTouchMove);
+      document.getElementById('divider')?.removeEventListener("mouseup", onMouseUp);
     };
   });
 
