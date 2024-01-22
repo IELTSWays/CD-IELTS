@@ -12,6 +12,7 @@ import Speaking from "@/pages/Speaking";
 import Tickets from "@/pages/Tickets";
 import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
+import File from "@/pages/File";
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -41,6 +42,7 @@ const MainRoutes = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route element={<Otp />} path="/otp" />
+        <Route element={<File />} path="/pdf" />
       </Routes>
     </Router>
   );
