@@ -527,7 +527,11 @@ const index = () => {
 
             {questions.slice(0, 10).map((i) => {
               return (
-                <div className={currentQuestion == `${i.number}` && 'active'} id={`item-${i.number}`}>
+                <div
+                  className={currentQuestion == `${i.number}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                >
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -557,7 +561,11 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(10, 20).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                >
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -587,7 +595,11 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(20, 30).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                >
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>
@@ -617,7 +629,11 @@ const index = () => {
           <div className="navigation-part-items">
             {questions.slice(30, 40).map((i) => {
               return (
-                <div className={currentQuestion == `${i.label}` && 'active'} id={`item-${i.number}`}>
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                >
                   <HashLink onClick={() => dispatch(setCurrentQuestion(i.number))} smooth to={`#q-${i.label}`}>
                     <span>{i.label}</span>
                   </HashLink>

@@ -357,6 +357,10 @@ html.ielts {
   margin-right: 15px;
 }
 
+.navigation-part-items [data-answer = 'answered'] {
+  border-top-color: green !important;
+}
+
 /* ielts-navigation- duplicates */
 
 /* [ ==================================== ielts-listening-1401 */

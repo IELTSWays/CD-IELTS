@@ -27,6 +27,8 @@ const index = ({ qn }: any) => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00001': (e.target.value).trim().toLowerCase() })))
   }
 
+  console.log(answersAll);
+
   return (
     <Stack
       spacing={{ xs: 1, sm: 2 }}

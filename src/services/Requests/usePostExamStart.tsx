@@ -22,7 +22,6 @@ const usePostExamStart = (test: any) => {
       const response = await axiosInstance.post('exam/start-test',
         queryKey[1]
       )
-      console.log(queryKey[1]?.skill)
       const data = await response.data
       const token: any = localStorage.getItem('token');
       dispatch(setAnswersAll({}))
@@ -31,6 +30,8 @@ const usePostExamStart = (test: any) => {
       localStorage.setItem('test_id', data.test_id);
       dispatch(setCurrentQuestion('00001'))
       dispatch(setTestInfo(data))
+      dispatch(setAnswersAll(data.answers))
+
       navigate(`/IELTS/${queryKey[1]?.skill}`)
 
       return data
