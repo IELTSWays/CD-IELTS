@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 // mtu
 import Typography from '@mui/material/Typography';
+import DoneIcon from '@mui/icons-material/Done';
 // mtu
 
 // store
@@ -10,8 +12,11 @@ import { useAppSelector } from '@/store/hooks'
 
 import { SplitView } from "@/components/IELTS/SplitView";
 import Title from '@/components/IELTS/Title';
-import QTextArea from '@/components/IELTS/QTextArea';
+import QTextArea1 from '@/components/IELTS/QTextArea/Q1';
+import QTextArea2 from '@/components/IELTS/QTextArea/Q2';
 
+import iLeft from '@/assets/images/CharmArrowLeft.svg';
+import iRight from '@/assets/images/CharmArrowRight.svg';
 import img from '@/assets/images/ielts/14/Test1 _Task1.jpeg'
 
 const index = () => {
@@ -28,6 +33,19 @@ const index = () => {
   return (
     <>
       <Title title={parts[part - 1].title} description={parts[part - 1].description} />
+
+      <div className='arrow-currentQuestion'>
+        <div className={part === 1 && 'disable'}>
+          <Link onClick={() => setPart(1)} to={''}>
+            <img src={iLeft} />
+          </Link>
+        </div>
+        <div className={part === 2 && 'disable'}>
+          <Link onClick={() => setPart(2)} to={''}>
+            <img src={iRight} />
+          </Link>
+        </div>
+      </div>
 
       <div className={`ielts-container ${fontSize}`}>
         <SplitView
@@ -75,16 +93,49 @@ const index = () => {
           }
           right={
             <div className="right ielts-scrollbar">
-              {part === 1 && <QTextArea id="0001" />}
-              {part === 2 && <QTextArea id="0002" />}
+              {part === 1 && <QTextArea1 id="0001" />}
+              {part === 2 && <QTextArea2 id="0002" />}
             </div>
           }
         />
       </div>
-
-      <div>
-        <button onClick={() => setPart(1)}> 1 </button>
-        <button onClick={() => setPart(2)}> 2 </button>
+      <div className="ielts-navigation" id="ielts-writing">
+        <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
+          <div className="navigation-part-title">
+            <span>Part 1</span>
+          </div>
+          <div className='navigation-part-counter'>
+            {part > 1 ?
+              <>
+                <DoneIcon color="success" sx={{ mr: 1 }} />
+                <div>Part 1</div>
+              </>
+              :
+              <>
+                <div>Part 1</div>
+                <div> 0 of 1 </div>
+              </>
+            }
+          </div>
+        </div>
+        <div className={`navigation-part ${part === 2 && 'active'} ${part > 2 && 'done'}`}>
+            <div className="navigation-part-title">
+              <span>Part 2</span>
+            </div>
+            <div className='navigation-part-counter'>
+              {part > 2 ?
+                <>
+                  <DoneIcon color="success" sx={{ mr: 1 }} />
+                  <div>Part 2</div>
+                </>
+                :
+                <>
+                  <div>Part 2</div>
+                  <div> 0 of 1 </div>
+                </>
+              }
+            </div>
+          </div>
       </div>
     </>
   );

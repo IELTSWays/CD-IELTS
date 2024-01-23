@@ -53,7 +53,7 @@ const listTests: any = [
   },
   {
     book: 1,
-    skill: "listening",
+    skill: "writing",
     test: "3",
     type: "academic"
   }
@@ -119,7 +119,7 @@ const ActiveCourse = () => {
               color="success"
               sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
               startIcon={<RocketIcon />}
-              onClick={() => setTest(listTests[1])}
+              onClick={() => setTest(listTests[2])}
             >
               Let's Go
             </Button>

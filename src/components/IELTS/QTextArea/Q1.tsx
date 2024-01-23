@@ -23,8 +23,6 @@ const index = ({ id }: any) => {
     },
   })
   
-  console.log(id.toString());
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       inputText && postAnswer.refetch()
@@ -58,7 +56,6 @@ const index = ({ id }: any) => {
       <span> Words: {wordCountHandler(inputText)} </span>
       <br />
       <p> {saving && 'Saving...'} </p>
-
     </div>
   );
 };

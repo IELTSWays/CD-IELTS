@@ -361,6 +361,14 @@ html.ielts {
   border-top-color: green !important;
 }
 
+.ielts-navigation#ielts-writing .navigation-part-title {
+  width: 100%;
+}
+
+.ielts-navigation#ielts-writing .navigation-part {
+  max-width: 960px !important;
+}
+
 /* ielts-navigation- duplicates */
 
 /* [ ==================================== ielts-listening-1401 */
