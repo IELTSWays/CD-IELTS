@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSound from 'use-sound'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // mtu
 import Box from '@mui/material/Box';
@@ -19,7 +19,6 @@ import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 
 // store
 import { useAppSelector } from '@/store/hooks'
-import { setWritingSaved } from '@/store/slices/user/userSlice'
 // store
 
 import "@/styles/ielts.css"
@@ -33,6 +32,7 @@ const LayoutIELTS = ({ children }: any) => {
   const [volume, setVolume] = useState<number>(50);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleChange = (_event: Event, newValue: number | number[]) => {
     setVolume(newValue as number);
