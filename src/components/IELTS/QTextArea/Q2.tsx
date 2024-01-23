@@ -5,10 +5,17 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
 // api
 
+// store
+import { useAppDispatch } from '@/store/hooks'
+import { setWritingSaved } from '@/store/slices/user/userSlice'
+// store
+
 const index = ({ id }: any) => {
 
   const [inputText, setInputText] = useState("");
   const [saving, setSaving] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const postAnswer = useQuery({
     enabled: false,
@@ -22,7 +29,7 @@ const index = ({ id }: any) => {
       return data
     },
   })
-  
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       inputText && postAnswer.refetch()
@@ -32,7 +39,8 @@ const index = ({ id }: any) => {
   }, [inputText])
 
   useEffect(() => {
-    saving && setTimeout(() => setSaving(false), 1500);
+    saving && setTimeout(() => setSaving(false), 3000);
+    dispatch(setWritingSaved(saving.toString()))
   }, [saving]);
 
   const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
@@ -54,8 +62,6 @@ const index = ({ id }: any) => {
         placeholder='Type here...'
       />
       <span> Words: {wordCountHandler(inputText)} </span>
-      <br />
-      <p> {saving && 'Saving...'} </p>
     </div>
   );
 };

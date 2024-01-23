@@ -14,6 +14,7 @@ export interface UserState {
   answersOld: any;
   answersAll: any;
   testInfo: any;
+  writingSaved: any
 }
 
 const initialState: UserState = {
@@ -27,7 +28,8 @@ const initialState: UserState = {
   currentQuestion: 1,
   answersOld: {},
   answersAll: {},
-  testInfo: {}
+  testInfo: {},
+  writingSaved: ""
 };
 
 export const userSlice = createSlice({
@@ -67,6 +69,9 @@ export const userSlice = createSlice({
     setTestInfo: (state, action: PayloadAction<any>) => {
       state.testInfo = {...action.payload};
     },
+    setWritingSaved: (state, action: PayloadAction<string>) => {
+      state.writingSaved = [...action.payload].join("");
+    },
   },
 });
 
@@ -81,7 +86,8 @@ export const {
   setCurrentQuestion,
   setAnswersOld,
   setAnswersAll,
-  setTestInfo
+  setTestInfo,
+  setWritingSaved
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -98,5 +104,6 @@ export const selectCurrentQuestion = (state: RootState) =>
 export const selectAnswersOld = (state: RootState) => state.user.answersOld;
 export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export const selectTestInfo = (state: RootState) => state.user.testInfo;
+export const selectWritingSaved = (state: RootState) => state.user.writingSaved;
 
 export default userSlice.reducer;

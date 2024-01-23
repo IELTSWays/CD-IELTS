@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSound from 'use-sound'
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 // mtu
 import Box from '@mui/material/Box';
@@ -17,6 +17,11 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 // mtu
 
+// store
+import { useAppSelector } from '@/store/hooks'
+import { setWritingSaved } from '@/store/slices/user/userSlice'
+// store
+
 import "@/styles/ielts.css"
 import Logo from '@/assets/images/ielts.png'
 import mySound from '@/assets/sounds/14/1/section-1.mp3'
@@ -26,7 +31,8 @@ const LayoutIELTS = ({ children }: any) => {
 
   const [showVolume, setShowVolume] = useState(false);
   const [volume, setVolume] = useState<number>(50);
-  const navigate = useNavigate();
+
+  const location = useLocation();
 
   const handleChange = (_event: Event, newValue: number | number[]) => {
     setVolume(newValue as number);
@@ -52,6 +58,8 @@ const LayoutIELTS = ({ children }: any) => {
     setIsPlaying(!isPlaying);
   }
 
+  const writingSaved = useAppSelector((state) => state.user.writingSaved)
+
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
@@ -67,10 +75,16 @@ const LayoutIELTS = ({ children }: any) => {
                 </div>
               </div>
             </div>
+
             <div className='align-items-center g-20'>
-              <button onClick={() => togglePlay()} style={{ width: '70px' }}>
-                {isPlaying ? 'pause' : 'Play'}
-              </button>
+              {location.pathname.includes('listening') &&
+                <button onClick={() => togglePlay()} style={{ width: '70px' }}>
+                  {isPlaying ? 'pause' : 'Play'}
+                </button>
+              }
+              {location.pathname.includes('writing') &&
+                writingSaved === 'true' && 'Saved'
+              }
               <WifiIcon color="action" fontSize="large" />
               <NotificationsNoneIcon color="action" fontSize="large" />
               <ModalOptions />
