@@ -5,15 +5,30 @@ import { useTranslation } from 'react-i18next';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
 // mtu
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setAccordion } from '@/store/slices/user/userSlice'
 // store
+
+const Accordion = styled((props: any) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />))(() => ({
+  }));
+
+const AccordionSummary = styled((props: any) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon />}
+    {...props}
+  />
+))(() => ({
+}));
 
 const index = ({ qn }: any) => {
 
@@ -22,6 +37,10 @@ const index = ({ qn }: any) => {
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
+
+  const accordionState = useAppSelector((state: any) => state.user.accordion)
+  const [expanded, setExpanded] = useState(false);
 
   const checkList = [t('00030'), t('00031'), t('00032'), t('00033'), t('00034')];
 
@@ -34,6 +53,18 @@ const index = ({ qn }: any) => {
   }
 
   const [checked, setChecked] = useState(init);
+
+  const handleChange = () => {
+    dispatch(setAccordion('00019'))
+    setExpanded(!expanded)
+    dispatch(setCurrentQuestion(19))
+  }
+
+  useEffect(() => {
+    if (accordionState !== '00019') {
+      setExpanded(false)
+    }
+  }, [accordionState])
 
   const handleCheck = (event: { target: { checked: any; value: any; }; }) => {
     var updatedList = [...checked];
@@ -64,40 +95,42 @@ const index = ({ qn }: any) => {
   }, [checked]);
 
   return (
-    <Stack
-      spacing={{ xs: 1, sm: 2 }}
-      direction="column"
-      useFlexGap
-      flexWrap="wrap"
-      sx={{ py: 1 }}
+    <Accordion
       id={`q-${qn}`}
+      expanded={accordionState === '00019' && expanded}
+      onChange={() => handleChange()}
     >
-      <Paper elevation={0}>
-        <Typography>
-          <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong>
-          <Typography sx={{ px: 1 }}> {t('00028')} </Typography>
-          <strong className='uppercase'> two </strong>
-          <Typography sx={{ pl: 1 }}> {t('00029')} </Typography>
-        </Typography>
-      </Paper>
-      {checkList.map((item, index) => (
-        <Paper elevation={0} key={index}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                name={(item)}
-                checked={checked?.includes(item)}
-                value={item}
-                onChange={handleCheck}
-                onClick={() => dispatch(setCurrentQuestion(19))}
-              />
-            }
-            label={item}
-          />
+      <AccordionSummary
+        onClick={() => handleChange()}
+      >
+        <Paper elevation={0}>
+          <Typography>
+            <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong>
+            <Typography sx={{ px: 1 }}> {t('00028')} </Typography>
+            <strong className='uppercase'> two </strong>
+            <Typography sx={{ pl: 1 }}> {t('00029')} </Typography>
+          </Typography>
         </Paper>
-      ))}
-    </Stack>
+      </AccordionSummary>
+      <div className="p-20">
+        {checkList.map((item, index) => (
+          <Paper elevation={0} key={index}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name={(item)}
+                  checked={checked?.includes(item)}
+                  value={item}
+                  onChange={handleCheck}
+                  onClick={() => dispatch(setCurrentQuestion(19))}
+                />
+              }
+              label={item}
+            />
+          </Paper>
+        ))}
+      </div>
+    </Accordion>
   )
-};
-
-export default index;
+}
+export default index
