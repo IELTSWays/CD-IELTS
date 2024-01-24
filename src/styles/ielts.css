@@ -1015,3 +1015,46 @@ td {
     margin: 30mm 45mm 30mm 45mm;
   }
 }
+
+
+/* accordion */
+.ielts-container .css-ee20y-MuiPaper-root{
+  background: transparent !important;
+}
+
+.ielts-container .css-uvvswg-MuiButtonBase-root-MuiAccordionSummary-root {
+  flex-direction: row;
+}
+
+.ielts-container .MuiAccordionSummary-root {
+  background-color: #F7F7F7 !important;
+}
+
+.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper{
+  transform: 'rotate(190deg)' !important;
+}
+
+.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: 'rotate(290deg)' !important;
+}
+
+.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 15px;
+}
+
+.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
+  border-bottom: 0,
+}
+
+.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root::before {
+  display: 'none',
+}
+
+.ielts-container .MuiAccordionSummary-root svg {
+  font-size: 14px !important;
+}
+
+.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: rotate(90deg) !important;
+}

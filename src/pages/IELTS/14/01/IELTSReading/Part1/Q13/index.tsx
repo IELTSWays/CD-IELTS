@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // mtu
 import Paper from '@mui/material/Paper';
@@ -8,20 +8,39 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
 // mtu
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setAccordion } from '@/store/slices/user/userSlice'
 // store
+
+const Accordion = styled((props: any) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />))(() => ({
+  }));
+
+const AccordionSummary = styled((props: any) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon />}
+    {...props}
+  />
+))(() => ({
+}));
 
 const index = ({ qn }: any) => {
 
   const dispatch = useAppDispatch();
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
+  const accordionState = useAppSelector((state: any) => state.user.accordion)
+
+  const [expanded, setExpanded] = useState(false);
 
   const options = [
     { label: 'TRUE', value: "A", },
@@ -32,51 +51,66 @@ const index = ({ qn }: any) => {
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll['00013']);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = () => {
+    dispatch(setAccordion('00013'))
+    setExpanded(!expanded)
+    dispatch(setCurrentQuestion(13))
+  }
+
+  const handleChangeItems = (event: any) => {
     setAnswer((event.target as HTMLInputElement).value);
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00013': ((event.target as HTMLInputElement).value) })))
-  };
+  }
+
+  useEffect(() => {
+    if (accordionState !== '00013') {
+      setExpanded(false)
+    }
+  }, [accordionState])
 
   return (
-    <Stack
-      spacing={{ xs: 1, sm: 2 }}
-      direction="column"
-      useFlexGap
-      flexWrap="wrap"
-      sx={{ py: 1 }}
+    <Accordion
       id={`q-${qn}`}
+      expanded={accordionState === '00013' && expanded}
+      onChange={() => handleChange()}
     >
-      <Paper elevation={0}>
-        <Typography>
-          <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-          <Typography sx={{ px: 1 }}>
-            People nowadays regard children’s play as less significant than they did in the past.
+      <AccordionSummary
+        onClick={() => handleChange()}
+      >
+        <Paper elevation={0}>
+          <Typography>
+            <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+            <Typography sx={{ px: 1 }}>
+              People nowadays regard children’s play as less significant than they did in the past.
+            </Typography>
           </Typography>
-        </Typography>
-      </Paper>
-      <Paper elevation={0}>
-        <Stack direction="row" alignItems="center">
-          <FormControl>
-            <RadioGroup
-              value={answer}
-              onChange={handleChange}
-            >
-              {options.map((i) => {
-                return (
-                  <FormControlLabel
-                    value={i.value}
-                    control={<Radio />}
-                    label={i.label}
-                    onClick={() => dispatch(setCurrentQuestion(13))}
-                  />
-                )
-              })}
-            </RadioGroup>
-          </FormControl>
-        </Stack>
-      </Paper>
-    </Stack>
+        </Paper>
+      </AccordionSummary>
+      <div className="p-20">
+        <Paper elevation={0}>
+          <Stack direction="row" alignItems="center">
+            <FormControl>
+              <RadioGroup
+                value={answer}
+                onChange={handleChangeItems}
+              >
+                {options.map((i) => {
+                  return (
+                    <FormControlLabel
+                      value={i.value}
+                      control={<Radio />}
+                      label={i.label}
+                      onClick={() => dispatch(setCurrentQuestion(13))}
+                    />
+                  )
+                })}
+              </RadioGroup>
+            </FormControl>
+          </Stack>
+        </Paper>
+      </div>
+    </Accordion>
   );
-};
+}
 
-export default index;
+export default index

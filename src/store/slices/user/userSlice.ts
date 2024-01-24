@@ -14,7 +14,8 @@ export interface UserState {
   answersOld: any;
   answersAll: any;
   testInfo: any;
-  writingSaved: any
+  writingSaved: any;
+  accordion: any;
 }
 
 const initialState: UserState = {
@@ -29,7 +30,8 @@ const initialState: UserState = {
   answersOld: {},
   answersAll: {},
   testInfo: {},
-  writingSaved: ""
+  writingSaved: "",
+  accordion: "",
 };
 
 export const userSlice = createSlice({
@@ -64,13 +66,16 @@ export const userSlice = createSlice({
       state.answersOld = action.payload;
     },
     setAnswersAll: (state, action: PayloadAction<any>) => {
-      state.answersAll = {...action.payload};
+      state.answersAll = { ...action.payload };
     },
     setTestInfo: (state, action: PayloadAction<any>) => {
-      state.testInfo = {...action.payload};
+      state.testInfo = { ...action.payload };
     },
     setWritingSaved: (state, action: PayloadAction<string>) => {
       state.writingSaved = [...action.payload].join("");
+    },
+    setAccordion: (state, action: PayloadAction<string>) => {
+      state.accordion = [...action.payload].join("");
     },
   },
 });
@@ -87,7 +92,8 @@ export const {
   setAnswersOld,
   setAnswersAll,
   setTestInfo,
-  setWritingSaved
+  setWritingSaved,
+  setAccordion,
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -105,5 +111,6 @@ export const selectAnswersOld = (state: RootState) => state.user.answersOld;
 export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export const selectTestInfo = (state: RootState) => state.user.testInfo;
 export const selectWritingSaved = (state: RootState) => state.user.writingSaved;
+export const selectAccordion = (state: RootState) => state.user.accordion;
 
 export default userSlice.reducer;

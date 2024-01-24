@@ -53,6 +53,10 @@
   margin-left: 50px;
 }
 
+.p-20 {
+  padding: 20px;
+}
+
 .g-20 {
   gap: 20px;
 }
