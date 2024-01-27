@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useSound from 'use-sound'
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -60,6 +60,46 @@ const LayoutIELTS = ({ children }: any) => {
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
 
+  // TIMER
+  const [counter, setCounter] = useState<any>(3610);
+  const [timer, setTimer] = useState<any>('');
+
+  const formatFull = (s: number) =>
+    (new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+
+  const formatHours = (s: number) =>
+    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(0, -6) + ' Hours remaining';
+  const formatMinutes = (s: number) =>
+    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(3, -3) + ' Minutes remaining ';
+  const formatSeconds = (s: number) =>
+    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(6) + ' Seconds remaining';
+
+  useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    localStorage.setItem("counter", counter);
+    { counter > 3600 && setTimer(formatHours(counter)) }
+    { counter < 3600 && counter > 60 && setTimer(formatMinutes(counter)) }
+    { counter < 60 && setTimer(formatSeconds(counter)) }
+    { counter == 0 && setTimer("FINISH !") }
+  }, [counter]);
+
+  useEffect(() => {
+    localStorage.getItem("counter") && setCounter(localStorage.getItem("counter"));
+  }, []);
+  // TIMER
+
+  // TIME NOW
+  const [timeNow, setTimeNow] = useState<any>()
+  useEffect(() => {
+    setInterval(() => {
+      setTimeNow(new Date().toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit'
+      }))
+    }, 1000)
+  }, []);
+
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
@@ -68,7 +108,8 @@ const LayoutIELTS = ({ children }: any) => {
             <div className="d-flex">
               <img src={Logo} alt="ielts" height={40} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
-                <div>59 minutes remaining</div>
+                <div style={{ width: '170px' }}>{timer}</div>
+                <span> {formatFull(counter)} </span>
                 <div className="d-flex ml-20">
                   <VideocamIcon sx={{ mx: 0.5 }} />
                   Live proctoring started
@@ -104,7 +145,7 @@ const LayoutIELTS = ({ children }: any) => {
               inspera assessment
             </div>
             <div className='align-items-center g-20'>
-              <div><strong>13:15</strong></div>
+              <div><strong>{timeNow}</strong></div>
               <BatteryChargingFullIcon color="action" fontSize="large" sx={{ rotate: '90deg' }} />
               <div className='ielts-footer-btn'>
                 <WifiIcon color="action" fontSize="large" />
