@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
@@ -18,7 +18,7 @@ const index = ({ qn }: any) => {
   const dispatch = useAppDispatch()
 
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const [answer, setAnswer] = useState<any>(answersAll['00001'])
 

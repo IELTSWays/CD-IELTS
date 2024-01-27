@@ -13,12 +13,13 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import DoneIcon from '@mui/icons-material/Done';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 // mtu
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
@@ -68,9 +69,10 @@ const index = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch()
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const fontSize = useAppSelector((state) => state.user.fontSize)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const answersAll = useAppSelector((state) => state.user.answersAll)
+  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const parts = [
     { title: "Part 1", description: "Listen and answer question 1-10." },
@@ -206,7 +208,7 @@ const index = () => {
         </div>
 
         {isLoading && <div> LOADING... </div>}
-        {isSuccess &&
+        {1 == 1 &&
           <>
             {part === 1 &&
               <>
@@ -532,8 +534,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
@@ -566,8 +577,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
