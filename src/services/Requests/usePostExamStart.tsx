@@ -7,8 +7,17 @@ import axiosInstance from '@/services/API'
 
 // store
 import { useAppDispatch } from '@/store/hooks'
-import { setTestInfo, setAnswersAll, setCurrentQuestion } from '@/store/slices/user/userSlice'
+import { setTestInfo, setAnswersAll, setCurrentQuestion, setFlags } from '@/store/slices/user/userSlice'
 // store
+
+const initFlag :any = {};
+for (let i = 1; i <= 40; i++) {
+  initFlag[i] = null;
+}
+const entries = [];
+for (let i = 1; i <= 40; i++) {
+entries.push([i, null]);
+}
 
 const usePostExamStart = (test: any) => {
 
@@ -31,6 +40,7 @@ const usePostExamStart = (test: any) => {
       dispatch(setCurrentQuestion('00001'))
       dispatch(setTestInfo(data))
       dispatch(setAnswersAll(data.answers))
+      // dispatch(setFlags(initFlag))
 
       navigate(`/IELTS/${queryKey[1]?.skill}`)
 

@@ -16,6 +16,7 @@ export interface UserState {
   testInfo: any;
   writingSaved: any;
   accordion: any;
+  flag: any;
 }
 
 const initialState: UserState = {
@@ -32,6 +33,22 @@ const initialState: UserState = {
   testInfo: {},
   writingSaved: "",
   accordion: "",
+  flag: {
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": null,
+    "7": null,
+    "8": null,
+    "9": null,
+    "10": null,
+    "11": null,
+    "12": null,
+    "13": null,
+    "14": null,
+  },
 };
 
 export const userSlice = createSlice({
@@ -77,6 +94,9 @@ export const userSlice = createSlice({
     setAccordion: (state, action: PayloadAction<string>) => {
       state.accordion = [...action.payload].join("");
     },
+    setFlags: (state, action: PayloadAction<any>) => {
+      state.flag = { ...action.payload };
+    },
   },
 });
 
@@ -94,6 +114,7 @@ export const {
   setTestInfo,
   setWritingSaved,
   setAccordion,
+  setFlags,
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -112,5 +133,6 @@ export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export const selectTestInfo = (state: RootState) => state.user.testInfo;
 export const selectWritingSaved = (state: RootState) => state.user.writingSaved;
 export const selectAccordion = (state: RootState) => state.user.accordion;
+export const selectFlags = (state: RootState) => state.user.flag;
 
 export default userSlice.reducer;

@@ -302,6 +302,8 @@ html.ielts {
   border-top: 3px solid var(--color-06);
   padding: 15px 0px;
   margin-top: 5px;
+  width: 33px;
+  text-align: center;
 }
 
 .navigation-part-items,
@@ -315,6 +317,15 @@ html.ielts {
   padding: 5px;
   border-radius: 2.5px;
   cursor: pointer;
+  position: relative;
+}
+
+.navigation-part-items > div span svg {
+  position: absolute;
+  width: 12px;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .navigation-part-items > .active span {
@@ -372,6 +383,11 @@ html.ielts {
 /* ielts-navigation- duplicates */
 
 /* [ ==================================== ielts-listening-1401 */
+
+.ielts-navigation#ielts-listening-1401 #item-11,
+.ielts-navigation#ielts-listening-1401 #item-13 {
+  width: 55px !important;
+}
 
 /* [12,14] */
 .ielts-navigation#ielts-listening-1401 #item-12,
@@ -1057,4 +1073,15 @@ td {
 
 .ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
   transform: rotate(90deg) !important;
+}
+
+/* flag */
+.flag {
+  cursor: pointer;
+  width: 15px;
+  visibility: hidden;
+}
+
+.flag.active {
+  visibility: visible;
 }
