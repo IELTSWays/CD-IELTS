@@ -130,7 +130,7 @@ const index = () => {
               <FormControlLabel control={<Radio />} label="G" />
             </RadioGroup>
             <div className={`flag`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
 
@@ -165,7 +165,7 @@ const index = () => {
               </RadioGroup>
             </RadioGroup>
             <div onClick={() => flagHandler14()} className={`flag ${currentQuestion == 14 && 'active'}`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
           {/************************* [15] *************************/}
@@ -199,7 +199,7 @@ const index = () => {
               </RadioGroup>
             </RadioGroup>
             <div onClick={() => flagHandler15()} className={`flag ${currentQuestion == 15 && 'active'}`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
           {/************************* [16] *************************/}
@@ -233,7 +233,7 @@ const index = () => {
               </RadioGroup>
             </RadioGroup>
             <div onClick={() => flagHandler16()} className={`flag ${currentQuestion == 16 && 'active'}`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
           {/************************* [17] *************************/}
@@ -267,7 +267,7 @@ const index = () => {
               </RadioGroup>
             </RadioGroup>
             <div onClick={() => flagHandler17()} className={`flag ${currentQuestion == 17 && 'active'}`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
           {/************************* [18] *************************/}
@@ -301,7 +301,7 @@ const index = () => {
               </RadioGroup>
             </RadioGroup>
             <div onClick={() => flagHandler18()} className={`flag ${currentQuestion == 18 && 'active'}`}>
-              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
           </Stack>
         </div>

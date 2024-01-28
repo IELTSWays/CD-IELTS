@@ -61,7 +61,7 @@ const LayoutIELTS = ({ children }: any) => {
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
 
   // TIMER
-  const [counter, setCounter] = useState<any>(3610);
+  const [counter, setCounter] = useState<any>(700);
   const [timer, setTimer] = useState<any>('');
 
   const formatFull = (s: number) =>

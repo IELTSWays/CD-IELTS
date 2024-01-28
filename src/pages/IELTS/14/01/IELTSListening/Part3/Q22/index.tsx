@@ -103,7 +103,7 @@ const index = ({ qn }: any) => {
           </Typography>
         </Paper>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
-          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </div>
       <Paper elevation={0}>

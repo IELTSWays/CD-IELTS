@@ -100,7 +100,7 @@ const Q31 = ({ qn }: any) => {
     >
       <Paper elevation={0} className="drop-container-text" sx={{ display: 'flex', gap: '10px' }}>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
-          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
         <Typography>
           Dissatisfaction with pay is not the only reason why hospitality workers change jobs.

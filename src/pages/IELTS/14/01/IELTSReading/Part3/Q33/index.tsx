@@ -124,7 +124,7 @@ const index = ({ qn }: any) => {
         </div>
       </Accordion>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 33 && 'active'}`}>
-        {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>
     </div>
   );

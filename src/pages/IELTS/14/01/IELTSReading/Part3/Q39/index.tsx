@@ -86,7 +86,7 @@ const index = ({ qn }: any) => {
         </div>
       </div>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 39 && 'active'}`}>
-        {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>
     </div>
   );

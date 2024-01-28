@@ -92,7 +92,7 @@ const index = ({ qn }: any) => {
           </Typography>
         </Paper>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 11 && 'active'}`}>
-          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </div>
       {checkList.map((item, index) => (

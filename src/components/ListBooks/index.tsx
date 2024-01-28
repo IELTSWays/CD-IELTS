@@ -12,19 +12,68 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 // mtu
-import Book1 from '@/assets/images/Books/01.jpg'
+import Book1 from '@/assets/images/Books/14.jpg'
 
-const ListBooks = ({onChange} :any ) => {
+const ListBooks = ({ onChange }: any) => {
 
   // const [item, setItem] = useState<string | null>();
-  
+
   // const handleItem = (
   //   _event: React.MouseEvent<HTMLElement>,
   //   newItem: string | null,
   // ) => {
   //   setItem(newItem);
   // };
-  
+
+  const products = [
+    {
+      book: '14',
+      type: "academic",
+      test: 1,
+      // img: Book1,
+      tests: [
+        {
+          id: 'B14LT1',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B14RT1',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B14WT1',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    },
+    {
+      book: '14',
+      type: "academic",
+      test: 2,
+      // img: Book1,
+      tests: [
+        {
+          id: 'B14LT2',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B14RT2',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B14WT2',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    }
+  ]
+
   return <>
     {Array.from(Array(5)).map((_, index) => (
       <Grid item xs={4} sm={4} md={2}>
@@ -32,7 +81,7 @@ const ListBooks = ({onChange} :any ) => {
           <>
             <CardMedia
               component="img"
-              image={Book1}
+              // image={Book1}
               alt="green iguana"
             />
             <CardContent>
@@ -48,30 +97,15 @@ const ListBooks = ({onChange} :any ) => {
                 onChange={onChange}
               >
                 <ToggleButton value="01-writing">
-                  <Badge color="success" badgeContent={3} anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}>
-
-                    <BorderColorIcon color="action" />
-                  </Badge>
+                  <BorderColorIcon color="action" />
                 </ToggleButton>
+
                 <ToggleButton value="01-listening">
-                  <Badge color="success" badgeContent={0} anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}>
-
-                    <HeadphonesIcon color="action" />
-                  </Badge>
+                  <HeadphonesIcon color="action" />
                 </ToggleButton>
+
                 <ToggleButton value="01-reading">
-                  <Badge color="success" badgeContent={0} anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}>
-                    <LibraryBooksIcon color="action" />
-                  </Badge>
+                  <LibraryBooksIcon color="action" />
                 </ToggleButton>
               </ToggleButtonGroup>
             </CardContent>
@@ -80,6 +114,38 @@ const ListBooks = ({onChange} :any ) => {
       </Grid>
     ))}
 
+    {/* {products.map((i, index) => (
+      <Grid item xs={4} sm={4} md={2}>
+        <Card variant="outlined" id="book-item">
+          <>
+            <CardMedia
+              component="img"
+              image={i.img}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography variant="body1" align="center">
+                {i.book}
+              </Typography>
+            </CardContent>
+            <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <ToggleButtonGroup
+                value={index}
+                exclusive
+                sx={{ width: '100%', display: 'flex' }}
+                onChange={onChange}
+              >
+                {i.tests.map((j) => (
+                  <ToggleButton value={j.skill}>
+                    <BorderColorIcon color="action" />
+                  </ToggleButton>
+                ))}
+              </ToggleButtonGroup>
+            </CardContent>
+          </>
+        </Card>
+      </Grid>
+    ))} */}
   </>
 };
 

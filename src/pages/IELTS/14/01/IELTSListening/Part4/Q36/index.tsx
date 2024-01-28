@@ -86,7 +86,7 @@ const index = ({ qn }: any) => {
           </Paper>
         </div>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
-          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </Stack>
       <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>

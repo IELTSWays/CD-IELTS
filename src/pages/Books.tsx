@@ -29,6 +29,8 @@ const Books = () => {
     setItem(newItem);
   };
 
+  console.log(item)
+
   const listMarkers = [
     { id: 1, name: 'Mahdi Mohammadi' },
     { id: 2, name: 'Samane Naderi' },

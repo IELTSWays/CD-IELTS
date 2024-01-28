@@ -100,7 +100,7 @@ const Q30 = ({ qn }: any) => {
     >
       <Paper elevation={0} className="drop-container-text" sx={{ display: 'flex', gap: '10px' }}>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
-          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
         <Typography>
           Staff are less likely to change jobs if cooperation is encouraged.
