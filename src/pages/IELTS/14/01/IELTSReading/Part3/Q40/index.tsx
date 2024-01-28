@@ -3,6 +3,8 @@ import { useState } from "react";
 // mtu
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // mtu
 
 // api
@@ -13,17 +15,24 @@ import axiosInstance from '@/services/API'
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
 
   const dispatch = useAppDispatch()
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
+  const [flag, setFlag] = useState(flags['40'])
   const [answer, setAnswer] = useState<any>(answersAll['00040'])
+
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '40': !flag })))
+  }
 
   const postAnswer = useQuery({
     enabled: false,
@@ -60,24 +69,29 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <>
-      <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
-        and the
-      </Typography>
-      <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-        <TextField
-          margin="normal"
-          placeholder={qn}
-          value={answer}
-          onChange={(e) => answerHandler(e)}
-          onClick={() => dispatch(setCurrentQuestion(qn))}
-        />
+    <div className="align-items-start justify-content-space-between">
+      <div className="d-flex">
+        <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
+          and the
+        </Typography>
+        <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+          <TextField
+            autoComplete="false"
+            margin="normal"
+            placeholder={qn}
+            value={answer}
+            onChange={(e) => answerHandler(e)}
+            onClick={() => dispatch(setCurrentQuestion(qn))}
+          />
+        </div>
+        <Typography sx={{ pr: 1, py: 1 }}>
+          Of the staff. A balance was required between a degree of freedom and maintaining work standards.
+        </Typography>
       </div>
-
-      <Typography sx={{ pr: 1, py: 1 }}>
-        Of the staff. A balance was required between a degree of freedom and maintaining work standards.
-      </Typography>
-    </>
+      <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 40 && 'active'}`}>
+        {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+      </div>
+    </div>
   );
 };
 

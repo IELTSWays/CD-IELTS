@@ -9,11 +9,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const questions = [
@@ -38,8 +40,11 @@ const index = () => {
 
   const dispatch = useAppDispatch();
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
+  const [flag, setFlag] = useState(flags['14'])
 
   const [answer14, setAnswer14] = useState(answersAll['00014']);
   const [answer15, setAnswer15] = useState(answersAll['00015']);
@@ -77,6 +82,31 @@ const index = () => {
     dispatch(setCurrentQuestion('00018'))
   };
 
+  const flagHandler14 = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '14': !flag })))
+  }
+
+  const flagHandler15 = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '15': !flag })))
+  }
+
+  const flagHandler16 = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '16': !flag })))
+  }
+
+  const flagHandler17 = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '17': !flag })))
+  }
+
+  const flagHandler18 = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '18': !flag })))
+  }
+
   return (
     <Card variant="outlined">
       <CardContent sx={{ p: 3 }}>
@@ -99,6 +129,9 @@ const index = () => {
               <FormControlLabel control={<Radio />} label="F" />
               <FormControlLabel control={<Radio />} label="G" />
             </RadioGroup>
+            <div className={`flag`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
 
           {/************************* [14] *************************/}
@@ -131,6 +164,9 @@ const index = () => {
                 })}
               </RadioGroup>
             </RadioGroup>
+            <div onClick={() => flagHandler14()} className={`flag ${currentQuestion == 14 && 'active'}`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
           {/************************* [15] *************************/}
           <Stack
@@ -162,6 +198,9 @@ const index = () => {
                 })}
               </RadioGroup>
             </RadioGroup>
+            <div onClick={() => flagHandler15()} className={`flag ${currentQuestion == 15 && 'active'}`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
           {/************************* [16] *************************/}
           <Stack
@@ -193,6 +232,9 @@ const index = () => {
                 })}
               </RadioGroup>
             </RadioGroup>
+            <div onClick={() => flagHandler16()} className={`flag ${currentQuestion == 16 && 'active'}`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
           {/************************* [17] *************************/}
           <Stack
@@ -224,6 +266,9 @@ const index = () => {
                 })}
               </RadioGroup>
             </RadioGroup>
+            <div onClick={() => flagHandler17()} className={`flag ${currentQuestion == 17 && 'active'}`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
           {/************************* [18] *************************/}
           <Stack
@@ -255,6 +300,9 @@ const index = () => {
                 })}
               </RadioGroup>
             </RadioGroup>
+            <div onClick={() => flagHandler18()} className={`flag ${currentQuestion == 18 && 'active'}`}>
+              {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </div>
           </Stack>
         </div>
       </CardContent>

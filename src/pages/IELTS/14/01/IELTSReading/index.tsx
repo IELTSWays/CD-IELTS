@@ -13,6 +13,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import DoneIcon from '@mui/icons-material/Done';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 // mtu
 
 // store
@@ -68,6 +69,7 @@ const index = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch()
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const answersAll = useAppSelector((state) => state.user.answersAll)
@@ -210,7 +212,7 @@ const index = () => {
         </div>
 
         {getAnswer.isLoading && <div> LOADING... </div>}
-        {getAnswer.isSuccess &&
+        {!getAnswer.isSuccess &&
 
           <SplitView
             left=
@@ -529,8 +531,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink 
+                    onClick={() => dispatch(setCurrentQuestion(i.label))} 
+                    smooth 
+                    to={`#q-${i.label}`}
+                    >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
@@ -563,8 +574,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink 
+                    onClick={() => dispatch(setCurrentQuestion(i.label))} 
+                    smooth 
+                    to={`#q-${i.label}`}
+                    >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
@@ -597,8 +617,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink 
+                    onClick={() => dispatch(setCurrentQuestion(i.label))} 
+                    smooth 
+                    to={`#q-${i.label}`}
+                    >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )

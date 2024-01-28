@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // mtu
 
 // api
@@ -16,13 +18,16 @@ import axiosInstance from '@/services/API'
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const Q31 = ({ qn }: any) => {
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+
+  const [flag, setFlag] = useState(flags['31'])
 
   const [item, setItem] = useState(JSON.parse((localStorage.getItem('00031'))));
   const dispatch = useAppDispatch();
@@ -78,6 +83,11 @@ const Q31 = ({ qn }: any) => {
 
   hover && dispatch(setCurrentQuestion(31))
 
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '31': !flag })))
+  }
+
   return (
     <Stack
       spacing={{ xs: 1, sm: 2 }}
@@ -88,8 +98,13 @@ const Q31 = ({ qn }: any) => {
       id={`q-${qn}`}
       className="drop-container"
     >
-      <Paper elevation={0} className="drop-container-text">
-        <Typography>Dissatisfaction with pay is not the only reason why hospitality workers change jobs.</Typography>
+      <Paper elevation={0} className="drop-container-text" sx={{ display: 'flex', gap: '10px' }}>
+        <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
+          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        </div>
+        <Typography>
+          Dissatisfaction with pay is not the only reason why hospitality workers change jobs.
+        </Typography>
       </Paper>
       <Paper elevation={0}>
         <Box ref={drop} >

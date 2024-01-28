@@ -12,12 +12,14 @@ import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // mtu
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, setAccordion } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setAccordion, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const Accordion = styled((props: any) => (
@@ -36,6 +38,7 @@ const index = ({ qn }: any) => {
 
   const dispatch = useAppDispatch();
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
   const accordionState = useAppSelector((state: any) => state.user.accordion)
@@ -48,8 +51,13 @@ const index = ({ qn }: any) => {
     { label: 'NOT GIVEN', value: "C", },
   ];
 
-  // answer, setAnswer
+  const [flag, setFlag] = useState(flags['12'])
   const [answer, setAnswer] = useState(answersAll['00012']);
+
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '12': !flag })))
+  }
 
   const handleChange = () => {
     dispatch(setAccordion('00012'))
@@ -69,47 +77,53 @@ const index = ({ qn }: any) => {
   }, [accordionState])
 
   return (
-    <Accordion
-      id={`q-${qn}`}
-      expanded={accordionState === '00012' && expanded}
-      onChange={() => handleChange()}
-    >
-      <AccordionSummary
-        onClick={() => handleChange()}
+    <div className="d-flex">
+      <Accordion
+        id={`q-${qn}`}
+        expanded={accordionState === '00012' && expanded}
+        onChange={() => handleChange()}
       >
-        <Paper elevation={0}>
-          <Typography>
-            <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-            <Typography sx={{ px: 1 }}>
-              Children had problems thinking up ideas when they first created the story with Lego.
+        <AccordionSummary
+          onClick={() => handleChange()}
+        >
+          <Paper elevation={0}>
+            <Typography>
+              <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+              <Typography sx={{ px: 1 }}>
+                Children had problems thinking up ideas when they first created the story with Lego.
+              </Typography>
             </Typography>
-          </Typography>
-        </Paper>
-      </AccordionSummary>
-      <div className="p-20">
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
-            <FormControl>
-              <RadioGroup
-                value={answer}
-                onChange={handleChangeItems}
-              >
-                {options.map((i) => {
-                  return (
-                    <FormControlLabel
-                      value={i.value}
-                      control={<Radio />}
-                      label={i.label}
-                      onClick={() => dispatch(setCurrentQuestion(12))}
-                    />
-                  )
-                })}
-              </RadioGroup>
-            </FormControl>
-          </Stack>
-        </Paper>
+          </Paper>
+        </AccordionSummary>
+        <div className="p-20">
+          <Paper elevation={0}>
+            <Stack direction="row" alignItems="center">
+              <FormControl>
+                <RadioGroup
+                  value={answer}
+                  onChange={handleChangeItems}
+                >
+                  {options.map((i) => {
+                    return (
+                      <FormControlLabel
+                        value={i.value}
+                        control={<Radio />}
+                        label={i.label}
+                        onClick={() => dispatch(setCurrentQuestion(12))}
+                      />
+                    )
+                  })}
+                </RadioGroup>
+              </FormControl>
+            </Stack>
+          </Paper>
+        </div>
+      </Accordion>
+
+      <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
+        {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
       </div>
-    </Accordion>
+    </div>
   );
 }
 
