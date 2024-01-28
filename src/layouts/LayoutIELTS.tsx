@@ -100,6 +100,11 @@ const LayoutIELTS = ({ children }: any) => {
     }, 1000)
   }, []);
 
+  // AUTO PLAY SOUND
+  useEffect(() => {
+    location.pathname.includes('Listening') && togglePlay()
+  }, []);
+
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
@@ -118,7 +123,7 @@ const LayoutIELTS = ({ children }: any) => {
             </div>
 
             <div className='align-items-center g-20'>
-              {location.pathname.includes('listening') &&
+              {location.pathname.includes('Listening') &&
                 <button onClick={() => togglePlay()} style={{ width: '70px' }}>
                   {isPlaying ? 'pause' : 'Play'}
                 </button>
