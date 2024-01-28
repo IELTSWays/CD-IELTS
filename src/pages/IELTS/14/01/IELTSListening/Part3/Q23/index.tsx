@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
 // mtu
@@ -9,6 +9,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // mtu
 
 // api
@@ -19,7 +21,7 @@ import axiosInstance from '@/services/API'
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const index = ({ qn }: any) => {
@@ -27,15 +29,17 @@ const index = ({ qn }: any) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { label: t('00060'), value: "A",},
-    { label: t('00061'), value: "B",},
-    { label: t('00062'), value: "C",},
+    { label: t('00060'), value: "A", },
+    { label: t('00061'), value: "B", },
+    { label: t('00062'), value: "C", },
   ];
 
+  const [flag, setFlag] = useState(flags['23'])
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll['00023']);
 
@@ -69,29 +73,39 @@ const index = ({ qn }: any) => {
     setAnswer((event.target as HTMLInputElement).value);
     localStorage.setItem('00023', event.target.value);
     postAnswer.refetch()
-    dispatch(setAnswersAll(Object.assign({}, answersAll, {'00023': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00023': ((event.target as HTMLInputElement).value) })))
     getAnswer.refetch()
   };
+
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '23': !flag })))
+  }
 
   useEffect(() => {
     getAnswer.refetch()
   }, []);
 
   return (
-    <Stack 
-      spacing={{ xs: 1, sm: 2 }} 
-      direction="column" 
-      useFlexGap 
-      flexWrap="wrap" 
+    <Stack
+      spacing={{ xs: 1, sm: 2 }}
+      direction="column"
+      useFlexGap
+      flexWrap="wrap"
       sx={{ py: 1 }}
       id={`q-${qn}`}
     >
-      <Paper elevation={0}>
-        <Typography>
-          <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-          <Typography sx={{ px: 1 }}> {t('00059')} </Typography>
-        </Typography>
-      </Paper>
+      <div className="align-items-start justify-content-space-between">
+        <Paper elevation={0}>
+          <Typography>
+            <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+            <Typography sx={{ px: 1 }}> {t('00059')} </Typography>
+          </Typography>
+        </Paper>
+        <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
+          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        </div>
+      </div>
       <Paper elevation={0}>
         <Stack direction="row" alignItems="center">
           <FormControl>
@@ -101,10 +115,10 @@ const index = ({ qn }: any) => {
             >
               {options.map((i) => {
                 return (
-                  <FormControlLabel 
-                    value={i.value} 
-                    control={<Radio />} 
-                    label={i.label} 
+                  <FormControlLabel
+                    value={i.value}
+                    control={<Radio />}
+                    label={i.label}
                     onClick={() => dispatch(setCurrentQuestion(23))}
                   />
                 )

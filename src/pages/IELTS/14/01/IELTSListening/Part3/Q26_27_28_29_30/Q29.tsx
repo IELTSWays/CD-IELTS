@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // mtu
 
 // api
@@ -16,18 +18,19 @@ import axiosInstance from '@/services/API'
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const Q29 = ({ qn }: any) => {
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const [item, setItem] = useState(JSON.parse((localStorage.getItem('00029'))));
-  const dispatch = useAppDispatch();
+  const [flag, setFlag] = useState(flags['29'])
 
-  console.log(JSON.parse((localStorage.getItem('00029'))))
+  const [item, setItem] = useState<any>(JSON.parse((localStorage.getItem('00029'))));
+  const dispatch = useAppDispatch();
 
   const getAnswer = useQuery({
     queryKey: ['getAnswer'],
@@ -70,13 +73,16 @@ const Q29 = ({ qn }: any) => {
     },
   }));
 
-  console.log(answersAll);
-
   useEffect(() => {
     localStorage.setItem('00029', JSON.stringify(item));
   }, [item]);
 
   hover && dispatch(setCurrentQuestion(29))
+
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { '29': !flag })))
+  }
 
   return (
     <Stack
@@ -88,7 +94,10 @@ const Q29 = ({ qn }: any) => {
       id={`q-${qn}`}
       className="drop-container"
     >
-      <Paper elevation={0} className="drop-container-text">
+      <Paper elevation={0} className="drop-container-text" sx={{ display: 'flex', gap: '10px' }}>
+        <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
+          {flag ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        </div>
         <Typography>Historical background</Typography>
       </Paper>
       <Paper elevation={0}>

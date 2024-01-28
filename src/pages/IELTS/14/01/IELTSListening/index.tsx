@@ -620,8 +620,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.label))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
@@ -654,8 +663,17 @@ const index = () => {
                   id={`item-${i.number}`}
                   data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
                 >
-                  <HashLink onClick={() => dispatch(setCurrentQuestion(i.number))} smooth to={`#q-${i.label}`}>
-                    <span>{i.label}</span>
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.number))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
                   </HashLink>
                 </div>
               )
