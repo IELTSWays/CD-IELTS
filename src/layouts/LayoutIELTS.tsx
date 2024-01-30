@@ -26,14 +26,20 @@ import Logo from '@/assets/images/ielts.png'
 import mySound from '@/assets/sounds/14/1/section-1.mp3'
 import ModalOptions from '@/components/IELTS/ModalOptions';
 import useTimeNow from '@/components/useTimeNow';
+import useTimer from '@/components/useTimer';
 
 const LayoutIELTS = ({ children }: any) => {
 
-  const [showVolume, setShowVolume] = useState(false);
-  const [volume, setVolume] = useState<number>(50);
-
   const location = useLocation();
   const navigate = useNavigate();
+  
+  const writingSaved = useAppSelector((state) => state.user.writingSaved)
+  const { timeNow } = useTimeNow();
+  const { timer } = useTimer('90')
+
+  // AUDIO
+  const [showVolume, setShowVolume] = useState(false);
+  const [volume, setVolume] = useState<number>(50);
 
   const handleChange = (_event: Event, newValue: number | number[]) => {
     setVolume(newValue as number);
@@ -59,45 +65,10 @@ const LayoutIELTS = ({ children }: any) => {
     setIsPlaying(!isPlaying);
   }
 
-  const writingSaved = useAppSelector((state) => state.user.writingSaved)
-
-
-  const { timeNow } = useTimeNow();
-
-  console.log(timeNow)
-
-  // TIMER
-  const [counter, setCounter] = useState<any>(700);
-  const [timer, setTimer] = useState<any>('');
-
-  const formatFull = (s: number) =>
-    (new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
-
-  const formatHours = (s: number) =>
-    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(0, -6) + ' Hours remaining';
-  const formatMinutes = (s: number) =>
-    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(3, -3) + ' Minutes remaining ';
-  const formatSeconds = (s: number) =>
-    ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(6) + ' Seconds remaining';
-
-  useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    localStorage.setItem("counter", counter);
-    { counter > 3600 && setTimer(formatHours(counter)) }
-    { counter < 3600 && counter > 60 && setTimer(formatMinutes(counter)) }
-    { counter < 60 && setTimer(formatSeconds(counter)) }
-    { counter == 0 && setTimer("FINISH !") }
-  }, [counter]);
-
-  useEffect(() => {
-    localStorage.getItem("counter") && setCounter(localStorage.getItem("counter"));
-  }, []);
-  // TIMER
-
-  // AUTO PLAY SOUND
   useEffect(() => {
     location.pathname.includes('Listening') && togglePlay()
   }, []);
+  // AUDIO
 
   return (
     <html data-theme='light' className='ielts'>
@@ -108,7 +79,6 @@ const LayoutIELTS = ({ children }: any) => {
               <img src={Logo} alt="ielts" height={40} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
                 <div style={{ width: '170px' }}>{timer}</div>
-                <span> {formatFull(counter)} </span>
                 <div className="d-flex ml-20">
                   <VideocamIcon sx={{ mx: 0.5 }} />
                   Live proctoring started

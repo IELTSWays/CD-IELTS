@@ -17,6 +17,7 @@ export interface UserState {
   writingSaved: any;
   accordion: any;
   flag: any;
+  cart: any
 }
 
 const initialState: UserState = {
@@ -49,6 +50,7 @@ const initialState: UserState = {
     "13": null,
     "14": null,
   },
+  cart: []
 };
 
 export const userSlice = createSlice({
@@ -97,6 +99,9 @@ export const userSlice = createSlice({
     setFlags: (state, action: PayloadAction<any>) => {
       state.flag = { ...action.payload };
     },
+    setCart: (state, action: PayloadAction<any>) => {
+      state.cart = { ...action.payload };
+    },
   },
 });
 
@@ -115,6 +120,7 @@ export const {
   setWritingSaved,
   setAccordion,
   setFlags,
+  setCart
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -134,5 +140,6 @@ export const selectTestInfo = (state: RootState) => state.user.testInfo;
 export const selectWritingSaved = (state: RootState) => state.user.writingSaved;
 export const selectAccordion = (state: RootState) => state.user.accordion;
 export const selectFlags = (state: RootState) => state.user.flag;
+export const selectCart = (state: RootState) => state.user.cart;
 
 export default userSlice.reducer;

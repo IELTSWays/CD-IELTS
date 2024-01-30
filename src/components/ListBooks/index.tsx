@@ -1,10 +1,10 @@
 import { useState } from 'react'
+
 // mtu
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
 import Grid from "@mui/material/Grid";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -12,18 +12,28 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 // mtu
+
+import useGetProducts from "@/services/Requests/useGetProducts"
 import Book1 from '@/assets/images/Books/14.jpg'
 
 const ListBooks = ({ onChange }: any) => {
 
-  // const [item, setItem] = useState<string | null>();
+  const [item, setItem] = useState<string | null>();
 
-  // const handleItem = (
-  //   _event: React.MouseEvent<HTMLElement>,
-  //   newItem: string | null,
-  // ) => {
-  //   setItem(newItem);
-  // };
+  const handleItem = (
+    _event: React.MouseEvent<HTMLElement>,
+    newItem: string | null,
+  ) => {
+    setItem(newItem);
+  };
+
+  console.log(item);
+  
+
+  const { data: allProducts } = useGetProducts()
+
+
+  console.log(allProducts);
 
   const products = [
     {
@@ -73,9 +83,9 @@ const ListBooks = ({ onChange }: any) => {
       ]
     }
   ]
-
+  
   return <>
-    {Array.from(Array(5)).map((_, index) => (
+    {/* {Array.from(Array(5)).map((_, index) => (
       <Grid item xs={4} sm={4} md={2}>
         <Card variant="outlined" id="book-item">
           <>
@@ -112,9 +122,9 @@ const ListBooks = ({ onChange }: any) => {
           </>
         </Card>
       </Grid>
-    ))}
+    ))} */}
 
-    {/* {products.map((i, index) => (
+    {products.map((i, index) => (
       <Grid item xs={4} sm={4} md={2}>
         <Card variant="outlined" id="book-item">
           <>
@@ -130,13 +140,13 @@ const ListBooks = ({ onChange }: any) => {
             </CardContent>
             <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <ToggleButtonGroup
-                value={index}
+                value={item}
                 exclusive
                 sx={{ width: '100%', display: 'flex' }}
-                onChange={onChange}
+                onChange={handleItem}
               >
                 {i.tests.map((j) => (
-                  <ToggleButton value={j.skill}>
+                  <ToggleButton value={j.id}>
                     <BorderColorIcon color="action" />
                   </ToggleButton>
                 ))}
@@ -145,7 +155,7 @@ const ListBooks = ({ onChange }: any) => {
           </>
         </Card>
       </Grid>
-    ))} */}
+    ))}
   </>
 };
 
