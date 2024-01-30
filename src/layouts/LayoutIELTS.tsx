@@ -25,6 +25,7 @@ import "@/styles/ielts.css"
 import Logo from '@/assets/images/ielts.png'
 import mySound from '@/assets/sounds/14/1/section-1.mp3'
 import ModalOptions from '@/components/IELTS/ModalOptions';
+import useTimeNow from '@/components/useTimeNow';
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -60,6 +61,11 @@ const LayoutIELTS = ({ children }: any) => {
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
 
+
+  const { timeNow } = useTimeNow();
+
+  console.log(timeNow)
+
   // TIMER
   const [counter, setCounter] = useState<any>(700);
   const [timer, setTimer] = useState<any>('');
@@ -87,18 +93,6 @@ const LayoutIELTS = ({ children }: any) => {
     localStorage.getItem("counter") && setCounter(localStorage.getItem("counter"));
   }, []);
   // TIMER
-
-  // TIME NOW
-  const [timeNow, setTimeNow] = useState<any>()
-  useEffect(() => {
-    setInterval(() => {
-      setTimeNow(new Date().toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit'
-      }))
-    }, 1000)
-  }, []);
 
   // AUTO PLAY SOUND
   useEffect(() => {
