@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://Ieltsways.nimadorostkar.com:8000/",
+  baseURL: "http://195.214.235.46:8000/",
 });
 axiosInstance.interceptors.request.use(function (config) {
   let token = localStorage.getItem("token");
