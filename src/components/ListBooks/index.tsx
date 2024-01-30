@@ -13,10 +13,21 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 // mtu
 
-import useGetProducts from "@/services/Requests/useGetProducts"
-import Book1 from '@/assets/images/Books/14.jpg'
+// store
+import { useAppSelector } from '@/store/hooks'
+import { useAppDispatch } from '@/store/hooks'
+import { setCart } from '@/store/slices/user/userSlice'
+// store
 
-const ListBooks = ({ onChange }: any) => {
+import useGetProducts from "@/services/Requests/useGetProducts"
+import Book17 from '@/assets/images/Books/academic_17_vaziri.jpg'
+import Book18 from '@/assets/images/Books/academic_18_vaziri.jpg'
+
+const ListBooks = () => {
+
+  const dispatch = useAppDispatch()
+
+  const cart = useAppSelector((state) => state.user.cart)
 
   const [item, setItem] = useState<string | null>();
 
@@ -25,22 +36,111 @@ const ListBooks = ({ onChange }: any) => {
     newItem: string | null,
   ) => {
     setItem(newItem);
+    dispatch(setCart(Object.assign({}, cart, { 'id': newItem })))
   };
-
   console.log(item);
-  
 
   const { data: allProducts } = useGetProducts()
-
-
   console.log(allProducts);
 
   const products = [
     {
-      book: '14',
-      type: "academic",
+      book: '17',
+      type: "Academic",
       test: 1,
-      // img: Book1,
+      img: Book17,
+      tests: [
+        {
+          id: 'B17LT1',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B17RT1',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B17WT1',
+          skill: 'writing',
+          enable: false
+        }
+      ]
+    },
+    {
+      book: '17',
+      type: "Academic",
+      test: 2,
+      img: Book17,
+      tests: [
+        {
+          id: 'B17LT2',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B17RT2',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B17WT2',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    },
+    {
+      book: '17',
+      type: "Academic",
+      test: 3,
+      img: Book17,
+      tests: [
+        {
+          id: 'B17LT3',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B17RT3',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B17WT3',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    },
+    {
+      book: '17',
+      type: "Academic",
+      test: 4,
+      img: Book17,
+      tests: [
+        {
+          id: 'B17LT4',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B17RT4',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B17WT4',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    },
+    {
+      book: '18',
+      type: "Academic",
+      test: 1,
+      img: Book18,
       tests: [
         {
           id: 'B14LT1',
@@ -60,10 +160,10 @@ const ListBooks = ({ onChange }: any) => {
       ]
     },
     {
-      book: '14',
-      type: "academic",
+      book: '18',
+      type: "Academic",
       test: 2,
-      // img: Book1,
+      img: Book18,
       tests: [
         {
           id: 'B14LT2',
@@ -81,50 +181,58 @@ const ListBooks = ({ onChange }: any) => {
           enable: true
         }
       ]
+    },
+    {
+      book: '18',
+      type: "Academic",
+      test: 3,
+      img: Book18,
+      tests: [
+        {
+          id: 'B14LT3',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B14RT3',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B14WT3',
+          skill: 'writing',
+          enable: true
+        }
+      ]
+    },
+    {
+      book: '18',
+      type: "Academic",
+      test: 4,
+      img: Book18,
+      tests: [
+        {
+          id: 'B14LT4',
+          skill: 'listening',
+          enable: true
+        },
+        {
+          id: 'B14RT4',
+          skill: 'reading',
+          enable: true
+        },
+        {
+          id: 'B14WT4',
+          skill: 'writing',
+          enable: true
+        }
+      ]
     }
   ]
-  
+
   return <>
-    {/* {Array.from(Array(5)).map((_, index) => (
-      <Grid item xs={4} sm={4} md={2}>
-        <Card variant="outlined" id="book-item">
-          <>
-            <CardMedia
-              component="img"
-              // image={Book1}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography variant="body1" align="center">
-                IELTS Book 2
-              </Typography>
-            </CardContent>
-            <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <ToggleButtonGroup
-                value={index}
-                exclusive
-                sx={{ width: '100%', display: 'flex' }}
-                onChange={onChange}
-              >
-                <ToggleButton value="01-writing">
-                  <BorderColorIcon color="action" />
-                </ToggleButton>
 
-                <ToggleButton value="01-listening">
-                  <HeadphonesIcon color="action" />
-                </ToggleButton>
-
-                <ToggleButton value="01-reading">
-                  <LibraryBooksIcon color="action" />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </CardContent>
-          </>
-        </Card>
-      </Grid>
-    ))} */}
-
-    {products.map((i, index) => (
+    {products.map((i) => (
       <Grid item xs={4} sm={4} md={2}>
         <Card variant="outlined" id="book-item">
           <>
@@ -134,11 +242,15 @@ const ListBooks = ({ onChange }: any) => {
               alt="green iguana"
             />
             <CardContent>
-              <Typography variant="body1" align="center">
-                {i.book}
+              <Typography variant="body1" align="center" className="justify-content-space-between uppercase">
+                <div>ielts {i.book}</div>
+                <div>test {i.test}</div>
+              </Typography>
+              <Typography variant="body2" align="center">
+                ({i.type})
               </Typography>
             </CardContent>
-            <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <CardContent className="justify-content-space-between">
               <ToggleButtonGroup
                 value={item}
                 exclusive
@@ -146,8 +258,10 @@ const ListBooks = ({ onChange }: any) => {
                 onChange={handleItem}
               >
                 {i.tests.map((j) => (
-                  <ToggleButton value={j.id}>
-                    <BorderColorIcon color="action" />
+                  <ToggleButton value={j.id} disabled={!j.enable}>
+                    {j.skill === 'listening' && <HeadphonesIcon color="action" />}
+                    {j.skill === 'reading' && <LibraryBooksIcon color="action" />}
+                    {j.skill === 'writing' && <BorderColorIcon color="action" />}
                   </ToggleButton>
                 ))}
               </ToggleButtonGroup>

@@ -86,7 +86,7 @@ const SkillsGuide = () => {
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
 
           {/* Listening */}
-          <Grid item xs={4} sm={8} md={4} lg={4}>
+          <Grid item xs={4} sm={8} md={4} lg={3}>
             <Card variant="outlined">
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
@@ -124,7 +124,7 @@ const SkillsGuide = () => {
           </Grid>
 
           {/* Reading */}
-          <Grid item xs={4} sm={8} md={4} lg={4}>
+          <Grid item xs={4} sm={8} md={4} lg={3}>
             <Card variant="outlined">
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
@@ -164,7 +164,7 @@ const SkillsGuide = () => {
           </Grid>
 
           {/* Writing */}
-          <Grid item xs={4} sm={8} md={4} lg={4}>
+          <Grid item xs={4} sm={8} md={4} lg={3}>
             <Card variant="outlined">
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
@@ -198,7 +198,7 @@ const SkillsGuide = () => {
           </Grid>
 
           {/* Speaking */}
-          <Grid item xs={4} sm={8} md={4} lg={4}>
+          <Grid item xs={4} sm={8} md={4} lg={3}>
             <Card variant="outlined">
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
@@ -240,7 +240,7 @@ const SkillsGuide = () => {
           </Grid>
 
           {/* History */}
-          <Grid item xs={4} sm={8} md={4} lg={4}>
+          {/* <Grid item xs={4} sm={8} md={4} lg={4}>
             <Card variant="outlined" sx={{ cursor: 'pointer' }}>
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
@@ -282,7 +282,7 @@ const SkillsGuide = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     </>

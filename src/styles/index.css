@@ -70,7 +70,7 @@
 }
 
 .pointer {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .text-align-left {
@@ -78,7 +78,6 @@ cursor: pointer;
 }
 
 /* [ ############################ END PUBLIC ############################ ] */
-
 
 /* colors mtu */
 :root {
@@ -287,6 +286,14 @@ main.css-zxdg2z {
 
 #book-item button {
   border-color: var(--red-700);
+}
+
+#book-item .Mui-disabled {
+  background: #b5b5b542 !important;
+}
+
+#book-item .Mui-disabled svg {
+  fill: #00000042 !important;
 }
 
 #book-item .MuiButtonBase-root:hover,
@@ -505,6 +512,5 @@ ul#list-red-bullet li::before {
   align-items: center;
   justify-content: center;
   width: 330px;
-  margin: auto
+  margin: auto;
 }
-
