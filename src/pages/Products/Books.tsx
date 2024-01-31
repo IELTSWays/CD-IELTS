@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
 // mtu
 import Box from '@mui/material/Box';
@@ -26,6 +27,8 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCart } from '@/store/slices/user/userSlice'
 // store
 
+import usePostCreateOrderNopay from '@/services/Requests/usePostCreateOrderNopay';
+
 import ListBooks from "@/components/ListBooks";
 import SkillsGuide from "@/components/SkillsGuide";
 import iconAI from '@/assets/images/artificial-intelligence.gif'
@@ -33,6 +36,7 @@ import iconAI from '@/assets/images/artificial-intelligence.gif'
 const Books = () => {
 
   const dispatch = useAppDispatch()
+  const navigate = useNavigate();
 
   const [item, setItem] = useState<string | null>();
   const [marker, setMarker] = useState('ai');
@@ -53,6 +57,8 @@ const Books = () => {
     { id: 5, name: 'Vahid Hadavi' },
   ]
 
+  const { data, refetch } = usePostCreateOrderNopay()
+
   const cart = useAppSelector((state) => state.user.cart)
 
   const changeModeHandler = (event: any) => {
@@ -60,7 +66,9 @@ const Books = () => {
     dispatch(setCart(Object.assign({}, cart, { 'type': ((event.target as HTMLInputElement).value) })))
   };
 
-  console.log(cart);
+  useEffect(() => {
+    data?.success && navigate('/orders')
+  }, [data]);
 
   return (
     <>
@@ -203,7 +211,7 @@ const Books = () => {
                     value={mode}
                     onClick={changeModeHandler}
                   >
-                    <FormControlLabel value="real" control={<Radio />} label="Real" />
+                    <FormControlLabel value="test" control={<Radio />} label="Test" />
                     <FormControlLabel value="practice" control={<Radio />} label="Practice" />
                   </RadioGroup>
                 </FormControl>
@@ -220,6 +228,7 @@ const Books = () => {
             color="success"
             disabled={!cart.id || !mode}
             sx={{ width: { xs: "100%", md: "auto" } }}
+            onClick={() => refetch()}
           >
             Next
           </Button>
