@@ -8,12 +8,7 @@ import QRadio from '@/components/IELTS/QRadio';
 import QMultiCheckBox from '@/components/IELTS/QMultiCheckBox';
 import QTextInput from '@/components/IELTS/QTextInput';
 
-import useExam3 from "@/services/Requests/useExam3"
-
 const IELTSReading = () => {
-
-  const { data, isLoading } = useExam3()
-
 
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const Q = useAppSelector((state) => state.ielts.questions)
@@ -29,10 +24,6 @@ const IELTSReading = () => {
     { label: 'FALSE', value: 'FALSE' },
     { label: 'NOT GIVEN', value: 'NOT GIVEN' },
   ]
-
-  console.log(data?.questions[0]?.question);
-
-  // Write ONE WORD AND/OR A NUMBER for each answer. \n Type of crime:        theft\n Personal information\n Example\n Name                   Louise …Taylor…\n Nationality           1 ………………. \n Date of birth        14 December 1977 \n Occupation           interior designer \n Reason for visit    business (to buy antique 2………………) \n Length of stay       two months \n Current address    3 ………………. Apartments (No 15) \n Details of theft \n Items stolen \n – a wallet containing approximately 4 £ ……………. – a 5 ……………… \n Date of theft         6 ……………… \n Possible time and place of theft \n Location                    outside the 7…………… at about 4 pm \n Details of suspect    – some boys asked for the 8……………. then ran off – one had a T-shirt with a picture of a tiger – he was about 12, slim build with 9…………… hair \n Crime reference number allocated. \n  10…………….
 
   console.log('[IELTSReading]', Q);
 
@@ -107,9 +98,6 @@ const IELTSReading = () => {
                 <h2>section-three</h2>
                 <QTextInput number="1" textBefore="BEFORE" textAfter="AFTER" init="aa" final={Q}
                 />
-                {/* <div className='text-field'>
-                  <input name="answer1" value={formData.answer1} onChange={handleChange} />
-                </div> */}
               </div>
               <section>
                 <h2>section-three</h2>

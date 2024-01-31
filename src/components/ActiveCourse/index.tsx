@@ -28,8 +28,6 @@ import { useAppSelector } from '@/store/hooks'
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 import usePostExamStart from '@/services/Requests/usePostExamStart';
 
-import Book18 from '@/assets/images/Books/18.jpg'
-
 const items = [
   { title: 'Book5 IELTS General', icon: <AssignmentIcon /> },
   { title: 'Reading', icon: <Turn /> },
@@ -97,7 +95,7 @@ const ActiveCourse = () => {
     <CardContent>
       <Grid container spacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={4} sm={8} md={3}>
-          <img src={Book18} alt="Book18" width="100%" />
+          <img src={`/Books/18.jpg`} alt="Book18" width="100%" />
         </Grid>
         <Grid item xs={4} sm={8} md={9}>
           <List>

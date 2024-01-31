@@ -4,7 +4,7 @@ import IELTSRoutes from "./IELTSRoutes";
 import Otp from "@/pages/Otp";
 import Dashboard from "@/pages/Dashboard";
 import Profile from "@/pages/Profile";
-import Books from "@/pages/Books";
+import Books from "@/pages/Products/Books";
 import Orders from "@/pages/Orders";
 import Guide from "@/pages/Guide";
 import Reports from "@/pages/Reports";

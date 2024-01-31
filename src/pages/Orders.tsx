@@ -40,7 +40,6 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 
 import iBankMellat from '@/assets/images/bank-mellat.svg'
-import Book1 from '@/assets/images/Books/01.jpg'
 
 const items = [
   { title: 'Book5 IELTS General', icon: <AssignmentIcon /> },
@@ -301,7 +300,7 @@ const Orders = () => {
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                 <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={Book1} alt="book-1" width="100%" />
+                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
                 </Grid>
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
@@ -361,7 +360,7 @@ const Orders = () => {
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                 <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={Book1} alt="book-1" width="100%" />
+                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
                 </Grid>
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
@@ -422,7 +421,7 @@ const Orders = () => {
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                 <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={Book1} alt="book-1" width="100%" />
+                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
                 </Grid>
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>

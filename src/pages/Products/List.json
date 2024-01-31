@@ -1,0 +1,181 @@
+{
+  "data": [
+    {
+      "book": "17",
+      "type": "Academic",
+      "img": "book17",
+      "test": 1,
+      "tests": [
+        {
+          "id": "B17ALT1",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B17ART1",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B17AWT1",
+          "skill": "writing",
+          "enable": false
+        }
+      ]
+    },
+    {
+      "book": "17",
+      "type": "Academic",
+      "test": 2,
+      "tests": [
+        {
+          "id": "B17ALT2",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B17ART2",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B17AWT2",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "17",
+      "type": "Academic",
+      "test": 3,
+      "tests": [
+        {
+          "id": "B17ALT3",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B17ART3",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B17AWT3",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "17",
+      "type": "Academic",
+      "test": 4,
+      "tests": [
+        {
+          "id": "B17ALT4",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B17ART4",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B17AWT4",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "18",
+      "type": "Academic",
+      "test": 1,
+      "tests": [
+        {
+          "id": "B18ALT1",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B18ART1",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B18AWT1",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "18",
+      "type": "Academic",
+      "test": 2,
+      "tests": [
+        {
+          "id": "B18ALT2",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B18ART2",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B18AWT2",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "18",
+      "type": "Academic",
+      "test": 3,
+      "tests": [
+        {
+          "id": "B18ALT3",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B18ART3",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B18AWT3",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    },
+    {
+      "book": "18",
+      "type": "Academic",
+      "test": 4,
+      "tests": [
+        {
+          "id": "B18ALT4",
+          "skill": "listening",
+          "enable": true
+        },
+        {
+          "id": "B18ART4",
+          "skill": "reading",
+          "enable": true
+        },
+        {
+          "id": "B18AWT4",
+          "skill": "writing",
+          "enable": true
+        }
+      ]
+    }
+  ]
+}

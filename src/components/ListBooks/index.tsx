@@ -19,9 +19,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCart } from '@/store/slices/user/userSlice'
 // store
 
-import useGetProducts from "@/services/Requests/useGetProducts"
-import Book17 from '@/assets/images/Books/academic_17_vaziri.jpg'
-import Book18 from '@/assets/images/Books/academic_18_vaziri.jpg'
+import List from '@/pages/Products/List.json'
 
 const ListBooks = () => {
 
@@ -38,208 +36,17 @@ const ListBooks = () => {
     setItem(newItem);
     dispatch(setCart(Object.assign({}, cart, { 'id': newItem })))
   };
-  console.log(item);
-
-  const { data: allProducts } = useGetProducts()
-  console.log(allProducts);
-
-  const products = [
-    {
-      book: '17',
-      type: "Academic",
-      test: 1,
-      img: Book17,
-      tests: [
-        {
-          id: 'B17LT1',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B17RT1',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B17WT1',
-          skill: 'writing',
-          enable: false
-        }
-      ]
-    },
-    {
-      book: '17',
-      type: "Academic",
-      test: 2,
-      img: Book17,
-      tests: [
-        {
-          id: 'B17LT2',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B17RT2',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B17WT2',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '17',
-      type: "Academic",
-      test: 3,
-      img: Book17,
-      tests: [
-        {
-          id: 'B17LT3',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B17RT3',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B17WT3',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '17',
-      type: "Academic",
-      test: 4,
-      img: Book17,
-      tests: [
-        {
-          id: 'B17LT4',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B17RT4',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B17WT4',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '18',
-      type: "Academic",
-      test: 1,
-      img: Book18,
-      tests: [
-        {
-          id: 'B14LT1',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B14RT1',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B14WT1',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '18',
-      type: "Academic",
-      test: 2,
-      img: Book18,
-      tests: [
-        {
-          id: 'B14LT2',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B14RT2',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B14WT2',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '18',
-      type: "Academic",
-      test: 3,
-      img: Book18,
-      tests: [
-        {
-          id: 'B14LT3',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B14RT3',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B14WT3',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    },
-    {
-      book: '18',
-      type: "Academic",
-      test: 4,
-      img: Book18,
-      tests: [
-        {
-          id: 'B14LT4',
-          skill: 'listening',
-          enable: true
-        },
-        {
-          id: 'B14RT4',
-          skill: 'reading',
-          enable: true
-        },
-        {
-          id: 'B14WT4',
-          skill: 'writing',
-          enable: true
-        }
-      ]
-    }
-  ]
-
+  
   return <>
 
-    {products.map((i) => (
+    {List.data.map((i) => (
       <Grid item xs={4} sm={4} md={2}>
         <Card variant="outlined" id="book-item">
           <>
             <CardMedia
               component="img"
-              image={i.img}
-              alt="green iguana"
+              image={`/Books/${i.book}.jpg`}
+              alt={'book' + i.book}
             />
             <CardContent>
               <Typography variant="body1" align="center" className="justify-content-space-between uppercase">
