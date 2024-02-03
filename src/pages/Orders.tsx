@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+
 // mtu
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -32,12 +33,16 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { green } from '@mui/material/colors';
 import TextField from "@mui/material/TextField";
 // mtu
+
 import DateObject from "react-date-object";
 import DatePicker from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
+
+import useGetOrders from '@/services/Requests/useGetOrders';
+import useGetZarinpal from '@/services/Requests/useGetZarinpal';
 
 import iBankMellat from '@/assets/images/bank-mellat.svg'
 
@@ -60,19 +65,51 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 
+let input = "B[AT]L[GR]W[AS]";
+let pattern = /B|G|A|T|\[|\]|L|R|W|S/g;
+let replacement = function (match) {
+  switch (match) {
+    case "B":
+      return "Book ";
+    case "G":
+      return " General";
+    case "A":
+      return " Academic";
+    case "T":
+      return " Test ";
+    case "[":
+    case "]":
+    case "L":
+    case "R":
+    case "W":
+    case "S":
+      return " ";
+    default:
+      return match;
+  }
+};
+
 const Orders = () => {
 
   const [filter, setFilter] = useState('ALL')
   const [open, setOpen] = useState(false);
+
   const [showMessageCopyCard, setShowMessageCopyCard] = useState(false);
   const [showMessageCopySheba, setShowMessageCopySheba] = useState(false);
 
-  const [manualTransactionCard, setManualTransactionCard] = useState();
   const [manualTransactionDate, setManualTransactionDate] = useState(new DateObject({ calendar: persian }));
   const [manualTransactionTime, setManualTransactionTime] = useState(new DateObject({ calendar: persian }));
 
-  const handleClickOpen = () => {
+
+  const [id, setId] = useState<any>()
+  const [dataModal, setDataModal] = useState<any>(null)
+  
+  const { data, refetch: refetchGetOrders } = useGetOrders();
+  const { data: dataGetZarinpal, refetch: refetchGetZarinpal } = useGetZarinpal(id)
+
+  const handleClickOpen = (i: any) => {
     setOpen(true);
+    setDataModal(data[i])
     setManualTransactionDate(new DateObject({ calendar: persian }))
     setManualTransactionTime(new DateObject({ calendar: persian }))
   };
@@ -91,7 +128,6 @@ const Orders = () => {
     navigator.clipboard.writeText("680120000000005042963882");
   };
 
-
   useEffect(() => {
     setTimeout(() => {
       setShowMessageCopyCard(false);
@@ -104,9 +140,18 @@ const Orders = () => {
     }, 3000);
   }, [showMessageCopySheba]);
 
-  const item = [
-    { title: 'Book5 IELTS General', skill: 'Reading', price: '1300000', creationDate: '13-10-2023', status: 'paid', datePayment: '14-10-2023 17:32', paymentMethod: 'online' }
-  ]
+  useEffect(() => {
+    refetchGetOrders()
+  }, [dataGetZarinpal])
+
+
+  const zarinpalHandler = (i: any) => {
+    setId(i)
+  }
+
+  useEffect(() => {
+    id && refetchGetZarinpal()
+  }, [id])
 
   return (
     <>
@@ -119,20 +164,40 @@ const Orders = () => {
         <DialogTitle>Card to card payment</DialogTitle>
         <DialogContent>
           <DialogContentText>
+
             <List>
-              {items.map((i) => {
-                return (
-                  <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                    <ListItemIcon sx={{ minWidth: 0 }}>
-                      {i.icon}
-                    </ListItemIcon>
-                    <Typography variant="body1" sx={{ pl: 1 }}>
-                      {i.title}
-                    </Typography>
-                  </ListItem>
-                )
-              })}
+              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                <ListItemIcon sx={{ minWidth: 0 }}>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <Typography variant="body1" sx={{ pl: 1 }}>
+                  {
+                    dataModal?.description
+                      .replace("B", 'Book ')
+                      .replace("G", ' General')
+                      .replace("A", ' Academic')
+                      .replace("T", ' Test ')
+                      .replace("[", '  ')
+                      .replace("]", '  ')
+                      .replace(/\'/g, "")
+                      .replace("L", " ")
+                      .replace("R", " ")
+                      .replace("W", " ")
+                      .replace("S", " ")
+                  }
+                </Typography>
+              </ListItem>
+
+              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                <ListItemIcon sx={{ minWidth: 0 }}>
+                  <PaymentsIcon />
+                </ListItemIcon>
+                <Typography variant="body1" sx={{ pl: 1 }}>
+                  {dataModal?.amount.toLocaleString() + " IRR"}
+                </Typography>
+              </ListItem>
             </List>
+
             <Typography variant="body2" gutterBottom>
               After depositing into the following bank card, please send the exact date and time of the transaction, along with the last 4 digits of it, through the form below
             </Typography>
@@ -212,7 +277,7 @@ const Orders = () => {
             <Typography variant="h6" gutterBottom>
               Payment Information:
             </Typography>
-            <Grid container sx={{ py: 1 }} spacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}  id="orders-input">
+            <Grid container sx={{ py: 1 }} spacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} id="orders-input">
               <Grid item xs={4} sm={4} md={6}>
                 <DatePicker
                   id="datePicker-input"
@@ -220,7 +285,7 @@ const Orders = () => {
                   locale={persian_fa}
                   value={manualTransactionDate}
                   className="rmdp-mobile"
-                  onChange={(date) => setManualTransactionDate(date)}
+                  onChange={(date: any) => setManualTransactionDate(date)}
                   maxDate={new Date()}
                   format="YYYY/MM/DD"
                 />
@@ -293,6 +358,153 @@ const Orders = () => {
         container
         spacing={{ xs: 2, sm: 2, md: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}>
+
+        {data?.map((i: any, index: any) => {
+
+          return (
+            <Grid item xs={4} sm={8} md={12} key={index}>
+              <Card variant="outlined">
+                <CardContent sx={{ paddingBottom: 0 }}>
+                  <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
+                    <Grid item xs={4} sm={8} md={2} lg={1.5} >
+                      <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                      <List>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <AssignmentIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            {
+                              (i.description)
+                                .replace("B", 'Book ')
+                                .replace("G", ' General')
+                                .replace("A", ' Academic')
+                                .replace("T", ' Test ')
+                                .replace("[", '  ')
+                                .replace("]", '  ')
+                                .replace(/\'/g, "")
+                                .replace("L", " ")
+                                .replace("R", " ")
+                                .replace("W", " ")
+                                .replace("S", " ")
+                            }
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <Turn />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            {i.description.indexOf('W') > 0 && 'Writing'}
+                            {i.description.indexOf('R') > 0 && 'Reading'}
+                            {i.description.indexOf('S') > 0 && 'Speaking'}
+                            {i.description.indexOf('L') > 0 && 'Listening'}
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <PaymentsIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            {i.amount.toLocaleString() + " IRR"}
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <CalendarMonthIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            {new Date(Date.parse(i.created_at)).toLocaleString("en-IR", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hour12: false, minute: "2-digit" })}
+                          </Typography>
+                        </ListItem>
+                      </List>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                      <List>
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <RequestPageIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            i.ref_id
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <CreditScoreIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            i.title
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <CreditScoreIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            i.title
+                          </Typography>
+                        </ListItem>
+
+                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                          <ListItemIcon sx={{ minWidth: 0 }}>
+                            <AccountBalanceWalletIcon />
+                          </ListItemIcon>
+                          <Typography variant="body1" sx={{ pl: 1 }}>
+                            i.payment_method
+                          </Typography>
+                        </ListItem>
+                      </List>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={1.5} lg={1.5}
+                      sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
+                      <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
+                    </Grid>
+                  </Grid>
+                </CardContent>
+                {/* unpaid */}
+                <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                  <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                    CANCEL
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    sx={{ width: { xs: '100%', sm: 'auto' } }}
+                    onClick={() => zarinpalHandler(i.id)}
+                  >
+                    ONLINE
+                  </Button>
+                  <Tooltip title="کارت به کارت">
+                    <Button variant="contained" size="small" onClick={() => handleClickOpen(index)} sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                      Bank Card Transaction
+                    </Button>
+                  </Tooltip>
+                </CardContent>
+                {/* paid */}
+                {/* <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                  <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                    INVOICE
+                  </Button>
+                  <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                    GO TO TEST
+                  </Button>
+                  <Button variant="outlined" size="small" color="success" sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
+                    PAID
+                  </Button>
+                </CardContent> */}
+              </Card>
+            </Grid>
+          )
+        })}
 
         {/* PAID */}
         <Grid item xs={4} sm={8} md={12} >
