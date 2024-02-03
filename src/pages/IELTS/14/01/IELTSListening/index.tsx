@@ -208,7 +208,7 @@ const index = () => {
         </div>
 
         {isLoading && <div> LOADING... </div>}
-        {isSuccess &&
+        {!isSuccess &&
           <>
             {part === 1 &&
               <>
