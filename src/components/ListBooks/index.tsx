@@ -31,7 +31,7 @@ const ListBooks = () => {
   const cart = useAppSelector((state) => state.user.cart)
 
   const [item, setItem] = useState<string | null>();
-  const [coverBook, setCoverBook] = useState(false);
+  const [coverBook, setCoverBook] = useState(true);
   const [filter, setFilter] = useState('All');
 
   const handleAlignment = (event, newAlignment) => {
