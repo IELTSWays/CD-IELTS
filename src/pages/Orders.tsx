@@ -43,6 +43,7 @@ import "react-multi-date-picker/styles/layouts/mobile.css";
 
 import useGetOrders from '@/services/Requests/useGetOrders';
 import useGetZarinpal from '@/services/Requests/useGetZarinpal';
+import usePostManualPayment from '@/services/Requests//usePostManualPayment';
 
 import iBankMellat from '@/assets/images/bank-mellat.svg'
 
@@ -64,31 +65,6 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide children={undefined} direction="up" ref={ref} {...props} />;
 });
 
-
-let input = "B[AT]L[GR]W[AS]";
-let pattern = /B|G|A|T|\[|\]|L|R|W|S/g;
-let replacement = function (match) {
-  switch (match) {
-    case "B":
-      return "Book ";
-    case "G":
-      return " General";
-    case "A":
-      return " Academic";
-    case "T":
-      return " Test ";
-    case "[":
-    case "]":
-    case "L":
-    case "R":
-    case "W":
-    case "S":
-      return " ";
-    default:
-      return match;
-  }
-};
-
 const Orders = () => {
 
   const [filter, setFilter] = useState('ALL')
@@ -100,12 +76,20 @@ const Orders = () => {
   const [manualTransactionDate, setManualTransactionDate] = useState(new DateObject({ calendar: persian }));
   const [manualTransactionTime, setManualTransactionTime] = useState(new DateObject({ calendar: persian }));
 
+  const [timePaid, setTimePaid] = useState<any>(new DateObject({ calendar: persian }))
+  const [datePaid, setDatePaid] = useState<any>(new DateObject({ calendar: persian }))
 
   const [id, setId] = useState<any>()
   const [dataModal, setDataModal] = useState<any>(null)
-  
+
   const { data, refetch: refetchGetOrders } = useGetOrders();
   const { data: dataGetZarinpal, refetch: refetchGetZarinpal } = useGetZarinpal(id)
+  const { data: dataPostManualPayment, refetch: refetchPostManualPayment } = usePostManualPayment(id, {
+    description: {
+      time: timePaid,
+      date: datePaid
+    }
+  })
 
   const handleClickOpen = (i: any) => {
     setOpen(true);
@@ -128,6 +112,10 @@ const Orders = () => {
     navigator.clipboard.writeText("680120000000005042963882");
   };
 
+  const ManualPaymentHandler = () => {
+    refetchPostManualPayment() && setOpen(false);
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setShowMessageCopyCard(false);
@@ -141,17 +129,13 @@ const Orders = () => {
   }, [showMessageCopySheba]);
 
   useEffect(() => {
-    refetchGetOrders()
-  }, [dataGetZarinpal])
-
-
-  const zarinpalHandler = (i: any) => {
-    setId(i)
-  }
+    setDatePaid(manualTransactionDate.toLocaleString())
+    setTimePaid(manualTransactionTime.toLocaleString())
+  }, [manualTransactionDate, manualTransactionTime])
 
   useEffect(() => {
-    id && refetchGetZarinpal()
-  }, [id])
+    refetchGetOrders()
+  }, [])
 
   return (
     <>
@@ -306,7 +290,8 @@ const Orders = () => {
                   }}
                   value={manualTransactionTime}
                   style={{ width: "100%" }}
-                  onChange={(i) => setManualTransactionTime(i)}
+
+                  onChange={(date: any) => setManualTransactionTime(date)}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={6} >
@@ -327,8 +312,8 @@ const Orders = () => {
           <Button variant="contained" size="medium" color="error" onClick={handleClose} sx={{ width: { xs: '100%', sm: 'auto' } }}>
             close
           </Button>
-          <Button variant="contained" size="medium" color="success" onClick={handleClose} sx={{ width: { xs: '100%', sm: 'auto' } }}>
-            sede
+          <Button variant="contained" size="medium" color="success" onClick={ManualPaymentHandler} sx={{ width: { xs: '100%', sm: 'auto' } }}>
+            send
           </Button>
         </CardContent>
       </Dialog>
@@ -366,9 +351,9 @@ const Orders = () => {
               <Card variant="outlined">
                 <CardContent sx={{ paddingBottom: 0 }}>
                   <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                    <Grid item xs={4} sm={8} md={2} lg={1.5} >
+                    {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
                       <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={4} sm={8} md={4} lg={4.5} >
                       <List>
 
@@ -432,7 +417,7 @@ const Orders = () => {
                             <RequestPageIcon />
                           </ListItemIcon>
                           <Typography variant="body1" sx={{ pl: 1 }}>
-                            i.ref_id
+                            id: {i.id}
                           </Typography>
                         </ListItem>
 
@@ -479,12 +464,19 @@ const Orders = () => {
                     variant="contained"
                     size="small"
                     sx={{ width: { xs: '100%', sm: 'auto' } }}
-                    onClick={() => zarinpalHandler(i.id)}
+                    onMouseEnter={() => setId(i.id)}
+                    onClick={() => id && refetchGetZarinpal()}
                   >
                     ONLINE
                   </Button>
                   <Tooltip title="کارت به کارت">
-                    <Button variant="contained" size="small" onClick={() => handleClickOpen(index)} sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{ width: { xs: '100%', sm: 'auto' } }}
+                      onMouseEnter={() => setId(i.id)}
+                      onClick={() => handleClickOpen(index)}
+                    >
                       Bank Card Transaction
                     </Button>
                   </Tooltip>
@@ -511,9 +503,9 @@ const Orders = () => {
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={2} lg={1.5} >
+                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
                   <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
@@ -571,9 +563,9 @@ const Orders = () => {
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={2} lg={1.5} >
+                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
                   <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
@@ -632,9 +624,9 @@ const Orders = () => {
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={2} lg={1.5} >
+                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
                   <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
