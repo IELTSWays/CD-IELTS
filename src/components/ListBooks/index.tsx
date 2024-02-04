@@ -30,20 +30,23 @@ const ListBooks = () => {
 
   const cart = useAppSelector((state) => state.user.cart)
 
-  const [item, setItem] = useState<string | null>();
+  const [item, setItem] = useState<any>();
   const [coverBook, setCoverBook] = useState(true);
   const [filter, setFilter] = useState('All');
 
-  const handleAlignment = (event, newAlignment) => {
+  const handleAlignment = (event: any, newAlignment: any) => {
     setFilter(newAlignment);
   };
 
   const handleItem = (
     _event: React.MouseEvent<HTMLElement>,
-    newItem: string | null,
+    newItem: any,
   ) => {
     setItem(newItem);
-    dispatch(setCart(Object.assign({}, cart, { 'id': newItem })))
+    dispatch(setCart(Object.assign({}, cart, {
+      'id': newItem,
+      'type': newItem.includes('A') ? 'academic' : 'general'
+    })))
   };
 
   const handleChange = (event: any) => {

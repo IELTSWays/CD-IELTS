@@ -28,10 +28,17 @@ import { setCart } from '@/store/slices/user/userSlice'
 // store
 
 import usePostCreateOrderNopay from '@/services/Requests/usePostCreateOrderNopay';
+import usePostCreateOrderWriting from '@/services/Requests/usePostCreateOrderWriting';
 
 import ListBooks from "@/components/ListBooks";
 import SkillsGuide from "@/components/SkillsGuide";
 import iconAI from '@/assets/images/artificial-intelligence.gif'
+
+// {
+//   "name": "B15AWT1",
+//   "marker": 1,
+//   "type": "academic"
+// }
 
 const Books = () => {
 
@@ -42,11 +49,14 @@ const Books = () => {
   const [marker, setMarker] = useState('ai');
   const [mode, setMode] = useState('');
 
+  const cart = useAppSelector((state) => state.user.cart)
+
   const handleItem = (
     _event: React.MouseEvent<HTMLElement>,
     newItem: string | null,
   ) => {
-    setItem(newItem); cart
+    setItem(newItem);
+    cart;
   };
 
   const listMarkers = [
@@ -58,13 +68,22 @@ const Books = () => {
   ]
 
   const { data, refetch } = usePostCreateOrderNopay()
-
-  const cart = useAppSelector((state) => state.user.cart)
+  const { refetch: refetchPostCreateOrderWriting } = usePostCreateOrderWriting({
+    "name": cart["id"],
+    "marker": parseFloat(marker),
+    "type": cart["type"]
+  })
 
   const changeModeHandler = (event: any) => {
     setMode(event.target.value);
-    dispatch(setCart(Object.assign({}, cart, { 'type': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCart(Object.assign({}, cart, { 'mode': ((event.target as HTMLInputElement).value) })))
   };
+
+  const createOrderHandler = () => {
+    cart["id"].includes('W') ? refetchPostCreateOrderWriting() : refetch()
+  }
+
+  console.log(cart)
 
   useEffect(() => {
     data?.success && navigate('/orders')
@@ -228,7 +247,7 @@ const Books = () => {
             color="success"
             disabled={!cart.id || !mode}
             sx={{ width: { xs: "100%", md: "auto" } }}
-            onClick={() => refetch()}
+            onClick={createOrderHandler}
           >
             Next
           </Button>
