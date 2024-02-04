@@ -18,6 +18,7 @@ import Slide from '@mui/material/Slide';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import Skeleton from '@mui/material/Skeleton';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
@@ -82,7 +83,7 @@ const Orders = () => {
   const [id, setId] = useState<any>()
   const [dataModal, setDataModal] = useState<any>(null)
 
-  const { data, refetch: refetchGetOrders } = useGetOrders();
+  const { data, isLoading: isLoadingGetOrders, refetch: refetchGetOrders } = useGetOrders();
   const { data: dataGetZarinpal, refetch: refetchGetZarinpal } = useGetZarinpal(id)
   const { data: dataPostManualPayment, refetch: refetchPostManualPayment } = usePostManualPayment(id, {
     description: {
@@ -136,6 +137,8 @@ const Orders = () => {
   useEffect(() => {
     refetchGetOrders()
   }, [])
+
+  console.log(isLoadingGetOrders)
 
   return (
     <>
@@ -344,145 +347,152 @@ const Orders = () => {
         spacing={{ xs: 2, sm: 2, md: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}>
 
-        {data?.map((i: any, index: any) => {
+        {isLoadingGetOrders &&
 
-          return (
-            <Grid item xs={4} sm={8} md={12} key={index}>
-              <Card variant="outlined">
-                <CardContent sx={{ paddingBottom: 0 }}>
-                  <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                    {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                      <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                    </Grid> */}
-                    <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                      <List>
+          Array.from(Array(2)).map((_, index) => (
+            <Grid item key={index} xs={4} sm={8} md={12} >
+              <Skeleton variant="rounded" width="100%" height={224.75} />
+            </Grid>
+          ))
+        }
 
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <AssignmentIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {
-                              (i.description)
-                                .replace("B", 'Book ')
-                                .replace("G", ' General')
-                                .replace("A", ' Academic')
-                                .replace("T", ' Test ')
-                                .replace("[", '  ')
-                                .replace("]", '  ')
-                                .replace(/\'/g, "")
-                                .replace("L", " ")
-                                .replace("R", " ")
-                                .replace("W", " ")
-                                .replace("S", " ")
-                            }
-                          </Typography>
-                        </ListItem>
+        {!isLoadingGetOrders &&
+          data?.map((i: any, index: any) => {
 
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <Turn />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.description.indexOf('W') > 0 && 'Writing'}
-                            {i.description.indexOf('R') > 0 && 'Reading'}
-                            {i.description.indexOf('S') > 0 && 'Speaking'}
-                            {i.description.indexOf('L') > 0 && 'Listening'}
-                          </Typography>
-                        </ListItem>
+            return (
+              <Grid item xs={4} sm={8} md={12} key={index}>
+                <Card variant="outlined">
+                  <CardContent sx={{ paddingBottom: 0 }}>
+                    <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
+                      <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                        <List>
 
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <PaymentsIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.amount.toLocaleString() + " IRR"}
-                          </Typography>
-                        </ListItem>
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <AssignmentIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              {
+                                (i.description)
+                                  .replace("B", 'Book ')
+                                  .replace("G", ' General')
+                                  .replace("A", ' Academic')
+                                  .replace("T", ' Test ')
+                                  .replace("[", '  ')
+                                  .replace("]", '  ')
+                                  .replace(/\'/g, "")
+                                  .replace("L", " ")
+                                  .replace("R", " ")
+                                  .replace("W", " ")
+                                  .replace("S", " ")
+                              }
+                            </Typography>
+                          </ListItem>
 
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <CalendarMonthIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {new Date(Date.parse(i.created_at)).toLocaleString("en-IR", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hour12: false, minute: "2-digit" })}
-                          </Typography>
-                        </ListItem>
-                      </List>
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <Turn />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              {i.description.indexOf('W') > 0 && 'Writing'}
+                              {i.description.indexOf('R') > 0 && 'Reading'}
+                              {i.description.indexOf('S') > 0 && 'Speaking'}
+                              {i.description.indexOf('L') > 0 && 'Listening'}
+                            </Typography>
+                          </ListItem>
+
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <PaymentsIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              {i.amount.toLocaleString() + " IRR"}
+                            </Typography>
+                          </ListItem>
+
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <CalendarMonthIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              {new Date(Date.parse(i.created_at)).toLocaleString("en-IR", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hour12: false, minute: "2-digit" })}
+                            </Typography>
+                          </ListItem>
+                        </List>
+                      </Grid>
+                      <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                        <List>
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <RequestPageIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              id: {i.id}
+                            </Typography>
+                          </ListItem>
+
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <CreditScoreIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              i.title
+                            </Typography>
+                          </ListItem>
+
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <CreditScoreIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              i.title
+                            </Typography>
+                          </ListItem>
+
+                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ minWidth: 0 }}>
+                              <AccountBalanceWalletIcon />
+                            </ListItemIcon>
+                            <Typography variant="body1" sx={{ pl: 1 }}>
+                              i.payment_method
+                            </Typography>
+                          </ListItem>
+                        </List>
+                      </Grid>
+                      <Grid item xs={4} sm={8} md={1.5} lg={1.5}
+                        sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
+                        <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                      <List>
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <RequestPageIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            id: {i.id}
-                          </Typography>
-                        </ListItem>
-
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <CreditScoreIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            i.title
-                          </Typography>
-                        </ListItem>
-
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <CreditScoreIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            i.title
-                          </Typography>
-                        </ListItem>
-
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            <AccountBalanceWalletIcon />
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            i.payment_method
-                          </Typography>
-                        </ListItem>
-                      </List>
-                    </Grid>
-                    <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                      sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                      <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
-                    </Grid>
-                  </Grid>
-                </CardContent>
-                {/* unpaid */}
-                <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                  <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                    CANCEL
-                  </Button>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    sx={{ width: { xs: '100%', sm: 'auto' } }}
-                    onMouseEnter={() => setId(i.id)}
-                    onClick={() => id && refetchGetZarinpal()}
-                  >
-                    ONLINE
-                  </Button>
-                  <Tooltip title="کارت به کارت">
+                  </CardContent>
+                  {/* unpaid */}
+                  <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                    <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                      CANCEL
+                    </Button>
                     <Button
                       variant="contained"
                       size="small"
                       sx={{ width: { xs: '100%', sm: 'auto' } }}
                       onMouseEnter={() => setId(i.id)}
-                      onClick={() => handleClickOpen(index)}
+                      onClick={() => id && refetchGetZarinpal()}
                     >
-                      Bank Card Transaction
+                      ONLINE
                     </Button>
-                  </Tooltip>
-                </CardContent>
-                {/* paid */}
-                {/* <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                    <Tooltip title="کارت به کارت">
+                      <Button
+                        variant="contained"
+                        size="small"
+                        sx={{ width: { xs: '100%', sm: 'auto' } }}
+                        onMouseEnter={() => setId(i.id)}
+                        onClick={() => handleClickOpen(index)}
+                      >
+                        Bank Card Transaction
+                      </Button>
+                    </Tooltip>
+                  </CardContent>
+                  {/* paid */}
+                  {/* <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
                   <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
                     INVOICE
                   </Button>
@@ -493,10 +503,11 @@ const Orders = () => {
                     PAID
                   </Button>
                 </CardContent> */}
-              </Card>
-            </Grid>
-          )
-        })}
+                </Card>
+              </Grid>
+            )
+          })
+        }
 
         {/* PAID */}
         <Grid item xs={4} sm={8} md={12} >
@@ -619,7 +630,7 @@ const Orders = () => {
           </Card>
         </Grid>
 
-        {/* WATING */}
+        {/* WAITING */}
         <Grid item xs={4} sm={8} md={12} >
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
