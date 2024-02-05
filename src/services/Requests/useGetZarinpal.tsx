@@ -1,19 +1,27 @@
-import { useNavigate } from "react-router-dom";
-
 // api
 import { useQuery } from "@tanstack/react-query";
 import api from '@/services/API'
 // api
 
-const useGetZarinpal = (id: any) => {
+const useGetZarinpal = (id: any, skill: any) => {
 
-  const navigate = useNavigate();
+  let url;
+
+  if (skill?.description?.indexOf('S') > 0) {
+    url = 'zarinpal-speaking-reqX'
+  }
+  else if (skill?.description?.indexOf('W') > 0) {
+    url = 'zarinpal-writing-reqX'
+  }
+  else {
+    url = 'zarinpal-requestX'
+  }
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getZarinpal', id],
+    queryKey: ['getZarinpal', id, skill],
     queryFn: async ({ queryKey }) => {
-      const response = await api.get(`order/zarinpal-request/${queryKey[1]}`)
+      const response = await api.get(`order/${url}/${queryKey[1]}`)
       const data = await response.data
       window.location.href = data?.meta?.url;
       return data

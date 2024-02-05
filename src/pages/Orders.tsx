@@ -83,7 +83,7 @@ const Orders = () => {
   const [timePaid, setTimePaid] = useState<any>(new DateObject({ calendar: persian }))
   const [datePaid, setDatePaid] = useState<any>(new DateObject({ calendar: persian }))
 
-  const [id, setId] = useState<any>()
+  const [order, setOrder] = useState<any>()
   const [dataModal, setDataModal] = useState<any>(null)
 
   const { data,
@@ -101,8 +101,8 @@ const Orders = () => {
     refetch: refetchGetOrdersSpeaking,
   } = useGetOrdersSpeaking<any>()
 
-  const { refetch: refetchGetZarinpal } = useGetZarinpal(id)
-  const { refetch: refetchPostManualPayment } = usePostManualPayment(id, {
+  const { refetch: refetchGetZarinpal } = useGetZarinpal(order?.id, order)
+  const { refetch: refetchPostManualPayment } = usePostManualPayment(order?.id, order, {
     description: {
       time: timePaid,
       date: datePaid
@@ -158,7 +158,6 @@ const Orders = () => {
     refetchGetOrdersWriting()
     refetchGetOrdersSpeaking()
   }, [])
-
 
   const mergeSpeakingWriting = dataGetOrdersSpeaking?.concat(dataGetOrdersWriting)
 
@@ -436,7 +435,7 @@ const Orders = () => {
                               <PaymentsIcon />
                             </ListItemIcon>
                             <Typography variant="body1" sx={{ pl: 1 }}>
-                              {i.amount.toLocaleString() + " IRR"}
+                              {i.amount.toLocaleString() + " IRR"} - id: {i.id}
                             </Typography>
                           </ListItem>
 
@@ -510,8 +509,8 @@ const Orders = () => {
                         variant="contained"
                         size="small"
                         sx={{ width: { xs: '100%', sm: 'auto' } }}
-                        onMouseEnter={() => setId(i.id)}
-                        onClick={() => id && refetchGetZarinpal()}
+                        onMouseEnter={() => setOrder(i)}
+                        onClick={() => order?.id && refetchGetZarinpal()}
                       >
                         ONLINE
                       </Button>
@@ -520,7 +519,7 @@ const Orders = () => {
                           variant="contained"
                           size="small"
                           sx={{ width: { xs: '100%', sm: 'auto' } }}
-                          onMouseEnter={() => setId(i.id)}
+                          onMouseEnter={() => setOrder(i)}
                           onClick={() => handleClickOpen(index)}
                         >
                           Bank Card Transaction
