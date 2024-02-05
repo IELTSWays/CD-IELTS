@@ -8,13 +8,13 @@ const useGetZarinpal = (id: any, skill: any) => {
   let url;
 
   if (skill?.description?.indexOf('S') > 0) {
-    url = 'zarinpal-speaking-reqX'
+    url = 'zarinpal-speaking-req'
   }
   else if (skill?.description?.indexOf('W') > 0) {
-    url = 'zarinpal-writing-reqX'
+    url = 'zarinpal-writing-req'
   }
   else {
-    url = 'zarinpal-requestX'
+    url = 'zarinpal-request'
   }
 
   const { isLoading, data, refetch } = useQuery({
