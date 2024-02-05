@@ -428,6 +428,11 @@ ul#payment-details > li {
   box-shadow: unset !important;
 }
 
+.reserved-container {
+  cursor: auto;
+  pointer-events: none;
+}
+
 .reserved {
   background: #008b8b;
   width: 100%;
@@ -439,7 +444,7 @@ ul#payment-details > li {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 18px;
 }
 
 /* list-red-bullet */

@@ -34,12 +34,6 @@ import ListBooks from "@/components/ListBooks";
 import SkillsGuide from "@/components/SkillsGuide";
 import iconAI from '@/assets/images/artificial-intelligence.gif'
 
-// {
-//   "name": "B15AWT1",
-//   "marker": 1,
-//   "type": "academic"
-// }
-
 const Books = () => {
 
   const dispatch = useAppDispatch()
@@ -228,8 +222,8 @@ const Books = () => {
                     value={mode}
                     onClick={changeModeHandler}
                   >
-                    <FormControlLabel value="test" control={<Radio />} label="Test" />
-                    <FormControlLabel value="practice" control={<Radio />} label="Practice" />
+                    <FormControlLabel value="test" control={<Radio />} label="Test Mode" />
+                    <FormControlLabel value="practice" control={<Radio />} label="Practice Mode" />
                   </RadioGroup>
                 </FormControl>
               </Stack>

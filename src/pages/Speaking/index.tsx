@@ -20,32 +20,6 @@ import ListTeachersSkeleton from "@/components/ListTeachers/ListTeachersSkeleton
 import useGetAllTeachers from "@/services/Requests/useGetAllTeachers";
 import Times from "@/pages/Speaking/Times";
 
-const listTimes = [
-  { value: 1, label: '00:00 - 01:00' },
-  { value: 2, label: '01:00 - 02:00' },
-  { value: 3, label: '10:00 - 11:00' },
-  { value: 4, label: '12:00 - 13:00' },
-  { value: 5, label: '13:00 - 14:00' },
-  { value: 6, label: '14:00 - 15:00' },
-  { value: 7, label: '15:00 - 16:00' },
-  { value: 8, label: '16:00 - 17:00' },
-  { value: 9, label: '21:00 - 22:00' },
-  { value: 10, label: '23:00 - 00:00' }
-]
-
-const listTimes1 = [
-  { value: 11, label: '00:00 - 01:00' },
-  { value: 12, label: '01:00 - 02:00' },
-  { value: 13, label: '10:00 - 11:00' },
-  { value: 14, label: '12:00 - 13:00' },
-  { value: 15, label: '13:00 - 14:00' },
-  { value: 16, label: '14:00 - 15:00' },
-  { value: 17, label: '15:00 - 16:00' },
-  { value: 18, label: '16:00 - 17:00' },
-  { value: 19, label: '21:00 - 22:00' },
-  { value: 20, label: '23:00 - 00:00' }
-]
-
 const Speaking = () => {
 
   const [time, setTime] = useState<any>('')
@@ -53,14 +27,7 @@ const Speaking = () => {
 
   const [value, setValue] = useState(0);
 
-  const [sina, setSina] = useState()
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  console.log(sina)
-
+  console.log(time)
 
   const data = [
     {
@@ -265,32 +232,10 @@ const Speaking = () => {
         </Grid>
         :
         <>
-          <Grid sx={{ py: 3, px: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            <Grid item xs={4} sm={8} md={12}>
-              <Card variant="outlined" sx={{ py: 3, px: 2 }}>
-                <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <Avatar alt="Mahdi Mohammadi" src="/static/images/avatar/1.jpg" />
-                  <Typography display="block" sx={{ px: 1, minWidth: '200px' }}> Mr.Mahdi Mohammadi </Typography>
-                </Grid>
-                <Times onClick={(e: any) => setSina(e.currentTarget.value)
-                } sina={sina} />
-              </Card>
-            </Grid>
-          </Grid>
-
-          <Grid sx={{ py: 3, px: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            <Grid item xs={4} sm={8} md={12}>
-              <Card variant="outlined" sx={{ py: 3, px: 2 }}>
-                <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <Avatar alt="Sina Karimi" src="/static/images/avatar/1.jpg" />
-                  <Typography display="block" sx={{ px: 1, minWidth: '200px' }}> Mr.Sina Karimi </Typography>
-                </Grid>
-                <Times />
-              </Card>
-            </Grid>
-          </Grid>
+          <Times onClick={(e: any) => setTime(e.currentTarget.value)} selected={time} />
         </>
       }
+
 
       <Grid sx={{ py: 3, pr: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={4} sm={8} md={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
