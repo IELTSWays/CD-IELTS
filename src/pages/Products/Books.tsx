@@ -83,8 +83,6 @@ const Books = () => {
     cart["id"].includes('W') ? refetchPostCreateOrderWriting() : refetch()
   }
 
-  console.log(cart)
-
   useEffect(() => {
     data?.success && navigate('/orders')
   }, [data]);

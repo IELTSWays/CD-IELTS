@@ -43,6 +43,9 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 
 import useGetOrders from '@/services/Requests/useGetOrders';
+import useGetOrdersWriting from "@/services/Requests/useGetOrdersWriting";
+import useGetOrdersSpeaking from "@/services/Requests/useGetOrdersSpeaking"
+
 import useGetZarinpal from '@/services/Requests/useGetZarinpal';
 import usePostManualPayment from '@/services/Requests//usePostManualPayment';
 
@@ -83,9 +86,23 @@ const Orders = () => {
   const [id, setId] = useState<any>()
   const [dataModal, setDataModal] = useState<any>(null)
 
-  const { data, isLoading: isLoadingGetOrders, refetch: refetchGetOrders } = useGetOrders();
-  const { data: dataGetZarinpal, refetch: refetchGetZarinpal } = useGetZarinpal(id)
-  const { data: dataPostManualPayment, refetch: refetchPostManualPayment } = usePostManualPayment(id, {
+  const { data,
+    isLoading: isLoadingGetOrders,
+    refetch: refetchGetOrders
+  } = useGetOrders<any>();
+
+  const { data: dataGetOrdersWriting,
+    isLoading: isLoadingGetOrdersWriting,
+    refetch: refetchGetOrdersWriting,
+  } = useGetOrdersWriting<any>();
+
+  const { data: dataGetOrdersSpeaking,
+    isLoading: isLoadingGetOrdersSpeaking,
+    refetch: refetchGetOrdersSpeaking,
+  } = useGetOrdersSpeaking<any>()
+
+  const { refetch: refetchGetZarinpal } = useGetZarinpal(id)
+  const { refetch: refetchPostManualPayment } = usePostManualPayment(id, {
     description: {
       time: timePaid,
       date: datePaid
@@ -98,6 +115,8 @@ const Orders = () => {
     setManualTransactionDate(new DateObject({ calendar: persian }))
     setManualTransactionTime(new DateObject({ calendar: persian }))
   };
+
+  console.log(dataModal)
 
   const handleClose = () => {
     setOpen(false);
@@ -136,9 +155,20 @@ const Orders = () => {
 
   useEffect(() => {
     refetchGetOrders()
+    refetchGetOrdersWriting()
+    refetchGetOrdersSpeaking()
   }, [])
 
-  console.log(isLoadingGetOrders)
+
+  const mergeSpeakingWriting = dataGetOrdersSpeaking?.concat(dataGetOrdersWriting)
+
+  for (var i = 0; i < mergeSpeakingWriting?.length; i++) {
+    mergeSpeakingWriting[i].description = `${mergeSpeakingWriting[i]?.name.split(' ')}`;
+  }
+
+  const allOrders = data?.concat(mergeSpeakingWriting)
+
+  console.log(allOrders)
 
   return (
     <>
@@ -347,7 +377,7 @@ const Orders = () => {
         spacing={{ xs: 2, sm: 2, md: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}>
 
-        {isLoadingGetOrders &&
+        {(isLoadingGetOrders && isLoadingGetOrdersWriting && isLoadingGetOrdersSpeaking) &&
 
           Array.from(Array(2)).map((_, index) => (
             <Grid item key={index} xs={4} sm={8} md={12} >
@@ -356,8 +386,8 @@ const Orders = () => {
           ))
         }
 
-        {!isLoadingGetOrders &&
-          data?.map((i: any, index: any) => {
+        {(!isLoadingGetOrders && !isLoadingGetOrdersWriting && !isLoadingGetOrdersSpeaking) &&
+          allOrders?.map((i: any, index: any) => {
 
             return (
               <Grid item xs={4} sm={8} md={12} key={index}>
@@ -420,89 +450,99 @@ const Orders = () => {
                           </ListItem>
                         </List>
                       </Grid>
-                      <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                        <List>
-                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                            <ListItemIcon sx={{ minWidth: 0 }}>
-                              <RequestPageIcon />
-                            </ListItemIcon>
-                            <Typography variant="body1" sx={{ pl: 1 }}>
-                              id: {i.id}
-                            </Typography>
-                          </ListItem>
+                      {i.status === 'paid' &&
+                        <>
+                          <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                            <List>
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <RequestPageIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  id: {i.id}
+                                </Typography>
+                              </ListItem>
 
-                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                            <ListItemIcon sx={{ minWidth: 0 }}>
-                              <CreditScoreIcon />
-                            </ListItemIcon>
-                            <Typography variant="body1" sx={{ pl: 1 }}>
-                              i.title
-                            </Typography>
-                          </ListItem>
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <CreditScoreIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.title
+                                </Typography>
+                              </ListItem>
 
-                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                            <ListItemIcon sx={{ minWidth: 0 }}>
-                              <CreditScoreIcon />
-                            </ListItemIcon>
-                            <Typography variant="body1" sx={{ pl: 1 }}>
-                              i.title
-                            </Typography>
-                          </ListItem>
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <CreditScoreIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.title
+                                </Typography>
+                              </ListItem>
 
-                          <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                            <ListItemIcon sx={{ minWidth: 0 }}>
-                              <AccountBalanceWalletIcon />
-                            </ListItemIcon>
-                            <Typography variant="body1" sx={{ pl: 1 }}>
-                              i.payment_method
-                            </Typography>
-                          </ListItem>
-                        </List>
-                      </Grid>
-                      <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                        sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                        <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
-                      </Grid>
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <AccountBalanceWalletIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.payment_method
+                                </Typography>
+                              </ListItem>
+                            </List>
+                          </Grid>
+                          <Grid item xs={4} sm={8} md={1.5} lg={1.5}
+                            sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
+                            <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
+                          </Grid>
+                        </>
+                      }
                     </Grid>
                   </CardContent>
+
                   {/* unpaid */}
-                  <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                    <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                      CANCEL
-                    </Button>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      sx={{ width: { xs: '100%', sm: 'auto' } }}
-                      onMouseEnter={() => setId(i.id)}
-                      onClick={() => id && refetchGetZarinpal()}
-                    >
-                      ONLINE
-                    </Button>
-                    <Tooltip title="کارت به کارت">
+                  {i.status === 'new' &&
+                    <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                      {/* <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                        CANCEL
+                      </Button> */}
                       <Button
                         variant="contained"
                         size="small"
                         sx={{ width: { xs: '100%', sm: 'auto' } }}
                         onMouseEnter={() => setId(i.id)}
-                        onClick={() => handleClickOpen(index)}
+                        onClick={() => id && refetchGetZarinpal()}
                       >
-                        Bank Card Transaction
+                        ONLINE
                       </Button>
-                    </Tooltip>
-                  </CardContent>
+                      <Tooltip title="کارت به کارت">
+                        <Button
+                          variant="contained"
+                          size="small"
+                          sx={{ width: { xs: '100%', sm: 'auto' } }}
+                          onMouseEnter={() => setId(i.id)}
+                          onClick={() => handleClickOpen(index)}
+                        >
+                          Bank Card Transaction
+                        </Button>
+                      </Tooltip>
+                    </CardContent>
+                  }
+
                   {/* paid */}
-                  {/* <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                  <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                    INVOICE
-                  </Button>
-                  <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                    GO TO TEST
-                  </Button>
-                  <Button variant="outlined" size="small" color="success" sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
-                    PAID
-                  </Button>
-                </CardContent> */}
+                  {i.status === 'paid' &&
+                    <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                      <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                        INVOICE
+                      </Button>
+                      <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                        GO TO TEST
+                      </Button>
+                      <Button variant="outlined" size="small" color="success" sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
+                        PAID
+                      </Button>
+                    </CardContent>
+                  }
                 </Card>
               </Grid>
             )
@@ -510,13 +550,10 @@ const Orders = () => {
         }
 
         {/* PAID */}
-        <Grid item xs={4} sm={8} md={12} >
+        {/* <Grid item xs={4} sm={8} md={12} >
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
@@ -567,16 +604,13 @@ const Orders = () => {
               </Button>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */}
 
         {/* UNPAID */}
-        <Grid item xs={4} sm={8} md={12} >
+        {/* <Grid item xs={4} sm={8} md={12} >
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
@@ -628,16 +662,13 @@ const Orders = () => {
               </Tooltip>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */}
 
         {/* WAITING */}
-        <Grid item xs={4} sm={8} md={12} >
+        {/* <Grid item xs={4} sm={8} md={12} >
           <Card variant="outlined">
             <CardContent sx={{ paddingBottom: 0 }}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                {/* <Grid item xs={4} sm={8} md={2} lg={1.5} >
-                  <img src={'/Books/18.jpg'} alt="book-1" width="100%" />
-                </Grid> */}
                 <Grid item xs={4} sm={8} md={4} lg={4.5} >
                   <List>
                     {items.map((i) => {
@@ -682,7 +713,7 @@ const Orders = () => {
               </Button>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   );
