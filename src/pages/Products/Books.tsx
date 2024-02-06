@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
 // mtu
+import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
 import Button from '@mui/material/Button';
@@ -9,12 +10,14 @@ import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+
 import IconButton from '@mui/material/IconButton';
 import SourceIcon from '@mui/icons-material/Source';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -27,11 +30,13 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCart } from '@/store/slices/user/userSlice'
 // store
 
+import useGetTeacherList from "@/services/Requests/useGetTeacherList";
 import usePostCreateOrderNopay from '@/services/Requests/usePostCreateOrderNopay';
 import usePostCreateOrderWriting from '@/services/Requests/usePostCreateOrderWriting';
 
 import ListBooks from "@/components/ListBooks";
 import SkillsGuide from "@/components/SkillsGuide";
+
 import iconAI from '@/assets/images/artificial-intelligence.gif'
 
 const Books = () => {
@@ -40,7 +45,7 @@ const Books = () => {
   const navigate = useNavigate();
 
   const [item, setItem] = useState<string | null>();
-  const [marker, setMarker] = useState('ai');
+  const [marker, setMarker] = useState(9999);
   const [mode, setMode] = useState('');
 
   const cart = useAppSelector((state) => state.user.cart)
@@ -52,14 +57,6 @@ const Books = () => {
     setItem(newItem);
     cart;
   };
-
-  const listMarkers = [
-    { id: 1, name: 'Mahdi Mohammadi' },
-    { id: 2, name: 'Samane Naderi' },
-    { id: 3, name: 'Reza Mohseni' },
-    { id: 4, name: 'Sepide Shakiba' },
-    { id: 5, name: 'Vahid Hadavi' },
-  ]
 
   const { data, refetch } = usePostCreateOrderNopay()
   const { refetch: refetchPostCreateOrderWriting } = usePostCreateOrderWriting({
@@ -81,6 +78,16 @@ const Books = () => {
     data?.success && navigate('/orders')
   }, [data]);
 
+  const {
+    data: dataGetTeacherList,
+    isLoading: isLoadingGetTeacherList,
+    refetch: refetchGetTeacherList
+  } = useGetTeacherList()
+
+  useEffect(() => {
+    refetchGetTeacherList()
+  }, []);
+
   return (
     <>
       <Grid sx={{ py: 3 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -95,7 +102,7 @@ const Books = () => {
       </Grid>
 
       {cart.id?.search('W') > 0 &&
-        <Card variant="outlined" sx={{ py: 3, px: 2, my: 3 }}>
+        <Card variant="outlined" sx={{ py: 3, px: 2, my: 3, width: '100%' }}>
           <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <Avatar sx={{ bgcolor: red[700] }}>
               <DriveFileRenameOutlineIcon />
@@ -116,9 +123,9 @@ const Books = () => {
               >
                 <Paper
                   variant="outlined"
-                  id="ai"
+                  id="9999"
                   onClick={(e: any) => setMarker(e.currentTarget.id)}
-                  className={'ai' == marker && "active-box-marker"}
+                  className={'9999' == marker && "active-box-marker"}
                   sx={{
                     my: 1,
                     mx: 'auto',
@@ -135,6 +142,17 @@ const Books = () => {
                     </Stack>
                     <Stack sx={{ minWidth: '150px' }}>
                       <Typography>AI</Typography>
+                      <Chip
+                        label={`${(15000 * 10).toLocaleString()} IRR`}
+                        variant="outlined"
+                        sx={{
+                          borderRadius: '7px',
+                          minWidth: '120px',
+                          height: '25px',
+                          marginTop: '6px',
+                          background: '#fff'
+                        }}
+                      />
                     </Stack>
                     <IconButton id="ai" onClick={(e: any) => console.log(e.currentTarget.id)}>
                       <ChevronRightIcon />
@@ -144,7 +162,24 @@ const Books = () => {
               </Stack>
             </Box>
 
-            {listMarkers.map((i) => {
+            {isLoadingGetTeacherList && Array.from(Array(4)).map((_, index) => (
+              <Stack
+                key={index}
+                spacing={{ xs: 1, sm: 2 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+                sx={{
+                  mx: 1, cursor: 'pointer',
+                  width: { xs: "100%", sm: "unset" }
+                }}
+              >
+                <Skeleton variant="rounded" sx={{ width: '296px', height: '89px', my: 1, }} />
+              </Stack>
+            ))
+            }
+
+            {dataGetTeacherList?.map((i: any) => {
               return (
                 <Stack
                   spacing={{ xs: 1, sm: 2 }}
@@ -175,12 +210,25 @@ const Books = () => {
                     <Stack spacing={2} direction="row" alignItems="center"
                     >
                       <Stack>
-                        <Avatar>M</Avatar>
+                        <Avatar alt={i.name} />
                       </Stack>
                       <Stack sx={{ minWidth: '150px' }}>
                         <Typography>{i.name}</Typography>
+                        <Chip
+                          label={`${(i.writing_price * 10).toLocaleString()} IRR`}
+                          variant="outlined"
+                          sx={{
+                            borderRadius: '7px',
+                            minWidth: '120px',
+                            height: '25px',
+                            marginTop: '6px',
+                            background: '#fff'
+                          }}
+                        />
                       </Stack>
-                      <IconButton id={i.id} onClick={(e: any) => console.log(e.currentTarget.id)}
+                      <IconButton
+                        id={i.id}
+                        onClick={(e: any) => navigate(`/teachers/${(e.currentTarget.id)}`)}
                       >
                         <ChevronRightIcon />
                       </IconButton>
@@ -190,10 +238,11 @@ const Books = () => {
               )
             })}
           </Grid>
-        </Card>
+        </Card >
       }
 
-      {cart.id &&
+      {
+        cart.id &&
         <Card variant="outlined" sx={{ py: 3, px: 2, width: '100%' }}>
           <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <Avatar sx={{ bgcolor: red[700] }}>
