@@ -587,14 +587,25 @@ const Orders = () => {
                       >
                         INVOICE
                       </Button>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        sx={{ width: { xs: '100%', sm: 'auto' } }}
-                        onClick={() => refetchPostExamStart()}
-                      >
-                        GO TO TEST
-                      </Button>
+                      {i.description.indexOf('S') > 0 ?
+                        <Button
+                          variant="contained"
+                          color="warning"
+                          size="small"
+                          sx={{ width: { xs: '100%', sm: 'auto' } }}
+                        >
+                          GO TO SKYPE
+                        </Button>
+                        :
+                        <Button
+                          variant="contained"
+                          size="small"
+                          sx={{ width: { xs: '100%', sm: 'auto' } }}
+                          onClick={() => refetchPostExamStart()}
+                        >
+                          GO TO TEST
+                        </Button>
+                      }
                       <Button
                         variant="outlined"
                         size="small"
