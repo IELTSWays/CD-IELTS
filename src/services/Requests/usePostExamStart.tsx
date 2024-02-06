@@ -7,7 +7,7 @@ import axiosInstance from '@/services/API'
 
 // store
 import { useAppDispatch } from '@/store/hooks'
-import { setTestInfo, setAnswersAll, setCurrentQuestion, setFlags } from '@/store/slices/user/userSlice'
+import { setTestInfo, setAnswersAll, setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
 const initFlag :any = {};

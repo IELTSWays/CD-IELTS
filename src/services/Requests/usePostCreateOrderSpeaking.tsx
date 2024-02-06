@@ -9,12 +9,7 @@ const usePostCreateOrderSpeaking = (payload: any) => {
     enabled: false,
     queryKey: ['postCreateOrderSpeaking', payload],
     queryFn: async () => {
-      const response = await api.post(`exam/create-speaking`, {
-        "name": "B15AST1",
-        "teacher": 1,
-        "time": 1,
-        "type": "academic"
-      })
+      const response = await api.post(`exam/create-speaking`, payload)
       const data = await response.data
       return data
     },

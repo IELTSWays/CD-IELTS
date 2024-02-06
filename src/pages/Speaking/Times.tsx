@@ -51,11 +51,8 @@ function a11yProps(index: number) {
   };
 }
 
-
 const Times = ({ onClick, selected }) => {
   const [value, setValue] = useState(0);
-
-  const [selectTime, setSelectTime] = useState()
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -67,8 +64,6 @@ const Times = ({ onClick, selected }) => {
     color: theme.palette.text.secondary,
     flexGrow: 1,
   }));
-
-  console.log(listTimes.data)
 
   return (
     listTimes.data.map((i) => {

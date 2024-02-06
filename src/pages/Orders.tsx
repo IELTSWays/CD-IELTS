@@ -18,6 +18,8 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
+import { green } from '@mui/material/colors';
+import TextField from "@mui/material/TextField";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
@@ -28,13 +30,10 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import { green, red } from '@mui/material/colors';
-import TextField from "@mui/material/TextField";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-
 // mtu
 
 import DateObject from "react-date-object";
@@ -44,18 +43,34 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 
+
 import useGetOrders from '@/services/Requests/useGetOrders';
 import useGetOrdersWriting from "@/services/Requests/useGetOrdersWriting";
 import useGetOrdersSpeaking from "@/services/Requests/useGetOrdersSpeaking"
-
 import useGetZarinpal from '@/services/Requests/useGetZarinpal';
 import usePostManualPayment from '@/services/Requests//usePostManualPayment';
+import usePostExamStart from '@/services/Requests/usePostExamStart';
 
 import iBankMellat from '@/assets/images/bank-mellat.svg'
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide children={undefined} direction="up" ref={ref} {...props} />;
 });
+
+function formatString(s: any) {
+  s = s.replace(/B/g, "Book ");
+  s = s.replace(/G/g, " general");
+  s = s.replace(/A/g, " academic");
+  s = s.replace(/T/g, " Test ");
+  s = s.replace(/[\[\]]/g, "  ");
+  s = s.replace(/\'/g, "");
+  s = s.replace(/R/g, " reading");
+  s = s.replace(/L/g, " listening");
+  s = s.replace(/S/g, " speaking ");
+  s = s.replace(/W/g, " writing ");
+  s = s.replace(/[]/g, " ");
+  return s;
+}
 
 const Orders = () => {
 
@@ -74,6 +89,8 @@ const Orders = () => {
   const [order, setOrder] = useState<any>()
   const [dataModal, setDataModal] = useState<any>(null)
 
+  const [goToTest, setGoToTest] = useState('B15AST1')
+
   const { data,
     isLoading: isLoadingGetOrders,
     refetch: refetchGetOrders
@@ -89,8 +106,19 @@ const Orders = () => {
     refetch: refetchGetOrdersSpeaking,
   } = useGetOrdersSpeaking<any>()
 
-  const { refetch: refetchGetZarinpal } = useGetZarinpal(order?.id, order)
-  const { refetch: refetchPostManualPayment } = usePostManualPayment(order?.id, order, {
+  const { refetch: refetchPostExamStart
+  } = usePostExamStart<any>({
+    type: formatString(goToTest).split(" ").filter(Boolean)[2],
+    skill: formatString(goToTest).split(" ").filter(Boolean)[3],
+    book: parseInt(formatString(goToTest).split(" ").filter(Boolean)[1]),
+    test: parseInt(formatString(goToTest).split(" ").filter(Boolean)[5]),
+  })
+
+  const { refetch: refetchGetZarinpal
+  } = useGetZarinpal<any>(order?.id, order)
+
+  const { refetch: refetchPostManualPayment
+  } = usePostManualPayment<any>(order?.id, order, {
     description: {
       time: timePaid,
       date: datePaid
@@ -144,6 +172,9 @@ const Orders = () => {
     refetchGetOrdersWriting()
     refetchGetOrdersSpeaking()
   }, [])
+
+
+  console.log(formatString(goToTest).split(" ").filter(Boolean))
 
   const mergeSpeakingWriting = dataGetOrdersSpeaking?.concat(dataGetOrdersWriting)
 
@@ -390,7 +421,11 @@ const Orders = () => {
 
             return (
               <Grid item xs={4} sm={8} md={12} key={index}>
-                <Card variant="outlined" sx={{ background: i.status === 'paid' && '#08bd561f' }}>
+                <Card
+                  variant="outlined"
+                  sx={{ background: i.status === 'paid' && '#08bd561f' }}
+                  onMouseOver={() => setGoToTest(i.description)}
+                >
                   <CardContent sx={{ paddingBottom: 0 }}>
                     <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                       <Grid item xs={4} sm={8} md={4} lg={4.5} >
@@ -545,13 +580,27 @@ const Orders = () => {
                   {/* paid */}
                   {i.status === 'paid' &&
                     <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                      <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        sx={{ width: { xs: '100%', sm: 'auto' } }}
+                      >
                         INVOICE
                       </Button>
-                      <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        sx={{ width: { xs: '100%', sm: 'auto' } }}
+                        onClick={() => refetchPostExamStart()}
+                      >
                         GO TO TEST
                       </Button>
-                      <Button variant="outlined" size="small" color="success" sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        color="success"
+                        sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}
+                      >
                         PAID
                       </Button>
                     </CardContent>

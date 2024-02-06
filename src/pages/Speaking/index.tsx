@@ -23,8 +23,9 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 import ListTeachers from "@/components/ListTeachers";
 
-import useGetTeacherList from "@/services/Requests/useGetTeacherList";
 import Times from "@/pages/Speaking/Times";
+import useGetTeacherList from "@/services/Requests/useGetTeacherList";
+import usePostCreateOrderSpeaking from "@/services/Requests/usePostCreateOrderSpeaking";
 
 const Speaking = () => {
 
@@ -37,9 +38,20 @@ const Speaking = () => {
     refetch: refetchGetTeacherList
   } = useGetTeacherList()
 
+  const {
+    refetch: refetchPostCreateOrderSpeaking,
+  } = usePostCreateOrderSpeaking({
+    "name": "B15AST1",
+    "teacher": parseInt(time.split("-")[0]),
+    "time": parseInt(time.split("-")[1]),
+    "type": "academic"
+  })
+
   useEffect(() => {
     refetchGetTeacherList()
   }, []);
+
+  console.log(time)
 
   return (
     <>
@@ -48,9 +60,6 @@ const Speaking = () => {
           <Grid item xs={4} sm={8} md={6} lg={3} key={index}>
             <Card variant="outlined">
               <Skeleton variant="rounded" width='100%' height={150} />
-              {/* <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-                <Skeleton variant="text" sx={{ width: '100%', height: '32px' }} />
-              </CardContent> */}
               <CardContent sx={{ display: 'flex', flexDirection: 'column', py: 1 }}>
                 <Skeleton variant="text" sx={{ width: '100%', height: '40px' }} />
               </CardContent>
@@ -126,7 +135,7 @@ const Speaking = () => {
 
       <Grid sx={{ py: 3, pr: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={4} sm={8} md={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button variant="contained" color="success" disabled={!time.length} sx={{ width: { xs: "100%", md: "auto" } }}>
+          <Button variant="contained" color="success" onClick={() => time && refetchPostCreateOrderSpeaking()} disabled={!time.length} sx={{ width: { xs: "100%", md: "auto" } }}>
             Next
           </Button>
         </Grid>
