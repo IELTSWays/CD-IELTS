@@ -167,7 +167,11 @@ const Orders = () => {
 
   const allOrders = data?.concat(mergeSpeakingWriting)
 
-  console.log(allOrders)
+  allOrders?.sort(function (a: any, b: any) {
+    var c: any = new Date(a.created_at);
+    var d: any = new Date(b.created_at);
+    return d - c;
+  });
 
   return (
     <>
@@ -350,7 +354,10 @@ const Orders = () => {
         </CardContent>
       </Dialog>
 
-      <Grid sx={{ pt: 5, px: 4, display: 'flex', gap: 1, justifyContent: { xs: 'center', sm: 'flex-start' } }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      {/* <Grid 
+        sx={{ pt: 5, px: 4, display: 'flex', gap: 1, justifyContent: { xs: 'center', sm: 'flex-start' } }} 
+        container 
+        spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Chip
           label="ALL"
           variant={filter === 'ALL' ? '' : 'outlined'}
@@ -368,7 +375,7 @@ const Orders = () => {
           variant={filter === 'UNPAID' ? '' : 'outlined'}
           onClick={() => setFilter("UNPAID")}
         />
-      </Grid>
+      </Grid> */}
 
       <Grid
         sx={{ py: 3, px: 2 }}
@@ -386,11 +393,12 @@ const Orders = () => {
         }
 
         {(!isLoadingGetOrders && !isLoadingGetOrdersWriting && !isLoadingGetOrdersSpeaking) &&
+
           allOrders?.map((i: any, index: any) => {
 
             return (
               <Grid item xs={4} sm={8} md={12} key={index}>
-                <Card variant="outlined">
+                <Card variant="outlined" sx={{ background: i.status === 'paid' && '#f8fffb' }}>
                   <CardContent sx={{ paddingBottom: 0 }}>
                     <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                       <Grid item xs={4} sm={8} md={4} lg={4.5} >
@@ -435,7 +443,7 @@ const Orders = () => {
                               <PaymentsIcon />
                             </ListItemIcon>
                             <Typography variant="body1" sx={{ pl: 1 }}>
-                              {i.amount.toLocaleString() + " IRR"} - id: {i.id}
+                              {(i.amount*10).toLocaleString() + " IRR"} - id: {i.id}
                             </Typography>
                           </ListItem>
 
@@ -496,6 +504,53 @@ const Orders = () => {
                           </Grid>
                         </>
                       }
+                      {i.status === 'pending' &&
+                        <>
+                          <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                            <List>
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <RequestPageIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  id: {i.id}
+                                </Typography>
+                              </ListItem>
+
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <CreditScoreIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.title
+                                </Typography>
+                              </ListItem>
+
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <CreditScoreIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.title
+                                </Typography>
+                              </ListItem>
+
+                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                                <ListItemIcon sx={{ minWidth: 0 }}>
+                                  <AccountBalanceWalletIcon />
+                                </ListItemIcon>
+                                <Typography variant="body1" sx={{ pl: 1 }}>
+                                  i.payment_method
+                                </Typography>
+                              </ListItem>
+                            </List>
+                          </Grid>
+                          <Grid item xs={4} sm={8} md={1.5} lg={1.5}
+                            sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
+                            <CircularProgress color="success" sx={{ fontSize: 40 }} />
+                          </Grid>
+                        </>
+                      }
                     </Grid>
                   </CardContent>
 
@@ -542,177 +597,21 @@ const Orders = () => {
                       </Button>
                     </CardContent>
                   }
+
+                  {/* pending */}
+                  {i.status === 'pending' &&
+                    <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                      <Button variant="outlined" size="small" fullWidth sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
+                        Checking payment information
+                      </Button>
+                    </CardContent>
+                  }
+
                 </Card>
               </Grid>
             )
           })
         }
-
-        {/* PAID */}
-        {/* <Grid item xs={4} sm={8} md={12} >
-          <Card variant="outlined">
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {items.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {paymentInformation.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                  sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                  <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
-                </Grid>
-              </Grid>
-            </CardContent>
-            <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-              <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                INVOICE
-              </Button>
-              <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                GO TO TEST
-              </Button>
-              <Button variant="outlined" size="small" color="success" sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
-                PAID
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid> */}
-
-        {/* UNPAID */}
-        {/* <Grid item xs={4} sm={8} md={12} >
-          <Card variant="outlined">
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {items.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {paymentInformation.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                  sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                </Grid>
-              </Grid>
-            </CardContent>
-            <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-              <Button variant="contained" color="error" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                CANCEL
-              </Button>
-              <Button variant="contained" size="small" sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                ONLINE
-              </Button>
-              <Tooltip title="کارت به کارت">
-                <Button variant="contained" size="small" onClick={handleClickOpen} sx={{ width: { xs: '100%', sm: 'auto' } }}>
-                  Bank Card Transaction
-                </Button>
-              </Tooltip>
-            </CardContent>
-          </Card>
-        </Grid> */}
-
-        {/* WAITING */}
-        {/* <Grid item xs={4} sm={8} md={12} >
-          <Card variant="outlined">
-            <CardContent sx={{ paddingBottom: 0 }}>
-              <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {items.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                  <List>
-                    {paymentInformation.map((i) => {
-                      return (
-                        <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                          <ListItemIcon sx={{ minWidth: 0 }}>
-                            {i.icon}
-                          </ListItemIcon>
-                          <Typography variant="body1" sx={{ pl: 1 }}>
-                            {i.title}
-                          </Typography>
-                        </ListItem>
-                      )
-                    })}
-                  </List>
-                </Grid>
-                <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                  sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                  <CircularProgress />
-                </Grid>
-              </Grid>
-            </CardContent>
-            <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-              <Button variant="outlined" size="small" fullWidth sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
-                Checking payment information
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid> */}
       </Grid>
     </>
   );
