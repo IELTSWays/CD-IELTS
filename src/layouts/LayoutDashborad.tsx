@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+
 // mtu
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -28,7 +29,9 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import RocketIcon from '@mui/icons-material/Rocket';
 // mtu
+
 import logo from '@/assets/images/logo.png'
 import iconDashboard from '@/assets/images/monitor.gif'
 import iconProfile from '@/assets/images/profile.png'
@@ -137,6 +140,7 @@ const menuItems = [
   { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders' },
   { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
   { title: 'Tickets', icon: <ConfirmationNumberIcon />, path: '/tickets' },
+  { title: 'Exams', icon: <RocketIcon />, path: '/exams' },
   { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
 ]
 

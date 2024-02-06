@@ -77,7 +77,7 @@ const LayoutIELTS = ({ children }: any) => {
               <div className='ielts-footer-btn'>
                 <WifiIcon color="action" fontSize="large" />
               </div>
-              {location.pathname.includes('Listening') &&
+              {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                 listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} />
               }
               <div className='ielts-footer-btn'>

@@ -13,6 +13,7 @@ import Tickets from "@/pages/Tickets";
 import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
 import File from "@/pages/File";
+import Exams from "@/pages/Exams";
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -32,6 +33,7 @@ const MainRoutes = () => {
           <Route element={<Reports />} path="/reports" />
           <Route element={<Speaking />} path="/speaking" />
           <Route element={<Tickets />} path="/tickets" />
+          <Route element={<Exams />} path="/exams" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
         </Route>
         <Route element={<IELTSRoutes />}>
