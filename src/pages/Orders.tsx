@@ -43,7 +43,6 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 
-
 import useGetOrders from '@/services/Requests/useGetOrders';
 import useGetOrdersWriting from "@/services/Requests/useGetOrdersWriting";
 import useGetOrdersSpeaking from "@/services/Requests/useGetOrdersSpeaking"
@@ -173,14 +172,15 @@ const Orders = () => {
     refetchGetOrdersSpeaking()
   }, [])
 
+  for (var i = 0; i < dataGetOrdersSpeaking?.length; i++) {
+    dataGetOrdersSpeaking[i].description = `${dataGetOrdersSpeaking[i]?.name.split(' ')}`;
+  }
 
-  console.log(formatString(goToTest).split(" ").filter(Boolean))
+  for (var i = 0; i < dataGetOrdersWriting?.length; i++) {
+    dataGetOrdersWriting[i].description = `${dataGetOrdersWriting[i]?.name.split(' ')}`;
+  }
 
   const mergeSpeakingWriting = dataGetOrdersSpeaking?.concat(dataGetOrdersWriting)
-
-  for (var i = 0; i < mergeSpeakingWriting?.length; i++) {
-    mergeSpeakingWriting[i].description = `${mergeSpeakingWriting[i]?.name.split(' ')}`;
-  }
 
   const allOrders = data?.concat(mergeSpeakingWriting)
 
