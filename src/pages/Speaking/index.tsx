@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import gregorian from "react-date-object/calendars/gregorian";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import "react-multi-date-picker/styles/layouts/mobile.css";
+
 // mtu
+import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 // mtu
-import ListTeachers from "@/components/ListTeachers";
-import ListTeachersSkeleton from "@/components/ListTeachers/ListTeachersSkeleton";
 
-import useGetAllTeachers from "@/services/Requests/useGetAllTeachers";
+import ListTeachers from "@/components/ListTeachers";
+
+import useGetTeacherList from "@/services/Requests/useGetTeacherList";
 import Times from "@/pages/Speaking/Times";
 
 const Speaking = () => {
@@ -25,161 +31,42 @@ const Speaking = () => {
   const [time, setTime] = useState<any>('')
   const [date, setDate] = useState<any>();
 
-  const [value, setValue] = useState(0);
+  const {
+    data: dataGetTeacherList,
+    isLoading: isLoadingGetTeacherList,
+    refetch: refetchGetTeacherList
+  } = useGetTeacherList()
 
-  console.log(time)
-
-  const data = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "suite": "Apt. 556",
-        "city": "Gwenborough",
-        "zipcode": "92998-3874",
-        "geo": {
-          "lat": "-37.3159",
-          "lng": "81.1496"
-        }
-      },
-      "phone": "1-770-736-8031 x56442",
-      "website": "hildegard.org",
-      "company": {
-        "name": "Romaguera-Crona",
-        "catchPhrase": "Multi-layered client-server neural-net",
-        "bs": "harness real-time e-markets"
-      }
-    },
-    {
-      "id": 2,
-      "name": "Ervin Howell",
-      "username": "Antonette",
-      "email": "Shanna@melissa.tv",
-      "address": {
-        "street": "Victor Plains",
-        "suite": "Suite 879",
-        "city": "Wisokyburgh",
-        "zipcode": "90566-7771",
-        "geo": {
-          "lat": "-43.9509",
-          "lng": "-34.4618"
-        }
-      },
-      "phone": "010-692-6593 x09125",
-      "website": "anastasia.net",
-      "company": {
-        "name": "Deckow-Crist",
-        "catchPhrase": "Proactive didactic contingency",
-        "bs": "synergize scalable supply-chains"
-      }
-    },
-    {
-      "id": 3,
-      "name": "Clementine Bauch",
-      "username": "Samantha",
-      "email": "Nathan@yesenia.net",
-      "address": {
-        "street": "Douglas Extension",
-        "suite": "Suite 847",
-        "city": "McKenziehaven",
-        "zipcode": "59590-4157",
-        "geo": {
-          "lat": "-68.6102",
-          "lng": "-47.0653"
-        }
-      },
-      "phone": "1-463-123-4447",
-      "website": "ramiro.info",
-      "company": {
-        "name": "Romaguera-Jacobson",
-        "catchPhrase": "Face to face bifurcated interface",
-        "bs": "e-enable strategic applications"
-      }
-    },
-    {
-      "id": 4,
-      "name": "Patricia Lebsack",
-      "username": "Karianne",
-      "email": "Julianne.OConner@kory.org",
-      "address": {
-        "street": "Hoeger Mall",
-        "suite": "Apt. 692",
-        "city": "South Elvis",
-        "zipcode": "53919-4257",
-        "geo": {
-          "lat": "29.4572",
-          "lng": "-164.2990"
-        }
-      },
-      "phone": "493-170-9623 x156",
-      "website": "kale.biz",
-      "company": {
-        "name": "Robel-Corkery",
-        "catchPhrase": "Multi-tiered zero tolerance productivity",
-        "bs": "transition cutting-edge web services"
-      }
-    },
-    {
-      "id": 5,
-      "name": "Chelsey Dietrich",
-      "username": "Kamren",
-      "email": "Lucio_Hettinger@annie.ca",
-      "address": {
-        "street": "Skiles Walks",
-        "suite": "Suite 351",
-        "city": "Roscoeview",
-        "zipcode": "33263",
-        "geo": {
-          "lat": "-31.8129",
-          "lng": "62.5342"
-        }
-      },
-      "phone": "(254)954-1289",
-      "website": "demarco.info",
-      "company": {
-        "name": "Keebler LLC",
-        "catchPhrase": "User-centric fault-tolerant solution",
-        "bs": "revolutionize end-to-end systems"
-      }
-    },
-    {
-      "id": 6,
-      "name": "Mrs. Dennis Schulist",
-      "username": "Leopoldo_Corkery",
-      "email": "Karley_Dach@jasper.info",
-      "address": {
-        "street": "Norberto Crossing",
-        "suite": "Apt. 950",
-        "city": "South Christy",
-        "zipcode": "23505-1337",
-        "geo": {
-          "lat": "-71.4197",
-          "lng": "71.7478"
-        }
-      },
-      "phone": "1-477-935-8478 x6430",
-      "website": "ola.org",
-      "company": {
-        "name": "Considine-Lockman",
-        "catchPhrase": "Synchronised bottom-line interface",
-        "bs": "e-enable innovative applications"
-      }
-    }
-  ]
+  useEffect(() => {
+    refetchGetTeacherList()
+  }, []);
 
   return (
     <>
       <Grid sx={{ py: 3, px: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-        {/* {isLoading && Array.from(Array(6)).map((_, index) => (
-          <Grid item xs={4} sm={8} md={6} lg={4} key={index}>
-            <ListTeachersSkeleton />
+        {isLoadingGetTeacherList && Array.from(Array(4)).map((_, index) => (
+          <Grid item xs={4} sm={8} md={6} lg={3} key={index}>
+            <Card variant="outlined">
+              <Skeleton variant="rounded" width='100%' height={150} />
+              {/* <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+                <Skeleton variant="text" sx={{ width: '100%', height: '32px' }} />
+              </CardContent> */}
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', py: 1 }}>
+                <Skeleton variant="text" sx={{ width: '100%', height: '40px' }} />
+              </CardContent>
+              <CardActions>
+                <Box sx={{ width: '100%', mt: 1 }}>
+                  <Skeleton variant="text" sx={{ width: '50%', height: '40px', ml: 1 }} />
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mx: 1, flexDirection: { xs: 'column', md: 'row' } }} id="chip-speaking">
+                    <Skeleton variant="rounded" width="100%" height={46} />
+                  </Box>
+                </Box>
+              </CardActions>
+            </Card>
           </Grid>
-        ))} */}
+        ))}
 
-        {data?.map((i: any) => {
+        {dataGetTeacherList?.map((i: any) => {
           return (
             <Grid item xs={4} sm={8} md={6} lg={3} key={i.id}>
               <ListTeachers data={i} onClick={(e: any) => console.log(e.currentTarget.value)

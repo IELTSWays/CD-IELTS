@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+
 // mtu
+import Chip from '@mui/material/Chip';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,13 +14,14 @@ import ArticleIcon from '@mui/icons-material/Article';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 // mtu
+
 import video1 from '@/assets/videos/example.mp4'
 
-const ListTeachers = ({ data }: any) => {
+const CardTeacher = ({ data }: any) => {
 
   const navigate = useNavigate();
 
-  const { id, name, company } = data;
+  const { id, name, description, speaking_price } = data;
 
   return (
     <Card variant="outlined">
@@ -31,27 +34,19 @@ const ListTeachers = ({ data }: any) => {
       <CardContent sx={{ pb: 0.5 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography variant="h6" component="div" sx={{ color: red[700] }}>
-            {name} - {id}
+            {name}
           </Typography>
+          <Chip label={`${(speaking_price * 10).toLocaleString()} IRR` } variant="outlined" sx={{ borderRadius: '7px' }}/>
         </Stack>
 
-        <Typography color="text.secondary" sx={{ pb: 1 }}>
+        {/* <Typography color="text.secondary" sx={{ pb: 1 }}>
           {company.catchPhrase} - {company.bs}
-        </Typography>
+        </Typography> */}
 
         <Typography color="text.secondary" sx={{ mx: 1 }}>
           <ul id="list-red-bullet">
             <li>
-              Lorem ipsum dolor sit.
-            </li>
-            <li>
-              Lorem ipsum dolor sit.
-            </li>
-            <li>
-              Lorem ipsum dolor sit.
-            </li>
-            <li>
-              Lorem ipsum dolor sit.
+              {description}
             </li>
           </ul>
         </Typography>
@@ -68,7 +63,7 @@ const ListTeachers = ({ data }: any) => {
             </IconButton>
           </Stack>
           <Stack direction="row" alignItems="center">
-            <IconButton onClick={() => navigate("/teachers/1")}>
+            <IconButton onClick={() => navigate(`/teachers/${id}`)}>
               <ChevronRightIcon size="small" sx={{ color: red[700] }} />
             </IconButton>
           </Stack>
@@ -78,4 +73,4 @@ const ListTeachers = ({ data }: any) => {
   );
 };
 
-export default ListTeachers;
+export default CardTeacher;
