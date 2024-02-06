@@ -8,7 +8,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -22,17 +21,20 @@ import Skeleton from '@mui/material/Skeleton';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
-import PaymentIcon from '@mui/icons-material/Payment';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
-import Turn from '@mui/icons-material/TurnedIn';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import { green } from '@mui/material/colors';
+import { green, red } from '@mui/material/colors';
 import TextField from "@mui/material/TextField";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+
 // mtu
 
 import DateObject from "react-date-object";
@@ -50,20 +52,6 @@ import useGetZarinpal from '@/services/Requests/useGetZarinpal';
 import usePostManualPayment from '@/services/Requests//usePostManualPayment';
 
 import iBankMellat from '@/assets/images/bank-mellat.svg'
-
-const items = [
-  { title: 'Book5 IELTS General', icon: <AssignmentIcon /> },
-  { title: 'Reading', icon: <Turn /> },
-  { title: '1,200,000 IRR', icon: <PaymentsIcon /> },
-  { title: '25-09-2023', icon: <CalendarMonthIcon /> },
-]
-
-const paymentInformation = [
-  { title: '14/10/2023 10:12 ', icon: <CreditScoreIcon /> },
-  { title: '10/09/1402 10:12 ', icon: <CreditScoreIcon /> },
-  { title: '129085431', icon: <RequestPageIcon /> },
-  { title: 'Online Payment', icon: <AccountBalanceWalletIcon /> },
-]
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide children={undefined} direction="up" ref={ref} {...props} />;
@@ -115,8 +103,6 @@ const Orders = () => {
     setManualTransactionDate(new DateObject({ calendar: persian }))
     setManualTransactionTime(new DateObject({ calendar: persian }))
   };
-
-  console.log(dataModal)
 
   const handleClose = () => {
     setOpen(false);
@@ -172,6 +158,12 @@ const Orders = () => {
     var d: any = new Date(b.created_at);
     return d - c;
   });
+
+  useEffect(() => {
+    refetchGetOrders()
+    refetchGetOrdersWriting()
+    refetchGetOrdersSpeaking()
+  }, [])
 
   return (
     <>
@@ -398,7 +390,7 @@ const Orders = () => {
 
             return (
               <Grid item xs={4} sm={8} md={12} key={index}>
-                <Card variant="outlined" sx={{ background: i.status === 'paid' && '#f8fffb' }}>
+                <Card variant="outlined" sx={{ background: i.status === 'paid' && '#08bd561f' }}>
                   <CardContent sx={{ paddingBottom: 0 }}>
                     <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
                       <Grid item xs={4} sm={8} md={4} lg={4.5} >
@@ -428,7 +420,10 @@ const Orders = () => {
 
                           <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
                             <ListItemIcon sx={{ minWidth: 0 }}>
-                              <Turn />
+                              {i.description.indexOf('W') > 0 && <BorderColorIcon />}
+                              {i.description.indexOf('R') > 0 && <LibraryBooksIcon />}
+                              {i.description.indexOf('S') > 0 && <KeyboardVoiceIcon />}
+                              {i.description.indexOf('L') > 0 && <HeadphonesIcon />}
                             </ListItemIcon>
                             <Typography variant="body1" sx={{ pl: 1 }}>
                               {i.description.indexOf('W') > 0 && 'Writing'}
@@ -443,7 +438,7 @@ const Orders = () => {
                               <PaymentsIcon />
                             </ListItemIcon>
                             <Typography variant="body1" sx={{ pl: 1 }}>
-                              {(i.amount*10).toLocaleString() + " IRR"} - id: {i.id}
+                              {(i.amount * 10).toLocaleString() + " IRR"}
                             </Typography>
                           </ListItem>
 
@@ -457,100 +452,64 @@ const Orders = () => {
                           </ListItem>
                         </List>
                       </Grid>
-                      {i.status === 'paid' &&
-                        <>
-                          <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                            <List>
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <RequestPageIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  id: {i.id}
-                                </Typography>
-                              </ListItem>
+                      <>
+                        <Grid item xs={4} sm={8} md={4} lg={4.5} >
+                          <List>
+                            <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                              <ListItemIcon sx={{ minWidth: 0 }}>
+                                <RequestPageIcon />
+                              </ListItemIcon>
+                              <Typography variant="body1" sx={{ pl: 1 }}>
+                                {i.description.indexOf('W') > 0 && i.marker?.name}
+                                {i.description.indexOf('S') > 0 && i.teacher?.name}
+                                {i.description.indexOf('R') > 0 && i.id}
+                                {i.description.indexOf('L') > 0 && i.id}
+                              </Typography>
+                            </ListItem>
 
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <CreditScoreIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.title
-                                </Typography>
-                              </ListItem>
+                            <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                              <ListItemIcon sx={{ minWidth: 0 }}>
+                                <CreditScoreIcon />
+                              </ListItemIcon>
+                              <Typography variant="body1" sx={{ pl: 1 }}>
+                                Date Paid
+                              </Typography>
+                            </ListItem>
 
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <CreditScoreIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.title
-                                </Typography>
-                              </ListItem>
+                            <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                              <ListItemIcon sx={{ minWidth: 0 }}>
+                                <CreditScoreIcon />
+                              </ListItemIcon>
+                              <Typography variant="body1" sx={{ pl: 1 }}>
+                                Date Paid
+                              </Typography>
+                            </ListItem>
 
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <AccountBalanceWalletIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.payment_method
-                                </Typography>
-                              </ListItem>
-                            </List>
-                          </Grid>
-                          <Grid item xs={4} sm={8} md={1.5} lg={1.5}
-                            sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-                            <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
-                          </Grid>
-                        </>
-                      }
-                      {i.status === 'pending' &&
-                        <>
-                          <Grid item xs={4} sm={8} md={4} lg={4.5} >
-                            <List>
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <RequestPageIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  id: {i.id}
-                                </Typography>
-                              </ListItem>
+                            <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
+                              <ListItemIcon sx={{ minWidth: 0 }}>
+                                <AccountBalanceWalletIcon />
+                              </ListItemIcon>
+                              <Typography variant="body1" sx={{ pl: 1 }}>
+                                Payment_method
+                              </Typography>
+                            </ListItem>
+                          </List>
+                        </Grid>
 
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <CreditScoreIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.title
-                                </Typography>
-                              </ListItem>
-
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <CreditScoreIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.title
-                                </Typography>
-                              </ListItem>
-
-                              <ListItem sx={{ padding: 0, marginBottom: '10px' }}>
-                                <ListItemIcon sx={{ minWidth: 0 }}>
-                                  <AccountBalanceWalletIcon />
-                                </ListItemIcon>
-                                <Typography variant="body1" sx={{ pl: 1 }}>
-                                  i.payment_method
-                                </Typography>
-                              </ListItem>
-                            </List>
-                          </Grid>
+                        {i.status === 'pending' &&
                           <Grid item xs={4} sm={8} md={1.5} lg={1.5}
                             sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
                             <CircularProgress color="success" sx={{ fontSize: 40 }} />
                           </Grid>
-                        </>
-                      }
+                        }
+                        {i.status === 'paid' &&
+                          <Grid item xs={4} sm={8} md={1.5} lg={1.5}
+                            sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
+                            <TaskAltIcon color="success" sx={{ fontSize: 40 }} />
+                          </Grid>
+                        }
+                      </>
+
                     </Grid>
                   </CardContent>
 
@@ -606,7 +565,6 @@ const Orders = () => {
                       </Button>
                     </CardContent>
                   }
-
                 </Card>
               </Grid>
             )
