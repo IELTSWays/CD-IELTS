@@ -21,7 +21,9 @@ const usePostManualPayment = (id: any, skill: any, description: any) => {
     enabled: false,
     queryKey: ['postManualPayment', id, skill, description],
     queryFn: async ({ queryKey }) => {
-      const response = await api.post(`order/${url}/${queryKey[1]}`, queryKey[3])
+      const response = await api.post(`order/${url}/${queryKey[1]}`, {description: 
+        `${description?.description?.time} ${description?.description?.date}`
+      })
       const data = await response.data
       return data
     },
