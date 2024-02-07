@@ -2,8 +2,10 @@ import { useEffect } from 'react'
 
 // mtu
 import Grid from "@mui/material/Grid";
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 // mtu
 
 import ListExams from '@/components/ListExams';
@@ -38,23 +40,34 @@ const Exams = () => {
     refetchGetTestsSpeaking()
   }, [])
 
-  console.log(
-    '[dataGetTests]', dataGetTests?.results,
-  )
-
-  console.log(
-    '[dataGetTestsWriting]', dataGetTestsWriting?.results,
-  )
-
-  console.log(
-    '[dataGetTestsSpeaking]', dataGetTestsSpeaking?.results
-  )
-
   return (
     <>
       <Grid sx={{ py: 3, px: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <ListExams data={dataGetTests?.results.filter((i: any) => i.skill == 'reading')} skill="Reading" />
-        <ListExams data={dataGetTests?.results.filter((i: any) => i.skill == 'listening')} skill="Listening" />
+        <ListExams 
+          data={dataGetTests?.results.filter((i: any) => i.skill == 'reading')} 
+          skill="Reading" 
+          icon={<LibraryBooksIcon/>}
+          isLoading={isLoadingGetTests}
+        />
+        <ListExams 
+          data={dataGetTests?.results.filter((i: any) => i.skill == 'listening')} 
+          skill="Listening" 
+          icon={<HeadphonesIcon/>}
+          isLoading={isLoadingGetTests}
+        />
+        <ListExams 
+          data={dataGetTestsWriting?.results} 
+          skill="Writing" 
+          icon={<BorderColorIcon/>}
+          isLoading={isLoadingGetTestsWriting}
+        />
+        
+        <ListExams 
+          data={dataGetTestsSpeaking?.results} 
+          skill="Speaking" 
+          icon={<KeyboardVoiceIcon/>}
+          isLoading={isLoadingGetTestsSpeaking}
+        />
       </Grid>
     </>
   );
