@@ -212,7 +212,7 @@ const index = () => {
         </div>
 
         {getAnswer.isLoading && <div> LOADING... </div>}
-        {!getAnswer.isSuccess &&
+        {getAnswer.isSuccess &&
 
           <SplitView
             left=
