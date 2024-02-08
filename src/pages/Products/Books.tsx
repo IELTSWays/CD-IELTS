@@ -45,7 +45,7 @@ const Books = () => {
   const navigate = useNavigate();
 
   const [item, setItem] = useState<string | null>();
-  const [marker, setMarker] = useState(9999);
+  const [marker, setMarker] = useState(1);
   const [mode, setMode] = useState('');
 
   const cart = useAppSelector((state) => state.user.cart)
@@ -124,16 +124,18 @@ const Books = () => {
                 <Paper
                   variant="outlined"
                   id="9999"
-                  onClick={(e: any) => setMarker(e.currentTarget.id)}
-                  className={'9999' == marker && "active-box-marker"}
+                  // onClick={(e: any) => setMarker(e.currentTarget.id)}
+                  // className={'9999' == marker && "active-box-marker"}
                   sx={{
                     my: 1,
                     mx: 'auto',
                     p: 2,
-                    "&:hover": {
-                      backgroundColor: "#f5faff",
-                      borderColor: "#1976d2",
-                    },
+                    pointerEvents: 'none',
+                    
+                    // "&:hover": {
+                    //   backgroundColor: "#f5faff",
+                    //   borderColor: "#1976d2",
+                    // },
                   }}
                 >
                   <Stack spacing={2} direction="row" alignItems="center">
@@ -141,7 +143,7 @@ const Books = () => {
                       <Avatar src={iconAI}>W</Avatar>
                     </Stack>
                     <Stack sx={{ minWidth: '150px' }}>
-                      <Typography>AI</Typography>
+                      <Typography>AI (Coming Soon) </Typography>
                       <Chip
                         label={`${(15000 * 10).toLocaleString()} IRR`}
                         variant="outlined"
