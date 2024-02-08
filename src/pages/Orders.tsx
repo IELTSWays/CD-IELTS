@@ -581,13 +581,13 @@ const Orders = () => {
                   {/* paid */}
                   {i.status === 'paid' &&
                     <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                      <Button
+                      {/* <Button
                         variant="contained"
                         size="small"
                         sx={{ width: { xs: '100%', sm: 'auto' } }}
                       >
                         INVOICE
-                      </Button>
+                      </Button> */}
                       {i.description.indexOf('S') > 0 ?
                         <Button
                           variant="contained"
