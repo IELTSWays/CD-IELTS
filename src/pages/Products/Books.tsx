@@ -74,9 +74,9 @@ const Books = () => {
     cart["id"].includes('W') ? refetchPostCreateOrderWriting() : refetch()
   }
 
-  useEffect(() => {
-    data?.success && navigate('/orders')
-  }, [data]);
+  // useEffect(() => {
+  //   data?.success && navigate('/orders')
+  // }, [data]);
 
   const {
     data: dataGetTeacherList,

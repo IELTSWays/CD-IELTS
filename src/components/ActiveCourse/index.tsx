@@ -94,9 +94,9 @@ const ActiveCourse = () => {
     />
     <CardContent>
       <Grid container spacing={{ xs: 1, sm: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid item xs={4} sm={8} md={3}>
+        {/* <Grid item xs={4} sm={8} md={3}>
           <img src={`/Books/18.jpg`} alt="Book18" width="100%" />
-        </Grid>
+        </Grid> */}
         <Grid item xs={4} sm={8} md={9}>
           <List>
             {items.map((i, index) => {
@@ -111,7 +111,7 @@ const ActiveCourse = () => {
                 </ListItem>
               )
             })}
-            <Button
+            {/* <Button
               variant="outlined"
               size="small"
               color="success"
@@ -120,7 +120,7 @@ const ActiveCourse = () => {
               onClick={() => setTest(listTests[1])}
             >
               Let's Go
-            </Button>
+            </Button> */}
           </List>
         </Grid>
       </Grid>

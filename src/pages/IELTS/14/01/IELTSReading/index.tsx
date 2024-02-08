@@ -508,7 +508,7 @@ const index = () => {
                         </Stack>
                       </section>
                     </Box>
-                    <button onClick={() => postAnswer.refetch()}> FINISH </button>
+                    {/* <button onClick={() => postAnswer.refetch()}> FINISH </button> */}
                   </>
                 }
               </div>

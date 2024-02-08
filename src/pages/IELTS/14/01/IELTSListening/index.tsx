@@ -513,7 +513,7 @@ const index = () => {
                     <Q40 qn={questions[39].label} />
                   </div>
                 </Box>
-                <button onClick={() => postAnswer.refetch()}> FINISH </button>
+                {/* <button onClick={() => postAnswer.refetch()}> FINISH </button> */}
               </>
             }
           </>

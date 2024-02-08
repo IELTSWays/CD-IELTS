@@ -21,14 +21,17 @@ const CardTeacher = ({ data }: any) => {
 
   const navigate = useNavigate();
 
-  const { id, name, description, speaking_price } = data;
+  const { id, name, description, photo, speaking_price } = data;
 
   return (
     <Card variant="outlined">
       <CardMedia
-        component="video"
-        image={video1}
-        controls
+        // component="video"
+        // image={video1}
+        // controls
+        component="img"
+        height="194"
+        image={`http://195.214.235.46:8000${photo}`}
         sx={{ borderRadius: 1.5 }}
       />
       <CardContent sx={{ pb: 0.5 }}>

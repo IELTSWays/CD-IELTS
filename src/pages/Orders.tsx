@@ -113,7 +113,8 @@ const Orders = () => {
     test: parseInt(formatString(goToTest).split(" ").filter(Boolean)[5]),
   })
 
-  const { refetch: refetchGetZarinpal
+  const { data: dataGetZarinpal,
+    refetch: refetchGetZarinpal
   } = useGetZarinpal<any>(order?.id, order)
 
   const { refetch: refetchPostManualPayment
@@ -170,7 +171,7 @@ const Orders = () => {
     refetchGetOrders()
     refetchGetOrdersWriting()
     refetchGetOrdersSpeaking()
-  }, [])
+  }, [dataGetZarinpal])
 
   for (var i = 0; i < dataGetOrdersSpeaking?.length; i++) {
     dataGetOrdersSpeaking[i].description = `${dataGetOrdersSpeaking[i]?.name.split(' ')}`;

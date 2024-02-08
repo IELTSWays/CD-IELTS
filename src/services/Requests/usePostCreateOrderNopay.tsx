@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
 // api
 
+import { useNavigate } from "react-router-dom";
+
 // store
 import { useAppSelector } from '@/store/hooks'
 // store
@@ -10,6 +12,8 @@ import { useAppSelector } from '@/store/hooks'
 const usePostCreateOrderNopay = () => {
 
   const cart = useAppSelector((state) => state.user.cart)
+
+  const navigate = useNavigate();
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
@@ -19,6 +23,7 @@ const usePostCreateOrderNopay = () => {
           "test": new Array(cart.id),
       })
       const data = await response.data
+      navigate('/orders')
       return data
     },
   })

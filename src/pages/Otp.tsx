@@ -298,7 +298,3 @@ const Otp = () => {
 };
 
 export default Otp;
-function getAnswerOtp(e: any) {
-  throw new Error("Function not implemented.");
-}
-

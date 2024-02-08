@@ -176,6 +176,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             variant="contained"
                             size="small"
                             sx={{ width: '120px' }}
+                            disabled
                             onClick={() => refetchGetReport()}
                           >
                             FINISH

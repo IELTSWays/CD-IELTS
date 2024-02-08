@@ -31,7 +31,7 @@ const LayoutIELTS = ({ children }: any) => {
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
-  const { timer } = useTimer('90')
+  const { timer } = useTimer('1920')
 
   return (
     <html data-theme='light' className='ielts'>
