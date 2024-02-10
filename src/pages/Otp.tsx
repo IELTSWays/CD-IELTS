@@ -164,7 +164,7 @@ const Otp = () => {
           </Grid>
 
           <Grid sx={{ textAlign: "center", py: 2 }}>
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" justifyContent="center" spacing={1}>
               <Button
                 variant="contained"
                 size="small"
@@ -174,7 +174,7 @@ const Otp = () => {
                 onClick={(e: any) => getSMS(e)}>
                 SMS
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 startIcon={<TelegramIcon />}
                 disabled={mobile.length !== mobileLength || loading}
@@ -189,7 +189,7 @@ const Otp = () => {
                 disabled={mobile.length !== mobileLength || loading}
                 onClick={(e: any) => getWhatsapp(e)}>
                 Whatsapp
-              </Button>
+              </Button> */}
             </Stack>
           </Grid>
         </>
