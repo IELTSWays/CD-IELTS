@@ -1,6 +1,6 @@
 // api
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from '@/services/API'
+import api from '@/services/API'
 // api
 
 // store
@@ -12,16 +12,16 @@ const useGetProfile = () => {
   const fontSize = useAppSelector((state) => state.user.fontSize)
   console.log(fontSize);
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, refetch } = useQuery({
+    enabled: false,
     queryKey: ['getProfile'],
     queryFn: async () => {
-      const response = await axiosInstance.get('accounts/profile')
+      const response = await api.get('accounts/profile')
       const data = await response.data
       return data
     },
   })
-  return { isLoading, data };
+  return { isLoading, data, refetch };
 };
 
 export default useGetProfile;
-

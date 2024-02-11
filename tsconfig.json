@@ -24,7 +24,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [],
+  "include": ["src", "src/components/Chars/BarChart.tsx"],
   "references": [{
     "path": "./tsconfig.node.json"
   }]
