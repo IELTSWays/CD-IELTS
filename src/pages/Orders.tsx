@@ -117,7 +117,8 @@ const Orders = () => {
     refetch: refetchGetZarinpal
   } = useGetZarinpal<any>(order?.id, order)
 
-  const { refetch: refetchPostManualPayment
+  const { data: dataPostManualPayment,
+    refetch: refetchPostManualPayment
   } = usePostManualPayment<any>(order?.id, order, {
     description: {
       time: timePaid,
@@ -171,7 +172,7 @@ const Orders = () => {
     refetchGetOrders()
     refetchGetOrdersWriting()
     refetchGetOrdersSpeaking()
-  }, [dataGetZarinpal])
+  }, [dataGetZarinpal, dataPostManualPayment])
 
   for (var i = 0; i < dataGetOrdersSpeaking?.length; i++) {
     dataGetOrdersSpeaking[i].description = `${dataGetOrdersSpeaking[i]?.name.split(' ')}`;
