@@ -83,8 +83,6 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     refetchGetAnswer() && navigate(`/IELTS/${skillExam}`)
   }
 
-  console.log(dataGetReport)
-
   return (
     <Grid item xs={4} sm={8} md={6}>
       <Card variant="outlined">
@@ -184,7 +182,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             FINISH
                           </Button>
                         }
-                        {(i.answers && i.test_done) &&
+                        {/* {(i.answers && i.test_done) &&
                           <Button
                             variant="contained"
                             size="small"
@@ -193,7 +191,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                           >
                             RESULT
                           </Button>
-                        }
+                        } */}
                       </Item>
                     </Stack>
                   </Paper>

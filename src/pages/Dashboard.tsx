@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 // mtu
 import ActiveCourse from "@/components/ActiveCourse";
 import LastTickets from "@/components/LastTickets";
-import LastOrders from "@/components/LastOrders";
+    import LastOrders from "@/components/LastOrders";
 import AllCharts from "@/components/AllCharts";
 import DailyMessage from "@/components/DailyMessage";
 

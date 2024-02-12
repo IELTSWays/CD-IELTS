@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // mtu
@@ -23,15 +23,22 @@ import useTimer from '@/components/useTimer';
 import { AudioPlayer } from "@/components/AudioPlayer";
 
 import listSongs from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
+import usePostTestDone from '@/services/Requests/usePostTestDone';
 
 const LayoutIELTS = ({ children }: any) => {
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { data, isError, refetch } = usePostTestDone()
+
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
+
+  useEffect(() => {
+    console.log(data, isError)
+  }, [data])
 
   return (
     <html data-theme='light' className='ielts'>
@@ -48,6 +55,8 @@ const LayoutIELTS = ({ children }: any) => {
                 </div>
               </div>
             </div>
+
+            <button onClick={() => refetch()}> FINISH </button>
 
             <div className='align-items-center g-20'>
               {location.pathname.includes('writing') &&

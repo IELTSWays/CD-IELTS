@@ -30,11 +30,11 @@ const MainRoutes = () => {
           <Route element={<Books />} path="/books" />
           <Route element={<Orders />} path="/orders" />
           <Route element={<Guide />} path="/guide" />
-          <Route element={<Reports />} path="/reports" />
           <Route element={<Speaking />} path="/speaking" />
           <Route element={<Tickets />} path="/tickets" />
           <Route element={<Exams />} path="/exams" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
+          <Route element={<Reports />} path="/reports/:id" />
         </Route>
         <Route element={<IELTSRoutes />}>
           {/* 14-01 */}
