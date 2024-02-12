@@ -5,7 +5,7 @@ import api from '@/services/API'
 
 const usePatchProfile = (payload: any) => {
 
-  const { isLoading, isSuccess, refetch } = useQuery({
+  const { data, isLoading, isSuccess, refetch } = useQuery({
     enabled: false,
     queryKey: ['patchProfile', payload],
     queryFn: async () => {
@@ -14,7 +14,7 @@ const usePatchProfile = (payload: any) => {
       return data
     },
   })
-  return { isLoading, isSuccess, refetch };
+  return { data, isLoading, isSuccess, refetch };
 };
 
 export default usePatchProfile;

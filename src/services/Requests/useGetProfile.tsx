@@ -3,14 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from '@/services/API'
 // api
 
-// store
-import { useAppSelector } from '@/store/hooks'
-// store
-
 const useGetProfile = () => {
-
-  const fontSize = useAppSelector((state) => state.user.fontSize)
-  console.log(fontSize);
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,

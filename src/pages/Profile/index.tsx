@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DateObject from "react-date-object";
+import { useNavigate } from "react-router-dom";
 
 // mtu
 import Grid from "@mui/material/Grid";
@@ -10,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Skeleton from '@mui/material/Skeleton';
 // mtu
 
 import DatePicker from "react-multi-date-picker";
@@ -24,25 +26,30 @@ import List from '@/pages/Profile/List.json'
 
 const Profile = () => {
 
+  const navigate = useNavigate();
+
   const { isLoading, data, refetch } = useGetProfile();
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [first_Language, setFirst_Language] = useState('');
-  const [national_code, setNational_code] = useState(data?.national_code);
-  const [birth_date, setBirth_date] = useState(data?.birth_date);
-  const [city, setCity] = useState(data?.city);
+  const [first_LanguageIndex, setFirst_LanguageIndex] = useState(0)
+  const [national_code, setNational_code] = useState();
+  const [birth_date, setBirth_date] = useState();
+  const [city, setCity] = useState();
   const [mobile, setMobile] = useState();
 
   const {
+    data: dataPatchProfile,
     isLoading: isLoadingPatchProfile,
+    isSuccess,
     refetch: refetchPatchProfile
   } = usePatchProfile({
     "first_name": first_name,
     "last_name": last_name,
     "first_Language": first_Language,
     "national_code": national_code,
-    "birth_date": birth_date?.convert(gregorian, gregorian_en).format("YYYY-MM-DD"),
+    "birth_date": new Date(birth_date)?.toLocaleDateString().replace(/(\d+)\/(\d+)\/(\d+)/, "$3-$1-$2"),
     "city": city
   });
 
@@ -51,11 +58,18 @@ const Profile = () => {
   }, [])
 
   useEffect(() => {
-    setFirst_name(data?.candidate_code)
-    setLast_name(data?.candidate_code)
+    setFirst_name(data?.first_name)
+    setLast_name(data?.last_name)
     setMobile(data?.phone_number)
-    setFirst_Language('')
+    setNational_code(data?.national_code)
+    setCity(data?.city)
+    setBirth_date(new Date(data?.birth_date))
+    setFirst_LanguageIndex(List?.data.findIndex(obj => obj.value === data?.first_Language))
   }, [data])
+
+  useEffect(() => {
+    setFirst_Language(List?.data[first_LanguageIndex]?.value)
+  }, [first_LanguageIndex])
 
   const handleFirst_Language = (event: SelectChangeEvent) => {
     setFirst_Language(event.target.value as string);
@@ -69,18 +83,28 @@ const Profile = () => {
       .format("YYYY-MM-DD");
   }
 
-  // console.log(
-  //   birth_date?.convert(gregorian, gregorian_en)
-  //     .format("YYYY-MM-DD"))
-
   let sortedData = List.data.sort(function (a, b) {
     return a.value.localeCompare(b.value);
   });
 
+  // useEffect(() => {
+  //   isSuccess && navigate('/')
+  // }, [])
+
   return (
     <>
       {isLoading ?
-        <div> Loading... </div>
+        <Grid
+          container
+          spacing={{ xs: 1, sm: 2, md: 2 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {Array.from(Array(6)).map((_, index) => (
+            <Grid item key={index} xs={4} sm={4} md={6} >
+              <Skeleton variant="rounded" height={56} />
+            </Grid>
+          ))}
+        </Grid>
         :
         <Grid
           container
@@ -132,7 +156,6 @@ const Profile = () => {
               </Select>
             </FormControl>
           </Grid>
-
           <Grid item xs={4} sm={4} md={6}>
             <TextField
               margin="normal"
@@ -146,7 +169,6 @@ const Profile = () => {
               onChange={(e) => setNational_code(e.target.value)}
             />
           </Grid>
-
           <Grid item xs={4} sm={4} md={6}>
             <TextField
               margin="normal"
@@ -159,8 +181,6 @@ const Profile = () => {
               onChange={(e) => setCity(e.target.value)}
             />
           </Grid>
-
-          {/* birthday */}
           <Grid item xs={4} sm={4} md={6} sx={{ my: { xs: 2, sm: 0 } }}
           >
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -179,7 +199,7 @@ const Profile = () => {
             </div>
           </Grid>
 
-          {/* <Grid item xs={4} sm={4} md={6}>
+          <Grid item xs={4} sm={4} md={6}>
             <FormLabel sx={{ top: '10px' }}>Mobile *</FormLabel>
             <TextField
               margin="normal"
@@ -191,7 +211,7 @@ const Profile = () => {
               disabled={mobile?.length}
               value={mobile}
             />
-          </Grid> */}
+          </Grid>
 
           <Grid item xs={12} sm={12} md={12} container
             direction="row"
@@ -202,6 +222,7 @@ const Profile = () => {
               type="submit"
               variant="contained"
               size="medium"
+              disabled={!first_name || !last_name || !first_Language || !national_code || !birth_date || !city}
               loading={isLoadingPatchProfile}
               onClick={() => refetchPatchProfile()}
               sx={{ width: { xs: '100%', sm: 'unset' } }}
