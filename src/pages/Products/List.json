@@ -9,17 +9,17 @@
         {
           "id": "B10ALT1",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B10ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -36,12 +36,12 @@
         {
           "id": "B10ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -58,12 +58,12 @@
         {
           "id": "B10ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -80,12 +80,12 @@
         {
           "id": "B10ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -99,17 +99,17 @@
         {
           "id": "B11ALT1",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B11ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -126,12 +126,12 @@
         {
           "id": "B11ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -148,12 +148,12 @@
         {
           "id": "B11ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -170,12 +170,12 @@
         {
           "id": "B11ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -194,12 +194,12 @@
         {
           "id": "B12ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -211,17 +211,17 @@
         {
           "id": "B12ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -233,17 +233,17 @@
         {
           "id": "B12ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -255,17 +255,17 @@
         {
           "id": "B12ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -284,12 +284,12 @@
         {
           "id": "B13ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -301,17 +301,17 @@
         {
           "id": "B13ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -323,17 +323,17 @@
         {
           "id": "B13ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -345,17 +345,17 @@
         {
           "id": "B13ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -374,12 +374,12 @@
         {
           "id": "B14ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -391,17 +391,17 @@
         {
           "id": "B14ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -413,17 +413,17 @@
         {
           "id": "B14ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -435,17 +435,17 @@
         {
           "id": "B14ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -464,12 +464,12 @@
         {
           "id": "B15ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -481,17 +481,17 @@
         {
           "id": "B15ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -503,17 +503,17 @@
         {
           "id": "B15ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -525,17 +525,17 @@
         {
           "id": "B15ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -554,12 +554,12 @@
         {
           "id": "B16ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -571,17 +571,17 @@
         {
           "id": "B16ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -593,17 +593,17 @@
         {
           "id": "B16ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -615,17 +615,17 @@
         {
           "id": "B16ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -639,17 +639,17 @@
         {
           "id": "B17ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -661,17 +661,17 @@
         {
           "id": "B17ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -683,17 +683,17 @@
         {
           "id": "B17ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -705,17 +705,17 @@
         {
           "id": "B17ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -728,17 +728,17 @@
         {
           "id": "B18ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -750,17 +750,17 @@
         {
           "id": "B18ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -772,17 +772,17 @@
         {
           "id": "B18ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18AWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -794,17 +794,17 @@
         {
           "id": "B18ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18AWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -817,17 +817,17 @@
         {
           "id": "B10GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -839,17 +839,17 @@
         {
           "id": "B10GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -861,17 +861,17 @@
         {
           "id": "B10GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -883,17 +883,17 @@
         {
           "id": "B10GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -906,17 +906,17 @@
         {
           "id": "B11GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -928,17 +928,17 @@
         {
           "id": "B11GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -950,17 +950,17 @@
         {
           "id": "B11GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -972,17 +972,17 @@
         {
           "id": "B11GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -995,17 +995,17 @@
         {
           "id": "B12GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1017,17 +1017,17 @@
         {
           "id": "B12GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1039,17 +1039,17 @@
         {
           "id": "B12GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1061,17 +1061,17 @@
         {
           "id": "B12GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1084,17 +1084,17 @@
         {
           "id": "B13GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1106,17 +1106,17 @@
         {
           "id": "B13GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1128,17 +1128,17 @@
         {
           "id": "B13GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1150,17 +1150,17 @@
         {
           "id": "B13GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1173,17 +1173,17 @@
         {
           "id": "B14GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1195,17 +1195,17 @@
         {
           "id": "B14GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1217,17 +1217,17 @@
         {
           "id": "B14GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1239,17 +1239,17 @@
         {
           "id": "B14GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1262,17 +1262,17 @@
         {
           "id": "B15GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1284,17 +1284,17 @@
         {
           "id": "B15GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1306,17 +1306,17 @@
         {
           "id": "B15GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1328,17 +1328,17 @@
         {
           "id": "B15GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1351,17 +1351,17 @@
         {
           "id": "B16GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1373,17 +1373,17 @@
         {
           "id": "B16GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1395,17 +1395,17 @@
         {
           "id": "B16GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1417,17 +1417,17 @@
         {
           "id": "B16GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1440,17 +1440,17 @@
         {
           "id": "B17GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1462,17 +1462,17 @@
         {
           "id": "B17GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1484,17 +1484,17 @@
         {
           "id": "B17GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1506,17 +1506,17 @@
         {
           "id": "B17GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1529,17 +1529,17 @@
         {
           "id": "B18GLT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GRT1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1551,17 +1551,17 @@
         {
           "id": "B18GLT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GRT2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1573,17 +1573,17 @@
         {
           "id": "B18GLT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GRT3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GWT3",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -1595,17 +1595,17 @@
         {
           "id": "B18GLT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GRT4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18GWT4",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     }

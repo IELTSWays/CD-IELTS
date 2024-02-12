@@ -38,10 +38,10 @@ const items = [
 
 const listTests: any = [
   {
-    book: 1,
-    skill: "listening",
-    test: "1",
-    type: "academic"
+    "test": "1",
+    "skill": "listening",
+    "type": "academic",
+    "book": 10
   },
   {
     book: 1,
@@ -111,16 +111,16 @@ const ActiveCourse = () => {
                 </ListItem>
               )
             })}
-            {/* <Button
+            <Button
               variant="outlined"
               size="small"
               color="success"
               sx={{ mt: 2, width: { xs: '100%', md: "unset" } }}
               startIcon={<RocketIcon />}
-              onClick={() => setTest(listTests[1])}
+              onClick={() => setTest(listTests[0])}
             >
               Let's Go
-            </Button> */}
+            </Button>
           </List>
         </Grid>
       </Grid>
