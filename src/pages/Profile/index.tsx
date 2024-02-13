@@ -33,7 +33,7 @@ const Profile = () => {
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [first_Language, setFirst_Language] = useState('');
-  const [first_LanguageIndex, setFirst_LanguageIndex] = useState(0)
+  const [first_LanguageIndex, setFirst_LanguageIndex] = useState()
   const [national_code, setNational_code] = useState();
   const [birth_date, setBirth_date] = useState();
   const [city, setCity] = useState();
@@ -64,12 +64,12 @@ const Profile = () => {
     setNational_code(data?.national_code)
     setCity(data?.city)
     setBirth_date(new Date(data?.birth_date))
-    setFirst_LanguageIndex(List?.data.findIndex(obj => obj.value === data?.first_Language))
+    setFirst_Language(List?.data[List?.data.findIndex(obj => obj.value === data?.first_Language)]?.value)
   }, [data])
 
   useEffect(() => {
-    setFirst_Language(List?.data[first_LanguageIndex]?.value)
-  }, [first_LanguageIndex])
+    first_LanguageIndex && setFirst_Language(List?.data[List?.data.findIndex(obj => obj.value === data?.first_Language)]?.value)
+  }, [])
 
   const handleFirst_Language = (event: SelectChangeEvent) => {
     setFirst_Language(event.target.value as string);

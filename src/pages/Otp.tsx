@@ -78,7 +78,7 @@ const Otp = () => {
       setLoading(false);
       setCounter(watingTime);
       localStorage.setItem('token', response.data.data.access_token)
-      navigate("/profile")
+      navigate("/")
     } catch (error: any) {
       setLoading(false);
       setError(error?.response?.data?.errors[0])
