@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // mtu
 import Card from '@mui/material/Card';
@@ -73,6 +74,8 @@ function formatString(s: any) {
 
 const Orders = () => {
 
+  const navigate = useNavigate();
+
   const [filter, setFilter] = useState('ALL')
   const [open, setOpen] = useState(false);
 
@@ -105,13 +108,13 @@ const Orders = () => {
     refetch: refetchGetOrdersSpeaking,
   } = useGetOrdersSpeaking<any>()
 
-  const { refetch: refetchPostExamStart
-  } = usePostExamStart<any>({
-    type: formatString(goToTest).split(" ").filter(Boolean)[2],
-    skill: formatString(goToTest).split(" ").filter(Boolean)[3],
-    book: parseInt(formatString(goToTest).split(" ").filter(Boolean)[1]),
-    test: parseInt(formatString(goToTest).split(" ").filter(Boolean)[5]),
-  })
+  // const { refetch: refetchPostExamStart
+  // } = usePostExamStart<any>({
+  //   type: formatString(goToTest).split(" ").filter(Boolean)[2],
+  //   skill: formatString(goToTest).split(" ").filter(Boolean)[3],
+  //   book: parseInt(formatString(goToTest).split(" ").filter(Boolean)[1]),
+  //   test: parseInt(formatString(goToTest).split(" ").filter(Boolean)[5]),
+  // })
 
   const { data: dataGetZarinpal,
     refetch: refetchGetZarinpal
@@ -355,7 +358,7 @@ const Orders = () => {
                   onChange={(date: any) => setManualTransactionTime(date)}
                 />
               </Grid>
-              <Grid item xs={4} sm={8} md={6} >
+              {/* <Grid item xs={4} sm={8} md={6} >
                 <TextField
                   margin="normal"
                   required
@@ -365,7 +368,7 @@ const Orders = () => {
                   id="last4digits"
                   name="last4digits"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
           </DialogContentText>
         </DialogContent>
@@ -603,9 +606,9 @@ const Orders = () => {
                           variant="contained"
                           size="small"
                           sx={{ width: { xs: '100%', sm: 'auto' } }}
-                          onClick={() => refetchPostExamStart()}
+                          onClick={() => navigate('/exams')}
                         >
-                          GO TO TEST
+                          LIST EXAMS
                         </Button>
                       }
                       <Button

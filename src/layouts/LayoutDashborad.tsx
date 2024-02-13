@@ -138,10 +138,10 @@ const menuItems = [
   { title: 'Tests (Skills)', icon: <LaptopChromebookIcon />, path: '/books' },
   { title: 'Speaking', icon: <KeyboardVoiceIcon />, path: '/speaking' },
   { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders' },
-  { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
+  // { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
   { title: 'Tickets', icon: <ConfirmationNumberIcon />, path: '/tickets' },
   { title: 'Exams', icon: <RocketIcon />, path: '/exams' },
-  { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
+  // { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
 ]
 
 const footerMenuItems = [

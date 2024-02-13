@@ -83,7 +83,7 @@ const index = () => {
 
   const [test_id, setTest_id] = useState<any>('')
 
-  const { refetch: refetchGetAnswer, isLoading, isSuccess } = useGetAnswer()
+  const { refetch: refetchGetAnswer, data: dataGetAnswer ,isLoading, isSuccess } = useGetAnswer()
 
   const postAnswer = useQuery({
     enabled: false,
@@ -187,6 +187,10 @@ const index = () => {
       dispatch(setCurrentQuestion(+currentQuestion + 1))
     }
   }
+
+  useEffect(() => {
+    console.log(dataGetAnswer)
+  }, [])
 
   return (
     <>
