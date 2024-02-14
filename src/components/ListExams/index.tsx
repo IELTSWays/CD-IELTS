@@ -88,6 +88,12 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     refetchGetStart() && navigate(`/IELTS/${skillExam}`)
   }
 
+  data?.sort(function (a: any, b: any) {
+    var c: any = new Date(a.created_at);
+    var d: any = new Date(b.created_at);
+    return d - c;
+  });
+
   return (
     <Grid item xs={4} sm={8} md={6}>
       <Card variant="outlined">
