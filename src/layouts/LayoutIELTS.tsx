@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // mtu
+import Button from '@mui/material/Button';
 import WifiIcon from '@mui/icons-material/Wifi';
 import ForumIcon from '@mui/icons-material/Forum';
 import VideocamIcon from '@mui/icons-material/Videocam';
@@ -42,7 +42,7 @@ const LayoutIELTS = ({ children }: any) => {
         <div className="ielts-container">
           <div className='justify-content-space-between'>
             <div className="d-flex">
-              <img src={Logo} alt="ielts" height={40} className='pointer' onClick={() => navigate("/")} />
+              <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
                 <div style={{ width: '170px' }}>{timer}</div>
                 <div className="d-flex ml-20">
@@ -52,17 +52,19 @@ const LayoutIELTS = ({ children }: any) => {
               </div>
             </div>
 
-            <button onClick={() => refetch()}> FINISH </button>
+            <Button variant="outlined" onClick={() => refetch()} size="small">
+              FINISH
+            </Button>
 
             <div className='align-items-center g-20'>
               {location.pathname.includes('writing') &&
                 writingSaved === 'true' && 'Saved'
               }
-              <WifiIcon color="action" fontSize="large" />
-              <NotificationsNoneIcon color="action" fontSize="large" />
+              <WifiIcon color="action" fontSize="medium" />
+              <NotificationsNoneIcon color="action" fontSize="medium" />
               <ModalOptions />
-              <ForumIcon color="action" fontSize="large" />
-              <EditCalendarIcon color="action" fontSize="large" />
+              <ForumIcon color="action" fontSize="medium" />
+              <EditCalendarIcon color="action" fontSize="medium" />
             </div>
           </div>
         </div>
@@ -78,9 +80,9 @@ const LayoutIELTS = ({ children }: any) => {
             </div>
             <div className='align-items-center g-20'>
               <div><strong>{timeNow}</strong></div>
-              <BatteryChargingFullIcon color="action" fontSize="large" sx={{ rotate: '90deg' }} />
+              <BatteryChargingFullIcon color="action" fontSize="medium" sx={{ rotate: '90deg' }} />
               <div className='ielts-footer-btn'>
-                <WifiIcon color="action" fontSize="large" />
+                <WifiIcon color="action" fontSize="medium" />
               </div>
               {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                 listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} />

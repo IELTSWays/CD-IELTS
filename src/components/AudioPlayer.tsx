@@ -138,17 +138,17 @@ export const AudioPlayer = ({ songs }: any) => {
 
       <div className='ielts-footer-btn' onClick={pausePlay}>
         {playerState.isPlaying ? (
-          <PauseIcon color="action" fontSize="large" />
+          <PauseIcon color="action" fontSize="small" />
         ) : (
-          <PlayArrowIcon color="action" fontSize="large" />
+          <PlayArrowIcon color="action" fontSize="small" />
         )}
       </div>
 
       <div className='ielts-footer-btn relative'>
         <span className="d-flex" onClick={() => setShowVolume(!showVolume)}>
-          {playerState.volume == 0 && <VolumeMuteIcon color="action" fontSize="large" />}
-          {playerState.volume > 0 && playerState.volume < 50 && <VolumeDownIcon color="action" fontSize="large" />}
-          {playerState.volume >= 50 && <VolumeUpIcon color="action" fontSize="large" />}
+          {playerState.volume == 0 && <VolumeMuteIcon color="action" fontSize="small" />}
+          {playerState.volume > 0 && playerState.volume < 50 && <VolumeDownIcon color="action" fontSize="small" />}
+          {playerState.volume >= 50 && <VolumeUpIcon color="action" fontSize="small" />}
         </span>
         {showVolume &&
           <Box sx={{ width: 150 }} className="volume-controller">

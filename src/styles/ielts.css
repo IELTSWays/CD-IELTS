@@ -182,26 +182,26 @@ html.ielts {
 }
 
 .ielts-container.full-w {
-  height: calc(100vh - 390px);
+  height: calc(100vh - 320px);
   overflow-y: scroll;
 }
 
 .ielts-header {
-  padding: 20px 0;
+  padding: 10px 0;
   border-bottom: 3px solid var(--color-02);
 }
 
 .ielts-footer {
-  padding: 20px 0;
-  font-size: 23px;
+  padding: 10px 0;
+  font-size: 18px;
   background: var(--color-05);
   border-top: 3px solid var(--color-04);
 }
 
 .ielts-title {
   background: var(--color-03);
-  padding: 20px;
-  margin: 20px 0;
+  padding: 10px 20px;
+  margin: 10px 0;
   border-radius: 5px;
   border: 3px solid var(--color-02);
 }
@@ -214,7 +214,7 @@ html.ielts {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  height: 47px;
+  height: 34px;
   cursor: pointer;
 }
 
@@ -244,14 +244,14 @@ html.ielts {
 }
 
 .ielts-main {
-  height: calc(100vh - 195px);
+  height: calc(100vh - 125px);
 }
 
 /* ielts-navigation */
 .ielts-navigation {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 15px 0;
   overflow-x: scroll;
 }
 
