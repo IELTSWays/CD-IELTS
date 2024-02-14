@@ -123,6 +123,10 @@ export const AudioPlayer = ({ songs }: any) => {
     return () => { };
   }, [player, playNext, setPlayerState]);
 
+  useEffect(() => {
+    play()
+  }, [])
+
   return (
     <>
       <>

@@ -30,15 +30,11 @@ const LayoutIELTS = ({ children }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { data, isError, refetch } = usePostTestDone()
+  const { refetch } = usePostTestDone()
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
-
-  useEffect(() => {
-    console.log(data, isError)
-  }, [data])
 
   return (
     <html data-theme='light' className='ielts'>
