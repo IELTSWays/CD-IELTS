@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { HashLink } from 'react-router-hash-link';
 
 // mtu
 import Button from '@mui/material/Button';
@@ -115,7 +116,7 @@ const ListBooks = () => {
               <ToggleButtonGroup
                 value={item}
                 exclusive
-                sx={{ width: '100%', display: 'flex' , mb: 1.5 }}
+                sx={{ width: '100%', display: 'flex', mb: 1.5 }}
                 onChange={handleItem}
               >
                 {i.tests.map((j) => (
@@ -126,15 +127,17 @@ const ListBooks = () => {
                   </ToggleButton>
                 ))}
               </ToggleButtonGroup>
-              <Button
-                fullWidth
-                variant="contained"
-                color="success"
-                sx={{ visibility: i.tests.findIndex(x => x.id == cart?.id) === -1 ? 'hidden' : 'visible' }}
-              >
-                { /w/i.test(cart.id) ? 'Select Marker' : 'Select Type'}
-                
-              </Button>
+              <HashLink smooth to={ /w/i.test(cart.id) ? '#selectMarker' : '#selectExamType'}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="success"
+                  sx={{ visibility: i.tests.findIndex(x => x.id == cart?.id) === -1 ? 'hidden' : 'visible' }}
+                >
+                  {/w/i.test(cart.id) ? 'Select Marker' : 'Select Type'}
+
+                </Button>
+              </HashLink>
             </CardContent>
           </>
         </Card>

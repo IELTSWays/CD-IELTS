@@ -305,8 +305,8 @@ main.css-zxdg2z {
   fill: #00000042 !important;
 }
 
-#book-item .MuiButtonBase-root:hover,
-#book-item .MuiButtonBase-root.Mui-selected {
+#book-item .MuiToggleButtonGroup-root .MuiButtonBase-root:hover,
+#book-item .MuiToggleButtonGroup-root .MuiButtonBase-root.Mui-selected {
   background-color: var(--red-700);
 }
 

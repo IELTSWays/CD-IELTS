@@ -102,7 +102,7 @@ const Books = () => {
       </Grid>
 
       {cart.id?.search('W') > 0 &&
-        <Card variant="outlined" sx={{ py: 3, px: 2, my: 3, width: '100%' }}>
+        <Card variant="outlined" sx={{ py: 3, px: 2, my: 3, width: '100%' }} id="selectMarker">
           <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <Avatar sx={{ bgcolor: red[700] }}>
               <DriveFileRenameOutlineIcon />
@@ -245,7 +245,7 @@ const Books = () => {
 
       {
         cart.id &&
-        <Card variant="outlined" sx={{ py: 3, px: 2, width: '100%' }}>
+        <Card variant="outlined" sx={{ py: 3, px: 2, width: '100%' }} id="selectExamType">
           <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <Avatar sx={{ bgcolor: red[700] }}>
               <SourceIcon />
