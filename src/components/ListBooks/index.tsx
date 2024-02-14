@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 // mtu
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -52,6 +53,8 @@ const ListBooks = () => {
   const handleChange = (event: any) => {
     setCoverBook(event.target.checked);
   };
+
+  console.log(cart, List.data)
 
   return <>
 
@@ -108,11 +111,11 @@ const ListBooks = () => {
                 ({i.type})
               </Typography>
             </CardContent>
-            <CardContent className="justify-content-space-between">
+            <CardContent className="justify-content-space-between flex-col">
               <ToggleButtonGroup
                 value={item}
                 exclusive
-                sx={{ width: '100%', display: 'flex' }}
+                sx={{ width: '100%', display: 'flex' , mb: 1.5 }}
                 onChange={handleItem}
               >
                 {i.tests.map((j) => (
@@ -123,6 +126,15 @@ const ListBooks = () => {
                   </ToggleButton>
                 ))}
               </ToggleButtonGroup>
+              <Button
+                fullWidth
+                variant="contained"
+                color="success"
+                sx={{ visibility: i.tests.findIndex(x => x.id == cart?.id) === -1 ? 'hidden' : 'visible' }}
+              >
+                { /w/i.test(cart.id) ? 'Select Marker' : 'Select Type'}
+                
+              </Button>
             </CardContent>
           </>
         </Card>
