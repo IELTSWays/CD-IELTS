@@ -21,9 +21,9 @@ const index = ({ id }: any) => {
     enabled: false,
     queryKey: ['postAnswer'],
     queryFn: async () => {
-      const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
+      const response = await axiosInstance.patch(`exam/answer-writing/${localStorage.getItem('test_id')}`, {
         "test_done": false,
-        "answers": { '00002': inputText },
+        "task2": inputText,
       })
       const data = await response.data
       return data
