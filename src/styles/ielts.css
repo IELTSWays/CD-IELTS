@@ -78,19 +78,19 @@ html[data-theme="sunset"] {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  height: calc(100vh - 390px);
+  height: calc(100vh - 310px);
 }
 
 .splitView .left {
   overflow-y: scroll;
   padding-right: 10px;
-  height: calc(100vh - 390px);
+  height: calc(100vh - 310px);
 }
 
 .splitView .right {
   overflow-y: scroll;
   padding: 0 32px;
-  height: calc(100vh - 390px);
+  height: calc(100vh - 310px);
 }
 
 .divider::after {

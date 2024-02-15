@@ -60,7 +60,7 @@ const LayoutIELTS = ({ children }: any) => {
               {location.pathname.includes('writing') &&
                 writingSaved === 'true' && 'Saved'
               }
-              <WifiIcon color="action" fontSize="medium" />
+              <WifiIcon color="action" fontSize="small" />
               <NotificationsNoneIcon color="action" fontSize="medium" />
               <ModalOptions />
               <ForumIcon color="action" fontSize="medium" />
