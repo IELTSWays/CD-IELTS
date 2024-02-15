@@ -147,7 +147,7 @@ export const SplitView: React.FunctionComponent<SplitViewProps> = ({
             {left}
           </span>
         </span>
-        <Popper
+        {/* <Popper
           id={id}
           open={open}
           anchorEl={anchorEl}
@@ -169,7 +169,7 @@ export const SplitView: React.FunctionComponent<SplitViewProps> = ({
             </Paper>
             </Fade>
           )}
-        </Popper>
+        </Popper> */}
       </LeftPane>
       <div
         className="divider-hitbox"
