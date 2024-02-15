@@ -27,13 +27,13 @@ const questions = [
 ]
 
 const options = [
-  { label: 'A', value: "A", },
-  { label: 'B', value: "B", },
-  { label: 'C', value: "C", },
-  { label: 'D', value: "D", },
-  { label: 'E', value: "E", },
-  { label: 'F', value: "F", },
-  { label: 'G', value: "G", },
+  { label: 'A', value: "a", },
+  { label: 'B', value: "b", },
+  { label: 'C', value: "c", },
+  { label: 'D', value: "d", },
+  { label: 'E', value: "e", },
+  { label: 'F', value: "f", },
+  { label: 'G', value: "g", },
 ];
 
 const index = () => {
