@@ -34,9 +34,9 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { label: t('00068'), value: "A", },
-    { label: t('00069'), value: "B", },
-    { label: t('00070'), value: "C", },
+    { label: t('00068'), value: "a", },
+    { label: t('00069'), value: "b", },
+    { label: t('00070'), value: "c", },
   ];
 
   const [flag, setFlag] = useState(flags['25'])
@@ -107,7 +107,7 @@ const index = ({ qn }: any) => {
         </div>
       </div>
       <Paper elevation={0}>
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" className="ielts-checkbox">
           <FormControl>
             <RadioGroup
               value={answer}

@@ -368,7 +368,7 @@ html.ielts {
   margin-right: 15px;
 }
 
-.navigation-part-items [data-answer = 'answered'] {
+.navigation-part-items [data-answer="answered"] {
   border-top-color: green !important;
 }
 
@@ -1037,9 +1037,8 @@ td {
   }
 }
 
-
 /* accordion */
-.ielts-container .css-ee20y-MuiPaper-root{
+.ielts-container .css-ee20y-MuiPaper-root {
   background: transparent !important;
 }
 
@@ -1048,15 +1047,16 @@ td {
 }
 
 .ielts-container .MuiAccordionSummary-root {
-  background-color: #F7F7F7 !important;
+  background-color: #f7f7f7 !important;
 }
 
-.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper{
-  transform: 'rotate(190deg)' !important;
+.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  transform: "rotate(190deg)" !important;
 }
 
-.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
-  transform: 'rotate(290deg)' !important;
+.ielts-container
+  .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: "rotate(290deg)" !important;
 }
 
 .ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root {
@@ -1064,19 +1064,22 @@ td {
   margin-bottom: 15px;
 }
 
-.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
-  border-bottom: 0,
+.ielts-container
+  .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
+  border-bottom: 0;
 }
 
-.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root::before {
-  display: 'none',
+.ielts-container
+  .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root::before {
+  display: "none";
 }
 
 .ielts-container .MuiAccordionSummary-root svg {
   font-size: 14px !important;
 }
 
-.ielts-container .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+.ielts-container
+  .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
   transform: rotate(90deg) !important;
 }
 
@@ -1089,4 +1092,39 @@ td {
 
 .flag.active {
   visibility: visible;
+}
+
+/* add alphabet to list */
+.ielts-checkbox .MuiPaper-elevation {
+  counter-increment: alphabet;
+}
+
+.ielts-checkbox .MuiPaper-elevation label:before {
+  content: counter(alphabet, upper-alpha);
+  padding: 0 10px
+}
+
+.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(1):before {
+  content: "A";
+  padding: 0 10px
+}
+
+.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(2):before {
+  content: "B";
+  padding: 0 10px
+}
+
+.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(3):before {
+  content: "C";
+  padding: 0 10px
+}
+
+.dragbox-container ul {
+  counter-increment: alphabet;
+}
+
+.dragbox-container ul .MuiPaper-elevation:before {
+  content: counter(alphabet, upper-alpha);
+  padding-left: 5px;
+  padding-right: 10px
 }

@@ -69,7 +69,7 @@ const index = ({ qn }: any) => {
         </div>
       </div>
       <Paper elevation={0}>
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" className="ielts-checkbox">
           <FormControl>
             <RadioGroup
               value={answer}

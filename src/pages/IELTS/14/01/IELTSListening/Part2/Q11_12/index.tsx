@@ -95,22 +95,24 @@ const index = ({ qn }: any) => {
           {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </div>
-      {checkList.map((item, index) => (
-        <Paper elevation={0} key={index}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                name={(item)}
-                checked={checked?.includes(item)}
-                value={item}
-                onChange={handleCheck}
-                onClick={() => dispatch(setCurrentQuestion(11))}
-              />
-            }
-            label={item}
-          />
-        </Paper>
-      ))}
+      <div className="ielts-checkbox">
+        {checkList.map((item, index) => (
+          <Paper elevation={0} key={index}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name={(item)}
+                  checked={checked?.includes(item)}
+                  value={item}
+                  onChange={handleCheck}
+                  onClick={() => dispatch(setCurrentQuestion(11))}
+                />
+              }
+              label={item}
+            />
+          </Paper>
+        ))}
+      </div>
     </Stack>
   )
 };

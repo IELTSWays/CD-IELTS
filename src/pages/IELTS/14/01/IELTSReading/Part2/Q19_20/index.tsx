@@ -121,7 +121,7 @@ const index = ({ qn }: any) => {
             </Typography>
           </Paper>
         </AccordionSummary>
-        <div className="p-20">
+        <div className="p-20 ielts-checkbox">
           {checkList.map((item, index) => (
             <Paper elevation={0} key={index}>
               <FormControlLabel
