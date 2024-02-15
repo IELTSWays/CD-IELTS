@@ -49,9 +49,9 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
 
   const options = [
-    { label: 'TRUE', value: "A", },
-    { label: 'FALSE', value: "B", },
-    { label: 'NOT GIVEN', value: "C", },
+    { label: 'YES', value: "a", },
+    { label: 'NO', value: "b", },
+    { label: 'NOT GIVEN', value: "c", },
   ];
 
   const [flag, setFlag] = useState(flags['34'])
