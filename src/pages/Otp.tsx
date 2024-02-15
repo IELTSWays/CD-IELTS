@@ -141,7 +141,7 @@ const Otp = () => {
               {step === 3 && "Change Number"}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {step === 0 && "The code will be sent via SMS, Telegram, Whatsapp"}
+              {step === 0 && "The code will be sent via SMS"}
               {step === 3 && "Enter your number"}
             </Typography>
           </CardContent>

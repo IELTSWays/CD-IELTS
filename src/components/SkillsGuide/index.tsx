@@ -95,9 +95,9 @@ const SkillsGuide = () => {
                     <HeadphonesIcon />
                   </Avatar>
                 }
-                action={
-                  <Chip label="9,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
-                }
+                // action={
+                //   <Chip label="9,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
+                // }
                 titleTypographyProps={{ variant: 'h6' }}
                 title="Listening"
               />
@@ -133,9 +133,9 @@ const SkillsGuide = () => {
                     <LibraryBooksIcon />
                   </Avatar>
                 }
-                action={
-                  <Chip label="8,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
-                }
+                // action={
+                //   <Chip label="8,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
+                // }
                 titleTypographyProps={{ variant: 'h6' }}
                 title="Reading"
               />
@@ -173,9 +173,9 @@ const SkillsGuide = () => {
                     <BorderColorIcon />
                   </Avatar>
                 }
-                action={
-                  <Chip label="9,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
-                }
+                // action={
+                //   <Chip label="9,000,000, IRR" sx={{ mt: 1.5, gap: 1 }} />
+                // }
                 titleTypographyProps={{ variant: 'h6' }}
                 title="Writing"
               />

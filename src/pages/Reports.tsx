@@ -136,7 +136,7 @@ const Reports = () => {
           }
         </Grid>
 
-        {fullReport &&
+        {!fullReport &&
           <>
             <Grid item xs={4} sm={4} md={8}>
               <Card variant="outlined">
