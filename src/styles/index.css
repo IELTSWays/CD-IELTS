@@ -528,3 +528,33 @@ ul#list-red-bullet li::before {
   width: 330px;
   margin: auto;
 }
+
+/* server */
+.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-md-5.css-1r8hca2 {
+  width: unset !important;
+  margin-left: unset !important;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.css-zmnxdm {
+  background-color: transparent;
+}
+
+.ielts-container.MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
+  border-bottom: unset !important;
+}
+
+.ielts-container .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root.css-1wh7kkw {
+  width: 100% !important;
+}
+
+.ielts-container .MuiAccordionSummary-content > .MuiTypography-root.MuiTypography-body1 {
+  align-items: center;
+}
+
+.ielts-container .MuiFormGroup-root.MuiFormGroup-row.css-p58oka .MuiFormGroup-root.css-1h7anqn {
+  flex-flow: row !important
+}
+
+.ielts-container .MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked .MuiRadio-root.MuiRadio-colorPrimary.css-1a5icme {
+  display: none !important
+}

@@ -330,7 +330,7 @@ html.ielts {
   border-top: 3px solid var(--color-06);
   padding: 10px 0px;
   margin-top: 5px;
-  width: 27px;
+  width: 26px;
   text-align: center;
 }
 
@@ -802,6 +802,7 @@ td {
 
 .ielts-answersTable .css-dmmspl-MuiFormGroup-root {
   flex-direction: row;
+  width: 350px !important;
 }
 
 .ielts-answersTable .question-now {
@@ -851,8 +852,8 @@ td {
 /* arrow-currentQuestion */
 .arrow-currentQuestion {
   position: fixed;
-  right: 100px;
-  bottom: 200px;
+  right: 50px;
+  bottom: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -860,8 +861,8 @@ td {
 }
 
 .arrow-currentQuestion > div {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background: var(--color-09);
   margin: 2px;
   border-radius: 5px;
@@ -879,7 +880,7 @@ td {
 }
 
 .arrow-currentQuestion img {
-  width: 40px;
+  width: 25px;
   margin: auto;
 }
 
