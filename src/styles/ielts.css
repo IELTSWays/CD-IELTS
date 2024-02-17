@@ -182,7 +182,7 @@ html.ielts {
 }
 
 .ielts-container.full-w {
-  height: calc(100vh - 320px);
+  height: calc(100vh - 266px);
   overflow-y: scroll;
 }
 
@@ -273,15 +273,14 @@ html.ielts {
 }
 
 .ielts-main {
-  height: calc(100vh - 125px);
+  height: calc(100vh - 122px);
 }
 
 /* ielts-navigation */
 .ielts-navigation {
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .ielts-navigation > div {
@@ -299,12 +298,12 @@ html.ielts {
 
 .navigation-part-title {
   border-top: 3px solid var(--color-01);
-  padding: 10px 30px;
+  padding: 5px;
   margin-top: 5px;
   display: flex;
   align-items: center;
   color: var(--color-07);
-  font-size: 20px;
+  font-size: 15px;
   white-space: nowrap;
   display: none;
 }
@@ -319,7 +318,7 @@ html.ielts {
 .navigation-part-items {
   padding-left: 5px;
   display: flex;
-  gap: 5px;
+  gap: 3px;
   visibility: hidden;
 }
 
@@ -329,9 +328,9 @@ html.ielts {
 
 .navigation-part-items > div {
   border-top: 3px solid var(--color-06);
-  padding: 15px 0px;
+  padding: 10px 0px;
   margin-top: 5px;
-  width: 33px;
+  width: 27px;
   text-align: center;
 }
 
@@ -347,6 +346,7 @@ html.ielts {
   border-radius: 2.5px;
   cursor: pointer;
   position: relative;
+  font-size: 13px;
 }
 
 .navigation-part-items > div span svg {
@@ -371,7 +371,7 @@ html.ielts {
   align-items: center;
   padding-top: 5px;
   color: var(--color-04);
-  font-size: 20px;
+  font-size: 15px;
   position: absolute;
   width: 100%;
   justify-content: center;
