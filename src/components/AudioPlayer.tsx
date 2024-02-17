@@ -14,7 +14,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 const getTime = (seconds: number) =>
   !seconds ? "00:00" : new Date(seconds * 1000).toISOString().slice(14, 19);
 
-export const AudioPlayer = ({ songs }: any) => {
+export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
 
   const [showVolume, setShowVolume] = useState(false);
 
@@ -37,11 +37,13 @@ export const AudioPlayer = ({ songs }: any) => {
   const pause = () => {
     player.current.pause();
     setPlayerState({ isPlaying: false });
+    onPlayStatusChange(false);
   };
 
   const play = () => {
     player.current.play();
     setPlayerState({ isPlaying: true });
+    onPlayStatusChange(true);
   };
 
   const pausePlay = () => {

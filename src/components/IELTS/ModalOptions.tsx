@@ -62,7 +62,7 @@ const ModalOptions = () => {
 
   return (
     <>
-      <ReorderIcon color="action" fontSize="large" sx={{ cursor: "pointer" }} onClick={handleClickOpen} />
+      <ReorderIcon color="action" fontSize="small" sx={{ cursor: "pointer" }} onClick={handleClickOpen} />
       <BootstrapDialog
         onClose={handleClose}
         open={open}

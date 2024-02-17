@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // mtu
 import Button from '@mui/material/Button';
 import WifiIcon from '@mui/icons-material/Wifi';
 import ForumIcon from '@mui/icons-material/Forum';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -36,6 +38,12 @@ const LayoutIELTS = ({ children }: any) => {
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
 
+  const [isPlaying, setIsPlaying] = useState('')
+
+  function handlePlayStatusChange(isPlaying: any) {
+    setIsPlaying(isPlaying);
+  }
+
   return (
     <html data-theme='light' className='ielts'>
       <div className="ielts-header">
@@ -45,9 +53,22 @@ const LayoutIELTS = ({ children }: any) => {
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
                 <div style={{ width: '170px' }}>{timer}</div>
-                <div className="d-flex ml-20">
-                  <VideocamIcon sx={{ mx: 0.5 }} />
-                  Live proctoring started
+
+
+                <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
+                  {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                    <>
+                      <VolumeUpIcon sx={{ mx: 0.5 }} fontSize="small" />
+                      Audio is playing
+                    </>
+                  }
+
+                  {(location.pathname.includes('Reading') || location.pathname.includes('reading')) &&
+                    <>
+                      <VideocamIcon sx={{ mx: 0.5 }} fontSize="small"  />
+                      Live proctoring started
+                    </>
+                  }
                 </div>
               </div>
             </div>
@@ -61,10 +82,10 @@ const LayoutIELTS = ({ children }: any) => {
                 writingSaved === 'true' && 'Saved'
               }
               <WifiIcon color="action" fontSize="small" />
-              <NotificationsNoneIcon color="action" fontSize="medium" />
-              <ModalOptions />
-              <ForumIcon color="action" fontSize="medium" />
-              <EditCalendarIcon color="action" fontSize="medium" />
+              <NotificationsNoneIcon color="action" fontSize="small" />
+              <ModalOptions fontSize="small"/>
+              <ForumIcon color="action" fontSize="small" />
+              <EditCalendarIcon color="action" fontSize="small" />
             </div>
           </div>
         </div>
@@ -80,12 +101,12 @@ const LayoutIELTS = ({ children }: any) => {
             </div>
             <div className='align-items-center g-20'>
               <div><strong>{timeNow}</strong></div>
-              <BatteryChargingFullIcon color="action" fontSize="medium" sx={{ rotate: '90deg' }} />
+              <BatteryChargingFullIcon color="action" fontSize="small" sx={{ rotate: '90deg' }} />
               <div className='ielts-footer-btn'>
-                <WifiIcon color="action" fontSize="medium" />
+                <WifiIcon color="action" fontSize="small" />
               </div>
               {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
-                listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} />
+                listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
               }
               <div className='ielts-footer-btn'>
                 Exit
