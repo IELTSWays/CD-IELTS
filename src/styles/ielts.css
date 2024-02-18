@@ -78,19 +78,19 @@ html[data-theme="sunset"] {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  height: calc(100vh - 310px);
+  height: calc(100vh - 266px);
 }
 
 .splitView .left {
   overflow-y: scroll;
   padding-right: 10px;
-  height: calc(100vh - 310px);
+  height: calc(100vh - 266px);
 }
 
 .splitView .right {
   overflow-y: scroll;
   padding: 0 32px;
-  height: calc(100vh - 310px);
+  height: calc(100vh - 266px);
 }
 
 .divider::after {
@@ -250,7 +250,7 @@ html.ielts {
 .ielts-footer-btn .volume-controller .css-eg0mwd-MuiSlider-thumb::after {
   width: 25px;
   height: 40px;
-  content: '';
+  content: "";
   position: absolute;
   left: 8px;
   top: 22px;
@@ -263,7 +263,9 @@ html.ielts {
 }
 
 .ielts-footer-btn .volume-controller .css-eg0mwd-MuiSlider-thumb:hover,
-.ielts-footer-btn .volume-controller  .css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
+.ielts-footer-btn
+  .volume-controller
+  .css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
   box-shadow: unset !important;
 }
 
@@ -640,6 +642,23 @@ html.ielts {
 }
 
 /* text-field */
+.ielts-question-textfield {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ielts-question-textfield .flag {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.css-1rv3ei8-MuiFormControl-root-MuiTextField-root {
+  margin: 8px !important;
+}
+
 .ielts-container .MuiInputBase-input {
   padding: 5px 10px !important;
   width: 180px !important;
@@ -785,14 +804,8 @@ td {
 }
 
 .ielts-paragraph {
-  font-size: 13px !important;
-}
-
-.ielts-paragraph::before {
-  content: " ";
-  width: 200px;
-  display: flex;
   border-top: 1.5px solid var(--color-07);
+  font-size: 12px !important;
 }
 
 /* answersTable */
@@ -1118,6 +1131,7 @@ td {
   cursor: pointer;
   width: 15px;
   visibility: hidden;
+  padding: 0 10px;
 }
 
 .flag.active {
@@ -1131,22 +1145,22 @@ td {
 
 .ielts-checkbox .MuiPaper-elevation label:before {
   content: counter(alphabet, upper-alpha);
-  padding: 0 10px
+  padding: 0 10px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(1):before {
   content: "A";
-  padding: 0 10px
+  padding: 0 10px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(2):before {
   content: "B";
-  padding: 0 10px
+  padding: 0 10px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(3):before {
   content: "C";
-  padding: 0 10px
+  padding: 0 10px;
 }
 
 .dragbox-container ul {
@@ -1156,5 +1170,5 @@ td {
 .dragbox-container ul .MuiPaper-elevation:before {
   content: counter(alphabet, upper-alpha);
   padding-left: 5px;
-  padding-right: 10px
+  padding-right: 10px;
 }

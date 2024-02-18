@@ -53,7 +53,7 @@ const index = ({ qn }: any) => {
           <Stack direction="row" alignItems="center">
             <div className={`text-field ${currentQuestion == qn && 'active'}`}>
               <TextField
-                autoComplete="false"
+                autoComplete='off'
                 margin="normal"
                 placeholder={qn}
                 value={answer}

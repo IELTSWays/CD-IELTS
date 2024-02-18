@@ -67,7 +67,7 @@ const index = ({ qn }: any) => {
                 <Typography sx={{ pr: 1 }}>£</Typography>
                 <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                   <TextField
-                    autoComplete="false"
+                    autoComplete='off'
                     margin="normal"
                     placeholder={qn}
                     value={answer}
