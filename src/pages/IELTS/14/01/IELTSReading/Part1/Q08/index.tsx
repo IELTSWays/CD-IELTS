@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 // mtu
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -37,41 +34,20 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <Stack
-      spacing={{ xs: 1, sm: 2 }}
-      direction="row"
-      useFlexGap
-      flexWrap="wrap"
-      sx={{ alignItems: 'center', justifyContent: 'space-between', py: 1 }}
-      id={`q-${qn}`}
-    >
-      <div className="d-flex">
-
-        <Paper elevation={0} sx={{ width: '15px' }}>
-          <Typography>●</Typography>
-        </Paper>
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
-            <Typography sx={{ pr: 1 }}>
-              research needs to study the impact of play on the rest of the child’s
-            </Typography>
-            <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-              <TextField
-                autoComplete='off'
-                margin="normal"
-                placeholder={qn}
-                value={answer}
-                onChange={(e) => answerHandler(e)}
-                onClick={() => dispatch(setCurrentQuestion(qn))}
-              />
-            </div>
-          </Stack>
-        </Paper>
-      </div>
+    <div className="ielts-question-textfield" id={`q-${qn}`}>
+      <span>● research needs to study the impact of play on the rest of the child’s</span>
+      <TextField
+        autoComplete='off'
+        margin="normal"
+        placeholder={qn}
+        value={answer}
+        onChange={(e) => answerHandler(e)}
+        onClick={() => dispatch(setCurrentQuestion(qn))}
+      />
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>
-    </Stack>
+    </div>
   );
 };
 

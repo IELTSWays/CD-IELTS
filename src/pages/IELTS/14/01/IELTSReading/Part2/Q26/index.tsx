@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 // mtu
-import Stack from "@mui/material/Stack";
-import Paper from "@mui/material/Paper";
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -37,40 +34,36 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <div className="d-flex">
-      <Stack
-        spacing={{ xs: 1, sm: 2 }}
-        direction="row"
-        useFlexGap
-        flexWrap="wrap"
-        sx={{ alignItems: 'center', py: 1 }}
-        id={`q-${qn}`}
-      >
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center" sx={{ flexWrap: 'wrap' }}>
-            <Typography sx={{ pr: 1, py: 1 }}>
-              However, the scheme was not a great success: almost as quickly as Provo left the bikes around the city, the
-            </Typography>
-            <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-              <TextField
-                autoComplete='off'
-                margin="normal"
-                placeholder={qn}
-                value={answer}
-                onChange={(e) => answerHandler(e)}
-                onClick={() => dispatch(setCurrentQuestion(qn))}
-              />
-            </div>
-            <Typography sx={{ pl: 1, py: 1 }}>
-              Took them away. According to Schimmelpennink, the scheme was intended to be symbolic. The idea was to get people thinking about the issues.
-            </Typography>
-          </Stack>
-        </Paper>
-      </Stack>
-      <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 26 && 'active'}`}>
-        {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+    <>
+      <div className="ielts-question-textfield" id={`q-${qn}`}>
+        <span> However, the scheme was not a great success:</span>
+        <span> almost as quickly as Provo left the bikes around the city, the </span>
+        <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+          <TextField
+            autoComplete='off'
+            margin="normal"
+            placeholder={qn}
+            value={answer}
+            onChange={(e) => answerHandler(e)}
+            onClick={() => dispatch(setCurrentQuestion(qn))}
+          />
+        </div>
+        <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 26 && 'active'}`}>
+          {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+        </div>
       </div>
-    </div>
+      <div>
+        <span>
+          Took them away. According to Schimmelpennink,
+        </span>
+        <span>
+          the scheme was intended to be symbolic.
+        </span>
+        <span>
+          The idea was to get people thinking about the issues.
+        </span>
+      </div>
+    </>
   );
 };
 

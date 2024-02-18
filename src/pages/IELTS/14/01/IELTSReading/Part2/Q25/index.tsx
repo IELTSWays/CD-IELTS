@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 // mtu
-import Stack from "@mui/material/Stack";
-import Paper from "@mui/material/Paper";
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -37,36 +34,24 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <div className="d-flex">
-      <Stack
-        spacing={{ xs: 1, sm: 2 }}
-        direction="row"
-        useFlexGap
-        flexWrap="wrap"
-        sx={{ alignItems: 'center', py: 1 }}
-        id={`q-${qn}`}
-      >
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center" sx={{ flexWrap: 'wrap' }}>
-            <Typography sx={{ pr: 1, py: 1 }}>
-              and believed that the bike-sharing scheme would draw attention to these issues. As well as painting some bikes white, they handed out
-            </Typography>
-            <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-              <TextField
-                autoComplete='off'
-                margin="normal"
-                placeholder={qn}
-                value={answer}
-                onChange={(e) => answerHandler(e)}
-                onClick={() => dispatch(setCurrentQuestion(qn))}
-              />
-            </div>
-            <Typography sx={{ pl: 1, py: 1 }}>
-              that condemned the use of cars.
-            </Typography>
-          </Stack>
-        </Paper>
-      </Stack>
+    <div className="ielts-question-textfield" id={`q-${qn}`}>
+      <span>
+        and believed that the bike-sharing scheme would draw attention to these issues.
+      </span>
+      <div>
+        <span> As well as painting some bikes white, they handed out </span>
+      </div>
+      <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+        <TextField
+          autoComplete='off'
+          margin="normal"
+          placeholder={qn}
+          value={answer}
+          onChange={(e) => answerHandler(e)}
+          onClick={() => dispatch(setCurrentQuestion(qn))}
+        />
+      </div>
+      <span>that condemned the use of cars.</span>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 25 && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>

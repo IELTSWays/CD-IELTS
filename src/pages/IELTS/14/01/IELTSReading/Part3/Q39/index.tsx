@@ -69,26 +69,22 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <div className="align-items-start justify-content-space-between">
-      <div className="d-flex">
-        <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
-          They also found that the activities needed to fit with both the company’s
-        </Typography>
-        <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-          <TextField
-            autoComplete='off'
-            margin="normal"
-            placeholder={qn}
-            value={answer}
-            onChange={(e) => answerHandler(e)}
-            onClick={() => dispatch(setCurrentQuestion(qn))}
-          />
-        </div>
-      </div>
-      <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 39 && 'active'}`}>
-        {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
-      </div>
+    <div className="ielts-question-textfield" id={`q-${qn}`}>
+    <span> They also found that the activities needed to fit with both the company’s</span>
+    <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+      <TextField
+        autoComplete='off'
+        margin="normal"
+        placeholder={qn}
+        value={answer}
+        onChange={(e) => answerHandler(e)}
+        onClick={() => dispatch(setCurrentQuestion(qn))}
+      />
     </div>
+    <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 39 && 'active'}`}>
+      {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+    </div>
+  </div>
   );
 };
 

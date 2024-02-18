@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 // mtu
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -35,27 +34,25 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <div className="align-items-start justify-content-space-between">
-      <div className="d-flex">
-        <Typography sx={{ pr: 1, py: 1 }} id={`q-${qn}`}>
-          The first bike-sharing scheme was the idea of the Dutch group Provo. The people who belonged to this group were
-        </Typography>
-        <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-          <TextField
-            autoComplete='off'
-            margin="normal"
-            placeholder={qn}
-            value={answer}
-            onChange={(e) => answerHandler(e)}
-            onClick={() => dispatch(setCurrentQuestion(qn))}
-          />
-        </div>
+    <div className="ielts-question-textfield" id={`q-${qn}`}>
+      <span> The first bike-sharing scheme was the idea of the Dutch group Provo.</span>
+      <div>
+        <span> The people who belonged to this group were </span>
+      </div>
+      <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+        <TextField
+          autoComplete='off'
+          margin="normal"
+          placeholder={qn}
+          value={answer}
+          onChange={(e) => answerHandler(e)}
+          onClick={() => dispatch(setCurrentQuestion(qn))}
+        />
       </div>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 23 && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>
     </div>
-
   );
 };
 

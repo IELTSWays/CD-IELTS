@@ -69,27 +69,52 @@ const index = ({ qn }: any) => {
   }
 
   return (
-    <div className="align-items-start justify-content-space-between">
-      <div className="d-flex">
-        <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
-          and the
-        </Typography>
-        <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-          <TextField
-            autoComplete='off'
-            margin="normal"
-            placeholder={qn}
-            value={answer}
-            onChange={(e) => answerHandler(e)}
-            onClick={() => dispatch(setCurrentQuestion(qn))}
-          />
-        </div>
-        <Typography sx={{ pr: 1, py: 1 }}>
-          Of the staff. A balance was required between a degree of freedom and maintaining work standards.
-        </Typography>
+    // <div className="align-items-start justify-content-space-between">
+    //   <div className="d-flex">
+    //     <Typography sx={{ px: 1, py: 1 }} id={`q-${qn}`}>
+    //       and the
+    //     </Typography>
+    //     <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+    //       <TextField
+    //         autoComplete='off'
+    //         margin="normal"
+    //         placeholder={qn}
+    //         value={answer}
+    //         onChange={(e) => answerHandler(e)}
+    //         onClick={() => dispatch(setCurrentQuestion(qn))}
+    //       />
+    //     </div>
+    //     <Typography sx={{ pr: 1, py: 1 }}>
+    //       Of the staff. A balance was required between a degree of freedom and maintaining work standards.
+    //     </Typography>
+    //   </div>
+    //   <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 40 && 'active'}`}>
+    //     {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+    //   </div>
+    // </div>
+    <div className="ielts-question-textfield" id={`q-${qn}`}>
+      <span> and the</span>
+      <div className={`text-field ${currentQuestion == qn && 'active'}`}>
+        <TextField
+          autoComplete='off'
+          margin="normal"
+          placeholder={qn}
+          value={answer}
+          onChange={(e) => answerHandler(e)}
+          onClick={() => dispatch(setCurrentQuestion(qn))}
+        />
       </div>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 40 && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+      </div>
+      <span>Of the staff. </span>
+      <span>
+        A balance was required between
+      </span>
+      <div>
+        <span>
+          a degree of freedom and maintaining work standards.
+        </span>
       </div>
     </div>
   );

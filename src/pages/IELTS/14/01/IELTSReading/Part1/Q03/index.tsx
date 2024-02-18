@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 // mtu
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -35,58 +32,27 @@ const index = ({ qn }: any) => {
     setAnswer((e.target.value))
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00003': (e.target.value).trim().toLowerCase() })))
   }
-  
+
   return (
     <>
-      <Stack
-        spacing={{ xs: 1, sm: 2 }}
-        direction="row"
-        useFlexGap
-        flexWrap="wrap"
-        sx={{ alignItems: 'center', justifyContent: 'space-between', py: 1 }}
-        id={`q-${qn}`}
-      >
-        <div className="d-flex">
-          <Paper elevation={0} sx={{ width: '15px' }}>
-            <Typography>●</Typography>
-          </Paper>
-          <Paper elevation={0}>
-            <Stack direction="row" alignItems="center">
-              <Typography sx={{ pr: 1 }}>
-                population of
-              </Typography>
-              <div className={`text-field ${currentQuestion == qn && 'active'}`}>
-                <TextField
-                  autoComplete='off'
-                  margin="normal"
-                  placeholder={qn}
-                  value={answer}
-                  onChange={(e) => answerHandler(e)}
-                  onClick={() => dispatch(setCurrentQuestion(qn))}
-                />
-              </div>
-              <Typography sx={{ pl: 1 }}>
-                have grown
-              </Typography>
-            </Stack>
-          </Paper>
-        </div>
+      <div className="ielts-question-textfield" id={`q-${qn}`}>
+        <span>● population of</span>
+        <TextField
+          autoComplete='off'
+          margin="normal"
+          placeholder={qn}
+          value={answer}
+          onChange={(e) => answerHandler(e)}
+          onClick={() => dispatch(setCurrentQuestion(qn))}
+        />
+        <span>have grown</span>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
           {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
-      </Stack>
-      <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-        <Paper elevation={0} sx={{ width: '15px' }}>
-          <Typography>●</Typography>
-        </Paper>
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
-            <Typography sx={{ pr: 1 }}>
-              opportunities for free play are limited due to
-            </Typography>
-          </Stack>
-        </Paper>
-      </Stack>
+      </div>
+      <div>
+        <span>● opportunities for free play are limited due to</span>
+      </div>
     </>
   );
 };
