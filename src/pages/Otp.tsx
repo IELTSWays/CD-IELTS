@@ -78,6 +78,7 @@ const Otp = () => {
       setLoading(false);
       setCounter(watingTime);
       localStorage.setItem('token', response.data.data.access_token)
+      localStorage.setItem('is_profile_fill', response.data.data.is_profile_fill)
       navigate("/")
     } catch (error: any) {
       setLoading(false);

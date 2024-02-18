@@ -11,6 +11,7 @@ const useGetProfile = () => {
     queryFn: async () => {
       const response = await api.get('accounts/profile')
       const data = await response.data
+      localStorage.setItem('is_profile_fill', data.is_profile_fill)
       return data
     },
   })

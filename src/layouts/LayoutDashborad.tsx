@@ -131,25 +131,25 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const menuItems = [
-  
+
   { title: 'Dashboard', icon: <DashboardIcon />, path: '/' },
   { title: 'Profile', icon: <AccountCircleIcon />, path: '/profile' },
   { title: 'Guide', icon: <SupportIcon />, path: '/guide' },
-  { title: 'Tests (Skills)', icon: <LaptopChromebookIcon />, path: '/books' },
-  { title: 'Speaking', icon: <KeyboardVoiceIcon />, path: '/speaking' },
-  { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders' },
+  { title: 'Tests (Skills)', icon: <LaptopChromebookIcon />, path: '/books', ifProfileFill: true },
+  { title: 'Speaking', icon: <KeyboardVoiceIcon />, path: '/speaking', ifProfileFill: true },
+  { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders', ifProfileFill: true },
   // { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
-  { title: 'Tickets', icon: <ConfirmationNumberIcon />, path: '/tickets' },
-  { title: 'Exams', icon: <RocketIcon />, path: '/exams' },
+  { title: 'Tickets', icon: <ConfirmationNumberIcon />, path: '/tickets', ifProfileFill: true },
+  { title: 'Exams', icon: <RocketIcon />, path: '/exams', ifProfileFill: true },
   // { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
 ]
 
 const footerMenuItems = [
   { title: 'Profile', icon: <AccountCircleIcon />, path: '/profile' },
-  { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
-  { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders' },
-  { title: 'Tests', icon: <LaptopChromebookIcon />, path: '/books' },
   { title: 'Dashboard', icon: <DashboardIcon />, path: '/' },
+  { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders', ifProfileFill: true },
+  { title: 'Tests', icon: <LaptopChromebookIcon />, path: '/books', ifProfileFill: true },
+  { title: 'Exams', icon: <RocketIcon />, path: '/exams', ifProfileFill: true },
 ]
 
 const pageHeader = [
@@ -175,7 +175,7 @@ const pageHeader = [
     title: 'Tests (Skills)',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, expedita!',
     icon: iconBooks,
-    path: '/books'
+    path: '/books',
   },
   {
     title: 'Speaking',
@@ -226,7 +226,6 @@ const LayoutDashborad = ({ children }: any) => {
   }, [location.pathname]);
 
   const index = pageHeader.findIndex(x => x.path === pathPage);
-
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -281,8 +280,11 @@ const LayoutDashborad = ({ children }: any) => {
                     setPathPage(`${item.path}`)
                     navigate(`${item.path}`);
                   }}
+                  sx={{ pointerEvents: 'none', }}
                 >
-                  <IconButton sx={{ color: location.pathname === item.path && red[700] }}
+                  <IconButton
+                    disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}
+                    sx={{ color: location.pathname === item.path && red[700], pointerEvents: 'none',}}
                   >
                     {item.icon}
                   </IconButton>
@@ -318,6 +320,7 @@ const LayoutDashborad = ({ children }: any) => {
                     backgroundColor: location.pathname === item.path && red[700],
                   },
                 }}
+                disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}
                 onClick={() => {
                   setPathPage(`${item.path}`)
                   navigate(`${item.path}`);
@@ -375,7 +378,7 @@ const LayoutDashborad = ({ children }: any) => {
             }}
           >
             <ListItem>
-              <img src={index === -1 ? logo : 
+              <img src={index === -1 ? logo :
                 pageHeader[index].icon} width={30} style={{ marginRight: '10px' }} />
               <ListItemText primary={index === -1 ? 'ieltsways' : pageHeader[index].title} />
             </ListItem>
