@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 // mtu
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -10,9 +12,25 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import RocketIcon from '@mui/icons-material/Rocket';
 // mtu
-import motivation1 from '@/assets/images/Motivation/01.jpg'
 
-const DailyMessage = ({firstName}) => {
+import quotations from './Quotations.json'
+
+const DailyMessage = ({ firstName }: any) => {
+
+  const [quotation, setQuotation] = useState({quote: "",});
+
+  const getRandomQuotation = () => {
+    const randomIndex = Math.floor(Math.random() * quotations.data.length);
+    const randomQuotation = quotations.data[randomIndex];
+    setQuotation(randomQuotation);
+  };
+
+  useEffect(() => {
+    getRandomQuotation();
+    const intervalId = setInterval(getRandomQuotation, 120000);
+    return () => clearInterval(intervalId);
+  }, []);
+
 
   return <Card variant="outlined" id="daily-message">
     <CardHeader
@@ -28,14 +46,13 @@ const DailyMessage = ({firstName}) => {
       <Box>
         <Stack direction={{ xs: 'column', md: 'row' }}
           spacing={{ xs: 1, sm: 2, md: 4 }}>
-          <Paper elevation={0}>
+          {/* <Paper elevation={0}>
             <img src={motivation1} alt="motivation" height="150px" style={{ borderRadius: '5px' }} />
-          </Paper>
-          <Paper elevation={0}>
-            <Typography>Dear <strong> {firstName ? firstName : 'friend' } </strong> </Typography>
-            <br />
+          </Paper> */}
+          <Paper elevation={0} className="daily-message-container">
+            <Typography>Dear <strong> {firstName ? firstName : 'friend'} </strong> </Typography>
             <Typography variant="subtitle1">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, amet deleniti. Porro veniam harum sit culpa quaerat, nobis amet labore quia iusto voluptas saepe voluptatum, magnam assumenda cum cupiditate vitae ad perspiciatis. At minima cum fuga corrupti. Architecto, autem eius!
+              {quotation.quote}
             </Typography>
           </Paper>
         </Stack>

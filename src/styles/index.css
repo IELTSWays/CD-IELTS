@@ -241,15 +241,16 @@ main.css-zxdg2z {
 }
 
 /* daily-message */
-#daily-message .css-ee20y-MuiPaper-root {
-  background: transparent;
+.daily-message-container {
+  background: #3f9b2f !important;
   margin-left: 16px !important;
-  color: #fff;
+  color: #fff !important;
 }
 
-#daily-message.css-1v5z4dq-MuiPaper-root-MuiCard-root {
-  background: #168203;
+#daily-message {
+  background: #3f9b2f;
   color: #fff;
+  min-width: 770px !important;
 }
 
 /* scrollbar */
