@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import RocketIcon from '@mui/icons-material/Rocket';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 // mtu
 
 import quotations from './Quotations.json'
@@ -53,6 +54,10 @@ const DailyMessage = ({ firstName }: any) => {
             <Typography>Dear <strong> {firstName ? firstName : 'friend'} </strong> </Typography>
             <Typography variant="subtitle1">
               {quotation.quote}
+            </Typography>
+            <Typography variant="button" sx={{ display: 'flex', fontStyle: 'oblique' }}>
+              <FormatQuoteIcon/>
+              {quotation.author}
             </Typography>
           </Paper>
         </Stack>

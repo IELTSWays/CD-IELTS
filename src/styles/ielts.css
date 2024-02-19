@@ -858,6 +858,34 @@ td {
   margin: 0 !important;
 }
 
+.ielts-answersTable label:after {
+  content: 'a';
+  background: aqua;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 70px;
+}
+
+.ielts-answersTable label > span  {
+  /* display: none; */
+}
+
+.ielts-answersTable label:after ~ .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+  background: #000;
+}
+
+.Mui-checked .css-hyxlzm {
+  background: gold;
+    width: 50px;
+    height: 70px;
+    position: absolute;
+}
+
+
 #ielts-answersTable-first .MuiPaper-elevation {
   border-top: 0;
   border-left: 0;

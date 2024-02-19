@@ -1,7 +1,264 @@
 {
   "data": [
     {
-      "quote": "Education is the most powerful weapon which you can use to change the world. - Nelson Mandela"
+      "quote": "Education is the most powerful weapon which you can use to change the world.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "quote": "The more that you read, the more things you will know. The more that you learn, the more places you'll go",
+      "author": "Dr. Seuss"
+    },
+    {
+      "quote": "The beautiful thing about learning is that no one can take it away from you.",
+      "author": "B.B. King"
+    },
+    {
+      "quote": "The roots of education are bitter, but the fruit is sweet.",
+      "author": "Aristotle"
+    },
+    {
+      "quote": "Intelligence plus character - that is the goal of true education.",
+      "author": "Martin Luther King Jr."
+    },
+    {
+      "quote": "Education is not preparation for life; education is life itself.",
+      "author": "John Dewey"
+    },
+    {
+      "quote": "The mind is not a vessel to be filled, but a fire to be kindled.",
+      "author": "Plutarch"
+    },
+    {
+      "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+      "author": "Mahatma Gandhi"
+    },
+    {
+      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      "author": "Winston Churchill"
+    },
+    {
+      "quote": "Don't let what you cannot do interfere with what you can do.",
+      "author": "John Wooden"
+    },
+    {
+      "quote": "The journey of a thousand miles begins with a single step.",
+      "author": "Lao Tzu"
+    },
+    {
+      "quote": "The only person you are destined to become is the person you decide to be.",
+      "author": "Ralph Waldo Emerson"
+    },
+    {
+      "quote": "The expert in anything was once a beginner.",
+      "author": "Helen Hayes"
+    },
+    {
+      "quote": "The more you know, the more you realize how much you don't know.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "If you want something done right, do it yourself.",
+      "author": "Charles-Guillaume Étienne"
+    },
+    {
+      "quote": "Nothing is impossible, the word itself says 'I'm possible'!",
+      "author": "Audrey Hepburn"
+    },
+    {
+      "quote": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "quote": "What we learn with pleasure we never forget.",
+      "author": "Alfred Mercier"
+    },
+    {
+      "quote": "Nothing ventured, nothing attained.",
+      "author": "Peter McWilliams"
+    },
+    {
+      "quote": "And then I realized adventure was the best way to learn.",
+      "author": "Unknown"
+    },
+    {
+      "quote": "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
+      "author": "Malcolm X"
+    },
+    {
+      "quote": "Your attitude, not your aptitude, will determine your altitude.",
+      "author": "Zig Ziglar"
+    },
+    {
+      "quote": "If you think education is expensive, try ignorance.",
+      "author": "Andy McIntyre"
+    },
+    {
+      "quote": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain"
+    },
+    {
+      "quote": "The only person who is educated is the one who has learned how to learn and change.",
+      "author": "Carl Rogers"
+    },
+    {
+      "quote": "Be the change that you wish to see in the world.",
+      "author": "Mahatma Gandhi"
+    },
+    {
+      "quote": "The function of education is to teach one to think intensively and to think critically. Intelligence plus character - that is the goal of true education.",
+      "author": "Martin Luther King, Jr."
+    },
+    {
+      "quote": "Education is the most powerful weapon which you can use to change the world.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "quote": "Education is not the filling of a pail, but the lighting of a fire.",
+      "author": "William Butler Yeats"
+    },
+    {
+      "quote": "Education is the key to unlock the golden door of freedom.",
+      "author": "George Washington Carver"
+    },
+    {
+      "quote": "The whole purpose of education is to turn mirrors into windows.",
+      "author": "Sydney J. Harris"
+    },
+    {
+      "quote": "Education is not a problem. Education is an opportunity.",
+      "author": "Lyndon B. Johnson"
+    },
+    {
+      "quote": "Education is what remains after one has forgotten what one has learned in school.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "Education is not the answer to the question. Education is the means to the answer to all questions.",
+      "author": "William Allin"
+    },
+    {
+      "quote": "Education is a better safeguard of liberty than a standing army.",
+      "author": "Edward Everett"
+    },
+    {
+      "quote": "The more I live, the more I learn. The more I learn, the more I realize, the less I know.",
+      "author": "Michel Legrand"
+    },
+    {
+      "quote": "Learning never exhausts the mind.",
+      "author": "Leonardo da Vinci"
+    },
+    {
+      "quote": "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+      "author": "Benjamin Franklin"
+    },
+    {
+      "quote": "Change is the end result of all true learning.",
+      "author": "Leo Buscaglia"
+    },
+    {
+      "quote": "A good teacher can inspire hope, ignite the imagination, and instill a love of learning.",
+      "author": "Brad Henry"
+    },
+    {
+      "quote": "The only true wisdom is in knowing you know nothing.",
+      "author": "Socrates"
+    },
+    {
+      "quote": "The important thing is not to stop questioning. Curiosity has its own reason for existing.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "The true sign of intelligence is not knowledge but imagination.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "The more you know, the more you realize you know nothing.",
+      "author": "Socrates"
+    },
+    {
+      "quote": "The only source of knowledge is experience.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "Learning is a treasure that will follow its owner everywhere.",
+      "author": "Chinese Proverb"
+    },
+    {
+      "quote": "A good head and good heart are always a formidable combination. But when you add to that a literate tongue or pen, then you have something very special.",
+      "author": "Nelson Mandela"
+    },
+    {
+      "quote": "The beautiful thing about learning is that nobody can take it away from you.",
+      "author": "B.B. King"
+    },
+    {
+      "quote": "The more you read, the more things you will know, the more that you learn, the more places you’ll go.",
+      "author": "Dr. Seuss"
+    },
+    {
+      "quote": "Education is the movement from darkness to light.",
+      "author": "Allan Bloom"
+    },
+    {
+      "quote": "The mind is like a parachute. It doesn't work if it is not open.",
+      "author": "Frank Zappa"
+    },
+    {
+      "quote": "The only thing that interferes with my learning is my education.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young.",
+      "author": "Henry Ford"
+    },
+    {
+      "quote": "I have no special talent. I am only passionately curious.",
+      "author": "Albert Einstein"
+    },
+    {
+      "quote": "The more I read, the more I acquire, the more certain I am that I know nothing.",
+      "author": "Voltaire"
+    },
+    {
+      "quote": "Learning is not attained by chance, it must be sought for with ardor and diligence.",
+      "author": "Abigail Adams"
+    },
+    {
+      "quote": "A well-educated mind will always have more questions than answers.",
+      "author": "Helen Keller"
+    },
+    {
+      "quote": "An investment in knowledge pays the best interest.",
+      "author": "Benjamin Franklin"
+    },
+    {
+      "quote": "Education is the ability to listen to almost anything without losing your temper or your self-confidence.",
+      "author": "Robert Frost"
+    },
+    {
+      "quote": "Education is not only a ladder of opportunity, but it is also an investment in our future.",
+      "author": "Ed Markey"
+    },
+    {
+      "quote": "The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn.",
+      "author": "Alvin Toffler"
+    },
+    {
+      "quote": "Learning is the eye of the mind.",
+      "author": "French Proverb"
+    },
+    {
+      "quote": "You are always a student, never a master. You have to keep moving forward.",
+      "author": "Conrad Hall"
+    },
+    {
+      "quote": "The more you learn, the more you earn.",
+      "author": "Warren Buffett"
+    },
+    {
+      "quote": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
+      "author": "Albert Einstein"
     }
   ]
 }
