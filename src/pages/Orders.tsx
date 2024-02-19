@@ -608,7 +608,7 @@ const Orders = () => {
                           sx={{ width: { xs: '100%', sm: 'auto' } }}
                           onClick={() => navigate('/exams')}
                         >
-                          LIST EXAMS
+                          EXAM'S LIST
                         </Button>
                       }
                       <Button
