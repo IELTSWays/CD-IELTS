@@ -33,10 +33,12 @@ const usePostExamStart = (test: any) => {
       )
       const data = await response.data
       const token: any = localStorage.getItem('token');
+      const profile: any = localStorage.getItem('is_profile_fill');
       dispatch(setAnswersAll({}))
       localStorage.clear();
       localStorage.setItem('token', token);
       localStorage.setItem('test_id', data.test_id);
+      localStorage.setItem('is_profile_fill', profile);
       dispatch(setCurrentQuestion('00001'))
       dispatch(setTestInfo(data))
       dispatch(setAnswersAll(data.answers))
