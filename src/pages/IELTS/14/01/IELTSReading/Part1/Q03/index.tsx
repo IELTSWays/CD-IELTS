@@ -39,6 +39,7 @@ const index = ({ qn }: any) => {
         <span>● population of</span>
         <TextField
           autoComplete='off'
+          spellCheck="false"
           margin="normal"
           placeholder={qn}
           value={answer}

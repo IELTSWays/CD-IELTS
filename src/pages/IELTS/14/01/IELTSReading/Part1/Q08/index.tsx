@@ -38,6 +38,7 @@ const index = ({ qn }: any) => {
       <span>● research needs to study the impact of play on the rest of the child’s</span>
       <TextField
         autoComplete='off'
+        spellCheck="false"
         margin="normal"
         placeholder={qn}
         value={answer}

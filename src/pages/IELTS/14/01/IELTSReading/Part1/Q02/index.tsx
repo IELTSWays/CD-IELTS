@@ -38,6 +38,7 @@ const index = ({ qn }: any) => {
       <span>● board games involve</span>
       <TextField
         autoComplete='off'
+        spellCheck="false"
         margin="normal"
         placeholder={qn}
         value={answer}

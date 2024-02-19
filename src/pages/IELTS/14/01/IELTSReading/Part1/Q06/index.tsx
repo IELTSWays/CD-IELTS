@@ -38,6 +38,7 @@ const index = ({ qn }: any) => {
       <span>— increased</span>
       <TextField
         autoComplete='off'
+        spellCheck="false"
         margin="normal"
         placeholder={qn}
         value={answer}

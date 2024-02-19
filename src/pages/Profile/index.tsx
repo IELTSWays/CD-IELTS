@@ -120,6 +120,7 @@ const Profile = () => {
               id="firstName"
               name="firstName"
               value={first_name}
+              spellCheck="false"
               onChange={(e) => setFirst_name(e.target.value)}
             />
           </Grid>
@@ -132,6 +133,7 @@ const Profile = () => {
               id="lastName"
               name="lastName"
               value={last_name}
+              spellCheck="false"
               onChange={(e) => setLast_name(e.target.value)}
             />
           </Grid>
@@ -166,6 +168,7 @@ const Profile = () => {
               id="nationalID"
               name="nationalID"
               value={national_code}
+              spellCheck="false"
               onChange={(e) => setNational_code(e.target.value)}
             />
           </Grid>
@@ -178,6 +181,7 @@ const Profile = () => {
               id="city"
               name="city"
               value={city}
+              spellCheck="false"
               onChange={(e) => setCity(e.target.value)}
             />
           </Grid>
