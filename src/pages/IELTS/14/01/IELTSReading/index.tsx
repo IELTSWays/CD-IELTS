@@ -556,7 +556,7 @@ const index = () => {
               :
               <>
                 <div>Part 1</div>
-                <div> 1 of 13 </div>
+                <div> 0 of 13 </div>
               </>
             }
           </div>
@@ -599,7 +599,7 @@ const index = () => {
               :
               <>
                 <div>Part 2</div>
-                <div> 2 of 13 </div>
+                <div> 0 of 13 </div>
               </>
             }
           </div>
@@ -642,7 +642,7 @@ const index = () => {
               :
               <>
                 <div>Part 3</div>
-                <div> 2 of 8 </div>
+                <div> 0 of 8 </div>
               </>
             }
           </div>
