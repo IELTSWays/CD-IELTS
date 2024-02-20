@@ -53,7 +53,7 @@ import Q23 from './Part2/Q23';
 import Q24 from './Part2/Q24';
 import Q25 from './Part2/Q25';
 import Q26 from './Part2/Q26';
-import Q27_28_29_30_31 from './Part3/Q27_28_29_30_31'
+import Q27_31 from './Part3/Q27_31';
 import Q32 from './Part3/Q32';
 import Q33 from './Part3/Q33';
 import Q34 from './Part3/Q34';
@@ -425,8 +425,8 @@ const index = () => {
                           Choose the correct answer.
                         </Typography>
                       </Box>
-
-                      <Q27_28_29_30_31 />
+                      {/* <Q27_28_29_30_31 /> */}
+                      <Q27_31/>
                     </Box>
 
                     <Box>

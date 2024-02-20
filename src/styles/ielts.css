@@ -723,8 +723,7 @@ html.ielts {
   border-color: var(--color-08);
 }
 
-#ielts-list-text-input
-table,
+#ielts-list-text-input table,
 th,
 td {
   border: 1px solid;
@@ -823,6 +822,24 @@ td {
   min-width: 750px !important;
 }
 
+.ielts-answersTable .top-labels {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.ielts-answersTable .top-labels > div {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined {
+  border-radius: 5px !important;
+}
+
 .ielts-answersTable .css-1ps6pg7-MuiPaper-root {
   box-shadow: unset !important;
 }
@@ -870,7 +887,7 @@ td {
   width: 100%;
   height: 100%;
   border-radius: 0;
-  color: #fff !important
+  color: #fff !important;
 }
 
 .ielts-answersTable .MuiTypography-body1 {
@@ -1153,7 +1170,8 @@ td {
   width: 100% !important;
 }
 
-.ielts-container .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
+.ielts-container
+  .MuiPaper-elevation.MuiPaper-elevation0.MuiAccordion-root:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
@@ -1189,6 +1207,7 @@ td {
 }
 
 /* add alphabet to list */
+
 .ielts-checkbox .MuiPaper-elevation {
   counter-increment: alphabet;
 }
@@ -1211,6 +1230,43 @@ td {
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(3):before {
   content: "C";
   padding: 0 10px;
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(n):before {
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(1):before {
+  content: "A";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(2):before {
+  content: "B";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(3):before {
+  content: "C";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(4):before {
+  content: "D";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(5):before {
+  content: "E";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(6):before {
+  content: "F";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(7):before {
+  content: "G";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(8):before {
+  content: "H";
 }
 
 .dragbox-container ul {
