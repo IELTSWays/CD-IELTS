@@ -68,6 +68,7 @@ const index = ({ qn }: any) => {
                 <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                   <TextField
                     autoComplete='off'
+                    spellCheck="false"
                     margin="normal"
                     placeholder={qn}
                     value={answer}

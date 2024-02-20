@@ -29,8 +29,8 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const options = [
-    { label: t('00043'), value: "A", },
-    { label: t('00044'), value: "B", },
+    { label: t('00043'), value: "a", },
+    { label: t('00044'), value: "b", },
     { label: t('00045'), value: "C", },
   ];
 

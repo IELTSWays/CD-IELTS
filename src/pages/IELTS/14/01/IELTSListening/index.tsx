@@ -53,7 +53,8 @@ import Q22 from './Part3/Q22';
 import Q23 from './Part3/Q23';
 import Q24 from './Part3/Q24';
 import Q25 from './Part3/Q25';
-import Q26_27_28_29_30 from './Part3/Q26_27_28_29_30';
+import Q26_27_28_29_30 from './Part3/___Q26_27_28_29_30';
+import Q26_30 from './Part3/Q26_30';
 import Q31 from './Part4/Q31';
 import Q32 from './Part4/Q32';
 import Q33 from './Part4/Q33';
@@ -373,7 +374,7 @@ const index = () => {
                         </Paper>
                         <Paper elevation={0}>
                           <Stack direction="row" alignItems="center">
-                            <Q26_27_28_29_30 />
+                            <Q26_30 />
                           </Stack>
                         </Paper>
                       </Stack>
@@ -563,7 +564,7 @@ const index = () => {
               :
               <>
                 <div>Part 1</div>
-                <div> 1 of 10 </div>
+                <div> 0 of 10 </div>
               </>
             }
           </div>
@@ -606,7 +607,7 @@ const index = () => {
               :
               <>
                 <div>Part 2</div>
-                <div> 2 of 20 </div>
+                <div> 0 of 10 </div>
               </>
             }
           </div>
@@ -649,7 +650,7 @@ const index = () => {
               :
               <>
                 <div>Part 3</div>
-                <div> 2 of 30 </div>
+                <div> 0 of 10 </div>
               </>
             }
           </div>
@@ -684,7 +685,8 @@ const index = () => {
             })}
           </div>
           <div className='navigation-part-counter'>
-            <div>Part 4</div> <div> 0 of 40 </div>
+            <div>Part 4</div> 
+            <div> 0 of 10 </div>
           </div>
         </div>
       </div>
