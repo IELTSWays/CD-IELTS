@@ -668,7 +668,7 @@ html.ielts {
 
 .ielts-container .MuiInputBase-input {
   padding: 5px 10px !important;
-  width: 180px !important;
+  width: 110px !important;
   margin: unset !important;
 }
 
@@ -723,6 +723,7 @@ html.ielts {
   border-color: var(--color-08);
 }
 
+#ielts-list-text-input
 table,
 th,
 td {
@@ -856,35 +857,37 @@ td {
   min-width: 50px;
   border: 1px solid;
   margin: 0 !important;
+  position: relative;
 }
 
-.ielts-answersTable label:after {
-  content: 'a';
-  background: aqua;
-  z-index: 1;
+.ielts-answersTable label > span:nth-child(2) {
+  position: absolute;
+  font-weight: bold;
+}
+
+.ielts-answersTable label .Mui-checked {
+  background: #73b2f1;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  color: #fff !important
+}
+
+.ielts-answersTable .MuiTypography-body1 {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 50px;
-  height: 70px;
 }
 
-.ielts-answersTable label > span  {
-  /* display: none; */
+.ielts-answersTable label .Mui-checked > span:nth-child(2) {
+  background: #1976d2;
+  color: #fff !important;
 }
 
-.ielts-answersTable label:after ~ .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
-  background: #000;
+.ielts-answersTable .css-hyxlzm {
+  display: none;
 }
 
-.Mui-checked .css-hyxlzm {
-  background: gold;
-    width: 50px;
-    height: 70px;
-    position: absolute;
-}
-
+/* .ielts-answersTable label */
 
 #ielts-answersTable-first .MuiPaper-elevation {
   border-top: 0;

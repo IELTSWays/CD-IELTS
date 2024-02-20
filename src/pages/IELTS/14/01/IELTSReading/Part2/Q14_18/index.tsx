@@ -112,7 +112,7 @@ const index = () => {
       <CardContent sx={{ p: 3 }}>
         <div className='ielts-answersTable'>
 
-          <Stack
+          {/* <Stack
             direction="row"
             spacing={2}
             id="ielts-answersTable-first"
@@ -132,7 +132,7 @@ const index = () => {
             <div className={`flag`}>
               {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
-          </Stack>
+          </Stack> */}
 
           {/************************* [14] *************************/}
           <Stack
@@ -158,7 +158,7 @@ const index = () => {
                     <FormControlLabel
                       value={i.value}
                       control={<Radio />}
-                      label={undefined}
+                      label={i.label}
                     />
                   )
                 })}
@@ -192,7 +192,7 @@ const index = () => {
                     <FormControlLabel
                       value={i.value}
                       control={<Radio />}
-                      label={undefined}
+                      label={i.label}
                     />
                   )
                 })}
@@ -226,7 +226,7 @@ const index = () => {
                     <FormControlLabel
                       value={i.value}
                       control={<Radio />}
-                      label={undefined}
+                      label={i.label}
                     />
                   )
                 })}
@@ -260,7 +260,7 @@ const index = () => {
                     <FormControlLabel
                       value={i.value}
                       control={<Radio />}
-                      label={undefined}
+                      label={i.label}
                     />
                   )
                 })}
@@ -294,7 +294,7 @@ const index = () => {
                     <FormControlLabel
                       value={i.value}
                       control={<Radio />}
-                      label={undefined}
+                      label={i.label}
                     />
                   )
                 })}
