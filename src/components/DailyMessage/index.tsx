@@ -52,12 +52,12 @@ const DailyMessage = ({ firstName }: any) => {
           </Paper> */}
           <Paper elevation={0} className="daily-message-container">
             <Typography>Dear <strong> {firstName ? firstName : 'friend'} </strong> </Typography>
-            <Typography variant="subtitle1">
-              {quotation.quote}
+            <Typography variant="h6" sx={{ py: 1 }}>
+              {quotation?.quote}
             </Typography>
             <Typography variant="button" sx={{ display: 'flex', fontStyle: 'oblique' }}>
               <FormatQuoteIcon/>
-              {quotation.author}
+              {quotation?.author}
             </Typography>
           </Paper>
         </Stack>
