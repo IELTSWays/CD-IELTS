@@ -17,8 +17,9 @@ const usePostTestDoneWriting = () => {
     queryFn: async () => {
       const response = await api.patch(`exam/answer-writing/${localStorage.getItem('test_id')}`, {
         "test_done": true,
-        "task1": answersAl['00001'],
-        "task2": answersAl['00002'],
+        "confirm": true,
+        "task1": answersAll['00001'],
+        "task2": answersAll['00002'],
       })
       const data = await response.data
       navigate('/exams')

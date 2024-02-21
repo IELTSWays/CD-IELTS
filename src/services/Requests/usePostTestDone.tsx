@@ -17,6 +17,7 @@ const usePostTestDone = () => {
     queryFn: async () => {
       const response = await api.patch(`exam/answer/${localStorage.getItem('test_id')}`, {
         "test_done": true,
+        "confirm": true,
         "answers": answersAll,
       })
       const data = await response.data
