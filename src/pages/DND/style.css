@@ -1,0 +1,16 @@
+[data-rbd-draggable-context-id="1"] {
+  pointer-events: none;
+}
+
+.css-vdxbps {
+  pointer-events: auto !important;
+}
+
+.css-1rvouz3 {
+  min-width: 10px !important;
+  min-height: 100px !important;
+}
+
+.dnd-items {
+  display: flex;
+}

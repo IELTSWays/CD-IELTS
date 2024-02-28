@@ -14,6 +14,7 @@ import SingleTeacher from "@/pages/SingleTeacher";
 import NotFound from "@/pages/NotFound";
 import File from "@/pages/File";
 import Exams from "@/pages/Exams";
+import DND from "@/pages/DND";
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -35,6 +36,8 @@ const MainRoutes = () => {
           <Route element={<Exams />} path="/exams" />
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<Reports />} path="/reports/:id" />
+          <Route element={<DND />} path="/dnd" />
+
         </Route>
         <Route element={<IELTSRoutes />}>
           {/* 14-01 */}
