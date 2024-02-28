@@ -17,7 +17,7 @@ import QTextArea2 from '@/components/IELTS/QTextArea/Q2';
 
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
-import img from '@/assets/images/ielts/14/Test1 _Task1.jpeg'
+import img from '@/assets/images/ielts/14/14-Test1-Task1.png'
 
 const index = () => {
 
