@@ -52,7 +52,7 @@ const index = ({ qn }: any) => {
           </Paper>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
-              <Typography sx={{ pr: 1 }}>
+              <Typography>
                 waves can move in any
               </Typography>
               <div className={`text-field ${currentQuestion == qn && 'active'}`}>

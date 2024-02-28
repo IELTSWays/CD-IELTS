@@ -52,7 +52,7 @@ const index = ({ qn }: any) => {
           </Paper>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
-              <Typography sx={{ pr: 1 }}>
+              <Typography>
                 no
               </Typography>
               <div className={`text-field ${currentQuestion == qn && 'active'}`}>
@@ -66,7 +66,7 @@ const index = ({ qn }: any) => {
                   onClick={() => dispatch(setCurrentQuestion(qn))}
                 />
               </div>
-              <Typography sx={{ pl: 1 }}>
+              <Typography>
                 is required to make it work
               </Typography>
             </Stack>

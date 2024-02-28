@@ -689,13 +689,17 @@ html.ielts {
   flex-wrap: wrap;
   gap: 5px;
   border-radius: 5px !important;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgb(16 8 8 / 10%);
   margin: 0 8px;
+}
+
+.ielts-container .text-field.first {
+  margin: 0 !important;
 }
 
 .ielts-container .text-field input {
   border-radius: 5px !important;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgb(16 8 8 / 10%);
 }
 
 .css-1tvkffy-MuiInputBase-root-MuiOutlinedInput-root:hover
@@ -1281,4 +1285,8 @@ td {
   content: counter(alphabet, upper-alpha);
   padding-left: 5px;
   padding-right: 10px;
+}
+
+.multi-choice, .radio-select {
+  gap: 5px !important
 }

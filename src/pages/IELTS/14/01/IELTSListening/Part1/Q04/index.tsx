@@ -64,7 +64,7 @@ const index = ({ qn }: any) => {
               <Stack direction="row" alignItems="center">
                 <Typography sx={{ pr: 1 }}> – </Typography>
                 <Typography sx={{ pr: 1 }}> {t('00015')} </Typography>
-                <Typography sx={{ pr: 1 }}>£</Typography>
+                <Typography>£</Typography>
                 <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                   <TextField
                     autoComplete='off'

@@ -76,7 +76,7 @@ const index = ({ qn }: any) => {
                     onClick={() => dispatch(setCurrentQuestion(qn))}
                   />
                 </div>
-                <Typography sx={{ pl: 1 }}> {t('00012')} </Typography>
+                <Typography> {t('00012')} </Typography>
               </Stack>
             </Paper>
           </Paper>

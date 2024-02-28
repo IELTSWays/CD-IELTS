@@ -65,7 +65,7 @@ const index = ({ qn }: any) => {
               </Paper>
               <Paper elevation={0}>
                 <Stack direction="row" alignItems="center">
-                  <Typography sx={{ pr: 1 }}>
+                  <Typography>
                     may ham fish and birds, e.g. by affecting
                   </Typography>
                   <div className={`text-field ${currentQuestion == qn && 'active'}`}>
@@ -79,7 +79,7 @@ const index = ({ qn }: any) => {
                       onClick={() => dispatch(setCurrentQuestion(qn))}
                     />
                   </div>
-                  <Typography sx={{ pl: 1 }}>
+                  <Typography>
                     and building up silt
                   </Typography>
                 </Stack>
@@ -106,7 +106,8 @@ const index = ({ qn }: any) => {
             <Paper elevation={0}>
               <Stack direction="row" alignItems="center">
                 <Typography sx={{ pr: 1 }}>
-                  Uses a difference in temperature between the surface and lower levels                          </Typography>
+                  Uses a difference in temperature between the surface and lower levels
+                </Typography>
               </Stack>
             </Paper>
           </Stack>

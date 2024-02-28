@@ -79,6 +79,7 @@ const index = ({ qn }: any) => {
       direction="column"
       useFlexGap
       flexWrap="wrap"
+      className="multi-choice"
       sx={{ py: 1 }}
       id={`q-${qn}`}
     >

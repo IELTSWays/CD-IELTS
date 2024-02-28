@@ -192,6 +192,7 @@ const index = ({ qn }: any) => {
       flexWrap="wrap"
       sx={{ py: 1 }}
       id={`q-${qn}`}
+      className="radio-select"
     >
       <div className="align-items-start justify-content-space-between">
         <Paper elevation={0}>

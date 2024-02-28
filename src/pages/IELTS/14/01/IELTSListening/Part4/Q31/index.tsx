@@ -49,7 +49,7 @@ const index = ({ qn }: any) => {
       >
         <Paper elevation={0}>
           <Stack direction="row" alignItems="center">
-            <Typography sx={{ pr: 1 }}>
+            <Typography>
               More energy required because of growth in population and
             </Typography>
             <div className={`text-field ${currentQuestion == qn && 'active'}`}>
@@ -73,7 +73,7 @@ const index = ({ qn }: any) => {
         <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
-              <Typography sx={{ pr: 1 }}>
+              <Typography>
                 What’s needed:
               </Typography>
             </Stack>

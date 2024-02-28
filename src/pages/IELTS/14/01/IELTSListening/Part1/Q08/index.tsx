@@ -55,7 +55,7 @@ const index = ({ qn }: any) => {
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
               <Typography sx={{ pr: 1 }}> – </Typography>
-              <Typography sx={{ pr: 1 }}> {t('00022')} </Typography>
+              <Typography> {t('00022')} </Typography>
               <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                 <TextField
                   autoComplete='off'
@@ -67,7 +67,7 @@ const index = ({ qn }: any) => {
                   onClick={() => dispatch(setCurrentQuestion(qn))}
                 />
               </div>
-              <Typography sx={{ pl: 1 }}> {t('00023')} </Typography>
+              <Typography> {t('00023')} </Typography>
             </Stack>
           </Paper>
         </Paper>

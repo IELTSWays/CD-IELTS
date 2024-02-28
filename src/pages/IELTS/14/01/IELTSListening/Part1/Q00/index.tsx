@@ -35,7 +35,7 @@ const index = () => {
           </Paper>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
-              <Typography sx={{ pr: 1 }}>Louise </Typography>
+              <Typography>Louise </Typography>
               <div className='text-field'>
                 <TextField
                   margin="normal"
