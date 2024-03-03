@@ -21,7 +21,7 @@ const Task = ({ task, index }) => {
           isDragging={snapshot.isDragging}
           
         >
-          {task.content}
+          {task.content ? task.content : task.id}
         </Container>
       )}
     </Draggable>

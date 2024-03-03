@@ -1,0 +1,52 @@
+[data-rbd-droppable-id="all-column"] > div {
+  pointer-events: none !important;
+}
+
+[role="button"] {
+  border-radius: 5px;
+  text-align: center;
+}
+
+[data-rbd-droppable-id="all-column"] > div {
+  height: 50px !important;
+  overflow: hidden;
+}
+
+.dnd-options {
+  pointer-events: none !important;
+}
+
+.dnd-options .dnd-text-before {
+  display: none;
+}
+
+.dnd-options > div {
+  height: 390px !important;
+  border: 1px solid lightgrey;
+  border-radius: 0 !important;
+}
+
+.dnd-options [role="button"] {
+  margin: 10px 0;
+}
+
+.dnd-items {
+  display: flex;
+}
+
+.dnd-cols {
+  width: 100vh;
+}
+
+.dnd-cols > div {
+  overflow: hidden;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dnd-cols > div > div > [role="button"] {
+  width: 200px;
+  margin-bottom: 0 !important;
+}

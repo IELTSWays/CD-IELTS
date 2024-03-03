@@ -1,14 +1,15 @@
-[data-rbd-draggable-context-id="1"] {
-  pointer-events: none;
+[data-rbd-droppable-id="all-column"] > div {
+  pointer-events: none !important;
+}
+
+
+[data-rbd-droppable-id="all-column"] > div:not(:first-child) {
+  height: 62px !important;
+  overflow: hidden;
 }
 
 .css-vdxbps {
   pointer-events: auto !important;
-}
-
-.css-1rvouz3 {
-  min-width: 10px !important;
-  min-height: 100px !important;
 }
 
 .dnd-items {

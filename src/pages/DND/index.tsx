@@ -1,32 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import initialData from "./data";
 import Column from "./Column";
 import './style.css';
 
 const Container = styled("div")`
   display: flex;
-  background-color: ${props => (props.isDraggingOver ? "#639ee2" : "inherit")};
-`;
+  background-color: ${props => (props?.isDraggingOver ? "#639ee2" : "inherit")};`;
 
-const Tickets = () => {
+const init = {
+  tasks: {
+    "A": { id: "A", content: "I am task A" },
+    "B": { id: "B", content: "I am task B" },
+    "C": { id: "C", content: "I am task C" },
+    "D": { id: "D", content: "I am task D" },
+    "E": { id: "E", content: "I am task E" }
+  },
+  columns: {
+    "column-1": {
+      id: "column-1",
+      title: "ALL",
+      taskIds: ["A", "B", "C", "D", "E"].filter(x => x !== "A" && x !== "E")
+    },
+    27: {
+      id: 27,
+      title: "A",
+      taskIds: []
+    },
+    28: {
+      id: 28,
+      title: "B",
+      taskIds: []
+    },
+    29: {
+      id: 29,
+      title: "C",
+      taskIds: []
+    }
 
-  const [starter, setStarter] = useState(initialData);
+  },
+  columnOrder: ["column-1", 27, 28, 29]
+}
 
-  console.log(Object.values(starter.columns));
+const DND = () => {
 
+  const [starter, setStarter] = useState(init);
+
+  console.log(Object.values(starter.columns)[0]);
 
   const onDragEnd = ({ destination, source, draggableId }) => {
     if (!destination) return;
-
-    // console.log(Object.values(starter.columns));    
-    // console.log(Object.values(starter.columns).filter(obj => obj.id === destination.droppableId)[0].taskIds.length);
-
     if (
       Object.values(starter.columns).filter(obj => obj.id === destination.droppableId)[0].taskIds.length == 1 && destination?.droppableId !== 'column-1'
     ) return
-
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -36,19 +62,6 @@ const Tickets = () => {
 
     const start = starter.columns[source.droppableId];
     const end = starter.columns[destination.droppableId];
-
-    // if (type === "column") {
-    //   console.log(destination, source, draggableId);
-    //   const newOrder = [...starter.columnOrder];
-    //   newOrder.splice(source.index, 1);
-    //   newOrder.splice(destination.index, 0, draggableId);
-
-    //   setStarter({
-    //     ...starter,
-    //     columnOrder: newOrder
-    //   });
-    //   return;
-    // }
 
     if (start === end) {
       const column = starter.columns[source.droppableId];
@@ -96,8 +109,6 @@ const Tickets = () => {
     // console.log(destination, source, draggableId);
   };
 
-  console.log([starter.columnOrder[0]]);
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="all-column" type="column" direction="horizontal">
@@ -128,4 +139,4 @@ const Tickets = () => {
   );
 };
 
-export default Tickets;
+export default DND;
