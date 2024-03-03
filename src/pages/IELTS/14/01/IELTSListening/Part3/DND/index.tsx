@@ -75,6 +75,7 @@ const DND = () => {
   }
 
   const [starter, setStarter] = useState(init);
+  const [flag, setFlag] = useState(flags['26'])
 
   const [answer26, setAnswer26] = useState(localStorage.getItem('00026'));
   const [answer27, setAnswer27] = useState(localStorage.getItem('00027'));
@@ -185,6 +186,8 @@ const DND = () => {
     });
   };
 
+  const qn = ["26", "27", "28", "29", "30"]
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="all-column" type="column" direction="horizontal">
@@ -210,7 +213,7 @@ const DND = () => {
               })}
             </section>
 
-            <section className="dnd-cols">
+            <section className="dnd-cols" id={`q-26`}> 
               {(starter.columnOrder).slice(1)?.map((columnId, index) => {
                 const column = starter.columns[columnId];
                 const tasks = column.taskIds.map(taskId => starter.tasks[taskId]);

@@ -84,7 +84,7 @@ const index = () => {
 
   const [test_id, setTest_id] = useState<any>('')
 
-  const { refetch: refetchGetAnswer, data: dataGetAnswer ,isLoading, isSuccess } = useGetAnswer()
+  const { refetch: refetchGetAnswer, data: dataGetAnswer, isLoading, isSuccess } = useGetAnswer()
 
   const postAnswer = useQuery({
     enabled: false,
@@ -685,7 +685,7 @@ const index = () => {
             })}
           </div>
           <div className='navigation-part-counter'>
-            <div>Part 4</div> 
+            <div>Part 4</div>
             <div> 0 of 10 </div>
           </div>
         </div>
