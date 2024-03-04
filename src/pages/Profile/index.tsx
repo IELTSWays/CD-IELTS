@@ -231,7 +231,7 @@ const Profile = () => {
               onClick={() => refetchPatchProfile()}
               sx={{ width: { xs: '100%', sm: 'unset' } }}
             >
-              save
+              continue
             </LoadingButton>
           </Grid>
         </Grid>
