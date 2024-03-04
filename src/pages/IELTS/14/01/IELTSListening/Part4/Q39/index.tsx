@@ -46,7 +46,7 @@ const index = ({ qn }: any) => {
         sx={{ alignItems: 'center', justifyContent: 'space-between', py: 1 }}
         id={`q-${qn}`}
       >
-        <div className="d-flex">
+        <div className="align-items-center">
           <Paper elevation={0} sx={{ width: '15px' }}>
             <Typography>●</Typography>
           </Paper>

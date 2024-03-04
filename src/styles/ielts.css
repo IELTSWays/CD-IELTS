@@ -537,6 +537,7 @@ html.ielts {
 
 .ielts-container p {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
 }
 

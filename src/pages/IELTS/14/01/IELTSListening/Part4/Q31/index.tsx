@@ -69,7 +69,7 @@ const index = ({ qn }: any) => {
           {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </Stack>
-      <Box sx={{ px: 1 }}>
+      <Box sx={{ py: 1.5 }}>
         <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
@@ -79,25 +79,12 @@ const index = ({ qn }: any) => {
             </Stack>
           </Paper>
         </Stack>
-        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
-          <Paper elevation={0} sx={{ width: '15px' }}>
-            <Typography>●</Typography>
-          </Paper>
-          <Paper elevation={0}>
-            <Paper elevation={0}>
-              <Typography>renewable energy sources</Typography>
-            </Paper>
-          </Paper>
+
+        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+          ● renewable energy sources
         </Stack>
-        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', }}>
-          <Paper elevation={0} sx={{ width: '15px' }}>
-            <Typography>●</Typography>
-          </Paper>
-          <Paper elevation={0}>
-            <Paper elevation={0}>
-              <Typography>methods that won’t create pollution</Typography>
-            </Paper>
-          </Paper>
+        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
+          ● methods that won’t create pollution
         </Stack>
       </Box>
     </>

@@ -286,7 +286,7 @@ const index = () => {
                     correct answer.
                   </Typography>
                 </Box>
-                <Box sx={{ mt: 3 }}>
+                <Box>
                   <div>
                     <Box sx={{ p: 1 }}>
                       {/************************* [11-12] *************************/}
@@ -306,7 +306,7 @@ const index = () => {
                     Choose the correct answer.
                   </Typography>
                 </Box>
-                <Box sx={{ mt: 3 }}>
+                <Box>
                   <div>
                     <Box sx={{ p: 1 }}>
                       {/************************* [15] *************************/}

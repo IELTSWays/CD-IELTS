@@ -47,13 +47,10 @@ const index = ({ qn }: any) => {
         id={`q-${qn}`}
       >
         <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
-          <Paper elevation={0} sx={{ width: '15px' }}>
-            <Typography>●</Typography>
-          </Paper>
           <Paper elevation={0}>
             <Stack direction="row" alignItems="center">
               <Typography>
-                movement of sand, etc. on the
+                ● movement of sand, etc. on the
               </Typography>
               <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                 <TextField

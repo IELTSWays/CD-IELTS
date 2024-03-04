@@ -16,7 +16,7 @@ const index = () => {
           </Paper>
           <Paper elevation={0}>theft</Paper>
         </Stack>
-        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+        <Stack spacing={{ xs: 1, sm: 2, mt: 1 }} direction="row" useFlexGap flexWrap="wrap">
           <Paper elevation={0}>
             <Typography><strong>Personal information</strong></Typography>
           </Paper>

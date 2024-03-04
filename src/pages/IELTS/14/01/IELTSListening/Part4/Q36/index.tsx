@@ -61,7 +61,7 @@ const index = ({ qn }: any) => {
         flexWrap="wrap"
         sx={{ alignItems: 'center', justifyContent: 'space-between' }}
       >
-        <div className="d-flex">
+        <div className="align-items-center">
           <Paper elevation={0} sx={{ width: '15px' }}>
             <Typography>●</Typography>
           </Paper>
@@ -92,28 +92,10 @@ const index = ({ qn }: any) => {
         </div>
       </Stack>
       <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
-        <Paper elevation={0} sx={{ width: '15px' }}>
-          <Typography>●</Typography>
-        </Paper>
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
-            <Typography sx={{ pr: 1 }}>
-              breakwater (dam) containing 16 turbines
-            </Typography>
-          </Stack>
-        </Paper>
+        ● breakwater (dam) containing 16 turbines
       </Stack>
       <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', mt: 1 }}>
-        <Paper elevation={0} sx={{ width: '15px' }}>
-          <Typography>●</Typography>
-        </Paper>
-        <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
-            <Typography sx={{ pr: 1 }}>
-              rising tide forces water through turbines, generating electricity
-            </Typography>
-          </Stack>
-        </Paper>
+        ● rising tide forces water through turbines, generating electricity
       </Stack>
     </>
   );

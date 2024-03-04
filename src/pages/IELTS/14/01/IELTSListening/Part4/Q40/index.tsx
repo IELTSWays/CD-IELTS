@@ -59,14 +59,14 @@ const index = ({ qn }: any) => {
             flexWrap="wrap"
             sx={{ alignItems: 'center', justifyContent: 'space-between', py: 1 }}
           >
-            <div className="d-flex">
+            <div className="align-items-center">
               <Paper elevation={0} sx={{ width: '15px' }}>
                 <Typography>●</Typography>
               </Paper>
               <Paper elevation={0}>
                 <Stack direction="row" alignItems="center">
                   <Typography>
-                    may ham fish and birds, e.g. by affecting
+                    may harm fish and birds, e.g. by affecting
                   </Typography>
                   <div className={`text-field ${currentQuestion == qn && 'active'}`}>
                     <TextField
