@@ -663,6 +663,11 @@ html.ielts {
   top: 0;
 }
 
+.ielts-question-textfield .MuiInputBase-formControl {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .css-1rv3ei8-MuiFormControl-root-MuiTextField-root {
   margin: 8px !important;
 }
