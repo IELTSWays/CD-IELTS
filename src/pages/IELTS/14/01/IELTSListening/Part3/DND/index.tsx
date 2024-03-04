@@ -24,13 +24,13 @@ const DND = () => {
 
   const init = {
     tasks: {
-      "A": { id: "A", },
-      "B": { id: "B", },
-      "C": { id: "C", },
-      "D": { id: "D", },
-      "E": { id: "E", },
-      "F": { id: "F", },
-      "G": { id: "G", }
+      "A": { id: "A", content: "use visuals" },
+      "B": { id: "B", content: "keep it short" },
+      "C": { id: "C", content: "involve other students" },
+      "D": { id: "D", content: "check the information is accurate" },
+      "E": { id: "E", content: "provide a handout" },
+      "F": { id: "F", content: "focus on one example" },
+      "G": { id: "G", content: "do online research" }
     },
     columns: {
       "column-1": {
@@ -197,8 +197,8 @@ const DND = () => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            <section className="dnd-options">
-              {(starter.columnOrder).slice(0, 1)?.map((columnId, index) => {
+            <section className="dnd-cols" id={`q-26`}> 
+              {(starter.columnOrder).slice(1)?.map((columnId, index) => {
                 const column = starter.columns[columnId];
                 const tasks = column.taskIds.map(taskId => starter.tasks[taskId]);
 
@@ -213,8 +213,9 @@ const DND = () => {
               })}
             </section>
 
-            <section className="dnd-cols" id={`q-26`}> 
-              {(starter.columnOrder).slice(1)?.map((columnId, index) => {
+            <section className="dnd-options">
+              <div className="title"> Decisions </div>
+              {(starter.columnOrder).slice(0, 1)?.map((columnId, index) => {
                 const column = starter.columns[columnId];
                 const tasks = column.taskIds.map(taskId => starter.tasks[taskId]);
 

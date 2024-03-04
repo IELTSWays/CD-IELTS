@@ -935,7 +935,7 @@ td {
 /* arrow-currentQuestion */
 .arrow-currentQuestion {
   position: fixed;
-  right: 50px;
+  right: 70px;
   bottom: 160px;
   display: flex;
   align-items: center;

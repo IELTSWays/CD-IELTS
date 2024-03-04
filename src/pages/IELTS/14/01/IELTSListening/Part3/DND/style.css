@@ -4,7 +4,7 @@
 
 [role="button"] {
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
 }
 
 [data-rbd-droppable-id="all-column"] > div {
@@ -14,20 +14,27 @@
 
 .dnd-options {
   pointer-events: none !important;
+  position: absolute;
+  left: 600px;
+  border: 1px solid lightgrey;
+  border-radius: 5px !important;
+  height: auto;
+  min-height: 425px;
 }
 
-.dnd-options .dnd-text-before, .dnd-options .dnd-flag {
+.dnd-options .dnd-text-before,
+.dnd-options .dnd-flag {
   display: none;
 }
 
-.dnd-options > div {
-  height: 390px !important;
-  border: 1px solid lightgrey;
-  border-radius: 0 !important;
+.dnd-options [role="button"]:last-child {
+  margin-bottom: 0 !important;
 }
 
-.dnd-options [role="button"] {
-  margin: 10px 0;
+.dnd-options .title {
+  text-align: center;
+  padding-top: 5px;
+  font-weight: bold;
 }
 
 .dnd-items {
@@ -47,10 +54,6 @@
   cursor: default;
 }
 
-.dnd-cols > div > div > [role="button"] {
-  width: 200px;
-  margin-bottom: 0 !important;
-}
 
 .dnd-cols [data-rbd-draggable-context-id="1"] > div:not(.dnd-flag) {
   background: #f0f0f0;
@@ -59,16 +62,23 @@
   justify-content: center;
   height: 56px;
   width: 200px !important;
-  border-radius: 5px
+  border-radius: 5px;
+}
+
+
+.dnd-cols > div > div > [role="button"] {
+  width: 208px;
+  margin-bottom: 0 !important;
 }
 
 .dnd-text-before + div {
   min-height: 54px;
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 [data-rbd-droppable-id="all-column"] {
   width: 100%;
+  position: relative;
 }
 
 [data-rbd-droppable-id="all-column"] .dnd-cols {
