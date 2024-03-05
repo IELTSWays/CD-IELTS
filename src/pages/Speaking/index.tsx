@@ -22,9 +22,10 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 // mtu
 
 import ListTeachers from "@/components/ListTeachers";
-
 import Times from "@/pages/Speaking/Times";
+
 import useGetTeacherList from "@/services/Requests/useGetTeacherList";
+import useGetTeacherTimes from "@/services/Requests/useGetTeacherTimes"
 import usePostCreateOrderSpeaking from "@/services/Requests/usePostCreateOrderSpeaking";
 
 const Speaking = () => {
@@ -39,6 +40,12 @@ const Speaking = () => {
   } = useGetTeacherList()
 
   const {
+    data: dataGetTeacherTimes,
+    isLoading: isLoadingGetTeacherTimes,
+    refetch: refetchGetTeacherTimes
+  } = useGetTeacherTimes()
+
+  const {
     refetch: refetchPostCreateOrderSpeaking,
   } = usePostCreateOrderSpeaking({
     "name": "B15AST1",
@@ -49,9 +56,12 @@ const Speaking = () => {
 
   useEffect(() => {
     refetchGetTeacherList()
+    refetchGetTeacherTimes()
   }, []);
 
   console.log(time)
+
+  console.log(dataGetTeacherTimes)
 
   return (
     <>
