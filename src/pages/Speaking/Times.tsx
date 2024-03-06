@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 
 // mtu
@@ -66,7 +67,7 @@ const Times = ({ onClick, selected }) => {
   }));
 
   return (
-    listTimes.data.map((i) => {
+    listTimes.data.map((i: any) => {
       return (
         <Grid sx={{ py: 3, px: 2 }} container spacing={{ xs: 2, sm: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={4} sm={8} md={12}>
@@ -76,7 +77,7 @@ const Times = ({ onClick, selected }) => {
                 <Typography display="block" sx={{ px: 1, minWidth: '200px' }}> {i.teacher.name} </Typography>
               </Grid>
 
-              <Box sx={{ width: '100%', }} id="teacher-times">
+              <Box sx={{ width: '100%' }} id="teacher-times">
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <Tabs value={value} onChange={handleChange} centered sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Tab label="00:00 - 06:00" {...a11yProps(0)} />
@@ -94,16 +95,16 @@ const Times = ({ onClick, selected }) => {
 
                 {/* 00:00 - 06:00 */}
                 <CustomTabPanel value={value} index={0}>
-                  <Box sx={{ flexGrow: 1, mt: 2.5 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                  <Box sx={{ flexGrow: 1, mt: 2.5, }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} id="container-times">
                       {/* 00 - 01 */}
-                      {(i.times.slice(0, 6)).map((j) => {
+                      {(i.times.slice(0, 6)).map((j: any) => {
                         return (
                           <Grid item xs={4} sm={8} md={4}>
                             <Paper
                               variant="outlined"
                               sx={{
-                                p: 1.5
+                                p: 1.5,
                               }}>
 
                               <Typography
@@ -118,14 +119,14 @@ const Times = ({ onClick, selected }) => {
                                 {j.start} - {j.end}
                               </Typography>
 
-                              {j.sections.map((k) => {
+                              {j.sections.map((k: any) => {
                                 return (
                                   <Stack
                                     spacing={{ xs: 1, sm: 2 }}
                                     direction="row"
                                     useFlexGap
                                     flexWrap="wrap"
-                                    sx={{ mt: 2 }}
+                                    sx={{ mt: 2}}
                                   >
                                     <Item className={k.state == 'booked' && 'reserved-container'}>
                                       <Button
@@ -158,8 +159,8 @@ const Times = ({ onClick, selected }) => {
                 {/* 06:00 - 12:00 */}
                 <CustomTabPanel value={value} index={1}>
                   <Box sx={{ flexGrow: 1, mt: 2.5 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                      {i.times.slice(6, 12).map((j) => {
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} id="container-times">
+                      {i.times.slice(6, 12).map((j: any) => {
                         return (
                           <Grid item xs={4} sm={8} md={4}>
                             <Paper
@@ -180,7 +181,7 @@ const Times = ({ onClick, selected }) => {
                                 {j.start} - {j.end}
                               </Typography>
 
-                              {j.sections.map((k) => {
+                              {j.sections.map((k: any) => {
                                 return (
                                   <Stack
                                     spacing={{ xs: 1, sm: 2 }}
@@ -220,8 +221,8 @@ const Times = ({ onClick, selected }) => {
                 {/* 12:00 - 18:00 */}
                 <CustomTabPanel value={value} index={2}>
                   <Box sx={{ flexGrow: 1, mt: 2.5 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                      {i.times.slice(12, 18).map((j) => {
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} id="container-times">
+                      {i.times.slice(12, 18).map((j: any) => {
                         return (
                           <Grid item xs={4} sm={8} md={4}>
                             <Paper
@@ -282,8 +283,8 @@ const Times = ({ onClick, selected }) => {
                 {/* 18:00 - 24:00 */}
                 <CustomTabPanel value={value} index={3}>
                   <Box sx={{ flexGrow: 1, mt: 2.5 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                      {i.times.slice(18, 24).map((j) => {
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} id="container-times">
+                      {i.times.slice(18, 24).map((j: any) => {
                         return (
                           <Grid item xs={4} sm={8} md={4}>
                             <Paper
@@ -341,7 +342,7 @@ const Times = ({ onClick, selected }) => {
                   </Box>
                 </CustomTabPanel>
               </Box>
-
+              
             </Card>
           </Grid>
         </Grid>
