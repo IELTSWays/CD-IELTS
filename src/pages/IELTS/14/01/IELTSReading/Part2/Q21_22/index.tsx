@@ -45,7 +45,22 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
   const [flag, setFlag] = useState(flags['21'])
 
-  const checkList = [t('00037'), t('00038'), t('00039'), t('00040'), t('00041')];
+  // const checkList = [
+  //   'The majority of residents would like to prevent all cars from entering the city.', 
+  //   'There is little likelihood of the city having another bike-sharing scheme.', 
+  //   'More trips in the city are made by bike than by any other form of transport.', 
+  //   'A bike-sharing scheme would benefit residents who use public transport.', 
+  //   'The city has a reputation as a place that welcomes cyclists.'
+  // ];
+
+  const checkList = [
+    { label: 'The majority of residents would like to prevent all cars from entering the city.', value: "a", },
+    { label: 'There is little likelihood of the city having another bike-sharing scheme.', value: "b", },
+    { label: 'More trips in the city are made by bike than by any other form of transport.', value: "c", },
+    { label: 'A bike-sharing scheme would benefit residents who use public transport.', value: "d", },
+    { label: 'The city has a reputation as a place that welcomes cyclists.', value: "e", },
+  ];
+
 
   let init;
   if (answersAll['00021'] == null) {
@@ -116,9 +131,9 @@ const index = ({ qn }: any) => {
           <Paper elevation={0}>
             <Typography>
               <strong className={`question-now ${currentQuestion == 21 && 'active'} `}> 21 - 22 </strong>
-              <Typography sx={{ px: 1 }}> {t('00035')} </Typography>
+              <Typography sx={{ px: 1 }}> Which </Typography>
               <strong className='uppercase'> two </strong>
-              <Typography sx={{ pl: 1 }}> {t('00036')} </Typography>
+              <Typography sx={{ pl: 1 }}> of the following statements are made in the text about Amsterdam today? </Typography>
             </Typography>
           </Paper>
         </AccordionSummary>
@@ -128,14 +143,14 @@ const index = ({ qn }: any) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    name={(item)}
-                    checked={checked?.includes(item)}
-                    value={item}
+                    name={(item.value)}
+                    checked={checked?.includes(item.value)}
+                    value={item.value}
                     onChange={handleCheck}
                     onClick={() => dispatch(setCurrentQuestion(21))}
                   />
                 }
-                label={item}
+                label={item.label}
               />
             </Paper>
           ))}

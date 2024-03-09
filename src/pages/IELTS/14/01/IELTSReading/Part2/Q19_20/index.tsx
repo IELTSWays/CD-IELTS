@@ -45,7 +45,21 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
   const [flag, setFlag] = useState(flags['19'])
 
-  const checkList = [t('00030'), t('00031'), t('00032'), t('00033'), t('00034')];
+  // const checkList = [
+  //   'it was initially opposed by a government department.', 
+  //   'it failed when a partner in the scheme withdrew support.', 
+  //   'it aimed to be more successful than the Copenhagen scheme.', 
+  //   'it was made possible by a change in people’s attitudes.', 
+  //   'it attracted interest from a range of bike designers.'
+  // ];
+
+  const checkList = [
+    { label: 'It was initially opposed by a government department.', value: "a", },
+    { label: 'It failed when a partner in the scheme withdrew support.', value: "b", },
+    { label: 'It aimed to be more successful than the Copenhagen scheme.', value: "c", },
+    { label: 'It was made possible by a change in people’s attitudes.', value: "d", },
+    { label: 'It attracted interest from a range of bike designers.', value: "e", },
+  ];
 
   let init;
   if (answersAll['00019'] == null) {
@@ -115,9 +129,10 @@ const index = ({ qn }: any) => {
           <Paper elevation={0}>
             <Typography>
               <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong>
-              <Typography sx={{ px: 1 }}> {t('00028')} </Typography>
+              <Typography sx={{ px: 1 }}> Which </Typography>
               <strong className='uppercase'> two </strong>
-              <Typography sx={{ pl: 1 }}> {t('00029')} </Typography>
+              <Typography sx={{ pl: 1 }}> of the following statements are made in the text about 
+              the Amsterdam bike-sharing scheme of 1999? </Typography>
             </Typography>
           </Paper>
         </AccordionSummary>
@@ -127,14 +142,14 @@ const index = ({ qn }: any) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    name={(item)}
-                    checked={checked?.includes(item)}
-                    value={item}
+                    name={(item.value)}
+                    checked={checked?.includes(item.value)}
+                    value={item.value}
                     onChange={handleCheck}
                     onClick={() => dispatch(setCurrentQuestion(19))}
                   />
                 }
-                label={item}
+                label={item.label}
               />
             </Paper>
           ))}

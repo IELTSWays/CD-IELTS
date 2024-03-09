@@ -23,6 +23,7 @@ import TableAnswers from "@/components/TableAnswers";
 import PieChart from "@/components/Chars/PieChart";
 
 import useGetReport from '@/services/Requests/useGetReport';
+import useGetReportFull from '@/services/Requests/useGetReportFull'
 
 const Reports = () => {
 
@@ -36,9 +37,16 @@ const Reports = () => {
     refetch
   } = useGetReport(id)
 
+  const { data: dataGetReportFull,
+    isLoading: isLoadingGetReportFull,
+    refetch: refetchGetReportFull
+  } = useGetReportFull(id);
+
   useEffect(() => {
-    refetch()
+    refetch() && refetchGetReportFull()
   }, [])
+
+  console.log(dataGetReportFull)
 
   return (
     <>
