@@ -21,7 +21,7 @@ const usePostTestDone = () => {
         "answers": answersAll,
       })
       const data = await response.data
-      navigate('/exams')
+      navigate(`/reports/${localStorage.getItem('test_id')}`)
       return data
     },
   })
