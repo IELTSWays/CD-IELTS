@@ -91,7 +91,7 @@ const index = () => {
     queryKey: ['postAnswer'],
     queryFn: async () => {
       const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
-        "test_done": false,
+        "test_done": false, "confirm": true,
         "answers": answersAll,
       })
       const data = await response.data

@@ -47,7 +47,7 @@ const Q27 = ({ qn }: any) => {
     queryKey: ['postAnswer'],
     queryFn: async () => {
       const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
-        "test_done": false,
+        "test_done": false, "confirm": true,
         "answers": {
           "00027": localStorage.getItem('00027')
         }

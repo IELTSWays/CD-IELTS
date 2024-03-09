@@ -38,7 +38,7 @@
 //     queryKey: ['postAnswer36'],
 //     queryFn: async () => {
 //       const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
-//         "test_done": false,
+//         "test_done": false, "confirm": true,
 //         "answers": {
 //           "00036": localStorage.getItem('00036')
 //         }
