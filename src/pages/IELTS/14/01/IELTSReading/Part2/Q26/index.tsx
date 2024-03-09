@@ -49,13 +49,14 @@ const index = ({ qn }: any) => {
             onClick={() => dispatch(setCurrentQuestion(qn))}
           />
         </div>
+        <span>Took them away.</span>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 26 && 'active'}`}>
           {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
         </div>
       </div>
       <div>
         <span>
-          Took them away. According to Schimmelpennink,
+          According to Schimmelpennink,
         </span>
         <span>
           the scheme was intended to be symbolic.

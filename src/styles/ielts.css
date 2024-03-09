@@ -650,7 +650,7 @@ html.ielts {
   flex-wrap: wrap;
   padding-right: 10px;
   width: 100%;
-  padding-bottom: 15px;
+  padding-bottom: 7.5px;
 }
 
 .ielts-question-textfield span {
@@ -669,7 +669,7 @@ html.ielts {
 }
 
 .css-1rv3ei8-MuiFormControl-root-MuiTextField-root {
-  margin: 8px !important;
+  margin: 2.5px 8px !important;
 }
 
 .ielts-container .MuiInputBase-input {
@@ -703,7 +703,8 @@ html.ielts {
   margin: 0 !important;
 }
 
-.ielts-container .text-field input {
+.ielts-container .text-field input, .ielts-container .MuiInputBase-input {
+  height: 15px !important;
   border-radius: 5px !important;
   border: 1.5px solid rgb(16 8 8 / 10%);
 }
@@ -1295,4 +1296,10 @@ td {
 
 .multi-choice, .radio-select {
   gap: 5px !important
+}
+
+
+.ielts-container .type-radio .question {
+  font-weight: bold;
+  padding: 0 8px;
 }

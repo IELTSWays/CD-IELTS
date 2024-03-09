@@ -58,11 +58,11 @@ const index = ({ qn }: any) => {
       id={`q-${qn}`}
       className="radio-select"
     >
-      <div className="align-items-start justify-content-space-between">
+      <div className="align-items-start justify-content-space-between type-radio">
         <Paper elevation={0}>
-          <Typography>
+        <Typography>
             <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-            <Typography sx={{ px: 1 }}> {t('00047')} </Typography>
+            <Typography sx={{ px: 1 }} className="question"> {t('00047')} </Typography>
           </Typography>
         </Paper>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>

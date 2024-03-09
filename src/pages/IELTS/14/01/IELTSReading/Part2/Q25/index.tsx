@@ -35,9 +35,6 @@ const index = ({ qn }: any) => {
 
   return (
     <div className="ielts-question-textfield" id={`q-${qn}`}>
-      <span>
-        and believed that the bike-sharing scheme would draw attention to these issues.
-      </span>
       <div>
         <span> As well as painting some bikes white, they handed out </span>
       </div>

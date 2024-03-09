@@ -47,6 +47,8 @@ const index = ({ qn }: any) => {
           onClick={() => dispatch(setCurrentQuestion(qn))}
         />
       </div>
+      <span>and believed that the bike-sharing scheme would draw attention to these issues.</span>
+
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 24 && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>
