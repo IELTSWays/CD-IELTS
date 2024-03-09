@@ -35,6 +35,7 @@ const DailyMessage = ({ firstName }: any) => {
 
   return <Card variant="outlined" id="daily-message">
     <CardHeader
+      sx={{ pb: 0 }}
       avatar={
         <Avatar sx={{ bgcolor: green[500] }}>
           <RocketIcon />

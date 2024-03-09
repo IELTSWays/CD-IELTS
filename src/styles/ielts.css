@@ -1303,3 +1303,98 @@ td {
   font-weight: bold;
   padding: 0 8px;
 }
+
+/* [ ############################ drag-and-drop - dnd ############################ ] */
+
+[data-rbd-droppable-id="all-column"] > div {
+  pointer-events: none !important;
+}
+
+[role="button"] {
+  border-radius: 5px;
+  text-align: left;
+}
+
+[data-rbd-droppable-id="all-column"] > div {
+  height: 50px !important;
+  overflow: hidden;
+}
+
+.dnd-options {
+  pointer-events: none !important;
+  position: absolute;
+  left: 600px;
+  border: 1px solid lightgrey;
+  border-radius: 5px !important;
+  height: auto;
+  min-height: 425px;
+}
+
+.dnd-options .dnd-text-before,
+.dnd-options .dnd-flag {
+  display: none;
+}
+
+.dnd-options [role="button"]:last-child {
+  margin-bottom: 0 !important;
+}
+
+.dnd-options .title {
+  text-align: center;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.dnd-items {
+  display: flex;
+}
+
+.dnd-cols {
+  width: 100vh;
+}
+
+.dnd-cols > div {
+  overflow: hidden;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: default;
+}
+
+
+.dnd-cols [data-rbd-draggable-context-id="1"] > div:not(.dnd-flag) {
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  width: 200px !important;
+  border-radius: 5px;
+}
+
+
+.dnd-cols > div > div > [role="button"] {
+  width: 208px;
+  margin-bottom: 0 !important;
+}
+
+.dnd-text-before + div {
+  min-height: 54px;
+  border-radius: 5px;
+}
+
+[data-rbd-droppable-id="all-column"] {
+  width: 100%;
+  position: relative;
+}
+
+[data-rbd-droppable-id="all-column"] .dnd-cols {
+  width: 100%;
+}
+
+.dnd-flag {
+  position: sticky;
+  left: 100%;
+  margin-right: 10px;
+}
