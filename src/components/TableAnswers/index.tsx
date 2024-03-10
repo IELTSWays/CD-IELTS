@@ -15,6 +15,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import React from 'react';
 // mtu
 
 const Transition = forwardRef(function Transition(
@@ -58,9 +59,7 @@ const rows = [
   createData(20, 'There are no heroes in a punk rock band]', 'NA'),
 ];
 
-
-
-const TableAnswers = ({ part = 0 }: any) => {
+const TableAnswers = () => {
 
   const [open, setOpen] = useState(false);
   const [questionId, setQuestionId] = useState('');
@@ -107,47 +106,7 @@ const TableAnswers = ({ part = 0 }: any) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {part === 0 && rows.map((row) => (
-              <TableRow
-                key={row.id}
-                id={row.id}
-                className={`table-${row.result}`}
-                onClick={(row: any) => showDetails(row)}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  '&:hover': {
-                    backgroundColor: '#0000000a',
-                    cursor: 'pointer'
-                  }
-                }}
-              >
-                <TableCell component="th" scope="row" width="10%">{row.id}</TableCell>
-                <TableCell align="left" >{row.answer}</TableCell>
-                <TableCell align="center" width="20%">{row.result}</TableCell>
-              </TableRow>
-            ))}
-
-            {part === 1 && rows.slice(0, 10).map((row) => (
-              <TableRow
-                key={row.id}
-                id={row.id}
-                className={`table-${row.result}`}
-                onClick={(row: any) => showDetails(row)}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  '&:hover': {
-                    backgroundColor: '#0000000a',
-                    cursor: 'pointer'
-                  }
-                }}
-              >
-                <TableCell component="th" scope="row" width="10%">{row.id}</TableCell>
-                <TableCell align="left" >{row.answer}</TableCell>
-                <TableCell align="center" width="20%">{row.result}</TableCell>
-              </TableRow>
-            ))}
-
-            {part === 2 && rows.slice(10).map((row) => (
+            {rows.map((row) => (
               <TableRow
                 key={row.id}
                 id={row.id}

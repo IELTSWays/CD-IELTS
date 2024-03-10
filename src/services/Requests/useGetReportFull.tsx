@@ -7,7 +7,7 @@ const useGetReportFull = (id: any) => {
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getReport', id],
+    queryKey: ['getFullReport', id],
     queryFn: async ({ queryKey }) => {
       const response = await api.get(`report/full-report/${queryKey[1]}`)
       const data = await response.data

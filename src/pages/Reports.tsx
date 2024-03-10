@@ -1,5 +1,7 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import parse from 'html-react-parser';
 
 // mtu
 import Grid from "@mui/material/Grid";
@@ -8,18 +10,22 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
+import { red, green } from '@mui/material/colors';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import InfoIcon from '@mui/icons-material/Info';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import RuleIcon from '@mui/icons-material/Rule';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import ShortTextIcon from '@mui/icons-material/ShortText';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import NotesIcon from '@mui/icons-material/Notes';
 // mtu
 
 import TableReport from "@/components/TableReport";
-import TableAnswers from "@/components/TableAnswers";
 import PieChart from "@/components/Chars/PieChart";
 
 import useGetReport from '@/services/Requests/useGetReport';
@@ -43,10 +49,13 @@ const Reports = () => {
   } = useGetReportFull(id);
 
   useEffect(() => {
-    refetch() && refetchGetReportFull()
+    refetch()
+    refetchGetReportFull()
+
   }, [])
 
-  console.log(dataGetReportFull)
+  console.log('[dataGetReportFull]', dataGetReportFull)
+  console.log('[data]', data)
 
   return (
     <>
@@ -179,13 +188,13 @@ const Reports = () => {
                 <CardContent sx={{ py: 0 }}>
 
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '330px', margin: 'auto' }}>
-                    <PieChart />
+                    <PieChart percent={[25, 25, 50,]} />
                   </div>
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={4} sm={8} md={6} sx={{ mt: 5 }} display={{ xs: "block", sm: "none" }} >
+            <Grid item xs={4} sm={8} md={12} sx={{ mt: 5 }} display={{ xs: "none", sm: "block" }}>
               <Card variant="outlined">
                 <CardHeader
                   sx={{ flexWrap: 'wrap' }}
@@ -195,46 +204,33 @@ const Reports = () => {
                     </Avatar>
                   }
                   titleTypographyProps={{ variant: 'h6' }}
-                  title="Answer Sheet [01-20]"
+                  title="Full Report"
                 />
                 <CardContent sx={{ py: 0 }}>
-                  <TableAnswers part={0} />
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={4} sm={8} md={6} sx={{ mt: 5 }} display={{ xs: "none", sm: "block" }}>
-              <Card variant="outlined">
-                <CardHeader
-                  sx={{ flexWrap: 'wrap' }}
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[700] }}>
-                      <RuleIcon />
-                    </Avatar>
-                  }
-                  titleTypographyProps={{ variant: 'h6' }}
-                  title="Answer Sheet [01-10]"
-                />
-                <CardContent sx={{ py: 0 }}>
-                  <TableAnswers part={1} />
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={4} sm={8} md={6} sx={{ mt: 5 }} display={{ xs: "none", sm: "block" }}>
-              <Card variant="outlined">
-                <CardHeader
-                  sx={{ flexWrap: 'wrap' }}
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[700] }}>
-                      <RuleIcon />
-                    </Avatar>
-                  }
-                  titleTypographyProps={{ variant: 'h6' }}
-                  title="Answer Sheet [11-20]"
-                />
-                <CardContent sx={{ py: 0 }}>
-                  <TableAnswers part={2} />
+                  {dataGetReportFull?.full_data?.map((i: any) => {
+                    return (
+                      <Box sx={{ flexGrow: 1, width: '100%', py: 1 }} >
+                        <Paper variant="outlined" sx={{ p: 1 }}>
+                          <Stack spacing={1} direction="row" alignItems="center" sx={{ mb: 1 }}>
+                            <Avatar sx={{ bgcolor: i.is_correct ? red[700] : green[700] }}> {i.number} </Avatar>
+                            <Typography gutterBottom>{i.question}</Typography>
+                          </Stack>
+                          <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                            <ChevronRightIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
+                            <Typography>{i.answer}</Typography>
+                          </Stack>
+                          <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                            <ShortTextIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
+                            <Typography>{i.keywords}</Typography>
+                          </Stack>
+                          <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                          <NotesIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
+                            {i.full_answer ? parse(`${i.full_answer}`) : 'There is no explanation' }
+                          </Stack>
+                        </Paper>
+                      </Box>
+                    )
+                  })}
                 </CardContent>
               </Card>
             </Grid>
