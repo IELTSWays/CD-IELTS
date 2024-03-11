@@ -96,7 +96,11 @@ const index = ({ qn }: any) => {
         <Box sx={{ px: 1 }}>
           <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
             <Paper elevation={0}>
-              <Typography>Ocean thermal energy conversion:</Typography>
+              <Typography>
+                <strong>
+                  Ocean thermal energy conversion:
+                </strong>
+              </Typography>
             </Paper>
           </Stack>
         </Box>

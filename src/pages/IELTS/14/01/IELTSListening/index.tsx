@@ -65,6 +65,7 @@ import Q37 from './Part4/Q37';
 import Q38 from './Part4/Q38';
 import Q39 from './Part4/Q39';
 import Q40 from './Part4/Q40';
+import React from 'react';
 
 const index = () => {
   const { t } = useTranslation();
@@ -458,7 +459,9 @@ const index = () => {
                           <Paper elevation={0}>
                             <Stack direction="row" alignItems="center">
                               <Typography>
-                                Problems:
+                                <strong>
+                                  Problems:
+                                </strong>
                               </Typography>
                             </Stack>
                           </Paper>
@@ -489,7 +492,11 @@ const index = () => {
                       <Box sx={{ px: 1 }}>
                         <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
                           <Paper elevation={0}>
-                            <Typography>Advantages:</Typography>
+                            <Typography>
+                              <strong>
+                                Advantages:
+                              </strong>  
+                            </Typography>
                           </Paper>
                         </Stack>
                       </Box>
@@ -498,8 +505,10 @@ const index = () => {
                         <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
                           <Paper elevation={0}>
                             <Stack direction="row" alignItems="center">
-                              <Typography >
+                              <Typography>
+                              <strong>
                                 not dependent on weather
+                              </strong> 
                               </Typography>
                             </Stack>
                           </Paper>

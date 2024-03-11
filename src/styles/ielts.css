@@ -1229,22 +1229,22 @@ td {
 
 .ielts-checkbox .MuiPaper-elevation label:before {
   content: counter(alphabet, upper-alpha);
-  padding: 0 10px;
+  padding-left: 20px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(1):before {
   content: "A";
-  padding: 0 10px;
+  padding-left: 20px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(2):before {
   content: "B";
-  padding: 0 10px;
+  padding-left: 20px;
 }
 
 .ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(3):before {
   content: "C";
-  padding: 0 10px;
+  padding-left: 20px;
 }
 
 .ielts-answersTable.top-labels .MuiChip-outlined:nth-child(n):before {
@@ -1377,6 +1377,10 @@ td {
 .dnd-cols > div > div > [role="button"] {
   width: 208px;
   margin-bottom: 0 !important;
+}
+
+.dnd-text-before {
+  font-weight: bold;
 }
 
 .dnd-text-before + div {
