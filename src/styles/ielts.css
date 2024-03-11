@@ -751,6 +751,10 @@ td {
   display: inline !important;
 }
 
+.MuiAccordionSummary-content p.MuiTypography-root .MuiTypography-root.MuiTypography-body1 {
+  margin-left: -5px;
+}
+
 /* drag-drop */
 .ielts-dragbox {
   border: 1px solid var(--color-04);
