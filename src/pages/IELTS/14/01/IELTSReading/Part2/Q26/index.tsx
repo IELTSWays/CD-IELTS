@@ -33,6 +33,12 @@ const index = ({ qn }: any) => {
     dispatch(setFlags(Object.assign({}, flags, { '26': !flag })))
   }
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      dispatch(setCurrentQuestion('27'))
+    }
+  }
+
   return (
     <>
       <div className="ielts-question-textfield" id={`q-${qn}`}>
@@ -47,6 +53,7 @@ const index = ({ qn }: any) => {
             value={answer}
             onChange={(e) => answerHandler(e)}
             onClick={() => dispatch(setCurrentQuestion(qn))}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
         </div>
         <span>Took them away.</span>

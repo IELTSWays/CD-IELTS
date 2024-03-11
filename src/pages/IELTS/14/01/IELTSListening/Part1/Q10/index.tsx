@@ -38,6 +38,12 @@ const index = ({ qn }: any) => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, { '00010': (e.target.value).trim().toLowerCase() })))
   }
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      dispatch(setCurrentQuestion('27'))
+    }
+  }
+
   return (
     <div className="align-items-start justify-content-space-between">
       <div>
@@ -67,6 +73,7 @@ const index = ({ qn }: any) => {
                 value={answer}
                 onChange={(e) => answerHandler(e)}
                 onClick={() => dispatch(setCurrentQuestion(qn))}
+                onKeyDown={(e) => handleKeyDown(e)}
               />
             </div>
           </Paper>
