@@ -216,16 +216,22 @@ const Reports = () => {
                             <Typography gutterBottom>{i.question}</Typography>
                           </Stack>
                           <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                            <ChevronRightIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
-                            <Typography>{i.answer}</Typography>
+                            <ChevronRightIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }} />
+                            <Typography sx={{ pt: '4px' }}>
+                              {i.answer}
+                            </Typography>
                           </Stack>
                           <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                            <ShortTextIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
-                            <Typography>{i.keywords}</Typography>
+                            <ShortTextIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }} />
+                            <Typography sx={{ pt: '4px' }}>
+                              {i.keywords}
+                            </Typography>
                           </Stack>
                           <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                          <NotesIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }}/>
-                            {i.full_answer ? parse(`${i.full_answer}`) : 'There is no explanation' }
+                            <NotesIcon sx={{ border: '1px solid #EBEBEB', fontSize: '30px', borderRadius: '5px' }} />
+                            {i.full_answer ? parse(`${i.full_answer}`) :
+                              <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
+                            }
                           </Stack>
                         </Paper>
                       </Box>
@@ -242,3 +248,5 @@ const Reports = () => {
 };
 
 export default Reports;
+
+
