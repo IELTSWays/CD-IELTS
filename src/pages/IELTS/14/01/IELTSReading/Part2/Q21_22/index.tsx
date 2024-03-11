@@ -113,7 +113,8 @@ const index = ({ qn }: any) => {
 
   useEffect(() => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, {
-      '00021': checked
+      '00021': checked,
+      '00022': checked
     })))
   }, [checked]);
 
