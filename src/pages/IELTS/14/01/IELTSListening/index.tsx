@@ -191,8 +191,10 @@ const index = () => {
   }
 
   useEffect(() => {
-    console.log(dataGetAnswer)
-  }, [])
+    if (currentQuestion == 11 || currentQuestion == 21 || currentQuestion == 31 ) {
+      window.scrollTo(0, 0)
+    }
+  }, [currentQuestion])
 
   return (
     <>

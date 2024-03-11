@@ -173,8 +173,6 @@ const index = () => {
     }
   }, [currentQuestion]);
 
-
-
   const handlePrevious = () => {
     if (currentQuestion == 21 || currentQuestion == 23) {
       dispatch(setCurrentQuestion(+currentQuestion - 2))
@@ -193,6 +191,12 @@ const index = () => {
     }
   }
 
+  useEffect(() => {
+    if (currentQuestion == 14 || currentQuestion == 27) {
+      window.scrollTo(0, 0)
+    }
+  }, [currentQuestion])
+    
   return (
     <>
       <Title title={parts[part - 1].title} description={parts[part - 1].description} />

@@ -724,6 +724,7 @@ html.ielts {
 
 /* active number question */
 .ielts-container .question-now {
+  display: inline-flex;
   padding: 5px;
   border-radius: 5px;
   border: 2px solid transparent;
@@ -740,10 +741,14 @@ td {
   border: 1px solid;
 }
 
-#ielts-list-text-input .css-ahj2mt-MuiTypography-root {
+.#ielts-list-text-input .css-ahj2mt-MuiTypography-root {
   display: flex;
   align-items: center;
   min-height: 33px;
+}
+
+.MuiAccordionSummary-content p.MuiTypography-root {
+  display: inline !important;
 }
 
 /* drag-drop */
