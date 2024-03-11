@@ -23,19 +23,19 @@ const DND = () => {
 
   const init = {
     tasks: {
-      "A": { id: "A", content: "use visuals" },
-      "B": { id: "B", content: "keep it short" },
-      "C": { id: "C", content: "involve other students" },
-      "D": { id: "D", content: "check the information is accurate" },
-      "E": { id: "E", content: "provide a handout" },
-      "F": { id: "F", content: "focus on one example" },
-      "G": { id: "G", content: "do online research" }
+      "a": { id: "a", content: "A - use visuals" },
+      "b": { id: "b", content: "B - keep it short" },
+      "c": { id: "c", content: "C - involve other students" },
+      "d": { id: "d", content: "D - check the information is accurate" },
+      "e": { id: "e", content: "E - provide a handout" },
+      "f": { id: "f", content: "F - focus on one example" },
+      "g": { id: "g", content: "G - do online research" }
     },
     columns: {
       "column-1": {
         id: "column-1",
         title: "",
-        taskIds: ["A", "B", "C", "D", "E", "F", "G"].filter(x =>
+        taskIds: ["a", "b", "c", "d", "e", "f", "g"].filter(x =>
           x !== localStorage.getItem('00026') &&
           x !== localStorage.getItem('00027') &&
           x !== localStorage.getItem('00028') &&
