@@ -50,7 +50,10 @@ const Column = ({ tasks, column, index }) => {
   }
 
   return (
-    <Draggable draggableId={column.id} index={index} type="column"
+    <Draggable 
+      draggableId={column.id} 
+      index={index} 
+      type="column"
     >
       {provided => (
         <>
@@ -60,7 +63,7 @@ const Column = ({ tasks, column, index }) => {
             {...provided.dragHandleProps}
           >
             <Title className="dnd-text-before">
-              {column.id} - {column.title}
+                {column.id} - {column.title}
             </Title>
             <Droppable droppableId={column.id} type="task" id="item">
               {(provided, snapshot) => (
@@ -79,7 +82,6 @@ const Column = ({ tasks, column, index }) => {
             <div onClick={() => flagHandler()} onMouseOver={() => setId(column.id)} className={`dnd-flag flag active`}>
               {flags[column.id] ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
-
           </Container>
         </>
       )}

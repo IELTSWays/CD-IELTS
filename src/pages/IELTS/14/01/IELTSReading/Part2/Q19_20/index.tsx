@@ -128,11 +128,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong>
-              <Typography sx={{ px: 1 }}> Which </Typography>
-              <strong className='uppercase'> two </strong>
-              <Typography sx={{ pl: 1 }}> of the following statements are made in the text about 
-              the Amsterdam bike-sharing scheme of 1999? </Typography>
+              <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong> Which two of the following statements are made in the text about the Amsterdam bike-sharing scheme of 1999? 
             </Typography>
           </Paper>
         </AccordionSummary>
