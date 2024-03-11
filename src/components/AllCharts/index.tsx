@@ -26,7 +26,6 @@ const AllCharts = () => {
     setAlignment(newAlignment);
   };
 
-
   return <Card variant="outlined">
     <CardHeader
       avatar={
