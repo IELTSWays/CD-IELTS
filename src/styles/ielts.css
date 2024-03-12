@@ -1411,3 +1411,8 @@ td {
   left: 100%;
   margin-right: 10px;
 }
+
+/* [ ############################ Report ############################ ] */
+.short-report {
+  padding-top: 4px !important;
+}

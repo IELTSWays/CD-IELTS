@@ -4,24 +4,30 @@ import { useParams } from "react-router-dom";
 import parse from 'html-react-parser';
 
 // mtu
+import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Avatar from '@mui/material/Avatar';
-import { red, green } from '@mui/material/colors';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
-import PieChartIcon from '@mui/icons-material/PieChart';
+import { red, green } from '@mui/material/colors';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+
 import RuleIcon from '@mui/icons-material/Rule';
+import LockIcon from '@mui/icons-material/Lock';
+import NotesIcon from '@mui/icons-material/Notes';
+import HeadsetIcon from '@mui/icons-material/Headset';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import VideocamIcon from '@mui/icons-material/Videocam';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import ShortTextIcon from '@mui/icons-material/ShortText';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import NotesIcon from '@mui/icons-material/Notes';
 // mtu
 
 import TableReport from "@/components/TableReport";
@@ -156,7 +162,7 @@ const Reports = () => {
             <Grid item xs={4} sm={4} md={8}>
               <Card variant="outlined">
                 <CardHeader
-                  sx={{ flexWrap: 'wrap' }}
+                  sx={{ flexWrap: 'wrap', mb: 4 }}
                   avatar={
                     <Avatar sx={{ bgcolor: red[700] }}>
                       <SummarizeIcon />
@@ -166,27 +172,11 @@ const Reports = () => {
                   title="Summary"
                 />
                 <CardContent sx={{ py: 0 }}>
-                  {/* <TableReport /> */}
-
-                  {/* {dataGetReportFull?.full_data.slice(0, 10)?.map((i: any) => {
-                    return (
-                      <Box sx={{ flexGrow: 1, width: '100%', py: 1 }} >
-                        <Paper variant="outlined" sx={{ p: 1 }}>
-                          <Stack spacing={1} direction="row" alignItems="center" sx={{ mb: 1 }}>
-                            <Avatar sx={{ bgcolor: i.is_correct ? red[700] : green[700] }}> {i.number} </Avatar>
-                            <Typography gutterBottom>{i.question}</Typography>
-                          </Stack>
-                        </Paper>
-                      </Box>
-                    )
-                  })} */}
-
                   <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-
-                      {dataGetReportFull?.full_data.slice(0, 20)?.map((i: any, index: any) => {
+                      {dataGetReportFull?.full_data?.map((i: any, index: any) => {
                         return (
-                          <Grid item xs={4} sm={8} md={6} key={index}>
+                          <Grid item xs={4} sm={8} md={3} key={index} className="short-report">
                             <Box sx={{ flexGrow: 1, width: '100%' }}>
                               <Paper variant="outlined" sx={{ p: 1 }}>
                                 <Stack spacing={1} direction="row" alignItems="center">
@@ -194,9 +184,11 @@ const Reports = () => {
                                     variant="rounded"
                                     sx={{
                                       width: 24, height: 24, fontSize: '14px',
-                                      bgcolor: i.is_correct ? red[700] : green[700]
-                                    }}
-                                  >
+                                      bgcolor:
+                                        i.is_correct == true ? green[700] :
+                                          i.is_correct == 'not-answer' ? green[100] :
+                                            i.is_correct == false ? red[700] : null
+                                    }}>
                                     {i.number}
                                   </Avatar>
                                   <Typography variant="caption">
@@ -248,13 +240,34 @@ const Reports = () => {
                   titleTypographyProps={{ variant: 'h6' }}
                   title="Full Report"
                 />
+                <CardContent>
+                  <Stack direction="row" spacing={2}>
+                    <Button variant="outlined" startIcon={<AssignmentIcon />}>
+                      Text
+                    </Button>
+                    <Button variant="contained" startIcon={<HeadsetIcon />} endIcon={<LockIcon />}>
+                      Audio
+                    </Button>
+                    <Button variant="contained" startIcon={<VideocamIcon />} endIcon={<LockIcon />}>
+                      Video
+                    </Button>
+                  </Stack>
+                </CardContent>
                 <CardContent sx={{ py: 0 }}>
                   {dataGetReportFull?.full_data?.map((i: any) => {
                     return (
                       <Box sx={{ flexGrow: 1, width: '100%', py: 1 }} >
                         <Paper variant="outlined" sx={{ p: 1 }}>
                           <Stack spacing={1} direction="row" alignItems="center" sx={{ mb: 1 }}>
-                            <Avatar sx={{ bgcolor: i.is_correct ? red[700] : green[700] }}> {i.number} </Avatar>
+                            <Avatar
+                              sx={{
+                                bgcolor:
+                                  i.is_correct == true ? green[700] :
+                                    i.is_correct == 'not-answer' ? green[100] :
+                                      i.is_correct == false ? red[700] : null
+                              }}>
+                              {i.number}
+                            </Avatar>
                             <Typography gutterBottom>{i.question}</Typography>
                           </Stack>
                           <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
@@ -305,5 +318,3 @@ const Reports = () => {
 };
 
 export default Reports;
-
-
