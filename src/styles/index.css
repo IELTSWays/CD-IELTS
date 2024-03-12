@@ -478,6 +478,7 @@ ul#payment-details > li {
   justify-content: center;
   font-weight: bold;
   font-size: 12px;
+  border-radius: 5px
 }
 
 #teacher-times button, .reserved {

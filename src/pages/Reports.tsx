@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import parse from 'html-react-parser';
 
+import axios from "axios";
+
+import { AudioPlayerFull } from "@/components/AudioPlayerFull";
+
 // mtu
 import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
@@ -36,9 +40,14 @@ import PieChart from "@/components/Chars/PieChart";
 import useGetReport from '@/services/Requests/useGetReport';
 import useGetReportFull from '@/services/Requests/useGetReportFull'
 
+const songUrl =
+  "https://amt-warehouse.s3.amazonaws.com/audio-player-demo/songs.json";
+
+
 const Reports = () => {
 
   const [fullReport, setFullReport] = useState(false)
+  const [songs, setSongs] = useState([]);
 
   const { id } = useParams()
 
@@ -59,8 +68,9 @@ const Reports = () => {
 
   }, [])
 
-  console.log('[dataGetReportFull]', dataGetReportFull)
-  console.log('[data]', data)
+  useEffect(() => {
+    axios.get(songUrl).then((response) => setSongs(response.data.songs));
+  }, []);
 
   return (
     <>
@@ -302,6 +312,15 @@ const Reports = () => {
                             {i.full_answer ? parse(`${i.full_answer}`) :
                               <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
                             }
+                          </Stack>
+                          <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                            <HeadsetIcon
+                              sx={{
+                                border: '1px solid #EBEBEB',
+                                fontSize: '30px',
+                                borderRadius: '5px'
+                              }} />
+                            {songs.length > 0 ? <AudioPlayerFull songs={songs} /> : <></>}
                           </Stack>
                         </Paper>
                       </Box>

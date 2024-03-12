@@ -1,27 +1,23 @@
 import React from "react";
-import { useEffect, useRef, useReducer, useCallback, useState } from "react";
+import cx from "clsx";
+import { useEffect, useRef, useReducer, useCallback } from "react";
+import "./AudioPlayerFull.css";
 
-// mtu
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
 import PauseIcon from '@mui/icons-material/Pause';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
-// mtu
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
-const getTime = (seconds: number) =>
+const getTime = (seconds) =>
   !seconds ? "00:00" : new Date(seconds * 1000).toISOString().slice(14, 19);
 
-export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
-
-  const [showVolume, setShowVolume] = useState(false);
-
-  const player = useRef<any>(null);
+export const AudioPlayerFull = ({ songs }) => {
+  const player = useRef(null);
   const [playerState, setPlayerState] = useReducer(
-    (state: any, action: any) => ({
+    (state, action) => ({
       ...state,
       ...action
     }),
@@ -30,7 +26,7 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
       isPlaying: false,
       current: 0,
       progress: 0,
-      volume: 50,
+      volume: 100,
       prevVolume: 100
     }
   );
@@ -38,13 +34,11 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
   const pause = () => {
     player.current.pause();
     setPlayerState({ isPlaying: false });
-    onPlayStatusChange(false);
   };
 
   const play = () => {
     player.current.play();
     setPlayerState({ isPlaying: true });
-    onPlayStatusChange(true);
   };
 
   const pausePlay = () => {
@@ -75,19 +69,19 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
     player.current.addEventListener("canplay", () => play(), { once: true });
   };
 
-  const handleSeek = (event: any) => {
+  const handleSeek = (event) => {
     const { value } = event.target;
     setPlayerState({ progress: value });
     player.current.currentTime = (value / 100) * player.current.duration;
   };
 
-  const handleVolumeChange = (event: any) => {
+  const handleVolumeChange = (event) => {
     const newVolume = event.target.value;
     setPlayerState({ volume: newVolume });
     player.current.volume = newVolume / 100;
   };
 
-  const handlePlaylistPlay = (index: any) => {
+  const handlePlaylistPlay = (index) => {
     if (playerState.current === index) {
       pausePlay();
     } else {
@@ -109,7 +103,7 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
   useEffect(() => {
     if (!player.current) return;
 
-    const updateProgress = (event: any)  => {
+    const updateProgress = (event) => {
       const progress = Math.floor(
         (event.target.currentTime / event.target.duration) * 100
       );
@@ -126,49 +120,90 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
     return () => { };
   }, [player, playNext, setPlayerState]);
 
-  useEffect(() => {
-    play()
-  }, [])
-
   return (
     <>
-      <>
+      <div className="player" id="AudioPlayerFull">
         <audio
           ref={player}
           src={playerState.songs.at(playerState.current)?.audio}
         />
-      </>
-
-      <div className='ielts-footer-btn' onClick={pausePlay}>
-        {playerState.isPlaying ? (
-          <PauseIcon color="action" fontSize="small" />
-        ) : (
-          <PlayArrowIcon color="action" fontSize="small" />
+        {playerState.songs.at(playerState.current) && (
+          <div className="song">
+            <cite className="title">
+              <a
+                href={playerState.songs.at(playerState.current).attribution}
+                className="link"
+              >
+                "{playerState.songs.at(playerState.current).name}"
+              </a>
+            </cite>
+            <span className="artist">
+              by {playerState.songs.at(playerState.current).artist}
+            </span>
+          </div>
         )}
-      </div>
 
-      <div className='ielts-footer-btn relative'>
-        <span className="d-flex" onClick={() => setShowVolume(!showVolume)}>
-          {playerState.volume == 0 && <VolumeMuteIcon color="action" fontSize="small" />}
-          {playerState.volume > 0 && playerState.volume < 50 && <VolumeDownIcon color="action" fontSize="small" />}
-          {playerState.volume >= 50 && <VolumeUpIcon color="action" fontSize="small" />}
+        <button className="prev" onClick={playPrevious}>
+          <SkipPreviousIcon color="action" fontSize="medium" />
+        </button>
+
+        <button className="play" onClick={pausePlay}>
+          {playerState.isPlaying ? (
+            <PauseIcon color="action" fontSize="medium" />
+          ) : (
+            <PlayArrowIcon color="action" fontSize="medium" />
+          )}
+        </button>
+
+        <button className="next" onClick={playNext}>
+          <SkipNextIcon color="action" fontSize="medium" />
+        </button>
+
+        <span className="time">
+          {getTime(player.current?.currentTime)}&nbsp;/&nbsp;
+          {getTime(player.current?.duration)}
         </span>
-        {showVolume &&
-          <Box sx={{ width: 150 }} className="volume-controller">
-            <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
-              <Slider aria-label="Volume" value={playerState.volume} defaultValue={50} onChange={handleVolumeChange} />
-            </Stack>
-          </Box>
-        }
-      </div>
 
+        <input
+          type="range"
+          className="progress"
+          min="0"
+          max="100"
+          onChange={handleSeek}
+          value={playerState.progress || 0}
+        />
+
+        <div className="volume">
+          <button onClick={toggleMute}>
+            {/* {playerState.volume === 0 ? (
+              <div title="Unmute" />
+            ) : playerState.volume > 50 ? (
+              <VolumeMuteIcon color="action" fontSize="medium"/>
+            ) : (
+              <div title="Mute" />
+            )} */}
+            {playerState.volume == 0 && <VolumeMuteIcon color="action" fontSize="medium" />}
+            {playerState.volume > 0 && playerState.volume < 50 && <VolumeDownIcon color="action" fontSize="medium" />}
+            {playerState.volume >= 50 && <VolumeUpIcon color="action" fontSize="medium" />}
+          </button>
+          <input
+            type="range"
+            className="volume-slider"
+            min="0"
+            max="100"
+            onChange={handleVolumeChange}
+            value={playerState.volume}
+          />
+        </div>
+      </div>
       {/* <ul className="songs">
         {playerState.songs.map((song, index) => (
           <li
             key={song.name}
-            className={
+            className={cx(
+              "song",
               playerState.current === index && "song--current"
-            }
+            )}
           >
             <cite className="title">
               <a href={song.attribution} className="link">
@@ -181,9 +216,9 @@ export const AudioPlayer = ({ songs, onPlayStatusChange }: any) => {
               onClick={() => handlePlaylistPlay(index)}
             >
               {playerState.current === index && playerState.isPlaying ? (
-                <div>Pause</div>
+                <div title="Pause" />
               ) : (
-                <div>PLAY</div>
+                <div title="Play" />
               )}
             </button>
           </li>
