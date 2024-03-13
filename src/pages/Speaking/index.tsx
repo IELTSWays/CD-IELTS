@@ -99,7 +99,7 @@ const Speaking = () => {
         <Grid item xs={4} sm={8} md={12}>
           <Card variant="outlined" sx={{ py: 3, px: 2, backgroundColor: '#f9f9f9' }}>
             <Grid sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <Avatar sx={{ bgcolor: red[700] }}>
+              <Avatar sx={{ bgcolor: "#E21D38" }}>
                 <CalendarMonthIcon />
               </Avatar>
               <Typography display="block" sx={{ px: 1, minWidth: '200px' }}> Select Data </Typography>

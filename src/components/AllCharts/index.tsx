@@ -29,7 +29,7 @@ const AllCharts = () => {
   return <Card variant="outlined">
     <CardHeader
       avatar={
-        <Avatar sx={{ bgcolor: red[700] }}>
+        <Avatar sx={{ bgcolor: "#E21D38" }}>
           <EqualizerIcon />
         </Avatar>
       }

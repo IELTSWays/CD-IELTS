@@ -15,7 +15,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //     {
 //       data: [12, 19, 3,],
 //       backgroundColor: [
-//         red[700],
+//         "#E21D38",
 //         green[700],
 //         yellow[700]
 //       ],
@@ -37,7 +37,7 @@ const PieChart = ({percent}) => {
         data: percent,
         backgroundColor: [
           green[700],
-          red[700],
+          "#E21D38",
           '#ededed'
         ],
         borderColor: [

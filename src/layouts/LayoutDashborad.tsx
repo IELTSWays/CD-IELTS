@@ -231,7 +231,7 @@ const LayoutDashborad = ({ children }: any) => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       {/* show left menu in desktop */}
-      <AppBarDesktop position="fixed" open={open} sx={{ display: { xs: 'none', sm: 'flex', background: red[700] } }}>
+      <AppBarDesktop position="fixed" open={open} sx={{ display: { xs: 'none', sm: 'flex', background: "#E21D38" } }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -252,7 +252,7 @@ const LayoutDashborad = ({ children }: any) => {
       </AppBarDesktop>
 
       {/* hide left menu in mobile */}
-      <AppBarMobile open={open} sx={{ display: { xs: 'flex', sm: 'none', background: red[700] } }}>
+      <AppBarMobile open={open} sx={{ display: { xs: 'flex', sm: 'none', background: "#E21D38" } }}>
         <Toolbar sx={{ width: '100%', justifyContent: 'center' }}>
           <Typography variant="h6" noWrap component="div">
             IELTSWAYS
@@ -284,7 +284,7 @@ const LayoutDashborad = ({ children }: any) => {
                 >
                   <IconButton
                     disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}
-                    sx={{ color: location.pathname === item.path && red[700], pointerEvents: 'none',}}
+                    sx={{ color: location.pathname === item.path && "#E21D38", pointerEvents: 'none',}}
                   >
                     {item.icon}
                   </IconButton>
@@ -314,10 +314,10 @@ const LayoutDashborad = ({ children }: any) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   color: location.pathname === item.path && grey[100],
-                  backgroundColor: location.pathname === item.path && red[700],
+                  backgroundColor: location.pathname === item.path && "#E21D38",
                   '&:hover': {
                     color: location.pathname === item.path && grey[100],
-                    backgroundColor: location.pathname === item.path && red[700],
+                    backgroundColor: location.pathname === item.path && "#E21D38",
                   },
                 }}
                 disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}

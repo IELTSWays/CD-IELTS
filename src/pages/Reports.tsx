@@ -86,7 +86,7 @@ const Reports = () => {
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
                 avatar={
-                  <Avatar sx={{ bgcolor: red[700] }}>
+                  <Avatar sx={{ bgcolor: "#E21D38" }}>
                     <InfoIcon />
                   </Avatar>
                 }
@@ -174,7 +174,7 @@ const Reports = () => {
                 <CardHeader
                   sx={{ flexWrap: 'wrap', mb: 4 }}
                   avatar={
-                    <Avatar sx={{ bgcolor: red[700] }}>
+                    <Avatar sx={{ bgcolor: "#E21D38" }}>
                       <SummarizeIcon />
                     </Avatar>
                   }
@@ -197,7 +197,7 @@ const Reports = () => {
                                       bgcolor:
                                         i.is_correct == true ? green[700] :
                                           i.is_correct == 'not-answer' ? "#adadad" :
-                                            i.is_correct == false ? red[700] : null
+                                            i.is_correct == false ? "#E21D38" : null
                                     }}>
                                     {i.number}
                                   </Avatar>
@@ -221,7 +221,7 @@ const Reports = () => {
                 <CardHeader
                   sx={{ flexWrap: 'wrap' }}
                   avatar={
-                    <Avatar sx={{ bgcolor: red[700] }}>
+                    <Avatar sx={{ bgcolor: "#E21D38" }}>
                       <PieChartIcon />
                     </Avatar>
                   }
@@ -230,8 +230,19 @@ const Reports = () => {
                 />
                 <CardContent sx={{ py: 0 }}>
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '330px', margin: 'auto' }}>
-                    <PieChart percent={[25, 25, 50,]} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '330px',
+                      margin: 'auto'
+                    }}>
+                    <PieChart percent={[
+                      (dataGetReportFull?.full_data?.filter(item => item.is_correct == true).length / dataGetReportFull?.full_data?.length * 100).toFixed(2),
+                      (dataGetReportFull?.full_data?.filter(item => item.is_correct == false).length / dataGetReportFull?.full_data?.length * 100).toFixed(2),
+                      (dataGetReportFull?.full_data?.filter(item => item.is_correct == 'not-answer').length / dataGetReportFull?.full_data?.length * 100).toFixed(2)
+                    ]} />
                   </div>
                 </CardContent>
               </Card>
@@ -242,7 +253,7 @@ const Reports = () => {
                 <CardHeader
                   sx={{ flexWrap: 'wrap' }}
                   avatar={
-                    <Avatar sx={{ bgcolor: red[700] }}>
+                    <Avatar sx={{ bgcolor: "#E21D38" }}>
                       <RuleIcon />
                     </Avatar>
                   }
@@ -289,7 +300,7 @@ const Reports = () => {
                                 bgcolor:
                                   i.is_correct == true ? green[700] :
                                     i.is_correct == 'not-answer' ? "#adadad" :
-                                      i.is_correct == false ? red[700] : null
+                                      i.is_correct == false ? "#E21D38" : null
                               }}>
                               {i.number}
                             </Avatar>

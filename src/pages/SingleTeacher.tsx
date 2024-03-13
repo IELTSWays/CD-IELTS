@@ -35,7 +35,7 @@ const SingleTeacher = () => {
             <CardHeader
               sx={{ flexWrap: 'wrap' }}
               avatar={
-                <Avatar sx={{ bgcolor: red[700] }}>
+                <Avatar sx={{ bgcolor: "#E21D38" }}>
                   <InfoIcon />
                 </Avatar>
               }
@@ -58,7 +58,7 @@ const SingleTeacher = () => {
             <CardHeader
               sx={{ flexWrap: 'wrap' }}
               avatar={
-                <Avatar sx={{ bgcolor: red[700] }}>
+                <Avatar sx={{ bgcolor: "#E21D38" }}>
                   <SmartDisplayIcon />
                 </Avatar>
               }
@@ -81,7 +81,7 @@ const SingleTeacher = () => {
             <CardHeader
               sx={{ flexWrap: 'wrap' }}
               avatar={
-                <Avatar sx={{ bgcolor: red[700] }}>
+                <Avatar sx={{ bgcolor: "#E21D38" }}>
                   <SummarizeIcon />
                 </Avatar>
               }

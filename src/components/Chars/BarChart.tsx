@@ -49,8 +49,8 @@ const data = {
       label: "Second dataset",
       data: [56, 43, 60, 55, 41, 44],
       fill: true,
-      backgroundColor: red[700],
-      borderColor: red[700]
+      backgroundColor: "#E21D38",
+      borderColor: "#E21D38"
     },
   ]
 };

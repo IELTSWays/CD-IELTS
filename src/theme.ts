@@ -34,4 +34,4 @@ const theme = createTheme({
 export default theme;
 
 
-// #E21D38
+// "#E21D38"

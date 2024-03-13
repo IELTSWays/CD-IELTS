@@ -64,7 +64,7 @@ const SkillsGuide = () => {
           onClose={handleClose}
           aria-describedby="about-skill"
         >
-          <DialogTitle sx={{ color: red[700] }}>{skill}</DialogTitle>
+          <DialogTitle sx={{ color: "#E21D38" }}>{skill}</DialogTitle>
           <DialogContent>
             <DialogContentText id="about-skill">
               {skill === 'Reading' && <DocReading />}
@@ -91,7 +91,7 @@ const SkillsGuide = () => {
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
                 avatar={
-                  <Avatar sx={{ bgcolor: red[700] }}>
+                  <Avatar sx={{ bgcolor: "#E21D38" }}>
                     <HeadphonesIcon />
                   </Avatar>
                 }
@@ -129,7 +129,7 @@ const SkillsGuide = () => {
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
                 avatar={
-                  <Avatar sx={{ bgcolor: red[700] }}>
+                  <Avatar sx={{ bgcolor: "#E21D38" }}>
                     <LibraryBooksIcon />
                   </Avatar>
                 }
@@ -169,7 +169,7 @@ const SkillsGuide = () => {
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
                 avatar={
-                  <Avatar sx={{ bgcolor: red[700] }}>
+                  <Avatar sx={{ bgcolor: "#E21D38" }}>
                     <BorderColorIcon />
                   </Avatar>
                 }
@@ -203,7 +203,7 @@ const SkillsGuide = () => {
               <CardHeader
                 sx={{ flexWrap: 'wrap' }}
                 avatar={
-                  <Avatar sx={{ bgcolor: red[700] }}>
+                  <Avatar sx={{ bgcolor: "#E21D38" }}>
                     <KeyboardVoiceIcon />
                   </Avatar>
                 }
@@ -249,7 +249,7 @@ const SkillsGuide = () => {
                     vertical: 'top',
                     horizontal: 'left',
                   }}>
-                    <Avatar sx={{ bgcolor: red[700] }}>
+                    <Avatar sx={{ bgcolor: "#E21D38" }}>
                       <LooksOneIcon />
                     </Avatar>
                   </Badge>

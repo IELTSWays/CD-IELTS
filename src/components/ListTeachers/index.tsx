@@ -36,7 +36,7 @@ const CardTeacher = ({ data }: any) => {
       />
       <CardContent sx={{ pb: 0.5 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6" component="div" sx={{ color: red[700] }}>
+          <Typography variant="h6" component="div" sx={{ color: "#E21D38" }}>
             {name}
           </Typography>
           <Chip label={`${(speaking_price * 10).toLocaleString()} IRR` } variant="outlined" sx={{ borderRadius: '7px' }}/>
@@ -67,7 +67,7 @@ const CardTeacher = ({ data }: any) => {
           </Stack>
           <Stack direction="row" alignItems="center">
             <IconButton onClick={() => navigate(`/teachers/${id}`)}>
-              <ChevronRightIcon size="small" sx={{ color: red[700] }} />
+              <ChevronRightIcon size="small" sx={{ color: "#E21D38" }} />
             </IconButton>
           </Stack>
         </Stack>

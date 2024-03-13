@@ -99,7 +99,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
       <Card variant="outlined">
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[700] }}>
+            <Avatar sx={{ bgcolor: "#E21D38" }}>
               {icon}
             </Avatar>
           }
