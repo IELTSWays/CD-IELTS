@@ -186,7 +186,7 @@ const Reports = () => {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                       {dataGetReportFull?.full_data?.map((i: any, index: any) => {
                         return (
-                          <Grid item xs={4} sm={8} md={3} key={index} className="short-report">
+                          <Grid item xs={4} sm={8} md={4} key={index} className="short-report">
                             <Box sx={{ flexGrow: 1, width: '100%' }}>
                               <Paper variant="outlined" sx={{ p: 1 }}>
                                 <Stack spacing={1} direction="row" alignItems="center">
@@ -196,12 +196,12 @@ const Reports = () => {
                                       width: 24, height: 24, fontSize: '14px',
                                       bgcolor:
                                         i.is_correct == true ? green[700] :
-                                          i.is_correct == 'not-answer' ? green[100] :
+                                          i.is_correct == 'not-answer' ? "#adadad" :
                                             i.is_correct == false ? red[700] : null
                                     }}>
                                     {i.number}
                                   </Avatar>
-                                  <Typography variant="caption">
+                                  <Typography variant="caption" sx={{ wordBreak: 'break-all' }}>
                                     {i.answer}
                                   </Typography>
                                 </Stack>
@@ -212,7 +212,6 @@ const Reports = () => {
                       })}
                     </Grid>
                   </Box>
-
                 </CardContent>
               </Card>
             </Grid>
@@ -252,13 +251,29 @@ const Reports = () => {
                 />
                 <CardContent>
                   <Stack direction="row" spacing={2}>
-                    <Button variant="outlined" startIcon={<AssignmentIcon />}>
+                    <Button
+                      variant="outlined"
+                      startIcon={<AssignmentIcon />}
+                      size="large"
+                    >
                       Text
                     </Button>
-                    <Button variant="contained" startIcon={<HeadsetIcon />} endIcon={<LockIcon />}>
+                    <Button
+                      variant="contained"
+                      color="pink"
+                      startIcon={<HeadsetIcon />}
+                      endIcon={<LockIcon />}
+                      size="large"
+                    >
                       Audio
                     </Button>
-                    <Button variant="contained" startIcon={<VideocamIcon />} endIcon={<LockIcon />}>
+                    <Button
+                      variant="contained"
+                      color="violet"
+                      startIcon={<VideocamIcon />}
+                      endIcon={<LockIcon />}
+                      size="large"
+                    >
                       Video
                     </Button>
                   </Stack>
@@ -273,12 +288,14 @@ const Reports = () => {
                               sx={{
                                 bgcolor:
                                   i.is_correct == true ? green[700] :
-                                    i.is_correct == 'not-answer' ? green[100] :
+                                    i.is_correct == 'not-answer' ? "#adadad" :
                                       i.is_correct == false ? red[700] : null
                               }}>
                               {i.number}
                             </Avatar>
-                            <Typography gutterBottom>{i.question}</Typography>
+                            <Typography gutterBottom>
+                              {i.question}
+                            </Typography>
                           </Stack>
                           <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
                             <ChevronRightIcon

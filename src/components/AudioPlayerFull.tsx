@@ -137,9 +137,9 @@ export const AudioPlayerFull = ({ songs }) => {
                 "{playerState.songs.at(playerState.current).name}"
               </a>
             </cite>
-            <span className="artist">
+            {/* <span className="artist">
               by {playerState.songs.at(playerState.current).artist}
-            </span>
+            </span> */}
           </div>
         )}
 
