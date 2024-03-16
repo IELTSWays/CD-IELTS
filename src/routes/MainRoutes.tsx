@@ -1,4 +1,6 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import PrivateRoutes from "./PrivateRoutes";
 import IELTSRoutes from "./IELTSRoutes";
 import Otp from "@/pages/Otp";
@@ -15,6 +17,7 @@ import NotFound from "@/pages/NotFound";
 import File from "@/pages/File";
 import Exams from "@/pages/Exams";
 import DND from "@/pages/DND";
+import TeacherProfile from "@/pages/TeacherProfile"
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -37,6 +40,8 @@ const MainRoutes = () => {
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<Reports />} path="/reports/:id" />
           <Route element={<DND />} path="/dnd" />
+          
+          <Route element={<TeacherProfile />} path="/teacherProfile" />
 
         </Route>
         <Route element={<IELTSRoutes />}>

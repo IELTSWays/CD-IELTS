@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
@@ -30,6 +31,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RocketIcon from '@mui/icons-material/Rocket';
+import SchoolIcon from '@mui/icons-material/School';
 // mtu
 
 import logo from '@/assets/images/logo.png'
@@ -131,17 +133,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const menuItems = [
-
   { title: 'Dashboard', icon: <DashboardIcon />, path: '/' },
   { title: 'Profile', icon: <AccountCircleIcon />, path: '/profile' },
   { title: 'Guide', icon: <SupportIcon />, path: '/guide' },
   { title: 'Tests (Skills)', icon: <LaptopChromebookIcon />, path: '/books', ifProfileFill: true },
   { title: 'Speaking', icon: <KeyboardVoiceIcon />, path: '/speaking', ifProfileFill: true },
   { title: 'Orders', icon: <ShoppingCartCheckoutIcon />, path: '/orders', ifProfileFill: true },
-  // { title: 'Reports', icon: <InsertChartIcon />, path: '/reports' },
   { title: 'Tickets', icon: <ConfirmationNumberIcon />, path: '/tickets', ifProfileFill: true },
   { title: 'Exams', icon: <RocketIcon />, path: '/exams', ifProfileFill: true },
   // { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
+]
+
+const menuItemsTecher = [
+  { title: 'Teacher Profile', icon: <SchoolIcon />, path: '/TeacherProfile', ifProfileFill: true },
 ]
 
 const footerMenuItems = [
@@ -284,7 +288,7 @@ const LayoutDashborad = ({ children }: any) => {
                 >
                   <IconButton
                     disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}
-                    sx={{ color: location.pathname === item.path && "#E21D38", pointerEvents: 'none',}}
+                    sx={{ color: location.pathname === item.path && "#E21D38", pointerEvents: 'none', }}
                   >
                     {item.icon}
                   </IconButton>
@@ -340,9 +344,49 @@ const LayoutDashborad = ({ children }: any) => {
               </ListItemButton>
             </ListItem>
           ))}
-
+        </List>
+        <Divider />
+        <List sx={{ background: 'lightgoldenrodyellow' }}>
+          <Typography variant="button" display="block" align="center" gutterBottom>
+            <strong> Teachers </strong>
+          </Typography>
+          {menuItemsTecher.map((item, index) => (
+            <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  color: location.pathname === item.path && grey[100],
+                  backgroundColor: location.pathname === item.path && "#E21D38",
+                  '&:hover': {
+                    color: location.pathname === item.path && grey[100],
+                    backgroundColor: location.pathname === item.path && "#E21D38",
+                  },
+                }}
+                disabled={item.ifProfileFill && !localStorage.getItem('is_profile_fill')}
+                onClick={() => {
+                  setPathPage(`${item.path}`)
+                  navigate(`${item.path}`);
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: location.pathname === item.path && "#fff"
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {/* header-items */}
