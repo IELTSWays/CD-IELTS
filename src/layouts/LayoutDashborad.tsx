@@ -32,6 +32,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RocketIcon from '@mui/icons-material/Rocket';
 import SchoolIcon from '@mui/icons-material/School';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 // mtu
 
 import logo from '@/assets/images/logo.png'
@@ -145,7 +146,7 @@ const menuItems = [
 ]
 
 const menuItemsTecher = [
-  { title: 'Teacher Profile', icon: <SchoolIcon />, path: '/TeacherProfile', ifProfileFill: true },
+  { title: 'Teacher Profile', icon: <AccountBoxIcon />, path: '/TeacherProfile', ifProfileFill: true },
 ]
 
 const footerMenuItems = [
@@ -348,7 +349,7 @@ const LayoutDashborad = ({ children }: any) => {
         <Divider />
         <List sx={{ background: 'lightgoldenrodyellow' }}>
           <Typography variant="button" display="block" align="center" gutterBottom>
-            <strong> Teachers </strong>
+            <SchoolIcon/>
           </Typography>
           {menuItemsTecher.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
