@@ -43,6 +43,8 @@ import useGetReportFull from '@/services/Requests/useGetReportFull'
 const songUrl =
   "https://amt-warehouse.s3.amazonaws.com/audio-player-demo/songs.json";
 
+const video1 = "https://smnaji.ir/video/example.mp4"
+
 
 const Reports = () => {
 
@@ -349,6 +351,17 @@ const Reports = () => {
                                 borderRadius: '5px'
                               }} />
                             {songs.length > 0 ? <AudioPlayerFull songs={songs} /> : <></>}
+                          </Stack>
+                          <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                            <VideocamIcon
+                              sx={{
+                                border: '1px solid #EBEBEB',
+                                fontSize: '30px',
+                                borderRadius: '5px'
+                              }} />
+                              <video height="300" controls style={{ borderRadius: '10px' }}>
+                                <source src={video1} type="video/mp4" />
+                              </video>
                           </Stack>
                         </Paper>
                       </Box>
