@@ -203,7 +203,7 @@ const Reports = () => {
                                     }}>
                                     {i.number}
                                   </Avatar>
-                                  <Typography variant="caption" sx={{ wordBreak: 'break-all' }}>
+                                  <Typography variant="caption" sx={{ wordBreak: 'break-all' }} className="capitalize">
                                     {i.answer}
                                   </Typography>
                                 </Stack>
@@ -317,7 +317,7 @@ const Reports = () => {
                                 fontSize: '30px',
                                 borderRadius: '5px'
                               }} />
-                            <Typography sx={{ pt: '4px' }}>
+                            <Typography sx={{ pt: '4px' }} className="capitalize">
                               {i.answer}
                             </Typography>
                           </Stack>
