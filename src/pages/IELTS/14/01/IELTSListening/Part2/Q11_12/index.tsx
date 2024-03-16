@@ -50,7 +50,7 @@ const index = ({ qn }: any) => {
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
     } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
+      updatedList.splice(checked.indexOf(event.target.value), 2);
     }
     setChecked(updatedList);
   };
@@ -63,7 +63,7 @@ const index = ({ qn }: any) => {
 
   if (checked?.length > 2) {
     const array = checkedItems.split(", ");
-    const newArray = array.slice(1);
+    const newArray = array.slice(2);
     setChecked(newArray)
   }
 
