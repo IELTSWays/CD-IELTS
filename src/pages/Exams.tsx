@@ -38,6 +38,7 @@ const Exams = () => {
     refetchGetTests()
     refetchGetTestsWriting()
     refetchGetTestsSpeaking()
+    localStorage.removeItem('confirm')
   }, [])
 
   return (

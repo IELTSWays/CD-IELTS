@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -25,7 +26,9 @@ import useTimer from '@/components/useTimer';
 import { AudioPlayer } from "@/components/AudioPlayer";
 
 import listSongs from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
+
 import usePostTestDone from '@/services/Requests/usePostTestDone';
+import usePostExamConfirm from '@/services/Requests/usePostExamConfirm';
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -33,6 +36,7 @@ const LayoutIELTS = ({ children }: any) => {
   const navigate = useNavigate();
 
   const { refetch } = usePostTestDone()
+  const { refetch: refetchPostExamConfirm } = usePostExamConfirm()
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
@@ -52,24 +56,25 @@ const LayoutIELTS = ({ children }: any) => {
             <div className="d-flex">
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
-                <div style={{ width: '170px' }}>{timer}</div>
+                <div style={{ width: '170px' }}>{JSON.parse(localStorage.getItem('confirm')) && timer}</div>
 
+                {JSON.parse(localStorage.getItem('confirm')) &&
+                  <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
+                    {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                      <>
+                        <VolumeUpIcon sx={{ mx: 0.5 }} fontSize="small" />
+                        Audio is playing
+                      </>
+                    }
 
-                <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
-                  {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
-                    <>
-                      <VolumeUpIcon sx={{ mx: 0.5 }} fontSize="small" />
-                      Audio is playing
-                    </>
-                  }
-
-                  {(location.pathname.includes('Reading') || location.pathname.includes('reading')) &&
-                    <>
-                      <VideocamIcon sx={{ mx: 0.5 }} fontSize="small"  />
-                      Live proctoring started
-                    </>
-                  }
-                </div>
+                    {(location.pathname.includes('Reading') || location.pathname.includes('reading')) &&
+                      <>
+                        <VideocamIcon sx={{ mx: 0.5 }} fontSize="small" />
+                        Live proctoring started
+                      </>
+                    }
+                  </div>
+                }
               </div>
             </div>
 
@@ -83,16 +88,27 @@ const LayoutIELTS = ({ children }: any) => {
               }
               <WifiIcon color="action" fontSize="small" />
               <NotificationsNoneIcon color="action" fontSize="small" />
-              <ModalOptions fontSize="small"/>
+              <ModalOptions fontSize="small" />
               <ForumIcon color="action" fontSize="small" />
               <EditCalendarIcon color="action" fontSize="small" />
             </div>
           </div>
         </div>
       </div>
-      <div className='ielts-main'>
-        {children}
-      </div>
+      {JSON.parse(localStorage.getItem('confirm')) ? 'Y' : "N"}
+      {JSON.parse(localStorage.getItem('confirm')) ?
+        <div className='ielts-main'>
+          {children}
+        </div>
+        :
+        <div className='ielts-main'>
+          VIEW VIDEO AND CONFIRM
+          <Button variant="outlined" onClick={() => refetchPostExamConfirm()} size="small">
+            CONFIRM
+          </Button>
+        </div>
+      }
+
       <div className='ielts-footer'>
         <div className='ielts-container'>
           <div className='justify-content-space-between'>
@@ -105,7 +121,8 @@ const LayoutIELTS = ({ children }: any) => {
               <div className='ielts-footer-btn'>
                 <WifiIcon color="action" fontSize="small" />
               </div>
-              {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+              {JSON.parse(localStorage.getItem('confirm')) &&
+                (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                 listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
               }
               <div className='ielts-footer-btn'>

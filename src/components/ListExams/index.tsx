@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -18,7 +18,6 @@ import { styled } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 // mtu
-
 
 import useGetReport from '@/services/Requests/useGetReport'
 import useGetAnswer from '@/services/Requests/useGetAnswer'
@@ -79,10 +78,6 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     goToTest.includes('S') && setSkillExam('speaking')
     goToTest.includes('L') && setSkillExam('listening')
   }, [goToTest])
-
-  // useEffect(() => {
-  //   localStorage.getItem('test_id') && refetchGetAnswer()
-  // }, [localStorage.getItem('test_id')])
 
   const continueExam = () => {
     refetchGetStart() && navigate(`/IELTS/${skillExam}`)
@@ -176,6 +171,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             variant="contained"
                             size="small"
                             sx={{ width: '120px' }}
+                            onMouseOver={() => localStorage.setItem('confirm', i.confirm)}
                             onClick={() => continueExam()}
                           >
                             go to test

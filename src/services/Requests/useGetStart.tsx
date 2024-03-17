@@ -21,10 +21,12 @@ const useGetStart = () => {
       
       const token: any = localStorage.getItem('token');
       const testId: any = localStorage.getItem('test_id');
+      const confirm: any = localStorage.getItem('confirm');
       const profile: any = localStorage.getItem('is_profile_fill');
       localStorage.clear();
       localStorage.setItem('token', token);
       localStorage.setItem('test_id', testId);
+      localStorage.setItem('confirm', confirm);
       localStorage.setItem('is_profile_fill', profile);
       dispatch(setTestInfo(data))
       dispatch(setCurrentQuestion(1))

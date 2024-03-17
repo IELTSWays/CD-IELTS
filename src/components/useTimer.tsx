@@ -16,7 +16,7 @@ const useTimer = (time: any) => {
     ((new Date(s * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0]).slice(6) + ' Seconds remaining';
 
   useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    JSON.parse(localStorage.getItem('confirm')) && counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     localStorage.setItem("counter", counter);
     { counter > 3600 && setTimer(formatHours(counter)) }
     { counter < 3600 && counter > 60 && setTimer(formatMinutes(counter)) }
@@ -25,7 +25,8 @@ const useTimer = (time: any) => {
   }, [counter]);
 
   useEffect(() => {
-    localStorage.getItem("counter") && setCounter(localStorage.getItem("counter"));
+    setCounter(localStorage.getItem("counter"));
+    JSON.parse(localStorage.getItem('confirm')) && counter
   }, []);
 
   return { timer };
