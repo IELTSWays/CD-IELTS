@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
@@ -131,7 +133,7 @@ const Books = () => {
                     mx: 'auto',
                     p: 2,
                     pointerEvents: 'none',
-                    
+
                     // "&:hover": {
                     //   backgroundColor: "#f5faff",
                     //   borderColor: "#1976d2",
@@ -268,13 +270,33 @@ const Books = () => {
               >
                 <FormControl>
                   <RadioGroup
-                    row
+                    column
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     value={mode}
                     onClick={changeModeHandler}
                   >
-                    <FormControlLabel value="test" control={<Radio />} label="Test Mode" />
-                    <FormControlLabel value="practice" control={<Radio />} label="Practice Mode" />
+                    <FormControlLabel
+                      value="test"
+                      control={<Radio />}
+                      label={
+                        <div>Test Mode&nbsp;
+                          <span className="demo">
+                            (Take a simulated Cambridge test)
+                          </span>
+                        </div>
+                      }
+                    />
+                    <FormControlLabel
+                      value="practice"
+                      control={<Radio />}
+                      label={
+                        <div>Practice Mode&nbsp;
+                          <span className="demo">
+                            (Practice at your own pace)
+                          </span>
+                        </div>
+                      }
+                    />
                   </RadioGroup>
                 </FormControl>
               </Stack>
