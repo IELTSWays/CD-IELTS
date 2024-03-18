@@ -145,8 +145,8 @@ const menuItems = [
   // { title: 'Logout', icon: <LogoutIcon />, path: '/logout' },
 ]
 
-const menuItemsTecher = [
-  { title: 'Teacher Profile', icon: <AccountBoxIcon />, path: '/TeacherProfile', ifProfileFill: true },
+const menuItemsExaminer = [
+  { title: 'Examiner Profile', icon: <AccountBoxIcon />, path: '/ExaminerProfile', ifProfileFill: true },
 ]
 
 const footerMenuItems = [
@@ -351,7 +351,7 @@ const LayoutDashborad = ({ children }: any) => {
           <Typography variant="button" display="block" align="center" gutterBottom>
             <SchoolIcon/>
           </Typography>
-          {menuItemsTecher.map((item, index) => (
+          {menuItemsExaminer.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
