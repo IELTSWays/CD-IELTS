@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // mtu
@@ -27,6 +27,7 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 
 import listSongs from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
 
+import useGetTests from '@/services/Requests/useGetTests';
 import usePostTestDone from '@/services/Requests/usePostTestDone';
 import usePostExamConfirm from '@/services/Requests/usePostExamConfirm';
 
@@ -36,17 +37,32 @@ const LayoutIELTS = ({ children }: any) => {
   const navigate = useNavigate();
 
   const { refetch } = usePostTestDone()
-  const { refetch: refetchPostExamConfirm } = usePostExamConfirm()
+  const { 
+    refetch: refetchPostExamConfirm,
+    data: dataPostExamConfirm
+  } = usePostExamConfirm()
 
   const writingSaved = useAppSelector((state) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
 
   const [isPlaying, setIsPlaying] = useState('')
+  const [currentTest, setCurrentTest] = useState('')
+
+  const {
+    refetch: refetchGetTests,
+    data: dataGetTests
+  } = useGetTests<any>(localStorage.getItem('test_id'))
 
   function handlePlayStatusChange(isPlaying: any) {
     setIsPlaying(isPlaying);
   }
+
+  useEffect(() => {
+    refetchGetTests()
+    dataGetTests && setCurrentTest(dataGetTests?.results?.find(i => i.test_id === localStorage.getItem('test_id')))
+
+  }, [])
 
   return (
     <html data-theme='light' className='ielts'>
@@ -56,9 +72,10 @@ const LayoutIELTS = ({ children }: any) => {
             <div className="d-flex">
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
-                <div style={{ width: '170px' }}>{JSON.parse(localStorage.getItem('confirm')) && timer}</div>
+                <div style={{ width: '170px' }}>
+                  {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) && timer}</div>
 
-                {JSON.parse(localStorage.getItem('confirm')) &&
+                  {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) &&
                   <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
                     {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                       <>
@@ -95,8 +112,7 @@ const LayoutIELTS = ({ children }: any) => {
           </div>
         </div>
       </div>
-      {JSON.parse(localStorage.getItem('confirm')) ? 'Y' : "N"}
-      {JSON.parse(localStorage.getItem('confirm')) ?
+      {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) ?
         <div className='ielts-main'>
           {children}
         </div>
@@ -121,7 +137,7 @@ const LayoutIELTS = ({ children }: any) => {
               <div className='ielts-footer-btn'>
                 <WifiIcon color="action" fontSize="small" />
               </div>
-              {JSON.parse(localStorage.getItem('confirm')) &&
+              {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) &&
                 (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                 listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
               }

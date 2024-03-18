@@ -17,7 +17,7 @@ import NotFound from "@/pages/NotFound";
 import File from "@/pages/File";
 import Exams from "@/pages/Exams";
 import DND from "@/pages/DND";
-import TeacherProfile from "@/pages/TeacherProfile"
+import ExaminerProfile from "@/pages/ExaminerProfile"
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -41,7 +41,7 @@ const MainRoutes = () => {
           <Route element={<Reports />} path="/reports/:id" />
           <Route element={<DND />} path="/dnd" />
           
-          <Route element={<TeacherProfile />} path="/teacherProfile" />
+          <Route element={<ExaminerProfile />} path="/examinerProfile" />
 
         </Route>
         <Route element={<IELTSRoutes />}>
