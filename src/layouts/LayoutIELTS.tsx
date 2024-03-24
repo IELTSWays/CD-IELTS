@@ -29,7 +29,6 @@ import listSongs from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
 
 import useGetTests from '@/services/Requests/useGetTests';
 import usePostTestDone from '@/services/Requests/usePostTestDone';
-import usePostExamConfirm from '@/services/Requests/usePostExamConfirm';
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -37,21 +36,15 @@ const LayoutIELTS = ({ children }: any) => {
   const navigate = useNavigate();
 
   const { refetch } = usePostTestDone()
-  const { 
-    refetch: refetchPostExamConfirm,
-    data: dataPostExamConfirm
-  } = usePostExamConfirm()
 
-  const writingSaved = useAppSelector((state) => state.user.writingSaved)
+  const writingSaved = useAppSelector((state :any) => state.user.writingSaved)
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
 
   const [isPlaying, setIsPlaying] = useState('')
-  const [currentTest, setCurrentTest] = useState('')
 
   const {
     refetch: refetchGetTests,
-    data: dataGetTests
   } = useGetTests<any>(localStorage.getItem('test_id'))
 
   function handlePlayStatusChange(isPlaying: any) {
@@ -60,8 +53,6 @@ const LayoutIELTS = ({ children }: any) => {
 
   useEffect(() => {
     refetchGetTests()
-    dataGetTests && setCurrentTest(dataGetTests?.results?.find(i => i.test_id === localStorage.getItem('test_id')))
-
   }, [])
 
   return (
@@ -73,9 +64,8 @@ const LayoutIELTS = ({ children }: any) => {
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
               <div className="align-items-flex-end ml-50">
                 <div style={{ width: '170px' }}>
-                  {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) && timer}</div>
-
-                  {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) &&
+                  {timer}</div>
+                {
                   <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
                     {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                       <>
@@ -112,18 +102,10 @@ const LayoutIELTS = ({ children }: any) => {
           </div>
         </div>
       </div>
-      {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) ?
-        <div className='ielts-main'>
-          {children}
-        </div>
-        :
-        <div className='ielts-main'>
-          VIEW VIDEO AND CONFIRM
-          <Button variant="outlined" onClick={() => refetchPostExamConfirm()} size="small">
-            CONFIRM
-          </Button>
-        </div>
-      }
+
+      <div className='ielts-main'>
+        {children}
+      </div>
 
       <div className='ielts-footer'>
         <div className='ielts-container'>
@@ -137,7 +119,7 @@ const LayoutIELTS = ({ children }: any) => {
               <div className='ielts-footer-btn'>
                 <WifiIcon color="action" fontSize="small" />
               </div>
-              {(JSON.parse(localStorage.getItem('confirm')) && currentTest?.confirm) &&
+              {
                 (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                 listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
               }

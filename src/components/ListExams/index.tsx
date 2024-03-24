@@ -66,7 +66,8 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
   } = useGetReport<any>(localStorage.getItem('test_id'))
 
   const {
-    refetch: refetchGetStart
+    data: dataGetStart,
+    refetch: refetchGetStart,
   } = useGetStart<any>(localStorage.getItem('test_id'))
 
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
   }, [goToTest])
 
   const continueExam = () => {
-    refetchGetStart() && navigate(`/IELTS/${skillExam}`)
+    refetchGetStart()
   }
 
   data?.sort(function (a: any, b: any) {
@@ -171,7 +172,6 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             variant="contained"
                             size="small"
                             sx={{ width: '120px' }}
-                            onMouseOver={() => localStorage.setItem('confirm', i.confirm)}
                             onClick={() => continueExam()}
                           >
                             go to test

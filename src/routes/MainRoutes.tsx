@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PrivateRoutes from "./PrivateRoutes";
 import IELTSRoutes from "./IELTSRoutes";
+import ConfirmRoutes from "./ConfirmRoutes";
+
 import Otp from "@/pages/Otp";
 import Dashboard from "@/pages/Dashboard";
 import Profile from "@/pages/Profile";
@@ -18,6 +20,8 @@ import File from "@/pages/File";
 import Exams from "@/pages/Exams";
 import DND from "@/pages/DND";
 import ExaminerProfile from "@/pages/ExaminerProfile"
+
+import Confirm from "@/pages/Confirm";
 
 // Book14 Test 1
 import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
@@ -40,9 +44,9 @@ const MainRoutes = () => {
           <Route element={<SingleTeacher />} path="/teachers/:username" />
           <Route element={<Reports />} path="/reports/:id" />
           <Route element={<DND />} path="/dnd" />
-          
-          <Route element={<ExaminerProfile />} path="/examinerProfile" />
 
+          {/* TEACHERS PANEL */}
+          <Route element={<ExaminerProfile />} path="/examinerProfile" />
         </Route>
         <Route element={<IELTSRoutes />}>
           {/* 14-01 */}
@@ -50,6 +54,11 @@ const MainRoutes = () => {
           <Route element={<Book14_Test_1_Writing />} path="/IELTS/Writing" />
           <Route element={<Book14_Test_1_Listening />} path="/IELTS/Listening" />
         </Route>
+
+        <Route element={<ConfirmRoutes />}>
+          <Route element={<Confirm />} path="/confirm/:id" />
+        </Route>
+        
         <Route path="*" element={<NotFound />} />
         <Route element={<Otp />} path="/otp" />
         <Route element={<File />} path="/pdf" />
