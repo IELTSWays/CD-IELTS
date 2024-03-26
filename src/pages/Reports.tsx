@@ -15,36 +15,39 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import { green } from '@mui/material/colors';
 import InfoIcon from '@mui/icons-material/Info';
-import { red, green } from '@mui/material/colors';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-
 import RuleIcon from '@mui/icons-material/Rule';
 import LockIcon from '@mui/icons-material/Lock';
 import NotesIcon from '@mui/icons-material/Notes';
 import HeadsetIcon from '@mui/icons-material/Headset';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import PermMediaIcon from '@mui/icons-material/PermMedia';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // mtu
 
-import TableReport from "@/components/TableReport";
 import PieChart from "@/components/Chars/PieChart";
 
 import useGetReport from '@/services/Requests/useGetReport';
 import useGetReportFull from '@/services/Requests/useGetReportFull'
+import useGetReportFullVerify from '@/services/Requests/useGetReportFullVerify'
+import useGetReportFullPayment from '@/services/Requests/useGetReportFullPayment'
+import useGetReportMedia from '@/services/Requests/useGetReportMedia'
+import useGetReportMediaVerify from '@/services/Requests/useGetReportMediaVerify'
+import useGetReportMediaPayment from '@/services/Requests/useGetReportMediaPayment'
 
 const songUrl =
   "https://amt-warehouse.s3.amazonaws.com/audio-player-demo/songs.json";
 
 const video1 = "https://smnaji.ir/video/example.mp4"
-
 
 const Reports = () => {
 
@@ -59,15 +62,40 @@ const Reports = () => {
     refetch
   } = useGetReport(id)
 
-  const { data: dataGetReportFull,
-    isLoading: isLoadingGetReportFull,
+  const {
+    data: dataGetReportFull,
     refetch: refetchGetReportFull
   } = useGetReportFull(id);
+
+  const {
+    data: dataGetReportFullVerify,
+    refetch: refetchGetReportFullVerify
+  } = useGetReportFullVerify(id);
+
+  const {
+    data: dataGetReportFullPayment,
+    refetch: refetchGetReportFullPayment
+  } = useGetReportFullPayment(id);
+
+  const {
+    data: dataGetReportMedia,
+    refetch: refetchGetReportMedia
+  } = useGetReportMedia(id);
+
+  const {
+    data: dataGetReportMediaVerify,
+    refetch: refetchGetReportMediaVerify
+  } = useGetReportMediaVerify(id);
+
+  const {
+    data: dataGetReportMediaPayment,
+    refetch: refetchGetReportMediaPayment
+  } = useGetReportMediaPayment(id)
 
   useEffect(() => {
     refetch()
     refetchGetReportFull()
-
+    refetchGetReportFullVerify()
   }, [])
 
   useEffect(() => {
@@ -169,7 +197,6 @@ const Reports = () => {
           }
         </Grid>
 
-        {!fullReport &&
           <>
             <Grid item xs={4} sm={4} md={8}>
               <Card variant="outlined">
@@ -265,9 +292,11 @@ const Reports = () => {
                 <CardContent>
                   <Stack direction="row" spacing={2}>
                     <Button
-                      variant="outlined"
+                      variant="contained"
                       startIcon={<AssignmentIcon />}
+                      endIcon={<LockIcon />}
                       size="large"
+                      onClick={() => refetchGetReportFullPayment()}
                     >
                       Text
                     </Button>
@@ -277,17 +306,19 @@ const Reports = () => {
                       startIcon={<HeadsetIcon />}
                       endIcon={<LockIcon />}
                       size="large"
+                      disabled
                     >
                       Audio
                     </Button>
                     <Button
                       variant="contained"
                       color="violet"
-                      startIcon={<VideocamIcon />}
+                      startIcon={<PermMediaIcon />}
                       endIcon={<LockIcon />}
                       size="large"
+                      onClick={() => refetchGetReportMediaPayment()}
                     >
-                      Video
+                      Media
                     </Button>
                   </Stack>
                 </CardContent>
@@ -359,9 +390,9 @@ const Reports = () => {
                                 fontSize: '30px',
                                 borderRadius: '5px'
                               }} />
-                              <video height="300" controls style={{ borderRadius: '10px' }}>
-                                <source src={video1} type="video/mp4" />
-                              </video>
+                            <video height="300" controls style={{ borderRadius: '10px' }}>
+                              <source src={video1} type="video/mp4" />
+                            </video>
                           </Stack>
                         </Paper>
                       </Box>
@@ -371,7 +402,6 @@ const Reports = () => {
               </Card>
             </Grid>
           </>
-        }
       </Grid>
     </>
   );

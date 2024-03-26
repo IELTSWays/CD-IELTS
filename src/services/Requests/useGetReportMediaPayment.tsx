@@ -3,19 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import api from '@/services/API'
 // api
 
-const useGetReportFull = (id: any) => {
+const useGetReportMediaPayment = (id: any) => {
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getFullReport', id],
+    queryKey: ['getReportMediaPayment', id],
     queryFn: async ({ queryKey }) => {
-      const response = await api.get(`report/full-report/${queryKey[1]}`)
+      const response = await api.get(`report/media-report-payment/${queryKey[1]}`)
       const data = await response.data
-      console.log('full-report', data)
+      data?.meta && (window.location.href = data?.meta?.url);
       return data
     },
   })
   return { isLoading, data, refetch };
 };
 
-export default useGetReportFull;
+export default useGetReportMediaPayment;
