@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -54,7 +55,7 @@ const index = ({ qn }: any) => {
   ];
 
   const [flag, setFlag] = useState(flags['34'])
-  const [answer, setAnswer] = useState(answersAll['00034']);
+  const [answer, setAnswer] = useState(answersAll['34']);
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -62,18 +63,18 @@ const index = ({ qn }: any) => {
   }
 
   const handleChange = () => {
-    dispatch(setAccordion('00034'))
+    dispatch(setAccordion('34'))
     setExpanded(!expanded)
     dispatch(setCurrentQuestion(34))
   }
 
   const handleChangeItems = (event: any) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00034': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '34': ((event.target as HTMLInputElement).value) })))
   }
 
   useEffect(() => {
-    if (accordionState !== '00034') {
+    if (accordionState !== '34') {
       setExpanded(false)
     }
   }, [accordionState])
@@ -82,7 +83,7 @@ const index = ({ qn }: any) => {
     <div className="d-flex">
       <Accordion
         id={`q-${qn}`}
-        expanded={accordionState === '00034' && expanded}
+        expanded={accordionState === '34' && expanded}
         onChange={() => handleChange()}
       >
         <AccordionSummary

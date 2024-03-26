@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 
 // mtu
@@ -52,7 +53,7 @@ const index = ({ qn }: any) => {
   ];
 
   const [flag, setFlag] = useState(flags['12'])
-  const [answer, setAnswer] = useState(answersAll['00012']);
+  const [answer, setAnswer] = useState(answersAll['12']);
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -60,18 +61,18 @@ const index = ({ qn }: any) => {
   }
 
   const handleChange = () => {
-    dispatch(setAccordion('00012'))
+    dispatch(setAccordion('12'))
     setExpanded(!expanded)
     dispatch(setCurrentQuestion(12))
   }
 
   const handleChangeItems = (event: any) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00012': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '12': ((event.target as HTMLInputElement).value) })))
   }
 
   useEffect(() => {
-    if (accordionState !== '00012') {
+    if (accordionState !== '12') {
       setExpanded(false)
     }
   }, [accordionState])
@@ -80,7 +81,7 @@ const index = ({ qn }: any) => {
     <div className="d-flex">
       <Accordion
         id={`q-${qn}`}
-        expanded={accordionState === '00012' && expanded}
+        expanded={accordionState === '12' && expanded}
         onChange={() => handleChange()}
       >
         <AccordionSummary

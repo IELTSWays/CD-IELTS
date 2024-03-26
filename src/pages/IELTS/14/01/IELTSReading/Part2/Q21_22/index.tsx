@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -63,17 +64,17 @@ const index = ({ qn }: any) => {
 
 
   let init;
-  if (answersAll['00021'] == null) {
+  if (answersAll['21'] == null) {
     init = []
   }
   else {
-    init = answersAll['00021']
+    init = answersAll['21']
   }
 
   const [checked, setChecked] = useState(init);
 
   const handleChange = () => {
-    dispatch(setAccordion('00021'))
+    dispatch(setAccordion('21'))
     setExpanded(!expanded)
     dispatch(setCurrentQuestion(21))
   }
@@ -84,7 +85,7 @@ const index = ({ qn }: any) => {
   }
 
   useEffect(() => {
-    if (accordionState !== '00021') {
+    if (accordionState !== '21') {
       setExpanded(false)
     }
   }, [accordionState])
@@ -113,8 +114,8 @@ const index = ({ qn }: any) => {
 
   useEffect(() => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, {
-      '00021': checked,
-      '00022': checked
+      '21': checked,
+      '22': checked
     })))
   }, [checked]);
 
@@ -122,7 +123,7 @@ const index = ({ qn }: any) => {
     <div className="d-flex">
       <Accordion
         id={`q-${qn}`}
-        expanded={accordionState === '00021' && expanded}
+        expanded={accordionState === '21' && expanded}
         onChange={() => handleChange()}
         className="w-100p"
       >

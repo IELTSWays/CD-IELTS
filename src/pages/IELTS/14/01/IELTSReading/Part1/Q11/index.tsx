@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 
 // mtu
@@ -52,7 +53,7 @@ const index = ({ qn }: any) => {
   ];
 
   const [flag, setFlag] = useState(flags['11'])
-  const [answer, setAnswer] = useState(answersAll['00011']);
+  const [answer, setAnswer] = useState(answersAll['11']);
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -60,18 +61,18 @@ const index = ({ qn }: any) => {
   }
 
   const handleChange = () => {
-    dispatch(setAccordion('00011'))
+    dispatch(setAccordion('11'))
     setExpanded(!expanded)
     dispatch(setCurrentQuestion(11))
   }
 
   const handleChangeItems = (event: any) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00011': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '11': ((event.target as HTMLInputElement).value) })))
   }
 
   useEffect(() => {
-    if (accordionState !== '00011') {
+    if (accordionState !== '11') {
       setExpanded(false)
     }
   }, [accordionState])

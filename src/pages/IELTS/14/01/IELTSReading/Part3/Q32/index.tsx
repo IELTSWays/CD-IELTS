@@ -54,7 +54,7 @@ const index = ({ qn }: any) => {
   ];
 
   const [flag, setFlag] = useState(flags['32'])
-  const [answer, setAnswer] = useState(answersAll['00032']);
+  const [answer, setAnswer] = useState(answersAll['32']);
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -62,18 +62,18 @@ const index = ({ qn }: any) => {
   }
 
   const handleChange = () => {
-    dispatch(setAccordion('00032'))
+    dispatch(setAccordion('32'))
     setExpanded(!expanded)
     dispatch(setCurrentQuestion(32))
   }
 
   const handleChangeItems = (event: any) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00032': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '32': ((event.target as HTMLInputElement).value) })))
   }
 
   useEffect(() => {
-    if (accordionState !== '00032') {
+    if (accordionState !== '32') {
       setExpanded(false)
     }
   }, [accordionState])
@@ -82,7 +82,7 @@ const index = ({ qn }: any) => {
     <div className="d-flex">
       <Accordion
         id={`q-${qn}`}
-        expanded={accordionState === '00032' && expanded}
+        expanded={accordionState === '32' && expanded}
         onChange={() => handleChange()}
       >
         <AccordionSummary
