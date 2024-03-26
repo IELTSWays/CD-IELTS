@@ -24,7 +24,7 @@ const index = ({ qn }: any) => {
 
   const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const [flag, setFlag] = useState(flags['11'])
 
@@ -36,11 +36,11 @@ const index = ({ qn }: any) => {
   const checkList = [t('00030'), t('00031'), t('00032'), t('00033'), t('00034')];
 
   let init;
-  if (answersAll['00011'] == null) {
+  if (answersAll['11'] == null) {
     init = []
   }
   else {
-    init = answersAll['00011']
+    init = answersAll['11']
   }
 
   const [checked, setChecked] = useState(init);
@@ -69,13 +69,10 @@ const index = ({ qn }: any) => {
 
   useEffect(() => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, {
-      '00011': checked,
-      '00012': checked
+      '11': checked,
+      '12': checked
     })))
   }, [checked]);
-
-  
-  console.log(answersAll)
 
   return (
     <Stack

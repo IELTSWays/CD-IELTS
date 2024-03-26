@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 // mtu
@@ -24,7 +25,7 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const [flag, setFlag] = useState(flags['34'])
-  const [answer, setAnswer] = useState<any>(answersAll['00034'])
+  const [answer, setAnswer] = useState<any>(answersAll['34'])
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -33,7 +34,7 @@ const index = ({ qn }: any) => {
 
   const answerHandler = (e: any) => {
     setAnswer((e.target.value))
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00034': (e.target.value).trim().toLowerCase() })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '34': (e.target.value).trim().toLowerCase() })))
   }
 
   return (

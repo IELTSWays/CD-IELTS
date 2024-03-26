@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 
@@ -29,7 +30,7 @@ const Q26 = ({ qn }: any) => {
 
   const [flag, setFlag] = useState(flags['26'])
 
-  const [item, setItem] = useState<any>(JSON.parse((localStorage.getItem('00026'))));
+  const [item, setItem] = useState<any>(JSON.parse((localStorage.getItem('26'))));
   const dispatch = useAppDispatch();
 
   const getAnswer = useQuery({
@@ -49,7 +50,7 @@ const Q26 = ({ qn }: any) => {
       const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
         "test_done": false, "confirm": true,
         "answers": {
-          "00026": localStorage.getItem('00026')
+          "26": localStorage.getItem('26')
         }
       })
       const data = await response.data
@@ -67,14 +68,14 @@ const Q26 = ({ qn }: any) => {
     },
     drop: (data: any, _monitor) => {
       setItem(data);
-      localStorage.setItem('00026', JSON.stringify(data));
+      localStorage.setItem('26', JSON.stringify(data));
       postAnswer.refetch()
       dispatch(setCurrentQuestion(26))
     },
   }));
 
   useEffect(() => {
-    localStorage.setItem('00026', JSON.stringify(item));
+    localStorage.setItem('26', JSON.stringify(item));
   }, [item]);
 
   hover && dispatch(setCurrentQuestion(26))

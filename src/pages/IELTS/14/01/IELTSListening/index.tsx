@@ -72,9 +72,9 @@ const index = () => {
   const dispatch = useAppDispatch()
 
   const flags = useAppSelector((state: any) => state.user.flag)
-  const fontSize = useAppSelector((state) => state.user.fontSize)
-  const answersAll = useAppSelector((state) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const fontSize = useAppSelector((state: any) => state.user.fontSize)
+  const answersAll = useAppSelector((state: any) => state.user.answersAll)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const parts = [
     { title: "Part 1", description: "Listen and answer question 1-10." },
@@ -99,6 +99,9 @@ const index = () => {
       return data
     },
   })
+
+  console.log(answersAll)
+  console.log(Object.values(answersAll))
 
   const [part, setPart] = useState(1)
 
@@ -529,7 +532,6 @@ const index = () => {
                     <Q40 qn={questions[39].label} />
                   </div>
                 </Box>
-                {/* <button onClick={() => postAnswer.refetch()}> FINISH </button> */}
               </>
             }
           </>
@@ -591,7 +593,7 @@ const index = () => {
                 <div
                   className={currentQuestion == `${i.label}` && 'active'}
                   id={`item-${i.number}`}
-                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
                 >
                   <HashLink
                     onClick={() => dispatch(setCurrentQuestion(i.label))}
@@ -634,7 +636,7 @@ const index = () => {
                 <div
                   className={currentQuestion == `${i.label}` && 'active'}
                   id={`item-${i.number}`}
-                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
                 >
                   <HashLink
                     onClick={() => dispatch(setCurrentQuestion(i.label))}
@@ -677,7 +679,7 @@ const index = () => {
                 <div
                   className={currentQuestion == `${i.label}` && 'active'}
                   id={`item-${i.number}`}
-                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
                 >
                   <HashLink
                     onClick={() => dispatch(setCurrentQuestion(i.number))}

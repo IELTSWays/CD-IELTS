@@ -48,40 +48,40 @@ const index = () => {
 
   const [flag, setFlag] = useState(flags['26'])
 
-  const [answer26, setAnswer26] = useState(answersAll['00026']);
-  const [answer27, setAnswer27] = useState(answersAll['00027']);
-  const [answer28, setAnswer28] = useState(answersAll['00028']);
-  const [answer29, setAnswer29] = useState(answersAll['00029']);
-  const [answer30, setAnswer30] = useState(answersAll['00030']);
+  const [answer26, setAnswer26] = useState(answersAll['26']);
+  const [answer27, setAnswer27] = useState(answersAll['27']);
+  const [answer28, setAnswer28] = useState(answersAll['28']);
+  const [answer29, setAnswer29] = useState(answersAll['29']);
+  const [answer30, setAnswer30] = useState(answersAll['30']);
 
   const handleChange26 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer26((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00026': ((event.target as HTMLInputElement).value) })))
-    dispatch(setCurrentQuestion('00026'))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '26': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCurrentQuestion('26'))
   };
 
   const handleChange27 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer27((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00027': ((event.target as HTMLInputElement).value) })))
-    dispatch(setCurrentQuestion('00027'))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '27': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCurrentQuestion('27'))
   };
 
   const handleChange28 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer28((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00028': ((event.target as HTMLInputElement).value) })))
-    dispatch(setCurrentQuestion('00028'))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '28': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCurrentQuestion('28'))
   };
 
   const handleChange29 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer29((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00029': ((event.target as HTMLInputElement).value) })))
-    dispatch(setCurrentQuestion('00029'))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '29': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCurrentQuestion('29'))
   };
 
   const handleChange30 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer30((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00030': ((event.target as HTMLInputElement).value) })))
-    dispatch(setCurrentQuestion('00030'))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '30': ((event.target as HTMLInputElement).value) })))
+    dispatch(setCurrentQuestion('30'))
   };
 
   const flagHandler26 = () => {

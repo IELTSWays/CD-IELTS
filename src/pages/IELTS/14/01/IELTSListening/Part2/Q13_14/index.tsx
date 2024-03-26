@@ -36,11 +36,11 @@ const index = ({ qn }: any) => {
   const checkList = [t('00037'), t('00038'), t('00039'), t('00040'), t('00041')];
 
   let init;
-  if (answersAll['00013'] == null) {
+  if (answersAll['13'] == null) {
     init = []
   }
   else {
-    init = answersAll['00013']
+    init = answersAll['13']
   }
 
   const [checked, setChecked] = useState(init);
@@ -69,8 +69,8 @@ const index = ({ qn }: any) => {
 
   useEffect(() => {
     dispatch(setAnswersAll(Object.assign({}, answersAll, {
-      '00013': checked,
-      '00014': checked
+      '13': checked,
+      '14': checked
     })))
   }, [checked]);
 

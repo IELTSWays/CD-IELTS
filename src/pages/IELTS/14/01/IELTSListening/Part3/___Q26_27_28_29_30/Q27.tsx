@@ -29,7 +29,7 @@ const Q27 = ({ qn }: any) => {
 
   const [flag, setFlag] = useState(flags['27'])
 
-  const [item, setItem] = useState<any>(JSON.parse((localStorage.getItem('00027'))));
+  const [item, setItem] = useState<any>(JSON.parse((localStorage.getItem('27'))));
   const dispatch = useAppDispatch();
 
   const getAnswer = useQuery({
@@ -49,7 +49,7 @@ const Q27 = ({ qn }: any) => {
       const response = await axiosInstance.post(`exam/answer/${localStorage.getItem('test_id')}`, {
         "test_done": false, "confirm": true,
         "answers": {
-          "00027": localStorage.getItem('00027')
+          "27": localStorage.getItem('27')
         }
       })
       const data = await response.data
@@ -67,14 +67,14 @@ const Q27 = ({ qn }: any) => {
     },
     drop: (data: any, _monitor) => {
       setItem(data);
-      localStorage.setItem('00027', JSON.stringify(data));
+      localStorage.setItem('27', JSON.stringify(data));
       postAnswer.refetch()
       dispatch(setCurrentQuestion(27))
     },
   }));
 
   useEffect(() => {
-    localStorage.setItem('00027', JSON.stringify(item));
+    localStorage.setItem('27', JSON.stringify(item));
   }, [item]);
 
   hover && dispatch(setCurrentQuestion(27))

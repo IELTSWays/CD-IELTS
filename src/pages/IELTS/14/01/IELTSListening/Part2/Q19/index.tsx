@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -36,11 +37,11 @@ const index = ({ qn }: any) => {
 
   const [flag, setFlag] = useState(flags['19'])
   // answer, setAnswer
-  const [answer, setAnswer] = useState(answersAll['00019']);
+  const [answer, setAnswer] = useState(answersAll['19']);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer((event.target as HTMLInputElement).value);
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00019': ((event.target as HTMLInputElement).value) })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '19': ((event.target as HTMLInputElement).value) })))
   };
 
   const flagHandler = () => {

@@ -41,7 +41,7 @@ const usePostExamStart = (test: any) => {
       localStorage.setItem('confirm', confirm);
       localStorage.setItem('test_id', data.test_id);
       localStorage.setItem('is_profile_fill', profile);
-      dispatch(setCurrentQuestion('00001'))
+      dispatch(setCurrentQuestion('1'))
       dispatch(setTestInfo(data))
       dispatch(setAnswersAll(data.answers))
       // dispatch(setFlags(initFlag))

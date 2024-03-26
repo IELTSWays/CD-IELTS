@@ -26,7 +26,7 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const [flag, setFlag] = useState(flags['6'])
-  const [answer, setAnswer] = useState<any>(answersAll['00006'])
+  const [answer, setAnswer] = useState<any>(answersAll['6'])
 
   const flagHandler = () => {
     setFlag(!flag)
@@ -35,7 +35,7 @@ const index = ({ qn }: any) => {
 
   const answerHandler = (e: any) => {
     setAnswer((e.target.value))
-    dispatch(setAnswersAll(Object.assign({}, answersAll, { '00006': (e.target.value).trim().toLowerCase() })))
+    dispatch(setAnswersAll(Object.assign({}, answersAll, { '6': (e.target.value).trim().toLowerCase() })))
   }
 
   return (
