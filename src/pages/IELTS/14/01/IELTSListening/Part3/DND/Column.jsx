@@ -40,6 +40,7 @@ const Column = ({ tasks, column, index }) => {
   const dispatch = useAppDispatch();
 
   const flags = useAppSelector((state) => state.user.flag)
+  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const [flag, setFlag] = useState()
   const [id, setId] = useState()
@@ -59,8 +60,12 @@ const Column = ({ tasks, column, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <Title className="dnd-text-before">
-              {column.id} - {column.title}
+            <Title className="dnd-text-before" id={`q-${column.id}`}>
+              <strong className={`question-now ${currentQuestion == column.id && 'active'} `}> 
+                {column.id} 
+              </strong>
+              &nbsp;
+              {column.title}
             </Title>
             <Droppable droppableId={column.id} type="task" id="item">
               {(provided, snapshot) => (

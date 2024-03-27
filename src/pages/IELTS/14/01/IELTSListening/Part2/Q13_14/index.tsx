@@ -83,7 +83,7 @@ const index = ({ qn }: any) => {
       flexWrap="wrap"
       className="multi-choice"
       sx={{ py: 1 }}
-      id={`q-${qn}`}
+      id={`q-13`}
     >
       <div className="align-items-start justify-content-space-between">
         <Paper elevation={0}>

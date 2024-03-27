@@ -27,7 +27,7 @@ const index = ({ qn }: any) => {
 
   const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const options = [
     { label: t('00060'), value: "a", },
