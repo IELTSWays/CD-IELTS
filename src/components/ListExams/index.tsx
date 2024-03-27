@@ -173,6 +173,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             size="small"
                             sx={{ width: '120px' }}
                             onClick={() => continueExam()}
+                            onMouseOver={() => localStorage.setItem('test_name', i.name)}
                           >
                             go to test
                           </Button>
