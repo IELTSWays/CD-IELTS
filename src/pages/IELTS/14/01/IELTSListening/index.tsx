@@ -550,7 +550,7 @@ const index = () => {
                 <div
                   className={currentQuestion == `${i.number}` && 'active'}
                   id={`item-${i.number}`}
-                  data-answer={`${answersAll && Object.values(answersAll)[i.number - 1]?.length > 0 && 'answered'}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
                 >
                   <HashLink
                     onClick={() => dispatch(setCurrentQuestion(i.label))}
