@@ -11,14 +11,15 @@ import Card from '@mui/material/Card';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // mtu
 
+import VideoPlayer from '@/pages/Confirm/VideoPlayer'
 import usePostExamConfirm from "@/services/Requests/usePostExamConfirm";
 
-const video1 = "https://smnaji.ir/video/example.mp4"
 
 const Confirm = () => {
 
   const { id } = useParams()
 
+  console.log(id)
 
   const {
     refetch: refetchPostExamConfirm,
@@ -47,9 +48,7 @@ const Confirm = () => {
               Timing: 30 minutes
             </Typography>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-              <video height="300" controls style={{ borderRadius: '10px' }}>
-                <source src={video1} type="video/mp4" />
-              </video>
+              <VideoPlayer id={id} />
             </Grid>
             <Button
               variant="contained"
