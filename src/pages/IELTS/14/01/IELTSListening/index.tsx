@@ -100,7 +100,6 @@ const index = () => {
     },
   })
 
-  console.log(answersAll)
   console.log(Object.values(answersAll))
 
   const [part, setPart] = useState(1)
