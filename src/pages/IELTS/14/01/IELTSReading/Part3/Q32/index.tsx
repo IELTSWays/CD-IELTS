@@ -48,8 +48,8 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
 
   const options = [
-    { label: 'YES', value: "a", },
-    { label: 'NO', value: "b", },
+    { label: 'TRUE', value: "a", },
+    { label: 'FALSE', value: "b", },
     { label: 'NOT GIVEN', value: "c", },
   ];
 
