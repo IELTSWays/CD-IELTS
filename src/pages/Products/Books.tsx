@@ -281,7 +281,7 @@ const Books = () => {
                       label={
                         <div>Test Mode&nbsp;
                           <span className="demo">
-                            (Take a simulated Cambridge test)
+                            (Take a simulated Cambridge authentic test)
                           </span>
                         </div>
                       }
