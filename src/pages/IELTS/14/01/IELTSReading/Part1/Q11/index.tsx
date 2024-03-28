@@ -81,7 +81,7 @@ const index = ({ qn }: any) => {
     <div className="d-flex">
       <Accordion
         id={`q-${qn}`}
-        expanded={accordionState === '00011' && expanded}
+        expanded={accordionState === '11' && expanded}
         onChange={() => handleChange()}
       >
         <AccordionSummary
