@@ -102,6 +102,8 @@ const Reports = () => {
     axios.get(songUrl).then((response) => setSongs(response.data.songs));
   }, []);
 
+  console.log(data?.full_data)
+
   return (
     <>
       <Grid
@@ -122,7 +124,7 @@ const Reports = () => {
                 }
                 action={
                   <Typography variant="h3" sx={{ px: 1.5 }}>
-                    {data?.band_score}
+                    {data?.short_data?.band_score}
                   </Typography>
                 }
                 titleTypographyProps={{ variant: 'h6' }}
@@ -141,13 +143,13 @@ const Reports = () => {
                     }}>
                       <ul id="list-red-bullet">
                         <li>
-                          <strong>Candidate Name: </strong> <span className="capitalize">{data?.user_first_name}</span>
+                          <strong>Candidate Name: </strong> <span className="capitalize">{data?.short_data.user_first_name}</span>
                         </li>
                         <li>
-                          <strong>Exam: </strong> Book {data?.book} Test {(data?.test_name)?.match(/T(\d+)/)[1]}
+                          <strong>Exam: </strong> Book {data?.short_data.book} Test {(data?.short_data.test_name)?.match(/T(\d+)/)[1]}
                         </li>
                         <li>
-                          <strong>Type: </strong> <span className="capitalize">{data?.type}</span>
+                          <strong>Type: </strong> <span className="capitalize">{data?.short_data.type}</span>
                         </li>
                       </ul>
                     </Paper>
@@ -160,13 +162,13 @@ const Reports = () => {
                     }}>
                       <ul id="list-red-bullet">
                         <li>
-                          <strong>Raw Score: </strong> {data?.raw_score}
+                          <strong>Raw Score: </strong> {data?.short_data.raw_score}
                         </li>
                         <li>
-                          <strong>Band Score: </strong> {data?.band_score}
+                          <strong>Band Score: </strong> {data?.short_data.band_score}
                         </li>
                         <li>
-                          <strong>Skill: </strong> <span className="capitalize">{data?.skill}</span>
+                          <strong>Skill: </strong> <span className="capitalize">{data?.short_data.skill}</span>
                         </li>
                       </ul>
                     </Paper>
@@ -178,13 +180,13 @@ const Reports = () => {
                     }}>
                       <ul id="list-red-bullet">
                         <li>
-                          <strong>Exam ID: </strong> {data?.test_id}
+                          <strong>Exam ID: </strong> {data?.short_data.test_id}
                         </li>
                         <li>
-                          <strong>Exam Date: </strong> {new Date(data?.test_created_at)?.toLocaleDateString()}
+                          <strong>Exam Date: </strong> {new Date(data?.short_data.test_created_at)?.toLocaleDateString()}
                         </li>
                         <li>
-                          <strong>Exam Date: </strong> {new Date(data?.test_created_at)?.toLocaleDateString('fa-IR-u-nu-latn')}
+                          <strong>Exam Date: </strong> {new Date(data?.short_data.test_created_at)?.toLocaleDateString('fa-IR-u-nu-latn')}
                         </li>
                       </ul>
                     </Paper>
