@@ -44,8 +44,7 @@ const usePostExamStart = (test: any) => {
       dispatch(setCurrentQuestion('1'))
       dispatch(setTestInfo(data))
       dispatch(setAnswersAll(data.answers))
-      // dispatch(setFlags(initFlag))
-
+      
       navigate(`/IELTS/${queryKey[1]?.skill}`)
 
       return data
