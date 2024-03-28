@@ -1241,17 +1241,17 @@ td {
   padding-left: 20px;
 }
 
-.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(1):before {
+.ielts-checkbox .MuiFormGroup-root label:nth-child(1):before {
   content: "A";
   padding-left: 20px;
 }
 
-.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(2):before {
+.ielts-checkbox .MuiFormGroup-root label:nth-child(2):before {
   content: "B";
   padding-left: 20px;
 }
 
-.ielts-checkbox .css-dmmspl-MuiFormGroup-root label:nth-child(3):before {
+.ielts-checkbox .MuiFormGroup-root label:nth-child(3):before {
   content: "C";
   padding-left: 20px;
 }
