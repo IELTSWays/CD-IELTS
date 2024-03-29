@@ -53,7 +53,6 @@ import Q22 from './Part3/Q22';
 import Q23 from './Part3/Q23';
 import Q24 from './Part3/Q24';
 import Q25 from './Part3/Q25';
-import Q26_27_28_29_30 from './Part3/___Q26_27_28_29_30';
 import Q26_30 from './Part3/DND';
 import Q31 from './Part4/Q31';
 import Q32 from './Part4/Q32';
