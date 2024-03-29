@@ -2,22 +2,15 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 // mtu
-import Button from '@mui/material/Button';
-import Grid from "@mui/material/Grid";
-import Typography from '@mui/material/Typography';
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // mtu
 
 import VideoPlayer from '@/pages/Confirm/VideoPlayer'
 import usePostExamConfirm from "@/services/Requests/usePostExamConfirm";
-
-const skillTimes = {
-  writing: '1 hour',
-  reading: '1 hour',
-  listening: '30 minutes',
-};
 
 const Confirm = () => {
 

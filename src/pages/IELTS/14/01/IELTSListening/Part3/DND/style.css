@@ -1,4 +1,4 @@
-[data-rbd-droppable-id="all-column"] > div {
+/* [data-rbd-droppable-id="all-column"] > div {
   pointer-events: none !important;
 }
 
@@ -89,4 +89,4 @@
   position: sticky;
   left: 100%;
   margin-right: 10px;
-}
+} */
