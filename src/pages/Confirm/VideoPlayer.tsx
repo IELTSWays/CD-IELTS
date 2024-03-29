@@ -14,7 +14,7 @@ const VideoPlayer = ({ id }) => {
   const videoSrc = videoSources[id];
 
   return (
-    <video height="250" width="444" controls style={{ borderRadius: '10px' }}>
+    <video height="100%" width="100%" controls style={{ borderRadius: '10px' }}>
       {videoSrc && <source src={videoSrc} type="video/mp4" />}
     </video>
   );

@@ -1,9 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 // mtu
-import Button from '@mui/material/Button';
+import Grid from "@mui/material/Grid";
+import Typography from '@mui/material/Typography';
+
 import WifiIcon from '@mui/icons-material/Wifi';
 import ForumIcon from '@mui/icons-material/Forum';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
@@ -18,7 +20,7 @@ import useTimeNow from '@/components/useTimeNow';
 
 const LayoutConfirm = ({ children }: any) => {
 
-  const location = useLocation();
+  const { id } = useParams()
   const navigate = useNavigate();
   const { timeNow } = useTimeNow();
 
@@ -29,6 +31,11 @@ const LayoutConfirm = ({ children }: any) => {
           <div className='justify-content-space-between'>
             <div className="d-flex">
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
+            </div>
+            <div className="align-items-flex-end">
+            <Grid container>
+            <Typography variant="h5" sx={{ color: "#E21D38"}} > IELTS Online <span className="capitalize"> {id} </span>Test tutorial </Typography>
+          </Grid>
             </div>
             <div className='align-items-center g-20'>
               <WifiIcon color="action" fontSize="small" />
@@ -41,7 +48,7 @@ const LayoutConfirm = ({ children }: any) => {
         </div>
       </div>
 
-      <div className='ielts-main'>
+      <div className='ielts-main' style={{ overflowY: 'auto' }}>
         {children}
       </div>
 
