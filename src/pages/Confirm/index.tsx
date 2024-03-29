@@ -22,21 +22,16 @@ const skillTimes = {
 const Confirm = () => {
 
   const { id } = useParams()
-  const skillTime = skillTimes[id];
 
   const {
     refetch: refetchPostExamConfirm,
   } = usePostExamConfirm<any>(localStorage.getItem('test_id'))
-
 
   return (
     <>
       <Grid sx={{ py: 3, display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ width: { sm: '90%', xs: "90%", md: "60%" } }}>
           <Card variant="outlined" sx={{ p: 3 }}>
-            <Typography variant="subtitle1" sx={{ pb: 2 }}>
-              Timing: {skillTime}
-            </Typography>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
               <VideoPlayer id={id} />
             </Grid>

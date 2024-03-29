@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 // mtu
+import Chip from '@mui/material/Chip';
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
 
@@ -18,11 +19,18 @@ import Logo from '@/assets/images/ielts.png'
 import ModalOptions from '@/components/IELTS/ModalOptions';
 import useTimeNow from '@/components/useTimeNow';
 
+const skillTimes = {
+  writing: '1 hour',
+  reading: '1 hour',
+  listening: '30 minutes',
+};
+
 const LayoutConfirm = ({ children }: any) => {
 
   const { id } = useParams()
   const navigate = useNavigate();
   const { timeNow } = useTimeNow();
+  const skillTime = skillTimes[id];
 
   return (
     <html data-theme='light' className='ielts'>
@@ -34,7 +42,12 @@ const LayoutConfirm = ({ children }: any) => {
             </div>
             <div className="align-items-flex-end">
             <Grid container>
-            <Typography variant="h5" sx={{ color: "#E21D38"}} > IELTS Online <span className="capitalize"> {id} </span>Test tutorial </Typography>
+            <Typography variant="h6" sx={{ color: "#E21D38"}} > 
+              IELTS Online <span className="capitalize"> {id} </span>Test tutorial 
+            </Typography>
+            
+            <Chip color="primary" sx={{ ml: 2 }} label={skillTime} variant="outlined" />
+            
           </Grid>
             </div>
             <div className='align-items-center g-20'>
