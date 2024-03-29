@@ -429,11 +429,13 @@ html.ielts {
 /* [11-12] */
 .ielts-navigation#ielts-listening-1401 #item-11 span:after {
   content: "-12";
+  padding-top: 5px;
 }
 
 /* [13-14] */
 .ielts-navigation#ielts-listening-1401 #item-13 span:after {
   content: "-14";
+  padding-top: 5px;
 }
 
 /* [ ==================================== ielts-reading-1401 */
@@ -452,11 +454,13 @@ html.ielts {
 /* [19-20] */
 .ielts-navigation#ielts-reading-1401 #item-19 span:after {
   content: "-20";
+  padding-top: 5px;
 }
 
 /* [21-22] */
 .ielts-navigation#ielts-reading-1401 #item-21 span:after {
   content: "-22";
+  padding-top: 5px;
 }
 
 /* modal-option */
