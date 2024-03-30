@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
-import './style.css';
 
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
+import { setAnswersAll } from '@/store/slices/user/userSlice'
 // store
 
 const Container = styled("div")`
@@ -90,7 +89,7 @@ const DND = () => {
     localStorage.setItem('28', Object.values(starter.columns)[2]?.taskIds);
     localStorage.setItem('29', Object.values(starter.columns)[3]?.taskIds);
     localStorage.setItem('30', Object.values(starter.columns)[4]?.taskIds);
-    }, [starter]);
+  }, [starter]);
 
   useEffect(() => {
     setAnswer26(Object.values(starter.columns)[0]?.taskIds)
@@ -118,15 +117,75 @@ const DND = () => {
 
   useEffect(() => {
     answer30 && dispatch(setAnswersAll(Object.assign({}, answersAll, { '30': (Object.values(starter.columns)[4]?.taskIds).join("") })))
-  }, [answer30])  
+  }, [answer30])
 
   console.log('answersAll', answersAll)
 
   const onDragEnd = ({ destination, source, draggableId }) => {
     if (!destination) return;
-    if (
-      Object.values(starter.columns).filter(obj => obj.id === destination.droppableId)[0].taskIds.length == 1 && destination?.droppableId !== 'column-1'
-    ) return
+    // if (
+    //   Object.values(starter.columns).filter(obj => obj.id === destination.droppableId)[0].taskIds.length == 1 && destination?.droppableId !== 'column-1'
+    // ) return
+    // Function to check if the destination is droppable
+    const isDestinationDroppable = (obj: any) => obj.id === destination.droppableId;
+
+    // Check if the destination has any items
+    const destinationHasItems =
+      Object.values(starter.columns).filter(isDestinationDroppable)?.[0]?.taskIds?.length ?? 0;
+
+    // If the destination is not 'column-1' and has items, proceed with the swapping
+    if (destination?.droppableId !== "column-1" && destinationHasItems) {
+      // Get the item from the source
+      const sourceItem = starter.columns[source.droppableId].taskIds[source.index];
+
+      // Get the item from the destination
+      const destinationItem = starter.columns[destination.droppableId].taskIds[destination.index];
+
+      // Get the destination column
+      const destinationColumn = starter.columns[destination.droppableId];
+
+      // Create a new destination column by replacing the destination item with the source item
+      const updatedDestinationColumn = {
+        ...destinationColumn,
+        taskIds: destinationColumn.taskIds.map((taskId) =>
+          taskId === destinationItem ? sourceItem : taskId
+        ),
+      };
+
+      // Update the starter data with the new destination column
+      let updatedStarterData = {
+        ...starter,
+        columns: {
+          ...starter.columns,
+          [destination.droppableId]: updatedDestinationColumn,
+        },
+      };
+
+      // Get the source column
+      const sourceColumn = starter.columns[source.droppableId];
+
+      // Create a new source column by removing the source item
+      const updatedSourceColumn = {
+        ...sourceColumn,
+        taskIds: sourceColumn.taskIds.filter((taskId) => taskId !== sourceItem),
+      };
+
+      // Add the old destination item back to the source column
+      updatedSourceColumn.taskIds.splice(source.index, 0, destinationItem);
+
+      // Update the starter data with the new source column
+      updatedStarterData = {
+        ...updatedStarterData,
+        columns: {
+          ...updatedStarterData.columns,
+          [source.droppableId]: updatedSourceColumn,
+        },
+      };
+
+      // Update the state with the new starter data
+      setStarter(updatedStarterData);
+      return;
+    }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -192,7 +251,7 @@ const DND = () => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            <section className="dnd-cols" id={`q-26`}> 
+            <section className="dnd-cols" id={`q-26`}>
               {(starter.columnOrder).slice(1)?.map((columnId, index) => {
                 const column = starter.columns[columnId];
                 const tasks = column.taskIds.map(taskId => starter.tasks[taskId]);

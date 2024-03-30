@@ -9,7 +9,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
+import { setFlags } from '@/store/slices/user/userSlice'
 // store
 
 const Container = styled("div")`
