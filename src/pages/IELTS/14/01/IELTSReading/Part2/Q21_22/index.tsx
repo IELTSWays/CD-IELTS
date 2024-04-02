@@ -132,7 +132,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == 21 && 'active'} `}> 21 - 22 </strong>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == 21 && 'active'} `}> 21 - 22 </strong>
               <Typography sx={{ px: 1 }}> Which </Typography>
               <strong className='uppercase'> two </strong>
               <Typography sx={{ pl: 1 }}> of the following statements are made in the text about Amsterdam today? </Typography>

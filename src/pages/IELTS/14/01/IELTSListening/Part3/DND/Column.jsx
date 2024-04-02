@@ -61,7 +61,7 @@ const Column = ({ tasks, column, index }) => {
             {...provided.dragHandleProps}
           >
             <Title className="dnd-text-before" id={`q-${column.id}`}>
-              <strong className={`question-now ${currentQuestion == column.id && 'active'} `}> 
+              <strong className={`question-now  ${flag && 'active-flag'} ${currentQuestion == column.id && 'active'} `}> 
                 {column.id} 
               </strong>
               &nbsp;

@@ -130,7 +130,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong> Which two of the following statements are made in the text about the Amsterdam bike-sharing scheme of 1999? 
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == 19 && 'active'} `}> 19 - 20 </strong> Which two of the following statements are made in the text about the Amsterdam bike-sharing scheme of 1999? 
             </Typography>
           </Paper>
         </AccordionSummary>

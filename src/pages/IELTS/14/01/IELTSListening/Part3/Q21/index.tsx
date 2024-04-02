@@ -62,7 +62,7 @@ const index = ({ qn }: any) => {
       <div className="align-items-start justify-content-space-between type-radio">
         <Paper elevation={0}>
         <Typography>
-            <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+            <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} </strong>
             <Typography sx={{ px: 1 }} className="question"> {t('00051')} </Typography>
           </Typography>
         </Paper>

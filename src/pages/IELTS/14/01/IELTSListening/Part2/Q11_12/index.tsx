@@ -76,6 +76,7 @@ const index = ({ qn }: any) => {
   }, [checked]);
 
   return (
+    <div id="q-101">
     <Stack
       spacing={{ xs: 1, sm: 2 }}
       direction="column"
@@ -88,7 +89,7 @@ const index = ({ qn }: any) => {
       <div className="align-items-start justify-content-space-between">
         <Paper elevation={0}>
           <Typography>
-            <strong className={`question-now ${currentQuestion == 11 && 'active'} `}> 11 - 12 </strong>
+            <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == 11 && 'active'} `}> 11 - 12 </strong>
             <Typography sx={{ px: 1 }}> {t('00028')} </Typography>
             <strong className='uppercase'> two </strong>
             <Typography sx={{ pl: 1 }}> {t('00029')} </Typography>
@@ -117,6 +118,7 @@ const index = ({ qn }: any) => {
         ))}
       </div>
     </Stack>
+    </div>
   )
 };
 

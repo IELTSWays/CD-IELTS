@@ -89,7 +89,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} </strong>
               <Typography sx={{ px: 1 }}>
                 The way a child plays may provide information about possible medical problems.
               </Typography>

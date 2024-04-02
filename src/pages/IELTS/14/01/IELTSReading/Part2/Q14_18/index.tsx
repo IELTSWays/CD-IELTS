@@ -113,62 +113,42 @@ const index = () => {
       <CardContent sx={{ p: 3 }}>
         <div className='ielts-answersTable'>
 
-          {/* <Stack
-            direction="row"
-            spacing={2}
-            id="ielts-answersTable-first"
-          >
-            <Paper>{" "}</Paper>
-            <RadioGroup
-              row
-            >
-              <FormControlLabel control={<Radio />} label="A" />
-              <FormControlLabel control={<Radio />} label="B" />
-              <FormControlLabel control={<Radio />} label="C" />
-              <FormControlLabel control={<Radio />} label="D" />
-              <FormControlLabel control={<Radio />} label="E" />
-              <FormControlLabel control={<Radio />} label="F" />
-              <FormControlLabel control={<Radio />} label="G" />
-            </RadioGroup>
-            <div className={`flag`}>
-              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
-            </div>
-          </Stack> */}
-
           {/************************* [14] *************************/}
-          <Stack
-            direction="row"
-            spacing={2}
-            id={`q-${questions[0].id}`}
-          >
-            <Paper>
-              <strong className={`question-now ${currentQuestion == questions[0].id && 'active'} `}>
-                {questions[0].id}
-              </strong>
-              <Typography sx={{ px: 1 }}> {questions[0].title} </Typography>
-            </Paper>
-            <RadioGroup
-              row
+          <div id="q-131">
+            <Stack
+              direction="row"
+              spacing={2}
+              id={`q-${questions[0].id}`}
             >
+              <Paper>
+                <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == questions[0].id && 'active'} `}>
+                  {questions[0].id}
+                </strong>
+                <Typography sx={{ px: 1 }}> {questions[0].title} </Typography>
+              </Paper>
               <RadioGroup
-                value={answer14}
-                onChange={handleChange14}
+                row
               >
-                {options.map((i) => {
-                  return (
-                    <FormControlLabel
-                      value={i.value}
-                      control={<Radio />}
-                      label={i.label}
-                    />
-                  )
-                })}
+                <RadioGroup
+                  value={answer14}
+                  onChange={handleChange14}
+                >
+                  {options.map((i) => {
+                    return (
+                      <FormControlLabel
+                        value={i.value}
+                        control={<Radio />}
+                        label={i.label}
+                      />
+                    )
+                  })}
+                </RadioGroup>
               </RadioGroup>
-            </RadioGroup>
-            <div onClick={() => flagHandler14()} className={`flag ${currentQuestion == 14 && 'active'}`}>
-              {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
-            </div>
-          </Stack>
+              <div onClick={() => flagHandler14()} className={`flag ${currentQuestion == 14 && 'active'}`}>
+                {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+              </div>
+            </Stack>
+          </div>
           {/************************* [15] *************************/}
           <Stack
             direction="row"
@@ -176,7 +156,7 @@ const index = () => {
             id={`q-${questions[1].id}`}
           >
             <Paper>
-              <strong className={`question-now ${currentQuestion == questions[1].id && 'active'} `}>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == questions[1].id && 'active'} `}>
                 {questions[1].id}
               </strong>
               <Typography sx={{ px: 1 }}> {questions[1].title} </Typography>
@@ -210,7 +190,7 @@ const index = () => {
             id={`q-${questions[2].id}`}
           >
             <Paper>
-              <strong className={`question-now ${currentQuestion == questions[2].id && 'active'} `}>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == questions[2].id && 'active'} `}>
                 {questions[2].id}
               </strong>
               <Typography sx={{ px: 1 }}> {questions[2].title} </Typography>
@@ -244,7 +224,7 @@ const index = () => {
             id={`q-${questions[3].id}`}
           >
             <Paper>
-              <strong className={`question-now ${currentQuestion == questions[3].id && 'active'} `}>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == questions[3].id && 'active'} `}>
                 {questions[3].id}
               </strong>
               <Typography sx={{ px: 1 }}> {questions[3].title} </Typography>
@@ -278,7 +258,7 @@ const index = () => {
             id={`q-${questions[4].id}`}
           >
             <Paper>
-              <strong className={`question-now ${currentQuestion == questions[4].id && 'active'} `}>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == questions[4].id && 'active'} `}>
                 {questions[4].id}
               </strong>
               <Typography sx={{ px: 1 }}> {questions[4].title} </Typography>

@@ -739,6 +739,10 @@ html.ielts {
   border-color: var(--color-08);
 }
 
+.question-now.active-flag.active {
+  border-color: var(--red-700) !important;
+}
+
 #ielts-list-text-input table,
 th,
 td {

@@ -91,7 +91,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} </strong>
               <Typography sx={{ px: 1 }}>
                 Staff should be allowed to choose when they take breaks during the working day
               </Typography>

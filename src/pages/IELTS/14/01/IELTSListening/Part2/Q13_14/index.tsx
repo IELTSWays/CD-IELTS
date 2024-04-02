@@ -88,7 +88,7 @@ const index = ({ qn }: any) => {
       <div className="align-items-start justify-content-space-between">
         <Paper elevation={0}>
           <Typography>
-            <strong className={`question-now ${currentQuestion == 13 && 'active'} `}> 13 - 14 </strong>
+            <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == 13 && 'active'} `}> 13 - 14 </strong>
             <Typography sx={{ px: 1 }}> {t('00035')} </Typography>
             <strong className='uppercase'> two </strong>
             <Typography sx={{ pl: 1 }}> {t('00036')} </Typography>

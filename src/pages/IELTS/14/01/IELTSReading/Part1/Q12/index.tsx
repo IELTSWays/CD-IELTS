@@ -89,7 +89,7 @@ const index = ({ qn }: any) => {
         >
           <Paper elevation={0}>
             <Typography>
-              <strong className={`question-now ${currentQuestion == qn && 'active'} `}> {qn} </strong>
+              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} </strong>
               <Typography sx={{ px: 1 }}>
                 Children had problems thinking up ideas when they first created the story with Lego.
               </Typography>
