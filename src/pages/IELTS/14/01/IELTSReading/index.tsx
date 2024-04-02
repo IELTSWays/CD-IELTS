@@ -26,7 +26,7 @@ import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
 
-import { SplitView } from "@/components/IELTS/SplitView";
+import IdeClone from "@/components/IELTS/IdeClone"
 
 import Title from '@/components/IELTS/Title';
 
@@ -219,7 +219,7 @@ const index = () => {
         {getAnswer.isLoading && <div> LOADING... </div>}
         {getAnswer.isSuccess &&
 
-          <SplitView
+          <IdeClone
             left=
             {
               <div className="left ielts-scrollbar">
