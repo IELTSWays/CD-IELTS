@@ -217,7 +217,7 @@ const Reports = () => {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                       {dataGetReportFull?.full_data?.map((i: any, index: any) => {
                         return (
-                          <Grid item xs={4} sm={8} md={4} key={index} className="short-report">
+                          <Grid item xs={4} sm={8} md={4} key={index} sx={{ pt: '4px' }}>
                             <Box sx={{ flexGrow: 1, width: '100%' }}>
                               <Paper variant="outlined" sx={{ p: 1 }}>
                                 <Stack spacing={1} direction="row" alignItems="center">
