@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
 
 // mtu
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,7 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -18,12 +16,8 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll, setAccordion, setFlags } from '@/store/slices/user/userSlice'
+import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
-
-const Accordion = styled((props: any) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />))(() => ({
-  }));
 
 const AccordionSummary = styled((props: any) => (
   <MuiAccordionSummary
@@ -35,15 +29,12 @@ const AccordionSummary = styled((props: any) => (
 
 const index = ({ qn }: any) => {
 
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const accordionState = useAppSelector((state: any) => state.user.accordion)
-  const [expanded, setExpanded] = useState(false);
   const [flag, setFlag] = useState(flags['21'])
 
   const checkList = [
@@ -54,7 +45,7 @@ const index = ({ qn }: any) => {
     { label: 'The city has a reputation as a place that welcomes cyclists.', value: "e", },
   ];
 
-  let init;
+  let init: any;
   if (answersAll['21'] == null) {
     init = []
   }
@@ -64,22 +55,10 @@ const index = ({ qn }: any) => {
 
   const [checked, setChecked] = useState(init);
 
-  const handleChange = () => {
-    dispatch(setAccordion('21'))
-    setExpanded(!expanded)
-    dispatch(setCurrentQuestion(21))
-  }
-
   const flagHandler = () => {
     setFlag(!flag)
     dispatch(setFlags(Object.assign({}, flags, { '21': !flag })))
   }
-
-  useEffect(() => {
-    if (accordionState !== '21') {
-      setExpanded(false)
-    }
-  }, [accordionState])
 
   const handleCheck = (event: { target: { checked: any; value: any; }; }) => {
     var updatedList = [...checked];
@@ -112,14 +91,11 @@ const index = ({ qn }: any) => {
 
   return (
     <div className="d-flex">
-      <Accordion
+      <div
         id={`q-${qn}`}
-        expanded={accordionState === '21' && expanded}
-        onChange={() => handleChange()}
         className="w-100p"
       >
         <AccordionSummary
-          onClick={() => handleChange()}
         >
           <Paper elevation={0}>
             <Typography>
@@ -148,7 +124,7 @@ const index = ({ qn }: any) => {
             </Paper>
           ))}
         </div>
-      </Accordion>
+      </div>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 21 && 'active'}`}>
         {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
       </div>

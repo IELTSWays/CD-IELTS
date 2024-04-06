@@ -366,7 +366,7 @@ const index = () => {
                       <Typography>
                         <h3> Questions 19 - 22 </h3>
                       </Typography>
-                      <Typography>
+                      <Typography sx={{ my: 1.5 }}>
                         Choose
                         <Typography sx={{ px: 1 }}> <strong className='uppercase'>two</strong> </Typography>
                         corrent answers
