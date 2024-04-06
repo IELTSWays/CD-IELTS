@@ -1,6 +1,4 @@
 import { useState, forwardRef } from 'react';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 import { QueryClient, QueryCache, QueryClientProvider } from '@tanstack/react-query'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Navigate } from 'react-router-dom';
@@ -86,7 +84,6 @@ const App = () => {
   return (
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
-        <DndProvider backend={HTML5Backend}>
           <MainRoutes />
           <Snackbar
             open={open}
@@ -98,7 +95,6 @@ const App = () => {
               {message}
             </Alert>
           </Snackbar>
-        </DndProvider>
       </QueryClientProvider>
     </ReduxProvider>
 

@@ -1,4 +1,53 @@
+:root {
+  --color-light-01: #ffffff;
+  --color-light-02: #ebebeb;
+  --color-light-03: #f1f2ed;
+  --color-light-04: #7f7f7f;
+  --color-light-05: #ececec;
+  --color-light-06: #bfb9b9;
+  --color-light-07: #484545;
+  --color-light-08: #1976d2;
+  --color-light-09: #000000;
+  --color-light-10: #c0e0ff;
+  --color-light-11: #c4e1ff;
+
+  --color-dark-01: #000000;
+  --color-dark-02: #333333;
+  --color-dark-03: #ffffff;
+
+  --color-sunset-01: #047b3e;
+  --color-sunset-02: #006ca6;
+  --color-sunset-03: #c9b623;
+}
+
 html[data-theme="light"] {
+  --color-01: var(--color-light-01);
+  --color-02: var(--color-light-02);
+  --color-03: var(--color-light-03);
+  --color-04: var(--color-light-04);
+  --color-05: var(--color-light-05);
+  --color-06: var(--color-light-06);
+  --color-07: var(--color-light-07);
+  --color-08: var(--color-light-08);
+  --color-09: var(--color-light-09);
+  --color-10: var(--color-light-10);
+  --color-11: var(--color-light-11);
+}
+
+html[data-theme="dark"] {
+  --color-01: var(--color-dark-01);
+  --color-02: var(--color-dark-02);
+  --color-03: var(--color-dark-03);
+}
+
+html[data-theme="sunset"] {
+  --color-01: var(--color-sunset-01);
+  --color-02: var(--color-sunset-02);
+  --color-03: var(--color-sunset-03);
+}
+
+
+/* html[data-theme="light"] {
   --color-01: #ffffff;
   --color-02: #ebebeb;
   --color-03: #f1f2ed;
@@ -10,7 +59,7 @@ html[data-theme="light"] {
   --color-09: #000000;
   --color-10: #c0e0ff;
   --color-11: #c4e1ff;
-}
+} */
 
 /* html[data-theme="dark"] {
   --color-01: #000000;
@@ -995,49 +1044,6 @@ td {
   pointer-events: none;
 }
 
-/* highlight */
-.highlight ::selection {
-  background: var(--color-08);
-  color: #fff;
-}
-
-.highlight-items {
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid var(--color-07);
-  gap: 10px;
-  position: relative;
-  top: 15px;
-}
-
-.highlight-items::before {
-  content: "";
-  position: absolute;
-  left: 50px;
-  top: -10px;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #fff;
-  clear: both;
-}
-
-.highlight-items > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  width: 50px;
-}
-
-.highlight-items p {
-  margin-top: 5px;
-  font-size: 10px !important;
-}
-
 /* [ ############################ PDF ############################ ] */
 
 .pdf-container > * {
@@ -1423,7 +1429,62 @@ td {
   margin-right: 10px;
 }
 
-/* [ ############################ Report ############################ ] */
-.short-report {
-  padding-top: 4px !important;
+/* [ ############################ Selection Popover ############################ ] */
+
+/* highlight */
+.highlight ::selection {
+  background: #F1F2ED;
+  color: #fff;
+}
+
+.highlight-items {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #F1F2ED;
+  position: relative;
+  top: 15px;
+  background: #F1F2ED;
+}
+
+.highlight-items::before {
+  content: "";
+  position: absolute;
+  left: 40px;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #F1F2ED;
+  clear: both;
+}
+
+.highlight-items > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  width: 50px;
+  cursor: pointer;
+  border-radius: 5px !important;
+}
+
+.highlight-items > div:hover {
+  background: #bdbdbd;
+}
+
+.highlight-items p {
+  margin-top: 5px;
+  font-size: 10px !important;
+}
+
+.SelectionContent {
+  position: absolute;
+  top: 20px;
+}
+
+.highlight-items svg {
+  width: 20px;
 }
