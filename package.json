@@ -38,6 +38,7 @@
     "react-router-dom": "^6.20.1",
     "react-router-hash-link": "^2.4.3",
     "react-to-pdf": "^1.0.1",
+    "selection-popover": "^0.3.0",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
