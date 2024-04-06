@@ -46,13 +46,6 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
   const [flag, setFlag] = useState(flags['19'])
 
-  // const checkList = [
-  //   'it was initially opposed by a government department.', 
-  //   'it failed when a partner in the scheme withdrew support.', 
-  //   'it aimed to be more successful than the Copenhagen scheme.', 
-  //   'it was made possible by a change in people’s attitudes.', 
-  //   'it attracted interest from a range of bike designers.'
-  // ];
 
   const checkList = [
     { label: 'It was initially opposed by a government department.', value: "a", },

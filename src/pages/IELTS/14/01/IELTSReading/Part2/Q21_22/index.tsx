@@ -46,14 +46,6 @@ const index = ({ qn }: any) => {
   const [expanded, setExpanded] = useState(false);
   const [flag, setFlag] = useState(flags['21'])
 
-  // const checkList = [
-  //   'The majority of residents would like to prevent all cars from entering the city.', 
-  //   'There is little likelihood of the city having another bike-sharing scheme.', 
-  //   'More trips in the city are made by bike than by any other form of transport.', 
-  //   'A bike-sharing scheme would benefit residents who use public transport.', 
-  //   'The city has a reputation as a place that welcomes cyclists.'
-  // ];
-
   const checkList = [
     { label: 'The majority of residents would like to prevent all cars from entering the city.', value: "a", },
     { label: 'There is little likelihood of the city having another bike-sharing scheme.', value: "b", },
@@ -61,7 +53,6 @@ const index = ({ qn }: any) => {
     { label: 'A bike-sharing scheme would benefit residents who use public transport.', value: "d", },
     { label: 'The city has a reputation as a place that welcomes cyclists.', value: "e", },
   ];
-
 
   let init;
   if (answersAll['21'] == null) {
