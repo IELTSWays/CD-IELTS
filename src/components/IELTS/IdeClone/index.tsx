@@ -4,7 +4,6 @@ import * as Selection from 'selection-popover';
 import Splitter from "./Splitter";
 import { useResizable } from "react-resizable-layout";
 import { cn } from "./cn";
-import "./style.css";
 import SelectionIndexesComponent from './SelectionIndexesComponent'
 
 import Typography from '@mui/material/Typography';

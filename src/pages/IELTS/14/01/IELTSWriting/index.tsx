@@ -11,7 +11,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import { useAppSelector } from '@/store/hooks'
 // store
 
-import { SplitView } from "@/components/IELTS/SplitView";
+import IdeClone from "@/components/IELTS/IdeClone"
 import Title from '@/components/IELTS/Title';
 import QTextArea1 from '@/components/IELTS/QTextArea/Q1';
 import QTextArea2 from '@/components/IELTS/QTextArea/Q2';
@@ -49,7 +49,7 @@ const index = () => {
       </div>
 
       <div className={`ielts-container ${fontSize}`}>
-        <SplitView
+        <IdeClone
           left=
           {
             <div className="left ielts-scrollbar">
@@ -120,23 +120,23 @@ const index = () => {
           </div>
         </div>
         <div className={`navigation-part ${part === 2 && 'active'} ${part > 2 && 'done'}`}>
-            <div className="navigation-part-title">
-              <span>Part 2</span>
-            </div>
-            <div className='navigation-part-counter'>
-              {part > 2 ?
-                <>
-                  <DoneIcon color="success" sx={{ mr: 1 }} />
-                  <div>Part 2</div>
-                </>
-                :
-                <>
-                  <div>Part 2</div>
-                  <div> 0 of 1 </div>
-                </>
-              }
-            </div>
+          <div className="navigation-part-title">
+            <span>Part 2</span>
           </div>
+          <div className='navigation-part-counter'>
+            {part > 2 ?
+              <>
+                <DoneIcon color="success" sx={{ mr: 1 }} />
+                <div>Part 2</div>
+              </>
+              :
+              <>
+                <div>Part 2</div>
+                <div> 0 of 1 </div>
+              </>
+            }
+          </div>
+        </div>
       </div>
     </>
   );

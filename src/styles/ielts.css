@@ -88,6 +88,7 @@ html[data-theme="sunset"] {
 } */
 
 /* [ ############################ START RESIZE ############################ ] */
+
 #parent {
   display: flex;
   border: 1px solid #000;
@@ -122,26 +123,6 @@ html[data-theme="sunset"] {
   flex: 1;
 }
 
-.splitView {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  height: calc(100vh - 266px) !important;
-}
-
-.splitView .left {
-  overflow-y: scroll;
-  padding-right: 10px;
-  height: calc(100vh - 266px) !important;
-}
-
-.splitView .right {
-  overflow-y: scroll;
-  padding: 0 32px;
-  height: calc(100vh - 266px) !important;
-}
-
 .divider::after {
   content: url("../assets/images/left-right-arrow.png");
   position: absolute;
@@ -168,7 +149,91 @@ html[data-theme="sunset"] {
 
 /* [ ############################ END RESIZE ############################ ] */
 
+/* [ ############################ START SPLITER ############################ ] */
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.h-screen {
+  height: calc(100vh - 266px) !important;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.contents {
+  display: grid;
+  transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.grow.contents {
+  padding-left: 20px;
+  min-width: 600px !important;
+}
+
+.sample-drag-bar {
+  flex-shrink: 0;
+  width: 5px;
+  background-color: var(--color-04);
+  cursor: col-resize;
+  transition: background-color 0.15s 0.15s ease-in-out;
+  margin-left: -5px;
+}
+
+.sample-drag-bar::after {
+  content: url("@/assets/images/left-right-arrow.png");
+  position: absolute;
+  background: var(--color-01);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding-top: 10px;
+  cursor: col-resize;
+  pointer-events: auto;
+  z-index: 100;
+  margin-left: -21px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid var(--color-04);
+}
+
+.sample-drag-bar.sample-drag-bar--dragging::after,
+.sample-drag-bar:hover::after {
+  content: url("@/assets/images/left-right-arrow-w.png");
+  background: var(--color-08);
+}
+
+.sample-drag-bar.sample-drag-bar--dragging,
+.sample-drag-bar:hover{
+  background-color: var(--color-04);
+}
+
+.sample-drag-bar.sample-drag-bar--horizontal {
+  height: 5px;
+  width: 100%;
+  cursor: row-resize;
+}
+
+/* [ ############################ END SPLITER ############################ ] */
+
 /* [ ############################ START SCROLLBAR ############################ ] */
+
 .ielts-scrollbar {
   display: block;
   overflow-y: scroll;

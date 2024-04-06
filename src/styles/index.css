@@ -260,42 +260,6 @@ main.css-zxdg2z {
   padding-left: 0;
 }
 
-/* scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ff334b #dfe9eb;
-}
-
-*::-webkit-scrollbar {
-  height: 10px;
-  width: 5px;
-}
-*::-webkit-scrollbar-track {
-  border-radius: 5px;
-  background-color: #dfe9eb;
-}
-
-*::-webkit-scrollbar-track:hover {
-  background-color: #b8c0c2;
-}
-
-*::-webkit-scrollbar-track:active {
-  background-color: #b8c0c2;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 2px;
-  background-color: #ff334b;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: #bb1428;
-}
-
-*::-webkit-scrollbar-thumb:active {
-  background-color: #ca2135;
-}
-
 /* list books */
 #book-item button {
   flex-grow: 1;
