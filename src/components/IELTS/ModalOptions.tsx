@@ -77,6 +77,15 @@ const ModalOptions = () => {
       <div onClick={() => handleContrast('YellowBlack')}>
       YB
       </div>
+      <div onClick={() => handleFontSize('regular')}>
+      F1
+      </div>
+      <div onClick={() => handleFontSize('large')}>
+      F2
+      </div>
+      <div onClick={() => handleFontSize('extraLarge')}>
+      F3
+      </div>
 
       <ReorderIcon color="action" fontSize="small" sx={{ cursor: "pointer" }} onClick={handleClickOpen} />
       <BootstrapDialog

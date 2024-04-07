@@ -60,11 +60,6 @@ html[data-theme="YellowBlack"] {
   --color-04: var(--color-YellowBlack-04);
 }
 
-/* 
---color-01 >>> MAIN BACKGROUND
---color-02 >>> TEXT 
-*/
-
 /* [ ############################ BASE ############################ ] */
 
 .ielts-main {
@@ -645,6 +640,53 @@ html.ielts {
   font-size: var(--font-extraLarge) !important;
 }
 
+.ielts-container.large .text-field input, 
+.ielts-container.large .MuiInputBase-input {
+  height: 25px !important;
+  width: 150px !important;
+  font-size: var(--font-large) !important;
+}
+
+
+.ielts-container.extraLarge .text-field input, 
+.ielts-container.extraLarge .MuiInputBase-input {
+  height: 35px !important;
+  width: 200px !important;
+  font-size: var(--font-large) !important;
+}
+
+.ielts-container.large .MuiRadio-root.MuiRadio-colorPrimary svg,
+.ielts-container.large .MuiCheckbox-root.MuiCheckbox-colorPrimary svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ielts-container.extraLarge .MuiRadio-root.MuiRadio-colorPrimary svg,
+.ielts-container.extraLarge .MuiCheckbox-root.MuiCheckbox-colorPrimary svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.ielts-container.extraLarge .dnd-options {
+  left: 900px !important
+}
+
+.ielts-container.extraLarge .dnd-cols > div > div > [role="button"], 
+.ielts-container.extraLarge .dnd-options div[role="button"] {
+  width: 280px !important;
+}
+
+.ielts-container.extraLarge [data-rbd-droppable-id="column-1"] {
+  max-width: unset !important;
+  width: 300px !important;
+}
+
+.ielts-container.extraLarge .dnd-text-before + div {
+  width: 300px !important;
+  max-width: 300px !important;
+  height: auto !important;
+}
+
 /* [font-size: unset] */
 .ielts-container .MuiTypography-body1 {
   font-size: unset !important;
@@ -837,6 +879,7 @@ html.ielts {
 /* active number question */
 .ielts-container .question-now {
   display: inline-flex;
+  align-items: center;
   padding: 5px;
   border: 2px solid var(--color-01);
   white-space: nowrap;
