@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 // mtu
@@ -13,6 +13,10 @@ import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 // mtu
+
+// store
+import { useAppSelector } from '@/store/hooks'
+// store
 
 import "@/styles/ielts.css"
 import Logo from '@/assets/images/ielts.png'
@@ -32,8 +36,10 @@ const LayoutConfirm = ({ children }: any) => {
   const { timeNow } = useTimeNow();
   const skillTime = skillTimes[id];
 
+  const contrast = useAppSelector((state: any) => state.user.contrast)
+
   return (
-    <html data-theme='light' className='ielts'>
+    <html data-theme={contrast} className='ielts'>
       <div className="ielts-header">
         <div className="ielts-container">
           <div className='justify-content-space-between'>

@@ -66,6 +66,10 @@
   padding: 20px;
 }
 
+.pt-20 {
+  padding-top: 20px !important;
+}
+
 .g-20 {
   gap: 20px;
 }

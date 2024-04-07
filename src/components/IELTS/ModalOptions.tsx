@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 // mtu
 import { styled } from '@mui/material/styles';
@@ -20,6 +21,7 @@ import ContrastIcon from '@mui/icons-material/Contrast';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 // mtu
+
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
@@ -38,8 +40,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const ModalOptions = () => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState(0)
-  const [contrast, setContrast] = useState(useAppSelector((state) => state.user.contrast))
-  const [fontSize, setFontSize] = useState(useAppSelector((state) => state.user.fontSize))
+  const [contrast, setContrast] = useState(useAppSelector((state: { user: { contrast: any; }; }) => state.user.contrast))
+  const [fontSize, setFontSize] = useState(useAppSelector((state: { user: { fontSize: any; }; }) => state.user.fontSize))
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -60,8 +62,22 @@ const ModalOptions = () => {
     dispatch(setcontrast(contrast))
   };
 
+  const cc = useAppSelector((state: any) => state.user.contrast)
+
+  console.log(cc)
+
   return (
     <>
+      <div onClick={() => handleContrast('BlackWhite')}>
+      BW
+      </div>
+      <div onClick={() => handleContrast('WhiteBlack')}>
+      WB
+      </div>
+      <div onClick={() => handleContrast('YellowBlack')}>
+      YB
+      </div>
+
       <ReorderIcon color="action" fontSize="small" sx={{ cursor: "pointer" }} onClick={handleClickOpen} />
       <BootstrapDialog
         onClose={handleClose}

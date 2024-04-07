@@ -37,7 +37,8 @@ const LayoutIELTS = ({ children }: any) => {
 
   const { refetch } = usePostTestDone()
 
-  const writingSaved = useAppSelector((state :any) => state.user.writingSaved)
+  const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
+  
   const { timeNow } = useTimeNow();
   const { timer } = useTimer('1920')
 
@@ -55,8 +56,10 @@ const LayoutIELTS = ({ children }: any) => {
     refetchGetTests()
   }, [])
 
+  const contrast = useAppSelector((state: any) => state.user.contrast)
+
   return (
-    <html data-theme='light' className='ielts'>
+    <html data-theme={contrast} className='ielts'>
       <div className="ielts-header">
         <div className="ielts-container">
           <div className='justify-content-space-between'>
