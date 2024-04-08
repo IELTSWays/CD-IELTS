@@ -569,45 +569,22 @@ html.ielts {
   padding-top: 5px;
 }
 
-/* modal-option */
-#ielts-modal-options {
-  background: #fff;
-}
-
-#ielts-modal-options .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  box-shadow: unset;
-  width: 100% !important;
-  max-width: unset;
-}
-
-#ielts-modal-options .MuiList-root.MuiList-padding.css-h4y409-MuiList-root {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-top: unset;
-  border-bottom: unset;
-}
-
-#ielts-modal-options
-  .MuiList-root.MuiList-padding.css-h4y409-MuiList-root
-  > div {
-  height: 70px !important;
-}
-
-#ielts-modal-options
-  .MuiDialogContent-root.MuiDialogContent-dividers.css-1t4vnk2-MuiDialogContent-root {
-  margin: 0 auto;
-  width: 900px;
-}
+/* [ ############################ MODAL OPTIONS ############################ ] */
 
 #ielts-modal-options {
-  height: calc(100vh - 90px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 5px;
+  position: relative;
+  top: 50px;
 }
 
-#ielts-modal-options .css-hz1bth-MuiDialog-container {
-  height: unset;
+#ielts-modal-options .MuiListItemButton-root {
+  height: 75px;
 }
-
-#ielts-modal-options .css-1t4vnk2-MuiDialogContent-root,
-#ielts-modal-options .css-h4y409-MuiList-root {
+#ielts-modal-options .MuiList-root.MuiList-padding,
+#ielts-modal-options .MuiDialogContent-root.MuiDialogContent-dividers {
   padding: 0 !important;
 }
 

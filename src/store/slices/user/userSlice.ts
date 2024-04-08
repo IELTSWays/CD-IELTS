@@ -17,7 +17,8 @@ export interface UserState {
   writingSaved: any;
   accordion: any;
   flag: any;
-  cart: any
+  cart: any;
+  showOptions: any;
 }
 
 const initialState: UserState = {
@@ -50,7 +51,8 @@ const initialState: UserState = {
     "13": null,
     "14": null,
   },
-  cart: []
+  cart: [],
+  showOptions: 0,
 };
 
 export const userSlice = createSlice({
@@ -102,6 +104,9 @@ export const userSlice = createSlice({
     setCart: (state, action: PayloadAction<any>) => {
       state.cart = { ...action.payload };
     },
+    setShowOptions: (state, action: PayloadAction<any>) => {
+      state.showOptions = action.payload;
+    },
   },
 });
 
@@ -120,7 +125,8 @@ export const {
   setWritingSaved,
   setAccordion,
   setFlags,
-  setCart
+  setCart,
+  setShowOptions
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -141,5 +147,6 @@ export const selectWritingSaved = (state: RootState) => state.user.writingSaved;
 export const selectAccordion = (state: RootState) => state.user.accordion;
 export const selectFlags = (state: RootState) => state.user.flag;
 export const selectCart = (state: RootState) => state.user.cart;
+export const selectShowOptions = (state: RootState) => state.user.showOptions;
 
 export default userSlice.reducer;
