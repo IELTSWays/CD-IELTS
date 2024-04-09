@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 // mtu
-import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import Dialog from '@mui/material/Dialog';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -34,6 +33,7 @@ const ModalOptions = () => {
   const [fontSize, setFontSize] = useState(useAppSelector((state: { user: { fontSize: any; }; }) => state.user.fontSize))
 
   const dispatch = useAppDispatch()
+  const location = useLocation();
 
   const handleFontSize = (fontSize: any) => {
     setFontSize(fontSize)
@@ -45,16 +45,12 @@ const ModalOptions = () => {
     dispatch(setcontrast(contrast))
   };
 
-  const showOptions = useAppSelector((state: any) => state.user.showOptions)
-
-  console.log(showOptions)
-
   return (
-    <div id="ielts-modal-options">
+    <div id="ielts-modal-options" style={{ display: location.pathname.includes('confirm') ? 'none' : 'block' }}>
       <Stack
         direction="row"
         justifyContent="space-between"
-        alignItems="center" 
+        alignItems="center"
         sx={{ p: 3 }}
       >
 
