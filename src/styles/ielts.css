@@ -986,7 +986,7 @@ td {
 /* answersTable */
 
 .ielts-answersTable {
-  min-width: 750px !important;
+  margin-top: -10px !important;
 }
 
 .ielts-answersTable.listening {
@@ -1016,9 +1016,9 @@ td {
   box-shadow: unset !important;
 }
 
-.ielts-answersTable .css-dmmspl-MuiFormGroup-root {
+.ielts-answersTable .MuiFormGroup-root.MuiFormGroup-row >  .MuiFormGroup-root[role="radiogroup"] {
   flex-direction: row;
-  width: 350px !important;
+  /* width: 250px !important; */
 }
 
 .ielts-answersTable .question-now {
@@ -1041,10 +1041,9 @@ td {
 }
 
 .ielts-answersTable label {
-  width: 10%;
+  width: 14.28%;
   display: flex;
   justify-content: center;
-  min-width: 50px;
   border: 1px solid;
   margin: 0 !important;
   position: relative;
