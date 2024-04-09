@@ -986,7 +986,7 @@ td {
 }
 
 .ielts-textarea.error textarea {
-  border-color: red !important;
+  border-color: var(--red-700) !important;
 }
 
 .ielts-textarea textarea:focus {

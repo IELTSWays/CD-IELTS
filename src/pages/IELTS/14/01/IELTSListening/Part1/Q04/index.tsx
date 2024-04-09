@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -74,6 +75,7 @@ const index = ({ qn }: any) => {
                     value={answer}
                     onChange={(e) => answerHandler(e)}
                     onClick={() => dispatch(setCurrentQuestion(qn))}
+                    id={`${flag && currentQuestion == qn && 'input-active-flag'}`}
                   />
                 </div>
               </Stack>

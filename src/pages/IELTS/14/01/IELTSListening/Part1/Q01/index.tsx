@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 // mtu
@@ -60,6 +61,7 @@ const index = ({ qn }: any) => {
                 value={answer}
                 onChange={(e) => answerHandler(e)}
                 onClick={() => dispatch(setCurrentQuestion(qn))}
+                id={`${flag && currentQuestion == qn && 'input-active-flag'}`}
               />
             </div>
           </Stack>
