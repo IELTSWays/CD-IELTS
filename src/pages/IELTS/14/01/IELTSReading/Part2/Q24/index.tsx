@@ -46,6 +46,7 @@ const index = ({ qn }: any) => {
           value={answer}
           onChange={(e) => answerHandler(e)}
           onClick={() => dispatch(setCurrentQuestion(qn))}
+          id={`${flag && currentQuestion == qn && 'input-active-flag'}`}
         />
       </div>
       <span>and believed that the bike-sharing scheme would draw attention to these issues.</span>

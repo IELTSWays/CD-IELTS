@@ -48,6 +48,7 @@ const index = ({ qn }: any) => {
           value={answer}
           onChange={(e) => answerHandler(e)}
           onClick={() => dispatch(setCurrentQuestion(qn))}
+          id={`${flag && currentQuestion == qn && 'input-active-flag'}`}
         />
       </div>
       <span>that condemned the use of cars.</span>

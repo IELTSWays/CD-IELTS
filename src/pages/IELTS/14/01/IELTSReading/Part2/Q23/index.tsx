@@ -49,6 +49,7 @@ const index = ({ qn }: any) => {
           value={answer}
           onChange={(e) => answerHandler(e)}
           onClick={() => dispatch(setCurrentQuestion(qn))}
+          id={`${flag && currentQuestion == qn && 'input-active-flag'}`}
         />
       </div>
       <div onClick={() => flagHandler()} className={`flag ${currentQuestion == 23 && 'active'}`}>
