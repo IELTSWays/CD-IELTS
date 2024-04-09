@@ -160,7 +160,7 @@ p.MuiTypography-root {
 }
 
 .h-screen {
-  height: calc(100vh - 266px) !important;
+  height: calc(100vh - 233px) !important;
 }
 
 .overflow-hidden {
@@ -229,7 +229,7 @@ p.MuiTypography-root {
 .ielts-scrollbar {
   display: block;
   overflow-y: scroll;
-  height: calc(100vh - 265px);
+  height: calc(100vh - 225px);
 }
 
 .ielts-scrollbar::-webkit-scrollbar {
@@ -385,6 +385,7 @@ html.ielts {
   display: flex;
   justify-content: space-between;
   overflow-x: auto;
+  padding-top: 9px;
 }
 
 .ielts-navigation > div {
@@ -397,7 +398,7 @@ html.ielts {
   content: "";
   width: 10px;
   background: var(--color-01);
-  height: 50px;
+  height: 48px;
 }
 
 .navigation-part-title {
