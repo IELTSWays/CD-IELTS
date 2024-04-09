@@ -10,7 +10,6 @@ import { styled } from '@mui/material/styles';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 // mtu
 
 // store
@@ -21,7 +20,6 @@ import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user
 
 const AccordionSummary = styled((props: any) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon />}
     {...props}
   />
 ))(() => ({
