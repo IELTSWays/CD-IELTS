@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import OtpInput from "react-otp-input";
 import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+
 // api
 import axiosInstance from '@/services/API'
 // api
+
 // mtu
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -14,9 +17,8 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import GoogleIcon from '@mui/icons-material/Google';
 import TextsmsIcon from '@mui/icons-material/Textsms';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 // mtu
 
 import LayoutAuth from "../layouts/LayoutAuth";
@@ -45,6 +47,29 @@ const Otp = () => {
   const [counter, setCounter] = useState<any>(watingTime);
   const [showOTP, setShowOTP] = useState<any>("");
 
+  const clientId = "366111965494-bbgflimp8s9dtndoufsah3v235bt8lhh.apps.googleusercontent.com";
+
+  const handleLoginSuccess = (response) => {
+    console.log('Login successful:', response);
+  };
+
+  const handleLoginFailure = () => {
+    console.error('Login failed');
+  };
+
+
+  const path = window.location.origin
+  const callBackPart = `?returnTo=${path}/CallbackPage&client_id=  366111965494-bbgflimp8s9dtndoufsah3v235bt8lhh.apps.googleusercontent.com
+  }`
+
+
+  // VITE_APP_API_URL=https://educationapi.firouzehasia.ir/api/
+  // VITE_APP_SSO_URL=https://apissotest.firouzehasia.ir/login/login/
+  // VITE_APP_SSO_API_URL=https://apissotest.firouzehasia.ir/api/v1/
+  // VITE_APP_CLIENT_ID=Education
+  // VITE_APP_IS_ADMIN=true
+
+
   // STEP-0
   const getSMS = async (e: any) => {
     e.preventDefault();
@@ -62,6 +87,19 @@ const Otp = () => {
       setLoading(false);
       setError(error?.response?.data?.errors[0])
     }
+  }
+
+  let url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=366111965494-bbgflimp8s9dtndoufsah3v235bt8lhh.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email&access_type=offline&redirect_uri=https://api.ieltsways.com/google-redirect/'
+  let height = 550;
+  let width = 400;
+  let left = (screen.width - width) / 2;
+  let top = (screen.height - height) / 2;
+
+  const openOAuthLoginPage = () => {
+    setLoading(true),
+      !loading &&
+      window.open(url, "center window", 'resizable = yes, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left)
+    setLoading(true)
   }
 
   // STEP-1
@@ -86,6 +124,21 @@ const Otp = () => {
     }
   }
 
+  const getSSO = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+    try {
+      const response = await axiosInstance.post('google-signup');
+      setError(false)
+      setLoading(false);
+      console.log(response.data)
+    } catch (error: any) {
+      setLoading(false);
+      setError(error?.response?.data?.errors[0])
+    }
+  }
+
   // STEP-3
   const mobile_change = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -94,30 +147,6 @@ const Otp = () => {
     setError(false)
     setStep(3);
   };
-
-  // useEffect(() => {
-  //   otp.length === otpLength && (e :any) => getAnswerOtp(e)
-  // }, [otp]);
-
-  // STEP-0
-  // const getSMS = async (e: any) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError(false);
-  //   try {
-  //     const response = await api.post("accounts/otp", {
-  //       'phone_number': mobile.toString()
-  //     });
-  //     setStep(1);
-  //     setCounter(watingTime);
-  //     setShowOTP(response.data.data.otp_code);
-  //   } catch (error) {
-  //     setError(error);
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   useEffect(() => {
     const timer: any =
@@ -165,32 +194,29 @@ const Otp = () => {
           </Grid>
 
           <Grid sx={{ textAlign: "center", py: 2 }}>
-            <Stack direction="row" justifyContent="center" spacing={1}>
+            <Stack direction="row" justifyContent="center" spacing={1} sx={{ py: 2 }}>
               <Button
                 variant="contained"
                 size="small"
                 color="secondary"
                 startIcon={<TextsmsIcon />}
                 disabled={mobile.length !== mobileLength || loading}
-                onClick={(e: any) => getSMS(e)}>
+                onClick={(e: any) => getSMS(e)}
+              >
                 SMS
               </Button>
-              {/* <Button
-                variant="contained"
-                startIcon={<TelegramIcon />}
-                disabled={mobile.length !== mobileLength || loading}
-                onClick={(e: any) => getTeleram(e)}>
-                Telegram
-              </Button>
+            </Stack>
+            <Stack direction="row" justifyContent="center" spacing={1}>
               <Button
                 variant="contained"
                 size="small"
-                color="success"
-                startIcon={<WhatsAppIcon />}
-                disabled={mobile.length !== mobileLength || loading}
-                onClick={(e: any) => getWhatsapp(e)}>
-                Whatsapp
-              </Button> */}
+                color="secondary"
+                startIcon={<GoogleIcon />}
+                onClick={() => openOAuthLoginPage()}
+              >
+                Login With Google
+              </Button>
+
             </Stack>
           </Grid>
         </>
@@ -243,9 +269,8 @@ const Otp = () => {
               type="submit"
               variant="contained"
               size="small"
-              disabled={otp.length < otpLength}
-              // loading={loading}
               sx={{ mt: 3, mb: 2 }}
+              disabled={otp.length < otpLength}
               onClick={(e): any => getAnswerOtp(e)}
             >
               Confirm And Continue
