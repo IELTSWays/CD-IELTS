@@ -47,14 +47,14 @@ const LayoutConfirm = ({ children }: any) => {
               <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
             </div>
             <div className="align-items-flex-end">
-            <Grid container>
-            <Typography variant="h6" sx={{ color: "#E21D38"}} > 
-              IELTS Online <span className="capitalize"> {id} </span>Test tutorial 
-            </Typography>
-            
-            <Chip color="primary" sx={{ ml: 2 }} label={skillTime} variant="outlined" />
-            
-          </Grid>
+              <Grid container>
+                <Typography variant="h6" sx={{ color: "#E21D38" }} >
+                  IELTS Online <span className="capitalize"> {id} </span>Test tutorial
+                </Typography>
+
+                <Chip color="primary" sx={{ ml: 2 }} label={skillTime} variant="outlined" />
+
+              </Grid>
             </div>
             <div className='align-items-center g-20'>
               <WifiIcon color="action" fontSize="small" />

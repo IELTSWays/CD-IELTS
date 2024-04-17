@@ -574,11 +574,18 @@ html.ielts {
 
 #ielts-modal-options {
   border: 1px solid rgba(0, 0, 0, 0.04);
-  width: 90%;
+  width: 95%;
   margin: 0px auto;
   border-radius: 5px;
   position: relative;
   top: 50px;
+}
+
+#ielts-modal-options .MuiDialogContent-root {
+  width: 30% !important;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 48px;
 }
 
 #ielts-modal-options .MuiListItemButton-root {

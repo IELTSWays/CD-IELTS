@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 // mtu
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
@@ -29,8 +29,12 @@ import { setShowOptions, setfontSize, setcontrast } from '@/store/slices/user/us
 const ModalOptions = () => {
 
   const [options, setOptions] = useState(0)
-  const [contrast, setContrast] = useState(useAppSelector((state: { user: { contrast: any; }; }) => state.user.contrast))
-  const [fontSize, setFontSize] = useState(useAppSelector((state: { user: { fontSize: any; }; }) => state.user.fontSize))
+  const [contrast, setContrast] = useState(useAppSelector((
+    state: { user: { contrast: any; }; }) => state.user.contrast)
+  )
+  const [fontSize, setFontSize] = useState(useAppSelector((
+    state: { user: { fontSize: any; }; }) => state.user.fontSize)
+  )
 
   const dispatch = useAppDispatch()
   const location = useLocation();
@@ -53,17 +57,30 @@ const ModalOptions = () => {
         alignItems="center"
         sx={{ p: 3 }}
       >
-
-        <IconButton
-          aria-label="close"
-          onClick={() => setOptions(0)}
-          sx={{
-            color: (theme) => theme.palette.grey[700],
-            visibility: options === 0 && 'hidden'
-          }}
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ p: 3 }}
         >
-          <ArrowBackIosIcon />
-        </IconButton>
+          <IconButton
+            aria-label="close"
+            onClick={() => setOptions(0)}
+            sx={{
+              color: (theme) => theme.palette.grey[700],
+              visibility: options === 0 && 'hidden'
+            }}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            onClick={() => setOptions(0)}
+            sx={{ visibility: options === 0 && 'hidden', cursor: 'pointer' }}
+          >
+            Options
+          </Typography>
+        </Stack>
 
         <Typography variant="h6">
           {options === 0 && 'Options'}
@@ -71,15 +88,25 @@ const ModalOptions = () => {
           {options === 2 && 'Text Size'}
         </Typography>
 
-        <IconButton
-          aria-label="close"
-          onClick={() => dispatch(setShowOptions(0))}
-          sx={{
-            color: (theme) => theme.palette.grey[900],
-          }}
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ p: 3 }}
         >
-          <CloseIcon />
-        </IconButton>
+          <Typography variant="h6" sx={{ visibility: 'hidden' }}>
+            Options
+          </Typography>
+          <IconButton
+            aria-label="close"
+            onClick={() => dispatch(setShowOptions(0))}
+            sx={{
+              color: (theme) => theme.palette.grey[900],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Stack>
       </Stack>
 
       {options === 0 &&
