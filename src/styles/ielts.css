@@ -63,7 +63,7 @@ html[data-theme="YellowBlack"] {
 /* [ ############################ BASE ############################ ] */
 
 .ielts-main {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 112px);
   background: var(--color-01);
   color: var(--color-02)
 }
@@ -288,7 +288,7 @@ html.ielts {
 }
 
 .ielts-container.full-w {
-  height: calc(100vh - 266px);
+  height: calc(100vh - 235px);
   overflow-y: scroll;
 }
 
