@@ -11,12 +11,22 @@ import Paper from '@mui/material/Paper';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 
+// store
+import { useAppSelector } from '@/store/hooks'
+import { useAppDispatch } from '@/store/hooks'
+import { setSidebar } from '@/store/slices/user/userSlice'
+// store
+
 interface IdeCloneProps {
   left: React.ReactNode;
   right: React.ReactNode;
 }
 
 const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
+
+  const dispatch = useAppDispatch();
+
+  const sidebar = useAppSelector((state: any) => state.user.sidebar)
 
   const {
     isDragging: isFileDragging,
@@ -29,9 +39,9 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
   });
 
   document.onmouseup = () => {
-    console.log(window.getSelection().toString());
+    console.log(window.getSelection().toString()?.length);
+    window.getSelection().toString() && dispatch(setSidebar(Object.assign({}, sidebar, { 'text': window.getSelection().toString() })))
   };
-
 
   const containerRef = useRef(null);
 
@@ -66,11 +76,11 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
               <Selection.Content className="SelectionContent">
                 <Paper className="highlight-items"
                 >
-                  <div>
+                  <div onClick={() => dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "1" })))}>
                     <FormatQuoteIcon />
                     <Typography> Note </Typography>
                   </div>
-                  <div>
+                  <div onClick={() => dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "2" })))}>
                     <BorderColorIcon />
                     <Typography> highlight </Typography>
                   </div>

@@ -19,6 +19,7 @@ export interface UserState {
   flag: any;
   cart: any;
   showOptions: any;
+  sidebar: any;
 }
 
 const initialState: UserState = {
@@ -53,6 +54,7 @@ const initialState: UserState = {
   },
   cart: [],
   showOptions: 0,
+  sidebar: {},
 };
 
 export const userSlice = createSlice({
@@ -107,6 +109,9 @@ export const userSlice = createSlice({
     setShowOptions: (state, action: PayloadAction<any>) => {
       state.showOptions = action.payload;
     },
+    setSidebar: (state, action: PayloadAction<any>) => {
+      state.sidebar = { ...action.payload };
+    },
   },
 });
 
@@ -126,7 +131,8 @@ export const {
   setAccordion,
   setFlags,
   setCart,
-  setShowOptions
+  setShowOptions,
+  setSidebar,
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -148,5 +154,6 @@ export const selectAccordion = (state: RootState) => state.user.accordion;
 export const selectFlags = (state: RootState) => state.user.flag;
 export const selectCart = (state: RootState) => state.user.cart;
 export const selectShowOptions = (state: RootState) => state.user.showOptions;
+export const selectSidebar = (state: RootState) => state.user.sidebar;
 
 export default userSlice.reducer;

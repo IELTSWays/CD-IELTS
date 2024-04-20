@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // mtu
 import Button from '@mui/material/Button';
 import WifiIcon from '@mui/icons-material/Wifi';
+import CloseIcon from '@mui/icons-material/Close';
 import ForumIcon from '@mui/icons-material/Forum';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
@@ -17,7 +18,7 @@ import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setShowOptions } from '@/store/slices/user/userSlice'
+import { setSidebar, setShowOptions } from '@/store/slices/user/userSlice'
 // store
 
 import "@/styles/ielts.css"
@@ -57,92 +58,123 @@ const LayoutIELTS = ({ children }: any) => {
     refetchGetTests()
   }, [])
 
+  const sidebar = useAppSelector((state: any) => state.user.sidebar)
   const contrast = useAppSelector((state: any) => state.user.contrast)
   const showOptions = useAppSelector((state: any) => state.user.showOptions)
   const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
 
+  console.log(sidebar)
+
   return (
     <html data-theme={contrast} className='ielts'>
-
       {showOptions == 1 ?
         <div>
           <ModalOptions />
         </div>
         :
         <>
-          <div className="ielts-header">
-            <div className="ielts-container">
-              <div className='justify-content-space-between'>
-                <div className="d-flex">
-                  <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
-                  <div className="align-items-flex-end ml-50">
-                    <div style={{ width: '170px' }}>
-                      {timer}</div>
-                    {
-                      <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
-                        {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
-                          <>
-                            <VolumeUpIcon sx={{ mx: 0.5 }} fontSize="small" />
-                            Audio is playing
-                          </>
-                        }
+          <div className={sidebar?.type > 0 && 'layout-with-sidebar'}>
+            <section>
+              <div className="ielts-header">
+                <div className="ielts-container">
+                  <div className='justify-content-space-between'>
+                    <div className="d-flex">
+                      <img src={Logo} alt="ielts" height={30} className='pointer' onClick={() => navigate("/")} />
+                      <div className="align-items-flex-end ml-50">
+                        <div style={{ width: '170px' }}>
+                          {timer}</div>
+                        {
+                          <div className="d-flex ml-20" style={{ visibility: isPlaying ? 'visible' : 'hidden' }}>
+                            {(location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                              <>
+                                <VolumeUpIcon sx={{ mx: 0.5 }} fontSize="small" />
+                                Audio is playing
+                              </>
+                            }
 
-                        {(location.pathname.includes('Reading') || location.pathname.includes('reading')) &&
-                          <>
-                            <VideocamIcon sx={{ mx: 0.5 }} fontSize="small" />
-                            Live proctoring started
-                          </>
+                            {(location.pathname.includes('Reading') || location.pathname.includes('reading')) &&
+                              <>
+                                <VideocamIcon sx={{ mx: 0.5 }} fontSize="small" />
+                                Live proctoring started
+                              </>
+                            }
+                          </div>
                         }
                       </div>
-                    }
-                  </div>
-                </div>
+                    </div>
 
-                <Button variant="outlined" onClick={() => refetch()} size="small">
-                  FINISH
-                </Button>
+                    <Button variant="outlined" onClick={() => refetch()} size="small">
+                      FINISH
+                    </Button>
 
-                <div className='align-items-center g-20'>
-                  {location.pathname.includes('writing') &&
-                    writingSaved === 'true' && 'Saved'
-                  }
-                  <WifiIcon color="action" fontSize="small" />
-                  <NotificationsNoneIcon color="action" fontSize="small" />
-                  {/* <ModalOptions fontSize="small" /> */}
-                  <ReorderIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setShowOptions(1))} />
-                  <ForumIcon color="action" fontSize="small" />
-                  <EditCalendarIcon color="action" fontSize="small" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className='ielts-main'>
-            {children}
-          </div>
-
-          <div className='ielts-footer'>
-            <div className='ielts-container'>
-              <div className='justify-content-space-between'>
-                <div className='align-items-flex-end'>
-                  inspera assessment
-                </div>
-                <div className='align-items-center g-20'>
-                  <div><strong>{timeNow}</strong></div>
-                  <BatteryChargingFullIcon color="action" fontSize="small" sx={{ rotate: '90deg' }} />
-                  <div className='ielts-footer-btn'>
-                    <WifiIcon color="action" fontSize="small" />
-                  </div>
-                  {
-                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
-                    listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  <div className='ielts-footer-btn'>
-                    Exit
+                    <div className='align-items-center g-20'>
+                      {location.pathname.includes('writing') &&
+                        writingSaved === 'true' && 'Saved'
+                      }
+                      <WifiIcon color="action" fontSize="small" />
+                      <NotificationsNoneIcon color="action" fontSize="small" />
+                      {/* <ModalOptions fontSize="small" /> */}
+                      <ReorderIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setShowOptions(1))} />
+                      <ForumIcon color="action" fontSize="small" />
+                      <EditCalendarIcon color="action" fontSize="small" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div className='ielts-main'>
+                {children}
+              </div>
+
+              <div className='ielts-footer'>
+                <div className='ielts-container'>
+                  <div className='justify-content-space-between'>
+                    <div className='align-items-flex-end'>
+                      inspera assessment
+                    </div>
+                    <div className='align-items-center g-20'>
+                      <div><strong>{timeNow}</strong></div>
+                      <BatteryChargingFullIcon color="action" fontSize="small" sx={{ rotate: '90deg' }} />
+                      <div className='ielts-footer-btn'>
+                        <WifiIcon color="action" fontSize="small" />
+                      </div>
+                      {
+                        (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                        listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
+                      }
+                      <div className='ielts-footer-btn'>
+                        Exit
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {sidebar?.type > 0 &&
+              <section className="ielts-sidebar">
+                <div className="ielts-header">
+                  <div className="ielts-container">
+                    <div className="justify-content-space-between">
+                      <div className="d-flex">
+                        {sidebar?.type == 1 && 'Notes'}
+                        {sidebar?.type == 2 && 'Highlight'}
+                      </div>
+                      <div className="d-flex">
+                        <CloseIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setSidebar({ 'type': "0" }))}  />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="ielts-main">
+                  <div className="ielts-sidebar-item">
+                    <span>{sidebar.text}</span>
+                    <textarea/>
+                    <div className="justify-content-flex-end pointer"> Delete </div>
+                  </div>
+                </div>
+                <div className="ielts-footer"></div>
+              </section>
+            }
           </div>
         </>
       }
