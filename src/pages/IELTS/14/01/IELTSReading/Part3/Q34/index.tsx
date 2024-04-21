@@ -28,8 +28,8 @@ const index = ({ qn }: any) => {
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const options = [
-    { label: 'TRUE', value: "a", },
-    { label: 'FALSE', value: "b", },
+    { label: 'YES', value: "a", },
+    { label: 'NO', value: "b", },
     { label: 'NOT GIVEN', value: "c", },
   ];
 
