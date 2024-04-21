@@ -1689,5 +1689,20 @@ padding-top: 5px;
   height: 60px;
   margin: 10px 0;
   padding: 5px;
-  resize: vertical;
+  resize: unset;
 }
+
+#selected-note {
+  background: #40AFA1;
+}
+
+#selected-highlight {
+  position: relative;
+}
+
+/* #selected-highlight:hover:after {
+  content: 'DELETE';
+  font: 10px;
+  position: absolute;
+  background: gold;
+} */

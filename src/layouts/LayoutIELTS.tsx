@@ -63,8 +63,6 @@ const LayoutIELTS = ({ children }: any) => {
   const showOptions = useAppSelector((state: any) => state.user.showOptions)
   const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
 
-  console.log(sidebar)
-
   return (
     <html data-theme={contrast} className='ielts'>
       {showOptions == 1 ?
@@ -73,7 +71,7 @@ const LayoutIELTS = ({ children }: any) => {
         </div>
         :
         <>
-          <div className={sidebar?.type > 0 && 'layout-with-sidebar'}>
+          <div className={sidebar?.isOpen == 1 && 'layout-with-sidebar'}>
             <section>
               <div className="ielts-header">
                 <div className="ielts-container">
@@ -150,17 +148,16 @@ const LayoutIELTS = ({ children }: any) => {
                 </div>
               </div>
             </section>
-            {sidebar?.type > 0 &&
+            {sidebar?.isOpen == 1 &&
               <section className="ielts-sidebar">
                 <div className="ielts-header">
                   <div className="ielts-container">
                     <div className="justify-content-space-between">
                       <div className="d-flex">
                         {sidebar?.type == 1 && 'Notes'}
-                        {sidebar?.type == 2 && 'Highlight'}
                       </div>
                       <div className="d-flex">
-                        <CloseIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setSidebar({ 'type': "0" }))}  />
+                        <CloseIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setSidebar({ 'isOpen': "0" }))}  />
                       </div>
                     </div>
                   </div>

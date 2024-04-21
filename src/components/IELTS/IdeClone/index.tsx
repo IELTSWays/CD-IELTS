@@ -1,11 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import * as Selection from 'selection-popover';
 import Splitter from "./Splitter";
 import { useResizable } from "react-resizable-layout";
 import { cn } from "./cn";
-import SelectionIndexesComponent from './SelectionIndexesComponent'
-
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -25,7 +23,6 @@ interface IdeCloneProps {
 const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
 
   const dispatch = useAppDispatch();
-
   const sidebar = useAppSelector((state: any) => state.user.sidebar)
 
   const {
@@ -38,19 +35,69 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
     min: 200
   });
 
-  document.onmouseup = () => {
-    console.log(window.getSelection().toString()?.length);
-    window.getSelection().toString() && dispatch(setSidebar(Object.assign({}, sidebar, { 'text': window.getSelection().toString() })))
-  };
-
   const containerRef = useRef(null);
+  const [selectionIndexes, setSelectionIndexes] = useState<{ startIndex: number, endIndex: number } | null>(null);
+
+  const [showDeleteBox, setShowDeleteBox] = useState(false)
 
   useEffect(() => {
-    function handleMouseUp() {
-      const selectionIndexes = SelectionIndexesComponent(containerRef.current);
+    function getSelectionIndexes(containerNode: Node | null | undefined) {
+      const sel = window.getSelection();
+      if (sel?.rangeCount === 0) {
+        return null;
+      }
+
+      const range = sel?.getRangeAt(0);
+      const startNode = range?.startContainer;
+      const endNode = range?.endContainer;
+      let startIndex = range?.startOffset;
+      let endIndex = range?.endOffset;
+
+      let currentIndex = 0;
+      let startFound = false;
+      let endFound = false;
+
+      function traverse(node: Node | undefined) {
+        if (node === startNode) {
+          startFound = true;
+        }
+        if (node === endNode) {
+          endFound = true;
+        }
+
+        if (node?.nodeType === Node?.TEXT_NODE) {
+          dispatch(setSidebar(Object.assign({}, sidebar, { 'text': window.getSelection().toString() })))
+          if (node === startNode && !startFound) {
+            startIndex += currentIndex;
+          }
+          if (node === endNode && !endFound) {
+            endIndex += currentIndex;
+          }
+          currentIndex += node.textContent?.length;
+        } else {
+          for (let i = 0; i < node?.childNodes.length; i++) {
+            traverse(node?.childNodes[i]);
+          }
+        }
+      }
+
+      traverse(containerNode);
+
+      return { startIndex, endIndex };
+    }
+
+    function handleMouseUp(event: { target: { closest: (arg0: string) => any; }; }) {
+      if (!event.target.closest('.left')) return;
+
+      const selectionIndexes = getSelectionIndexes(containerRef?.current);
+      setSelectionIndexes(selectionIndexes);
       if (selectionIndexes) {
-        console.log("Start Index:", selectionIndexes.startIndex);
-        console.log("End Index:", selectionIndexes.endIndex);
+        console.log("Start Index:", selectionIndexes?.startIndex);
+        console.log("End Index:", selectionIndexes?.endIndex);
+        dispatch(setSidebar(Object.assign({}, sidebar, { 'isOpen': '0' })));
+      }
+      if (window.getSelection().toString()?.length) {
+        dispatch(setSidebar(Object.assign({}, sidebar, { 'text': window.getSelection().toString() })));
       }
     }
 
@@ -59,7 +106,49 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [dispatch, sidebar]);
+
+  useEffect(() => {
+    function addStyleToSelection() {
+      const sel = window.getSelection();
+      if (sel?.rangeCount) {
+        const range = sel?.getRangeAt(0);
+        const span = document.createElement('span');
+        span.className = 'selected-text';
+        if (sidebar?.type == 1) {
+          span.style.backgroundColor = '#40AFA1';
+          span.id = 'selected-note';
+          dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
+        }
+        if (sidebar?.type == 2) {
+          span.style.backgroundColor = 'gold';
+          span.id = 'selected-highlight';
+          dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
+        }
+        range?.surroundContents(span);
+      }
+    }
+
+    addStyleToSelection();
+  }, [selectionIndexes, sidebar]);
+
+  const handleNoteClick = () => {
+    dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "1", 'isOpen': '1' })));
+    const selectedNoteSpan = document.getElementById('selected-note');
+    if (selectedNoteSpan) {
+      selectedNoteSpan.style.backgroundColor = '#40AFA1';
+    }
+  };
+
+  const handleHighlightClick = () => {
+    dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "2", 'isOpen': '0' })));
+    const selectedHighlightSpan = document.getElementById('selected-highlight');
+    if (selectedHighlightSpan) {
+      selectedHighlightSpan.style.backgroundColor = 'gold';
+    }
+  };
+
+  document.querySelector('.selected-text#selected-highlight')?.addEventListener('click', () => setShowDeleteBox(true));
 
   return (
     <div className="flex flex-column h-screen overflow-hidden">
@@ -74,15 +163,18 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
             </Selection.Trigger>
             <Selection.Portal>
               <Selection.Content className="SelectionContent">
-                <Paper className="highlight-items"
-                >
-                  <div onClick={() => dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "1" })))}>
+                <Paper className="highlight-items">
+                  <div
+                    onClick={handleNoteClick}
+                  >
                     <FormatQuoteIcon />
                     <Typography> Note </Typography>
                   </div>
-                  <div onClick={() => dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "2" })))}>
+                  <div
+                    onClick={handleHighlightClick}
+                  >
                     <BorderColorIcon />
-                    <Typography> highlight </Typography>
+                    <Typography> Highlight </Typography>
                   </div>
                 </Paper>
               </Selection.Content>
@@ -91,11 +183,18 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
         </div>
         <Splitter isDragging={isFileDragging} {...fileDragBarProps} />
         <div className="flex grow">
-          <div className="grow contents">
+          <div className="grow contents left" ref={containerRef}>
             {right}
           </div>
         </div>
       </div>
+      {selectionIndexes && (
+        <div>
+          Start Index: {selectionIndexes.startIndex}
+          <br />
+          End Index: {selectionIndexes.endIndex}
+        </div>
+      )}
     </div>
   );
 };
