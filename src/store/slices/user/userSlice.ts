@@ -19,7 +19,9 @@ export interface UserState {
   flag: any;
   cart: any;
   showOptions: any;
-  sidebar: any;
+  sidebar: any[];
+  comments: any;
+  activeComment: any;
 }
 
 const initialState: UserState = {
@@ -54,7 +56,9 @@ const initialState: UserState = {
   },
   cart: [],
   showOptions: 0,
-  sidebar: {},
+  sidebar: [],
+  comments: [],
+  activeComment: {},
 };
 
 export const userSlice = createSlice({
@@ -112,6 +116,12 @@ export const userSlice = createSlice({
     setSidebar: (state, action: PayloadAction<any>) => {
       state.sidebar = { ...action.payload };
     },
+    setComments: (state, action: PayloadAction<any>) => {
+      state.comments = [...action.payload];
+    },
+    setActiveComment: (state, action: PayloadAction<any>) => {
+      state.activeComment = { ...action.payload };
+    },
   },
 });
 
@@ -133,6 +143,8 @@ export const {
   setCart,
   setShowOptions,
   setSidebar,
+  setComments,
+  setActiveComment,
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -155,5 +167,8 @@ export const selectFlags = (state: RootState) => state.user.flag;
 export const selectCart = (state: RootState) => state.user.cart;
 export const selectShowOptions = (state: RootState) => state.user.showOptions;
 export const selectSidebar = (state: RootState) => state.user.sidebar;
+export const selectComments = (state: RootState) => state.user.comments;
+export const selectActiveComment = (state: RootState) =>
+  state.user.activeComment;
 
 export default userSlice.reducer;

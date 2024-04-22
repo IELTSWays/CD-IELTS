@@ -12,7 +12,7 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setSidebar } from '@/store/slices/user/userSlice'
+import { setSidebar, setComments, setActiveComment } from '@/store/slices/user/userSlice'
 // store
 
 interface IdeCloneProps {
@@ -24,6 +24,8 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
 
   const dispatch = useAppDispatch();
   const sidebar = useAppSelector((state: any) => state.user.sidebar)
+  const comments = useAppSelector((state: any) => state.user.comments)
+  const commentId = comments?.length;
 
   const {
     isDragging: isFileDragging,
@@ -37,11 +39,10 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
 
   const containerRef = useRef(null);
   const [selectionIndexes, setSelectionIndexes] = useState<{ startIndex: number, endIndex: number } | null>(null);
-
-  const [showDeleteBox, setShowDeleteBox] = useState(false)
+  const [activeItem, setActiveItem] = useState<any>()
 
   useEffect(() => {
-    function getSelectionIndexes(containerNode: Node | null | undefined) {
+    function getSelectionIndexes(containerNode: any) {
       const sel = window.getSelection();
       if (sel?.rangeCount === 0) {
         return null;
@@ -92,8 +93,6 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
       const selectionIndexes = getSelectionIndexes(containerRef?.current);
       setSelectionIndexes(selectionIndexes);
       if (selectionIndexes) {
-        console.log("Start Index:", selectionIndexes?.startIndex);
-        console.log("End Index:", selectionIndexes?.endIndex);
         dispatch(setSidebar(Object.assign({}, sidebar, { 'isOpen': '0' })));
       }
       if (window.getSelection().toString()?.length) {
@@ -114,15 +113,21 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
       if (sel?.rangeCount) {
         const range = sel?.getRangeAt(0);
         const span = document.createElement('span');
-        span.className = 'selected-text';
+        span.classList.add("selected-text")
+        dispatch(setActiveComment(null))
+
         if (sidebar?.type == 1) {
           span.style.backgroundColor = '#40AFA1';
-          span.id = 'selected-note';
+          span.style.userSelect = 'none';
+          span.id = 'selected-text selected-note';
+          span.setAttribute('data-id', commentId);
           dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
         }
         if (sidebar?.type == 2) {
           span.style.backgroundColor = 'gold';
-          span.id = 'selected-highlight';
+          span.style.userSelect = 'none';
+          span.id = 'selected-text selected-highlight';
+          span.setAttribute('data-id', commentId);
           dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
         }
         range?.surroundContents(span);
@@ -134,21 +139,23 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
 
   const handleNoteClick = () => {
     dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "1", 'isOpen': '1' })));
-    const selectedNoteSpan = document.getElementById('selected-note');
-    if (selectedNoteSpan) {
-      selectedNoteSpan.style.backgroundColor = '#40AFA1';
-    }
+    dispatch(setComments([...comments, { id: commentId + 1, type: "1", text: window.getSelection().toString() }]))
   };
 
   const handleHighlightClick = () => {
     dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "2", 'isOpen': '0' })));
-    const selectedHighlightSpan = document.getElementById('selected-highlight');
-    if (selectedHighlightSpan) {
-      selectedHighlightSpan.style.backgroundColor = 'gold';
-    }
+    dispatch(setComments([...comments, { id: commentId + 1, type: "2", text: window.getSelection().toString() }]))
   };
 
-  document.querySelector('.selected-text#selected-highlight')?.addEventListener('click', () => setShowDeleteBox(true));
+  const selectedTextElements = document.querySelectorAll('.selected-text[data-id]');
+
+  selectedTextElements.forEach(element => {
+    element.addEventListener('mouseover', () => {
+      const Id = element.getAttribute('id');
+      const dataId = element.getAttribute('data-id');
+      dispatch(setActiveComment({'id': dataId, 'selected-type': Id}))
+    });
+  });
 
   return (
     <div className="flex flex-column h-screen overflow-hidden">

@@ -1696,13 +1696,6 @@ padding-top: 5px;
   background: #40AFA1;
 }
 
-#selected-highlight {
-  position: relative;
+.left.ielts-scrollbar .my-10 > span {
+  cursor: pointer;
 }
-
-/* #selected-highlight:hover:after {
-  content: 'DELETE';
-  font: 10px;
-  position: absolute;
-  background: gold;
-} */

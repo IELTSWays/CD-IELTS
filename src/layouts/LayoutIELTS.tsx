@@ -18,7 +18,7 @@ import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
 // store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setSidebar, setShowOptions } from '@/store/slices/user/userSlice'
+import { setComments, setActiveComment, setSidebar, setShowOptions } from '@/store/slices/user/userSlice'
 // store
 
 import "@/styles/ielts.css"
@@ -58,10 +58,33 @@ const LayoutIELTS = ({ children }: any) => {
     refetchGetTests()
   }, [])
 
+  const activeComment = useAppSelector((state: any) => state.user.activeComment)
+  const comments = useAppSelector((state: any) => state.user.comments)
   const sidebar = useAppSelector((state: any) => state.user.sidebar)
   const contrast = useAppSelector((state: any) => state.user.contrast)
   const showOptions = useAppSelector((state: any) => state.user.showOptions)
   const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
+
+  const closeCommentBox = () => {
+    dispatch(setSidebar({ 'isOpen': "0" }))
+    dispatch(setActiveComment({}))
+  }
+
+  const [inputText, setInputText] = useState(comments[activeComment?.id - 1]?.comment);
+
+  useEffect(() => {
+    setInputText(comments[activeComment?.id - 1]?.comment)
+  }, [activeComment])
+
+  const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    setInputText(event.target.value);
+    const updatedComment = { ...comments[activeComment?.id - 1], comment: event.target.value };
+    const updatedComments = [...comments];
+    updatedComments[activeComment?.id - 1] = updatedComment;
+    dispatch(setComments(updatedComments));
+  };
+
+  console.log(comments, activeComment)
 
   return (
     <html data-theme={contrast} className='ielts'>
@@ -71,7 +94,10 @@ const LayoutIELTS = ({ children }: any) => {
         </div>
         :
         <>
-          <div className={sidebar?.isOpen == 1 && 'layout-with-sidebar'}>
+          <div className={(
+            sidebar?.isOpen == 1 ||
+            (comments[activeComment?.id - 1]?.text &&
+              activeComment['selected-type']?.includes('selected-note'))) && 'layout-with-sidebar'}>
             <section>
               <div className="ielts-header">
                 <div className="ielts-container">
@@ -120,6 +146,8 @@ const LayoutIELTS = ({ children }: any) => {
                 </div>
               </div>
 
+              <button onClick={() => dispatch(setComments([...comments, { id: 'z', name: 'qqq' }]))}> CLICK </button>
+
               <div className='ielts-main'>
                 {children}
               </div>
@@ -148,7 +176,9 @@ const LayoutIELTS = ({ children }: any) => {
                 </div>
               </div>
             </section>
-            {sidebar?.isOpen == 1 &&
+            {(sidebar?.isOpen == 1 ||
+              (comments[activeComment?.id - 1]?.text &&
+                activeComment['selected-type']?.includes('selected-note'))) &&
               <section className="ielts-sidebar">
                 <div className="ielts-header">
                   <div className="ielts-container">
@@ -157,15 +187,25 @@ const LayoutIELTS = ({ children }: any) => {
                         {sidebar?.type == 1 && 'Notes'}
                       </div>
                       <div className="d-flex">
-                        <CloseIcon color="action" fontSize="small" className="pointer" onClick={() => dispatch(setSidebar({ 'isOpen': "0" }))}  />
+                        <CloseIcon
+                          color="action"
+                          fontSize="small"
+                          className="pointer"
+                          onClick={closeCommentBox} />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="ielts-main">
                   <div className="ielts-sidebar-item">
-                    <span>{sidebar.text}</span>
-                    <textarea/>
+                    {activeComment['selected-type']?.includes('selected-note') &&
+                      <span>{comments[activeComment?.id - 1]?.text}</span>
+                    }
+                    <textarea
+                      value={inputText}
+                      onChange={handleChange}
+                      placeholder='Type here...'
+                    />
                     <div className="justify-content-flex-end pointer"> Delete </div>
                   </div>
                 </div>
