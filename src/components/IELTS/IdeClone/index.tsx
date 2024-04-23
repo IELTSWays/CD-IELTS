@@ -107,35 +107,35 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
     };
   }, [dispatch, sidebar]);
 
-  useEffect(() => {
-    function addStyleToSelection() {
-      const sel = window.getSelection();
-      if (sel?.rangeCount) {
-        const range = sel?.getRangeAt(0);
-        const span = document.createElement('span');
-        span.classList.add("selected-text")
-        dispatch(setActiveComment(null))
+  // useEffect(() => {
+  //   function addStyleToSelection() {
+  //     const sel = window.getSelection();
+  //     if (sel?.rangeCount) {
+  //       const range = sel?.getRangeAt(0);
+  //       const span = document.createElement('span');
+  //       span.classList.add("selected-text")
+  //       dispatch(setActiveComment(null))
 
-        if (sidebar?.type == 1) {
-          span.style.backgroundColor = '#40AFA1';
-          span.style.userSelect = 'none';
-          span.id = 'selected-text selected-note';
-          span.setAttribute('data-id', commentId);
-          dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
-        }
-        if (sidebar?.type == 2) {
-          span.style.backgroundColor = 'gold';
-          span.style.userSelect = 'none';
-          span.id = 'selected-text selected-highlight';
-          span.setAttribute('data-id', commentId);
-          dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
-        }
-        range?.surroundContents(span);
-      }
-    }
+  //       if (sidebar?.type == 1) {
+  //         span.style.backgroundColor = '#40AFA1';
+  //         span.style.userSelect = 'none';
+  //         span.id = 'selected-text selected-note';
+  //         span.setAttribute('data-id', commentId);
+  //         dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
+  //       }
+  //       if (sidebar?.type == 2) {
+  //         span.style.backgroundColor = 'gold';
+  //         span.style.userSelect = 'none';
+  //         span.id = 'selected-text selected-highlight';
+  //         span.setAttribute('data-id', commentId);
+  //         dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "0" })));
+  //       }
+  //       range?.surroundContents(span);
+  //     }
+  //   }
 
-    addStyleToSelection();
-  }, [selectionIndexes, sidebar]);
+  //   addStyleToSelection();
+  // }, [selectionIndexes, sidebar]);
 
   const handleNoteClick = () => {
     dispatch(setSidebar(Object.assign({}, sidebar, { 'type': "1", 'isOpen': '1' })));
@@ -153,7 +153,7 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
     element.addEventListener('mouseover', () => {
       const Id = element.getAttribute('id');
       const dataId = element.getAttribute('data-id');
-      dispatch(setActiveComment({'id': dataId, 'selected-type': Id}))
+      dispatch(setActiveComment({ 'id': dataId, 'selected-type': Id }))
     });
   });
 
@@ -164,9 +164,9 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
           className={cn("shrink-0 contents", isFileDragging && "dragging")}
           style={{ width: fileW }}
         >
-          <Selection.Root>
+          {/* <Selection.Root>
             <Selection.Trigger>
-              {left}
+              <div className="ic-left">{left}</div>
             </Selection.Trigger>
             <Selection.Portal>
               <Selection.Content className="SelectionContent">
@@ -186,7 +186,8 @@ const IdeClone = ({ left, right }: IdeCloneProps): JSX.Element => {
                 </Paper>
               </Selection.Content>
             </Selection.Portal>
-          </Selection.Root>
+          </Selection.Root> */}
+          <div className="ic-left">{left}</div>
         </div>
         <Splitter isDragging={isFileDragging} {...fileDragBarProps} />
         <div className="flex grow">

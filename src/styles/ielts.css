@@ -269,11 +269,11 @@ p.MuiTypography-root {
   background: var(--color-04);
 }
 
-.left.ielts-scrollbar {
-  -webkit-user-select: text; /* Safari */
-  -ms-user-select: text; /* IE 10 and IE 11 */
-  user-select: text; /* Standard syntax */
-}
+/* .left.ielts-scrollbar {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+} */
 
 /* [ ############################ END SCROLLBAR ############################ ] */
 html.ielts {
@@ -291,10 +291,13 @@ html.ielts {
 
 .ielts-container {
   padding: 0 20px;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
 }
+
+/* .ic-left {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+} */
 
 .ielts-container.full-w {
   height: calc(100vh - 235px);
@@ -1670,13 +1673,13 @@ padding-top: 5px;
   background: #f1f2ed;
 }
 
-.ielts-sidebar-item {
+/* .ielts-sidebar-item {
   padding: 15px;
   background: lightskyblue;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+} */
 
 .ielts-sidebar-item span {
   font-style: italic;
