@@ -84,8 +84,6 @@ const LayoutIELTS = ({ children }: any) => {
     dispatch(setComments(updatedComments));
   };
 
-  console.log(comments, activeComment)
-
   return (
     <html data-theme={contrast} className='ielts'>
       {showOptions == 1 ?
@@ -145,8 +143,6 @@ const LayoutIELTS = ({ children }: any) => {
                   </div>
                 </div>
               </div>
-
-              <button onClick={() => dispatch(setComments([...comments, { id: 'z', name: 'qqq' }]))}> CLICK </button>
 
               <div className='ielts-main'>
                 {children}
