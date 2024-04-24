@@ -7,7 +7,7 @@ const useGetReportFullFreeOne = (id: any) => {
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getReportFullverify', id],
+    queryKey: ['getReportFullFreeOne', id],
     queryFn: async ({ queryKey }) => {
       const response = await api.get(`report/full-report-one/${queryKey[1]}`)
       const data = await response.data

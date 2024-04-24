@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import parse from 'html-react-parser';
 
@@ -16,26 +15,31 @@ import { green } from '@mui/material/colors';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+
 import RuleIcon from '@mui/icons-material/Rule';
 import LockIcon from '@mui/icons-material/Lock';
 import NotesIcon from '@mui/icons-material/Notes';
+import GradeIcon from '@mui/icons-material/Grade';
 import HeadsetIcon from '@mui/icons-material/Headset';
 import VideocamIcon from '@mui/icons-material/Videocam';
-import PermMediaIcon from '@mui/icons-material/PermMedia';
 import ShortTextIcon from '@mui/icons-material/ShortText';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 
 import { AudioPlayerFull } from "@/components/AudioPlayerFull";
 
+import FullReportFreeOne from './FullReportFreeOne';
+
 import useGetReport from '@/services/Requests/useGetReport';
-import useGetReportFull from '@/services/Requests/useGetReportFull'
-import useGetReportFullVerify from '@/services/Requests/useGetReportFullVerify'
-import useGetReportFullPayment from '@/services/Requests/useGetReportFullPayment'
-import useGetReportMedia from '@/services/Requests/useGetReportMedia'
-import useGetReportMediaVerify from '@/services/Requests/useGetReportMediaVerify'
-import useGetReportMediaPayment from '@/services/Requests/useGetReportMediaPayment'
-import useGetReportFullFreeOne from '@/services/Requests/useGetReportFullFreeOne'
+import useGetReportFull from '@/services/Requests/useGetReportFull';
+import useGetReportMedia from '@/services/Requests/useGetReportMedia';
+import useGetReportAudio from '@/services/Requests/useGetReportAudio';
+import useGetReportVideo from '@/services/Requests/useGetReportVideo';
+import useGetReportFullVerify from '@/services/Requests/useGetReportFullVerify';
+import useGetReportFullPayment from '@/services/Requests/useGetReportFullPayment';
+import useGetReportFullFreeOne from '@/services/Requests/useGetReportFullFreeOne';
+import useGetReportMediaVerify from '@/services/Requests/useGetReportMediaVerify';
+import useGetReportMediaPayment from '@/services/Requests/useGetReportMediaPayment';
 
 const songUrl =
   "https://amt-warehouse.s3.amazonaws.com/audio-player-demo/songs.json";
@@ -49,9 +53,9 @@ const index = () => {
   const { id } = useParams()
 
   const {
-    data,
+    data: dataGetReport,
     isLoading,
-    refetch
+    refetch: refetchGetReport
   } = useGetReport(id)
 
   const {
@@ -89,9 +93,22 @@ const index = () => {
     refetch: refetchGetReportFullFreeOne
   } = useGetReportFullFreeOne(id)
 
+  const {
+    data: dataGetReportAudio,
+    refetch: refetchGetReportAudio
+  } = useGetReportAudio(id)
+
+  const {
+    data: dataGetReportVideo,
+    refetch: refetchGetReportVideo
+  } = useGetReportVideo(id)
+
+
   useEffect(() => {
-    refetch()
+    refetchGetReport()
     refetchGetReportFull()
+    refetchGetReportAudio()
+    refetchGetReportVideo()
     refetchGetReportFullVerify()
     refetchGetReportFullFreeOne()
   }, [])
@@ -100,7 +117,31 @@ const index = () => {
     axios.get(songUrl).then((response) => setSongs(response.data.songs));
   }, []);
 
-  // console.log('[dataGetReportFullFreeOne]', dataGetReportFullFreeOne)
+  const mergedDataReportFullFreeOne = dataGetReportFullFreeOne?.full_data.map((data: { number: any; }) => ({
+    ...data,
+    ...(dataGetReportFullFreeOne?.full_media_data.find((mediaData: { number: any; }) => mediaData.number === data.number) || {})
+  }));
+
+  const mergedFullData = dataGetReport?.full_data?.map((item: { number: any; }) => {
+    const textItem = dataGetReportFull?.full_data?.find((textItem: { number: any; }) => textItem.number === item.number);
+    const audioItem = dataGetReportAudio?.full_data?.find((audioItem: { number: any; }) => audioItem.number === item.number);
+    const videoItem = dataGetReportVideo?.full_data?.find((videoItem: { number: any; }) => videoItem.number === item.number);
+
+    return {
+      ...item,
+      full_answer: textItem ? textItem?.full_answer : null,
+      keywords: textItem ? textItem?.keywords : null,
+      audio: audioItem ? audioItem?.audio : null,
+      video: videoItem ? videoItem?.video : null
+    };
+  });
+
+  const mergedReport = {
+    short_data: dataGetReport?.short_data,
+    full_data: mergedFullData
+  };
+
+  console.log(mergedReport);
 
   return (
     <Grid item xs={4} sm={8} md={12} sx={{ mt: 5 }}>
@@ -139,7 +180,7 @@ const index = () => {
             <Button
               variant="contained"
               color="violet"
-              startIcon={<PermMediaIcon />}
+              startIcon={<OndemandVideoIcon />}
               endIcon={<LockIcon />}
               size="large"
               onClick={() => refetchGetReportMediaPayment()}
@@ -149,89 +190,14 @@ const index = () => {
           </Stack>
         </CardContent>
 
-        <CardContent sx={{ py: 0 }}>
-          {dataGetReportFull?.full_data?.map((i: any) => {
-            return (
-              <Box sx={{ flexGrow: 1, width: '100%', py: 1 }} >
-                <Paper variant="outlined" sx={{ p: 1 }}>
-                  <Stack spacing={1} direction="row" alignItems="center" sx={{ mb: 1 }}>
-                    <Avatar
-                      sx={{
-                        bgcolor:
-                          i.is_correct == true ? green[700] :
-                            i.is_correct == 'not-answer' ? "#adadad" :
-                              i.is_correct == false ? "#E21D38" : null
-                      }}>
-                      {i.number}
-                    </Avatar>
-                    <Typography gutterBottom>
-                      {i.question}
-                    </Typography>
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <ChevronRightIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <Typography sx={{ pt: '4px' }} className="capitalize">
-                      {i.answer}
-                    </Typography>
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <ShortTextIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <Typography sx={{ pt: '4px' }}>
-                      {i.keywords}
-                    </Typography>
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <NotesIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    {i.full_answer ? parse(`${i.full_answer}`) :
-                      <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
-                    }
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <HeadsetIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    {songs.length > 0 ? <AudioPlayerFull songs={songs} /> : <></>}
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <VideocamIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <video height="300" controls style={{ borderRadius: '10px' }}>
-                      <source src={video1} type="video/mp4" />
-                    </video>
-                  </Stack>
-                </Paper>
-              </Box>
-            )
-          })}
-        </CardContent>
+        <FullReportFreeOne />
 
         <CardContent sx={{ py: 0 }}>
-          {dataGetReportFull?.full_data?.map((i: any) => {
+          {mergedReport?.full_data?.map((i: any) => {
             return (
-              <Box sx={{ flexGrow: 1, width: '100%', py: 1 }} >
+              <Box sx={{ flexGrow: 1, width: '100%', py: 1 }}>
                 <Paper variant="outlined" sx={{ p: 1 }}>
+                  {/* QUESTION */}
                   <Stack spacing={1} direction="row" alignItems="center" sx={{ mb: 1 }}>
                     <Avatar
                       sx={{
@@ -246,59 +212,65 @@ const index = () => {
                       {i.question}
                     </Typography>
                   </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <ChevronRightIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <Typography sx={{ pt: '4px' }} className="capitalize">
-                      {i.answer}
-                    </Typography>
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <ShortTextIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <Typography sx={{ pt: '4px' }}>
-                      {i.keywords}
-                    </Typography>
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <NotesIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    {i.full_answer ? parse(`${i.full_answer}`) :
-                      <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
-                    }
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <HeadsetIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    {songs.length > 0 ? <AudioPlayerFull songs={songs} /> : <></>}
-                  </Stack>
-                  <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
-                    <VideocamIcon
-                      sx={{
-                        border: '1px solid #EBEBEB',
-                        fontSize: '30px',
-                        borderRadius: '5px'
-                      }} />
-                    <video height="300" controls style={{ borderRadius: '10px' }}>
-                      <source src={video1} type="video/mp4" />
-                    </video>
-                  </Stack>
+
+                  {/* KEYWORDS */}
+                  {i.keywords &&
+                    <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                      <ShortTextIcon
+                        sx={{
+                          border: '1px solid #EBEBEB',
+                          fontSize: '30px',
+                          borderRadius: '5px'
+                        }} />
+                      <Typography sx={{ pt: '4px' }}>
+                        {i.keywords}
+                      </Typography>
+                    </Stack>
+                  }
+
+                  {/* FULL ANSWER */}
+                  {i.full_answer &&
+                    <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                      <NotesIcon
+                        sx={{
+                          border: '1px solid #EBEBEB',
+                          fontSize: '30px',
+                          borderRadius: '5px'
+                        }} />
+                      {i.full_answer ? parse(`${i.full_answer}`) :
+                        <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
+                      }
+                    </Stack>
+                  }
+
+                  {/* AUDIO */}
+                  {i.audio &&
+                    <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                      <HeadsetIcon
+                        sx={{
+                          border: '1px solid #EBEBEB',
+                          fontSize: '30px',
+                          borderRadius: '5px'
+                        }} />
+                      {songs.length > 0 ? <AudioPlayerFull songs={songs} /> : <></>}
+                    </Stack>
+                  }
+
+                  {/* VIDEO */}
+                  {i.video &&
+                    <Stack spacing={1} direction="row" sx={{ mb: 1, p: 1 }}>
+                      <VideocamIcon
+                        sx={{
+                          border: '1px solid #EBEBEB',
+                          fontSize: '30px',
+                          borderRadius: '5px'
+                        }} />
+                      <video height="300" controls style={{ borderRadius: '10px' }}>
+                        <source src={`https://api.ieltsways.com${i.video}`} type="video/mp4" />
+                      </video>
+                    </Stack>
+                  }
+
                 </Paper>
               </Box>
             )

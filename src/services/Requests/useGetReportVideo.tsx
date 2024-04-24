@@ -3,13 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import api from '@/services/API'
 // api
 
-const useGetReportFull = (id: any) => {
+const useGetReportVideo = (id: any) => {
 
   const { isLoading, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getFullReport', id],
+    queryKey: ['getReportVideo', id],
     queryFn: async ({ queryKey }) => {
-      const response = await api.get(`report/full-report/${queryKey[1]}`)
+      const response = await api.get(`report/video-report/${queryKey[1]}`)
       const data = await response.data
       return data
     },
@@ -17,4 +17,4 @@ const useGetReportFull = (id: any) => {
   return { isLoading, data, refetch };
 };
 
-export default useGetReportFull;
+export default useGetReportVideo;
