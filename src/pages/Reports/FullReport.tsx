@@ -193,7 +193,7 @@ const index = () => {
         <FullReportFreeOne />
 
         <CardContent sx={{ py: 0 }}>
-          {mergedReport?.full_data?.map((i: any) => {
+          {mergedReport?.full_data?.slice(1).map((i: any) => {
             return (
               <Box sx={{ flexGrow: 1, width: '100%', py: 1 }}>
                 <Paper variant="outlined" sx={{ p: 1 }}>

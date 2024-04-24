@@ -5,26 +5,18 @@ import parse from 'html-react-parser';
 import axios from "axios";
 
 import Box from '@mui/material/Box';
-import Grid from "@mui/material/Grid";
-import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import { green } from '@mui/material/colors';
-import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 
-import RuleIcon from '@mui/icons-material/Rule';
-import LockIcon from '@mui/icons-material/Lock';
 import NotesIcon from '@mui/icons-material/Notes';
 import GradeIcon from '@mui/icons-material/Grade';
 import HeadsetIcon from '@mui/icons-material/Headset';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import ShortTextIcon from '@mui/icons-material/ShortText';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 
 import { AudioPlayerFull } from "@/components/AudioPlayerFull";
 
@@ -62,52 +54,15 @@ const FullReportFreeOne = () => {
   } = useGetReportFull(id);
 
   const {
-    data: dataGetReportFullVerify,
-    refetch: refetchGetReportFullVerify
-  } = useGetReportFullVerify(id);
-
-  const {
-    data: dataGetReportFullPayment,
-    refetch: refetchGetReportFullPayment
-  } = useGetReportFullPayment(id);
-
-  const {
-    data: dataGetReportMedia,
-    refetch: refetchGetReportMedia
-  } = useGetReportMedia(id);
-
-  const {
-    data: dataGetReportMediaVerify,
-    refetch: refetchGetReportMediaVerify
-  } = useGetReportMediaVerify(id);
-
-  const {
-    data: dataGetReportMediaPayment,
-    refetch: refetchGetReportMediaPayment
-  } = useGetReportMediaPayment(id)
-
-  const {
     data: dataGetReportFullFreeOne,
     refetch: refetchGetReportFullFreeOne
   } = useGetReportFullFreeOne(id)
 
-  const {
-    data: dataGetReportAudio,
-    refetch: refetchGetReportAudio
-  } = useGetReportAudio(id)
-
-  const {
-    data: dataGetReportVideo,
-    refetch: refetchGetReportVideo
-  } = useGetReportVideo(id)
 
 
   useEffect(() => {
     refetchGetReport()
     refetchGetReportFull()
-    refetchGetReportAudio()
-    refetchGetReportVideo()
-    refetchGetReportFullVerify()
     refetchGetReportFullFreeOne()
   }, [])
 
@@ -120,30 +75,12 @@ const FullReportFreeOne = () => {
     ...(dataGetReportFullFreeOne?.full_media_data.find((mediaData: { number: any; }) => mediaData.number === data.number) || {})
   }));
 
-  const mergedFullData = dataGetReport?.full_data?.map((item: { number: any; }) => {
-    const textItem = dataGetReportFull?.full_data?.find((textItem: { number: any; }) => textItem.number === item.number);
-    const audioItem = dataGetReportAudio?.full_data?.find((audioItem: { number: any; }) => audioItem.number === item.number);
-    const videoItem = dataGetReportVideo?.full_data?.find((videoItem: { number: any; }) => videoItem.number === item.number);
 
-    return {
-      ...item,
-      full_answer: textItem ? textItem?.full_answer : null,
-      keywords: textItem ? textItem?.keywords : null,
-      audio: audioItem ? audioItem?.audio : null,
-      video: videoItem ? videoItem?.video : null
-    };
-  });
-
-  const mergedReport = {
-    short_data: dataGetReport?.short_data,
-    full_data: mergedFullData
-  };
-
-  console.log(mergedReport);
+  console.log('mergedDataReportFullFreeOne', mergedDataReportFullFreeOne);
 
   return (
     <CardContent sx={{ py: 0 }}>
-      {mergedDataReportFullFreeOne?.full_data?.map((i: any) => {
+      {mergedDataReportFullFreeOne?.map((i: any) => {
         return (
           <Box sx={{ flexGrow: 1, width: '100%', py: 1 }}>
             <Paper variant="outlined" sx={{ p: 1 }}>
