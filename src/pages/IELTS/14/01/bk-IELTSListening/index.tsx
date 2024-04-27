@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { HashLink } from 'react-router-hash-link';
@@ -24,13 +23,6 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
-import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput'
-import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
-import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol'
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
-import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
-import IELTSQuestionTitle from '@/components/IELTS/QuestionTypes/IELTSQuestionTitle'
-
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
@@ -38,7 +30,42 @@ import iRight from '@/assets/images/CharmArrowRight.svg';
 
 import Title from '@/components/IELTS/Title';
 
+import Q00 from './Part1/Q00';
+import Q01 from './Part1/Q01';
+import Q02 from './Part1/Q02';
+import Q03 from './Part1/Q03';
+import Q04 from './Part1/Q04';
+import Q05 from './Part1/Q05';
+import Q06 from './Part1/Q06';
+import Q07 from './Part1/Q07';
+import Q08 from './Part1/Q08';
+import Q09 from './Part1/Q09';
+import Q10 from './Part1/Q10';
+import Q11_12 from './Part2/Q11_12';
+import Q13_14 from './Part2/Q13_14';
+import Q15 from './Part2/Q15';
+import Q16 from './Part2/Q16';
+import Q17 from './Part2/Q17';
+import Q18 from './Part2/Q18';
+import Q19 from './Part2/Q19';
+import Q20 from './Part2/Q20';
+import Q21 from './Part3/Q21';
+import Q22 from './Part3/Q22';
+import Q23 from './Part3/Q23';
+import Q24 from './Part3/Q24';
+import Q25 from './Part3/Q25';
 import Q26_30 from './Part3/DND';
+import Q31 from './Part4/Q31';
+import Q32 from './Part4/Q32';
+import Q33 from './Part4/Q33';
+import Q34 from './Part4/Q34';
+import Q35 from './Part4/Q35';
+import Q36 from './Part4/Q36';
+import Q37 from './Part4/Q37';
+import Q38 from './Part4/Q38';
+import Q39 from './Part4/Q39';
+import Q40 from './Part4/Q40';
+import React from 'react';
 
 const index = () => {
   const { t } = useTranslation();
@@ -73,7 +100,7 @@ const index = () => {
     },
   })
 
-  console.log((answersAll))
+  console.log(Object.values(answersAll))
 
   const [part, setPart] = useState(1)
 
@@ -197,16 +224,41 @@ const index = () => {
           <>
             {part === 1 &&
               <>
-                <IELTSQuestionTitle from="1" to="10" type="1" />
+                <Box>
+                  <Typography>
+                    <h3> Questions 1 - 10 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> one word and/or a number </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
                 <Box sx={{ mt: 3 }}>
-                  <Typography sx={{ py: 2 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
                     <h3 className='uppercase'>CRIME REPORT FORM</h3>
                   </Typography>
                   <div>
-                    {/************* [0] *************/}
+                    {/************************* [0] *************************/}
                     <Box sx={{ p: 1 }}>
-                      <IELTSTwoCol colLeft="Type of crime:" colRight="theft" />
-                      <IELTSTitle title="Personal information" />
+                      <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                        <Paper elevation={0} sx={{ width: '200px' }}>
+                          <Typography>
+                            <strong>Type of crime:</strong>
+                          </Typography>
+                        </Paper>
+                        <Paper elevation={0}>theft</Paper>
+                      </Stack>
+                      <Stack spacing={{ xs: 1, sm: 2, mt: 1 }} direction="row" useFlexGap flexWrap="wrap">
+                        <Paper elevation={0}>
+                          <Typography>
+                            <strong>Personal information</strong>
+                          </Typography>
+                        </Paper>
+                      </Stack>
                     </Box>
                     <Box sx={{ p: 1 }}>
                       <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
@@ -233,34 +285,37 @@ const index = () => {
                         </Paper>
                       </Stack>
                     </Box>
+
                     <Box sx={{ p: 1 }}>
-                      {/************* [1] *************/}
-                      <IELTSInput qn="1" colLeft="Nationality" />
-                      <IELTSTwoCol colLeft="Date of birth" colRight="14 Dec 1977" />
-                      <IELTSTwoCol colLeft="Occupation" colRight="interior designer" />
-                      {/************* [2] *************/}
-                      <IELTSInput qn="2" colLeft="Reason for visit" beforeInput=" business to buy antique" />
-                      <IELTSTwoCol colLeft="Length of staty" colRight="two months" />
-                      {/************* [3] *************/}
-                      <IELTSInput qn="3" colLeft="Current address" afterInput="Apartments (No 15)" />
-                      <IELTSTitle title="Details of theft" />
-                      {/************* [4] *************/}
-                      <IELTSInput qn="4" colLeft="items stolen" beforeInput=" – a wallet contains approximately £" />
-                      {/************* [5] *************/}
-                      <IELTSInput qn="5" colLeft="&nbsp;&nbsp;" beforeInput=" – " />
-                      {/************* [6] *************/}
-                      <IELTSInput qn="6" colLeft="Date of theft" />
-                      <IELTSTitle title="Possible time and place of theft" />
-                      {/************* [7] *************/}
-                      <IELTSInput qn="7" colLeft="Location" beforeInput="outside the" afterInput="am about 4 pm" />
-                      {/************* [8] *************/}
-                      <IELTSInput qn="8" colLeft="Details of suspect" beforeInput=" – some boys asked for the" afterInput="then ran off" />
-                      <IELTSTwoCol colLeft="&nbsp;&nbsp;" colRight=" – one had a T-shirt with a piction of tiger" />
-                      {/************* [9] *************/}
-                      <IELTSInput qn="9" colLeft="&nbsp;&nbsp;" beforeInput=" – he was about 12, slim build with" afterInput="hair" />
-                      {/************* [10] *************/}
-                      <IELTSTitle title="Crime reference number allocated" />
-                      <IELTSInput qn="10" colLeft="&nbsp;&nbsp;" />
+                      {/************************* [1] *************************/}
+                      <Q01 qn={questions[0].label} />
+                      {/************************* [2] *************************/}
+                      <Q02 qn={questions[1].label} />
+                      {/************************* [3] *************************/}
+                      <Q03 qn={questions[2].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [4] *************************/}
+                      <Q04 qn={questions[3].label} />
+                      {/************************* [5] *************************/}
+                      <Q05 qn={questions[4].label} />
+                      {/************************* [6] *************************/}
+                      <Q06 qn={questions[5].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [7] *************************/}
+                      <Q07 qn={questions[6].label} />
+                      {/************************* [8] *************************/}
+                      <Q08 qn={questions[7].label} />
+                      {/************************* [9] *************************/}
+                      <Q09 qn={questions[8].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [10] *************************/}
+                      <Q10 qn={questions[9].label} />
                     </Box>
                   </div>
                 </Box>
@@ -269,100 +324,51 @@ const index = () => {
 
             {part === 2 &&
               <>
-                <IELTSQuestionTitle from="11" to="14" type="2" />
-                <Box sx={{ p: 1 }}>
-                  {/************* [11-12] *************/}
-                  <IELTSMultiCheckbox
-                    qn="11"
-                    question="pieces of advice for the first week of an apprenticeship does the manager give?"
-                    checkList={
-                      [
-                        'get to know colleagues',
-                        'learn from any mistakes',
-                        'ask lots of questions',
-                        'react positively to feedback',
-                        'enjoy new challenges'
-                      ]
-                    } />
-                  {/************* [13-14] *************/}
-                  <IELTSMultiCheckbox
-                    qn="13"
-                    question="things does the manager say mentors can help with?"
-                    checkList={
-                      [
-                        'confidence-building',
-                        'making career plans',
-                        'completing difficult tasks',
-                        'making a weekly timetable',
-                        'reviewing progress'
-                      ]
-                    } />
+                <Box>
+                  <Typography>
+                    <h3> Questions 11 - 14 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> two </strong> </Typography>
+                    correct answer.
+                  </Typography>
                 </Box>
-
-                <IELTSQuestionTitle from="15" to="20" type="3" />
                 <Box>
                   <div>
                     <Box sx={{ p: 1 }}>
-                      {/************* [15] *************/}
-                      <IELTSRadio
-                        qn="15"
-                        question="Using the internet"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [16] *************/}
-                      <IELTSRadio
-                        qn="16"
-                        question="Flexible working"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [17] *************/}
-                      <IELTSRadio
-                        qn="17"
-                        question="Booking holidays"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [18] *************/}
-                      <IELTSRadio
-                        qn="18"
-                        question="Working overtime"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [19] *************/}
-                      <IELTSRadio
-                        qn="19"
-                        question="Wearing trainers"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [20] *************/}
-                      <IELTSRadio
-                        qn="20"
-                        question="Bringing food to work"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
+                      {/************************* [11-12] *************************/}
+                      <Q11_12 qn="11-12" />
+
+                      {/************************* [13-14] *************************/}
+                      <Q13_14 qn="13-14" />
+                    </Box>
+                  </div>
+                </Box>
+
+                <Box>
+                  <Typography>
+                    <h3> Questions 15 - 20 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
+                </Box>
+                <Box>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [15] *************************/}
+                      <Q15 qn={questions[14].label} />
+                      {/************************* [16] *************************/}
+                      <Q16 qn={questions[15].label} />
+                      {/************************* [17] *************************/}
+                      <Q17 qn={questions[16].label} />
+                      {/************************* [18] *************************/}
+                      <Q18 qn={questions[17].label} />
+                      {/************************* [19] *************************/}
+                      <Q19 qn={questions[18].label} />
+                      {/************************* [20] *************************/}
+                      <Q20 qn={questions[19].label} />
                     </Box>
                   </div>
                 </Box>
@@ -371,64 +377,42 @@ const index = () => {
 
             {part === 3 &&
               <>
-                <IELTSQuestionTitle from="21" to="25" type="3" />
-                <Box sx={{ mt: 3, p: 1 }}>
-                  {/************* [21] *************/}
-                  <IELTSRadio
-                    qn="21"
-                    question="Carla and Rob were surprised to learn that coastal cities"
-                    options={[
-                      { label: 'contain nearly half the world’s population.', value: "a" },
-                      { label: 'include most of the world’s largest cities.', value: "b" },
-                      { label: 'are growing twice as fast as other cities.', value: "c" },
-                    ]}
-                  />
-                  {/************* [22] *************/}
-                  <IELTSRadio
-                    qn="22"
-                    question="According to Rob, building coastal cities near to rivers"
-                    options={[
-                      { label: 'may bring pollution to the cities.', value: "a" },
-                      { label: 'may reduce the land available for agriculture.', value: "b" },
-                      { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                    ]}
-                  />
-                  {/************* [23] *************/}
-                  <IELTSRadio
-                    qn="23"
-                    question="What mistake was made when building water drainage channels in Miami in the 1950s?"
-                    options={[
-                      { label: 'may bring pollution to the cities.', value: "a" },
-                      { label: 'may reduce the land available for agriculture.', value: "b" },
-                      { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                    ]}
-                  />
-                  {/************* [24] *************/}
-                  <IELTSRadio
-                    qn="24"
-                    question="What do Rob and Carla think that the authorities in Miami should do immediately?"
-                    options={[
-                      { label: 'take measures to restore ecosystems', value: "a" },
-                      { label: 'pay for a new flood prevention system', value: "b" },
-                      { label: 'stop disposing of waste materials into the ocean', value: "c" },
-                    ]}
-                  />
-                  {/************* [25] *************/}
-                  <IELTSRadio
-                    qn="25"
-                    question="What do they agree should be the priority for international action?"
-                    options={[
-                      { label: 'greater coordination of activities', value: "a" },
-                      { label: 'more sharing of information', value: "b" },
-                      { label: 'agreement on shared policies', value: "c" },
-                    ]}
-                  />
+                <Box>
+                  <Typography>
+                    <h3> Questions 21 - 25 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
                 </Box>
-                <IELTSQuestionTitle from="26" to="30" type="3" />
                 <Box sx={{ mt: 3 }}>
                   <div>
                     <Box sx={{ p: 1 }}>
-                      {/************* [26-30] *************/}
+                      {/************************* [21] *************************/}
+                      <Q21 qn={questions[20].label} />
+                      {/************************* [22] *************************/}
+                      <Q22 qn={questions[21].label} />
+                      {/************************* [23] *************************/}
+                      <Q23 qn={questions[22].label} />
+                      {/************************* [24] *************************/}
+                      <Q24 qn={questions[23].label} />
+                      {/************************* [25] *************************/}
+                      <Q25 qn={questions[24].label} />
+                    </Box>
+                  </div>
+                </Box>
+                <Box>
+                  <Typography>
+                    <h3> Questions 26 - 30 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [26-30] *************************/}
                       <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
                         <Paper elevation={0}>
                           <Typography>
@@ -450,78 +434,151 @@ const index = () => {
 
             {part === 4 &&
               <>
-                <IELTSQuestionTitle from="31" to="40" type="4" />
+                <Box>
+                  <Typography>
+                    <h3> Questions 31 - 40 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes below.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
                 <Box sx={{ mt: 3 }}>
-                  <Typography sx={{ py: 2 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
                     <h3 className='uppercase'>CRIME REPORT FORM</h3>
                   </Typography>
                   <div>
-                    <Box sx={{ px: 1 }}>
-                      {/************* [31] *************/}
-                      <IELTSTitle title="Introduction" />
-                      <IELTSInput qn="31" beforeInput="More energy required because of growth in population and" />
-                      <IELTSTitle title="What’s needed:" />
-                      <Typography>● renewable energy sources</Typography>
-                      <Typography sx={{ mb: 2 }}>● methods that won’t create pollution</Typography>
-                      <IELTSTitle title="Wave energy" />
-                      {/************* [32] *************/}
-                      <IELTSInput qn="32" beforeInput="Advantage: waves provide a" afterInput="source of renewable energy" />
-                      <Typography>
-                        Electricity can be generated using offshore or onshore systems
-                      </Typography>
-                      <Typography sx={{ mb: 2 }}>
-                        Onshore systems may use a reservoir
-                      </Typography>
-                      <IELTSTitle title="Problems:" />
-                      {/************* [33] *************/}
-                      <IELTSInput qn="33" beforeInput="● waves can move in any" />
-                      {/************* [34] *************/}
-                      <IELTSInput qn="34" beforeInput="● movement of sand, etc. on the" afterInput="of the ocean may be affected" />
-                      <IELTSTitle title="Tidal energy" />
-                      {/************* [35] *************/}
-                      <IELTSInput qn="35" beforeInput="Tides are more" afterInput="than waves" />
-                      <Typography>
-                        Planned tidal lagoon in Wales:
-                      </Typography>
-                      {/************* [36] *************/}
-                      <IELTSInput qn="36" beforeInput="● will be created in a" afterInput="at Swansea" />
-                      <Typography>
-                        ● breakwater (dam) containing 16 turbines
-                      </Typography>
-                      <Typography>
-                        ● rising tide forces water through turbines, generating electricity
-                      </Typography>
-                      {/************* [37] *************/}
-                      <IELTSInput qn="37" beforeInput="● stored water is released through" afterInput="at Swansea" />
-                    </Box>
 
-                    <Box sx={{ py: 1, px: 1 }}>
-                      <IELTSTitle title="Advantages:" />
-                    </Box>
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography><strong>Introduction</strong></Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
 
-                    <Box sx={{ px: 1 }}>
-                      <IELTSTitle title="not dependent on weather" />
-                      {/************* [38] *************/}
-                      <IELTSInput qn="38" beforeInput="● no" afterInput="is required to make it work" />
-                      {/************* [39] *************/}
-                      <IELTSInput qn="39" beforeInput="● likely to create a number of" />
-                      {/************* [40] *************/}
-                      <IELTSInput qn="40" beforeInput="● may harm fish and birds, e.g. by affecting" afterInput="and building up silt" />
-                      <IELTSTitle title="Ocean thermal energy conversion:" />
-                      <Typography>
-                        Uses a difference in temperature between the surface and lower levels
-                      </Typography>
-                      <Typography>
-                        Water brought to the surface in a pipe
-                      </Typography>
-                    </Box>
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [31] *************************/}
+                        <Q31 qn={questions[30].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography><strong>Wave energy</strong></Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [32] *************************/}
+                        <Q32 qn={questions[31].label} />
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Electricity can be generated using offshore or onshore systems
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Onshore systems may use a reservoir
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                <strong>
+                                  Problems:
+                                </strong>
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        {/************************* [33] *************************/}
+                        <Q33 qn={questions[32].label} />
+
+                        {/************************* [34] *************************/}
+                        <Q34 qn={questions[33].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      {/************************* [35] *************************/}
+                      <Q35 qn={questions[34].label} />
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [36] *************************/}
+                        <Q36 qn={questions[35].label} />
+
+                        {/************************* [37] *************************/}
+                        <Q37 qn={questions[36].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography>
+                              <strong>
+                                Advantages:
+                              </strong>
+                            </Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                <strong>
+                                  not dependent on weather
+                                </strong>
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [38] *************************/}
+                        <Q38 qn={questions[37].label} />
+                        {/************************* [39] *************************/}
+                        <Q39 qn={questions[38].label} />
+                      </Box>
+                    </section>
+
+                    {/************************* [40] *************************/}
+                    <Q40 qn={questions[39].label} />
                   </div>
                 </Box>
               </>
             }
           </>
         }
-      </div >
+      </div>
 
       <div className="ielts-navigation" id="ielts-listening-1401">
         <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>

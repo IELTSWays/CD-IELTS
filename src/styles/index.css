@@ -55,6 +55,10 @@
   margin: 0 !important;
 }
 
+.mx-5 {
+  margin: 0 5px !important;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
