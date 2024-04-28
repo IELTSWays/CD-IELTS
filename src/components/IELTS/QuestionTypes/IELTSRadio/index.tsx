@@ -29,12 +29,6 @@ const index = ({ qn, question, options }: any) => {
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  // const options = [
-  //   { label: t('00043'), value: "a", },
-  //   { label: t('00044'), value: "b", },
-  //   { label: t('00045'), value: "c", },
-  // ];
-
   const [flag, setFlag] = useState(flags[qn])
   // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll[qn]);

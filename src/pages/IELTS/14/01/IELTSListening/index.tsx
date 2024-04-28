@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next';
 import { HashLink } from 'react-router-hash-link';
 
 // api
@@ -9,10 +8,8 @@ import axiosInstance from '@/services/API'
 // api
 
 // mtu
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import DoneIcon from '@mui/icons-material/Done';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -24,12 +21,12 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
+import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
 import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput'
 import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
 import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol'
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
-import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
 import IELTSQuestionTitle from '@/components/IELTS/QuestionTypes/IELTSQuestionTitle'
+import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
@@ -41,7 +38,6 @@ import Title from '@/components/IELTS/Title';
 import Q26_30 from './Part3/DND';
 
 const index = () => {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch()
 
   const flags = useAppSelector((state: any) => state.user.flag)
@@ -130,8 +126,6 @@ const index = () => {
     { number: 40, label: "40" },
   ]
 
-  const questions1 = Array.from({ length: 40 }, (_, i) => i + 1);
-
   useEffect(() => {
 
     if (currentQuestion > 0 && currentQuestion < 11) {
@@ -173,6 +167,12 @@ const index = () => {
     }
   }, [currentQuestion])
 
+  const options_15_20 = [
+    { label: 'It is encouraged', value: "a" },
+    { label: 'There are some restrictions', value: "b" },
+    { label: 'It is against the rules', value: "c" },
+  ]
+
   return (
     <>
       <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
@@ -197,326 +197,244 @@ const index = () => {
           <>
             {part === 1 &&
               <>
+                {/* ================================================================================ [01-10] */}
                 <IELTSQuestionTitle from="1" to="10" type="1" />
-                <Box sx={{ mt: 3 }}>
-                  <Typography sx={{ py: 2 }}>
-                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
-                  </Typography>
-                  <div>
-                    {/************* [0] *************/}
-                    <Box sx={{ p: 1 }}>
-                      <IELTSTwoCol colLeft="Type of crime:" colRight="theft" />
-                      <IELTSTitle title="Personal information" />
-                    </Box>
-                    <Box sx={{ p: 1 }}>
-                      <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                        <Paper elevation={0} sx={{ width: '200px' }}>
-                          <Typography className='italic'>Example</Typography>
-                        </Paper>
-                        <Paper elevation={0}></Paper>
-                      </Stack>
-                      <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center' }}>
-                        <Paper elevation={0} sx={{ width: '200px' }}>
-                          <Typography>Name:</Typography>
-                        </Paper>
-                        <Paper elevation={0}>
-                          <Stack direction="row" alignItems="center">
-                            <Typography>Louise </Typography>
-                            <div className='text-field'>
-                              <TextField
-                                margin="normal"
-                                disabled
-                                placeholder="Taylor"
-                              />
-                            </div>
-                          </Stack>
-                        </Paper>
-                      </Stack>
-                    </Box>
-                    <Box sx={{ p: 1 }}>
-                      {/************* [1] *************/}
-                      <IELTSInput qn="1" colLeft="Nationality" />
-                      <IELTSTwoCol colLeft="Date of birth" colRight="14 Dec 1977" />
-                      <IELTSTwoCol colLeft="Occupation" colRight="interior designer" />
-                      {/************* [2] *************/}
-                      <IELTSInput qn="2" colLeft="Reason for visit" beforeInput=" business to buy antique" />
-                      <IELTSTwoCol colLeft="Length of staty" colRight="two months" />
-                      {/************* [3] *************/}
-                      <IELTSInput qn="3" colLeft="Current address" afterInput="Apartments (No 15)" />
-                      <IELTSTitle title="Details of theft" />
-                      {/************* [4] *************/}
-                      <IELTSInput qn="4" colLeft="items stolen" beforeInput=" – a wallet contains approximately £" />
-                      {/************* [5] *************/}
-                      <IELTSInput qn="5" colLeft="&nbsp;&nbsp;" beforeInput=" – " />
-                      {/************* [6] *************/}
-                      <IELTSInput qn="6" colLeft="Date of theft" />
-                      <IELTSTitle title="Possible time and place of theft" />
-                      {/************* [7] *************/}
-                      <IELTSInput qn="7" colLeft="Location" beforeInput="outside the" afterInput="am about 4 pm" />
-                      {/************* [8] *************/}
-                      <IELTSInput qn="8" colLeft="Details of suspect" beforeInput=" – some boys asked for the" afterInput="then ran off" />
-                      <IELTSTwoCol colLeft="&nbsp;&nbsp;" colRight=" – one had a T-shirt with a piction of tiger" />
-                      {/************* [9] *************/}
-                      <IELTSInput qn="9" colLeft="&nbsp;&nbsp;" beforeInput=" – he was about 12, slim build with" afterInput="hair" />
-                      {/************* [10] *************/}
-                      <IELTSTitle title="Crime reference number allocated" />
-                      <IELTSInput qn="10" colLeft="&nbsp;&nbsp;" />
-                    </Box>
-                  </div>
-                </Box>
+                <IELTSTitle title="CRIME REPORT FORM" isHeader />
+                {/************* [0] *************/}
+                <IELTSTwoCol colLeft="Type of crime:" colRight="theft" />
+                <IELTSTitle title="Personal information" />
+                <Typography className='italic'>Example</Typography>
+                <IELTSInput qn="0" colLeft="Name:" beforeInput="Louise" disabled placeholder="Taylor" />
+                {/************* [1] *************/}
+                <IELTSInput qn="1" colLeft="Nationality" />
+                <IELTSTwoCol colLeft="Date of birth" colRight="14 Dec 1977" />
+                <IELTSTwoCol colLeft="Occupation" colRight="interior designer" />
+                {/************* [2] *************/}
+                <IELTSInput qn="2" colLeft="Reason for visit" beforeInput=" business to buy antique" />
+                <IELTSTwoCol colLeft="Length of staty" colRight="two months" />
+                {/************* [3] *************/}
+                <IELTSInput qn="3" colLeft="Current address" afterInput="Apartments (No 15)" />
+                <IELTSTitle title="Details of theft" />
+                {/************* [4] *************/}
+                <IELTSInput qn="4" colLeft="items stolen" beforeInput=" – a wallet contains approximately £" />
+                {/************* [5] *************/}
+                <IELTSInput qn="5" colLeft="&nbsp;&nbsp;" beforeInput=" – " />
+                {/************* [6] *************/}
+                <IELTSInput qn="6" colLeft="Date of theft" />
+                <IELTSTitle title="Possible time and place of theft" />
+                {/************* [7] *************/}
+                <IELTSInput qn="7" colLeft="Location" beforeInput="outside the" afterInput="am about 4 pm" />
+                {/************* [8] *************/}
+                <IELTSInput qn="8" colLeft="Details of suspect" beforeInput=" – some boys asked for the" afterInput="then ran off" />
+                <IELTSTwoCol colLeft="&nbsp;&nbsp;" colRight=" – one had a T-shirt with a piction of tiger" />
+                {/************* [9] *************/}
+                <IELTSInput qn="9" colLeft="&nbsp;&nbsp;" beforeInput=" – he was about 12, slim build with" afterInput="hair" />
+                {/************* [10] *************/}
+                <IELTSTitle title="Crime reference number allocated" />
+                <IELTSInput qn="10" colLeft="&nbsp;&nbsp;" />
               </>
             }
 
             {part === 2 &&
               <>
+                {/* ================================================================================ [11-14] */}
                 <IELTSQuestionTitle from="11" to="14" type="2" />
-                <Box sx={{ p: 1 }}>
-                  {/************* [11-12] *************/}
-                  <IELTSMultiCheckbox
-                    qn="11"
-                    question="pieces of advice for the first week of an apprenticeship does the manager give?"
-                    checkList={
-                      [
-                        'get to know colleagues',
-                        'learn from any mistakes',
-                        'ask lots of questions',
-                        'react positively to feedback',
-                        'enjoy new challenges'
-                      ]
-                    } />
-                  {/************* [13-14] *************/}
-                  <IELTSMultiCheckbox
-                    qn="13"
-                    question="things does the manager say mentors can help with?"
-                    checkList={
-                      [
-                        'confidence-building',
-                        'making career plans',
-                        'completing difficult tasks',
-                        'making a weekly timetable',
-                        'reviewing progress'
-                      ]
-                    } />
-                </Box>
-
+                {/************* [11-12] *************/}
+                <IELTSMultiCheckbox
+                  qn="11"
+                  question="pieces of advice for the first week of an apprenticeship does the manager give?"
+                  checkList={[
+                    { label: 'get to know colleagues', value: "a", },
+                    { label: 'learn from any mistakes', value: "b", },
+                    { label: 'ask lots of questions', value: "c" },
+                    { label: 'react positively to feedback', value: "d", },
+                    { label: 'enjoy new challenges', value: "e", },
+                  ]}
+                />
+                {/************* [13-14] *************/}
+                <IELTSMultiCheckbox
+                  qn="13"
+                  question="things does the manager say mentors can help with?"
+                  checkList={[
+                    { label: 'confidence-building', value: "a", },
+                    { label: 'making career plans', value: "b", },
+                    { label: 'completing difficult tasks', value: "c" },
+                    { label: 'making a weekly timetable', value: "d", },
+                    { label: 'reviewing progress', value: "e", },
+                  ]}
+                />
+                {/* ================================================================================ [15-20] */}
                 <IELTSQuestionTitle from="15" to="20" type="3" />
-                <Box>
-                  <div>
-                    <Box sx={{ p: 1 }}>
-                      {/************* [15] *************/}
-                      <IELTSRadio
-                        qn="15"
-                        question="Using the internet"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [16] *************/}
-                      <IELTSRadio
-                        qn="16"
-                        question="Flexible working"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [17] *************/}
-                      <IELTSRadio
-                        qn="17"
-                        question="Booking holidays"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [18] *************/}
-                      <IELTSRadio
-                        qn="18"
-                        question="Working overtime"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [19] *************/}
-                      <IELTSRadio
-                        qn="19"
-                        question="Wearing trainers"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                      {/************* [20] *************/}
-                      <IELTSRadio
-                        qn="20"
-                        question="Bringing food to work"
-                        options={[
-                          { label: 'It is encouraged', value: "a" },
-                          { label: 'There are some restrictions', value: "b" },
-                          { label: 'It is against the rules', value: "c" },
-                        ]}
-                      />
-                    </Box>
-                  </div>
-                </Box>
+                {/************* [15] *************/}
+                <IELTSRadio
+                  qn="15"
+                  question="Using the internet"
+                  options={options_15_20}
+                />
+                {/************* [16] *************/}
+                <IELTSRadio
+                  qn="16"
+                  question="Flexible working"
+                  options={options_15_20}
+                />
+                {/************* [17] *************/}
+                <IELTSRadio
+                  qn="17"
+                  question="Booking holidays"
+                  options={options_15_20}
+                />
+                {/************* [18] *************/}
+                <IELTSRadio
+                  qn="18"
+                  question="Working overtime"
+                  options={options_15_20}
+                />
+                {/************* [19] *************/}
+                <IELTSRadio
+                  qn="19"
+                  question="Wearing trainers"
+                  options={options_15_20}
+                />
+                {/************* [20] *************/}
+                <IELTSRadio
+                  qn="20"
+                  question="Bringing food to work"
+                  options={options_15_20}
+                />
               </>
             }
 
             {part === 3 &&
               <>
+                {/* ================================================================================ [21-25] */}
                 <IELTSQuestionTitle from="21" to="25" type="3" />
-                <Box sx={{ mt: 3, p: 1 }}>
-                  {/************* [21] *************/}
-                  <IELTSRadio
-                    qn="21"
-                    question="Carla and Rob were surprised to learn that coastal cities"
-                    options={[
-                      { label: 'contain nearly half the world’s population.', value: "a" },
-                      { label: 'include most of the world’s largest cities.', value: "b" },
-                      { label: 'are growing twice as fast as other cities.', value: "c" },
-                    ]}
-                  />
-                  {/************* [22] *************/}
-                  <IELTSRadio
-                    qn="22"
-                    question="According to Rob, building coastal cities near to rivers"
-                    options={[
-                      { label: 'may bring pollution to the cities.', value: "a" },
-                      { label: 'may reduce the land available for agriculture.', value: "b" },
-                      { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                    ]}
-                  />
-                  {/************* [23] *************/}
-                  <IELTSRadio
-                    qn="23"
-                    question="What mistake was made when building water drainage channels in Miami in the 1950s?"
-                    options={[
-                      { label: 'may bring pollution to the cities.', value: "a" },
-                      { label: 'may reduce the land available for agriculture.', value: "b" },
-                      { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                    ]}
-                  />
-                  {/************* [24] *************/}
-                  <IELTSRadio
-                    qn="24"
-                    question="What do Rob and Carla think that the authorities in Miami should do immediately?"
-                    options={[
-                      { label: 'take measures to restore ecosystems', value: "a" },
-                      { label: 'pay for a new flood prevention system', value: "b" },
-                      { label: 'stop disposing of waste materials into the ocean', value: "c" },
-                    ]}
-                  />
-                  {/************* [25] *************/}
-                  <IELTSRadio
-                    qn="25"
-                    question="What do they agree should be the priority for international action?"
-                    options={[
-                      { label: 'greater coordination of activities', value: "a" },
-                      { label: 'more sharing of information', value: "b" },
-                      { label: 'agreement on shared policies', value: "c" },
-                    ]}
-                  />
-                </Box>
+                {/************* [21] *************/}
+                <IELTSRadio
+                  qn="21"
+                  question="Carla and Rob were surprised to learn that coastal cities"
+                  options={[
+                    { label: 'contain nearly half the world’s population.', value: "a" },
+                    { label: 'include most of the world’s largest cities.', value: "b" },
+                    { label: 'are growing twice as fast as other cities.', value: "c" },
+                  ]}
+                />
+                {/************* [22] *************/}
+                <IELTSRadio
+                  qn="22"
+                  question="According to Rob, building coastal cities near to rivers"
+                  options={[
+                    { label: 'may bring pollution to the cities.', value: "a" },
+                    { label: 'may reduce the land available for agriculture.', value: "b" },
+                    { label: 'may mean the countryside is spoiled by industry.', value: "c" },
+                  ]}
+                />
+                {/************* [23] *************/}
+                <IELTSRadio
+                  qn="23"
+                  question="What mistake was made when building water drainage channels in Miami in the 1950s?"
+                  options={[
+                    { label: 'may bring pollution to the cities.', value: "a" },
+                    { label: 'may reduce the land available for agriculture.', value: "b" },
+                    { label: 'may mean the countryside is spoiled by industry.', value: "c" },
+                  ]}
+                />
+                {/************* [24] *************/}
+                <IELTSRadio
+                  qn="24"
+                  question="What do Rob and Carla think that the authorities in Miami should do immediately?"
+                  options={[
+                    { label: 'take measures to restore ecosystems', value: "a" },
+                    { label: 'pay for a new flood prevention system', value: "b" },
+                    { label: 'stop disposing of waste materials into the ocean', value: "c" },
+                  ]}
+                />
+                {/************* [25] *************/}
+                <IELTSRadio
+                  qn="25"
+                  question="What do they agree should be the priority for international action?"
+                  options={[
+                    { label: 'greater coordination of activities', value: "a" },
+                    { label: 'more sharing of information', value: "b" },
+                    { label: 'agreement on shared policies', value: "c" },
+                  ]}
+                />
+
+                {/* ================================================================================ [26-30] */}
                 <IELTSQuestionTitle from="26" to="30" type="3" />
-                <Box sx={{ mt: 3 }}>
-                  <div>
-                    <Box sx={{ p: 1 }}>
-                      {/************* [26-30] *************/}
-                      <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
-                        <Paper elevation={0}>
-                          <Typography>
-                            <strong> 26-30 </strong>
-                            <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
-                          </Typography>
-                        </Paper>
-                        <Paper elevation={0}>
-                          <Stack direction="row" alignItems="center">
-                            <Q26_30 />
-                          </Stack>
-                        </Paper>
-                      </Stack>
-                    </Box>
-                  </div>
-                </Box>
+
+                {/************* [26-30] *************/}
+                <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
+                  <Paper elevation={0}>
+                    <Typography>
+                      <strong> 26-30 </strong>
+                      <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
+                    </Typography>
+                  </Paper>
+                  <Paper elevation={0}>
+                    <Stack direction="row" alignItems="center">
+                      <Q26_30 />
+                    </Stack>
+                  </Paper>
+                </Stack>
               </>
             }
 
             {part === 4 &&
               <>
+                {/* ================================================================================ [31-40] */}
                 <IELTSQuestionTitle from="31" to="40" type="4" />
-                <Box sx={{ mt: 3 }}>
-                  <Typography sx={{ py: 2 }}>
-                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
-                  </Typography>
-                  <div>
-                    <Box sx={{ px: 1 }}>
-                      {/************* [31] *************/}
-                      <IELTSTitle title="Introduction" />
-                      <IELTSInput qn="31" beforeInput="More energy required because of growth in population and" />
-                      <IELTSTitle title="What’s needed:" />
-                      <Typography>● renewable energy sources</Typography>
-                      <Typography sx={{ mb: 2 }}>● methods that won’t create pollution</Typography>
-                      <IELTSTitle title="Wave energy" />
-                      {/************* [32] *************/}
-                      <IELTSInput qn="32" beforeInput="Advantage: waves provide a" afterInput="source of renewable energy" />
-                      <Typography>
-                        Electricity can be generated using offshore or onshore systems
-                      </Typography>
-                      <Typography sx={{ mb: 2 }}>
-                        Onshore systems may use a reservoir
-                      </Typography>
-                      <IELTSTitle title="Problems:" />
-                      {/************* [33] *************/}
-                      <IELTSInput qn="33" beforeInput="● waves can move in any" />
-                      {/************* [34] *************/}
-                      <IELTSInput qn="34" beforeInput="● movement of sand, etc. on the" afterInput="of the ocean may be affected" />
-                      <IELTSTitle title="Tidal energy" />
-                      {/************* [35] *************/}
-                      <IELTSInput qn="35" beforeInput="Tides are more" afterInput="than waves" />
-                      <Typography>
-                        Planned tidal lagoon in Wales:
-                      </Typography>
-                      {/************* [36] *************/}
-                      <IELTSInput qn="36" beforeInput="● will be created in a" afterInput="at Swansea" />
-                      <Typography>
-                        ● breakwater (dam) containing 16 turbines
-                      </Typography>
-                      <Typography>
-                        ● rising tide forces water through turbines, generating electricity
-                      </Typography>
-                      {/************* [37] *************/}
-                      <IELTSInput qn="37" beforeInput="● stored water is released through" afterInput="at Swansea" />
-                    </Box>
-
-                    <Box sx={{ py: 1, px: 1 }}>
-                      <IELTSTitle title="Advantages:" />
-                    </Box>
-
-                    <Box sx={{ px: 1 }}>
-                      <IELTSTitle title="not dependent on weather" />
-                      {/************* [38] *************/}
-                      <IELTSInput qn="38" beforeInput="● no" afterInput="is required to make it work" />
-                      {/************* [39] *************/}
-                      <IELTSInput qn="39" beforeInput="● likely to create a number of" />
-                      {/************* [40] *************/}
-                      <IELTSInput qn="40" beforeInput="● may harm fish and birds, e.g. by affecting" afterInput="and building up silt" />
-                      <IELTSTitle title="Ocean thermal energy conversion:" />
-                      <Typography>
-                        Uses a difference in temperature between the surface and lower levels
-                      </Typography>
-                      <Typography>
-                        Water brought to the surface in a pipe
-                      </Typography>
-                    </Box>
-                  </div>
-                </Box>
+                <IELTSTitle title="CRIME REPORT FORM" isHeader />
+                {/************* [31] *************/}
+                <IELTSTitle title="Introduction" />
+                <IELTSInput qn="31" beforeInput="More energy required because of growth in population and" />
+                <IELTSTitle title="What’s needed:" />
+                <Typography>● renewable energy sources</Typography>
+                <Typography sx={{ mb: 2 }}>● methods that won’t create pollution</Typography>
+                <IELTSTitle title="Wave energy" />
+                {/************* [32] *************/}
+                <IELTSInput qn="32" beforeInput="Advantage: waves provide a" afterInput="source of renewable energy" />
+                <Typography>
+                  Electricity can be generated using offshore or onshore systems
+                </Typography>
+                <Typography sx={{ mb: 2 }}>
+                  Onshore systems may use a reservoir
+                </Typography>
+                <IELTSTitle title="Problems:" />
+                {/************* [33] *************/}
+                <IELTSInput qn="33" beforeInput="● waves can move in any" />
+                {/************* [34] *************/}
+                <IELTSInput qn="34" beforeInput="● movement of sand, etc. on the" afterInput="of the ocean may be affected" />
+                <IELTSTitle title="Tidal energy" />
+                {/************* [35] *************/}
+                <IELTSInput qn="35" beforeInput="Tides are more" afterInput="than waves" />
+                <Typography>
+                  Planned tidal lagoon in Wales:
+                </Typography>
+                {/************* [36] *************/}
+                <IELTSInput qn="36" beforeInput="● will be created in a" afterInput="at Swansea" />
+                <Typography>
+                  ● breakwater (dam) containing 16 turbines
+                </Typography>
+                <Typography>
+                  ● rising tide forces water through turbines, generating electricity
+                </Typography>
+                {/************* [37] *************/}
+                <IELTSInput qn="37" beforeInput="● stored water is released through" afterInput="at Swansea" />
+                <IELTSTitle title="Advantages:" />
+                <IELTSTitle title="not dependent on weather" />
+                {/************* [38] *************/}
+                <IELTSInput qn="38" beforeInput="● no" afterInput="is required to make it work" />
+                {/************* [39] *************/}
+                <IELTSInput qn="39" beforeInput="● likely to create a number of" />
+                {/************* [40] *************/}
+                <IELTSInput qn="40" beforeInput="● may harm fish and birds, e.g. by affecting" afterInput="and building up silt" />
+                <IELTSTitle title="Ocean thermal energy conversion:" />
+                <Typography>
+                  Uses a difference in temperature between the surface and lower levels
+                </Typography>
+                <Typography>
+                  Water brought to the surface in a pipe
+                </Typography>
               </>
             }
           </>

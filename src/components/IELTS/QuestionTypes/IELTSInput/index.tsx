@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
-const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "" }: any) => {
+const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled = false, placeholder = "" }: any) => {
 
   const dispatch = useAppDispatch()
 
@@ -53,7 +53,7 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "" }: any) => 
           </Paper>
         }
         <Paper elevation={0}>
-          <Stack direction="row" alignItems="center">
+          <Stack direction="row" alignItems="center" sx={{ flexWrap: 'wrap' }}>
             {beforeInput.length > 1 &&
               <Typography sx={{ pr: 1 }}> {beforeInput} </Typography>
             }
@@ -63,8 +63,9 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "" }: any) => 
                 autoComplete='off'
                 spellCheck="false"
                 margin="normal"
-                placeholder={qn}
+                placeholder={disabled ? placeholder : qn}
                 value={answer}
+                disabled={disabled}
                 onChange={(e) => answerHandler(e)}
                 onClick={() => dispatch(setCurrentQuestion(qn))}
                 id={`${flag && currentQuestion == qn && 'input-active-flag'}`}

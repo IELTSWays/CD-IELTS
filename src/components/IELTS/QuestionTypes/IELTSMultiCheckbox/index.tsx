@@ -1,40 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
 
-// mtu
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import {FormControlLabel, Checkbox, Paper, Typography, styled, AccordionSummary as MuiAccordionSummary} from '@mui/material';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-// mtu
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
-// store
+
+const AccordionSummary = styled((props: any) => (
+  <MuiAccordionSummary
+    {...props}
+  />
+))(() => ({
+}));
 
 const index = ({ qn, question, checkList }: any) => {
 
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
-
+  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const [flag, setFlag] = useState(flags[qn])
 
-  const flagHandler = () => {
-    setFlag(!flag)
-    dispatch(setFlags(Object.assign({}, flags, { [qn]: !flag })))
-  }
-
-  let init: never[];
+  let init: any;
   if (answersAll[qn] == null) {
     init = []
   }
@@ -43,6 +34,11 @@ const index = ({ qn, question, checkList }: any) => {
   }
 
   const [checked, setChecked] = useState(init);
+
+  const flagHandler = () => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { [qn]: !flag })))
+  }
 
   const handleCheck = (event: { target: { checked: any; value: any; }; }) => {
     var updatedList = [...checked];
@@ -74,48 +70,44 @@ const index = ({ qn, question, checkList }: any) => {
   }, [checked]);
 
   return (
-    <div>
-      <Stack
-        spacing={{ xs: 1, sm: 2 }}
-        direction="column"
-        useFlexGap
-        flexWrap="wrap"
-        className="multi-choice"
-        sx={{ py: 1 }}
+    <div className="justify-content-space-between">
+      <div
         id={`q-${qn}`}
       >
-        <div className="align-items-start justify-content-space-between">
-          <Paper elevation={0}>
+        <AccordionSummary
+        >
+          <Paper elevation={0} sx={{ cursor: 'default' }}>
             <Typography>
-              <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} - {parseInt(qn) + 1} </strong>
-              <Typography sx={{ pl: 1 }}> Which <strong className='uppercase mx-5'> two </strong> {question} </Typography>
+              <strong className={`question-now mr-5 ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}>
+                {qn} - {parseInt(qn) + 1}
+              </strong>
+              which <strong> TWO </strong> {question}
             </Typography>
           </Paper>
-          <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
-            {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
-          </div>
-        </div>
+        </AccordionSummary>
         <div className="ielts-checkbox">
           {checkList.map((item, index) => (
             <Paper elevation={0} key={index}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    name={(item)}
-                    checked={checked?.includes(item)}
-                    value={item}
+                    name={(item.value)}
+                    checked={checked?.includes(item.value)}
+                    value={item.value}
                     onChange={handleCheck}
                     onClick={() => dispatch(setCurrentQuestion(qn))}
                   />
                 }
-                label={item}
+                label={item.label}
               />
             </Paper>
           ))}
         </div>
-      </Stack>
+      </div>
+      <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
+        {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+      </div>
     </div>
   )
-};
-
-export default index;
+}
+export default index
