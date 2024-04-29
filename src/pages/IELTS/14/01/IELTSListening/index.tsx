@@ -21,6 +21,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 // store
 
+import IELTSDrag from '@/components/IELTS/QuestionTypes/IELTSDrag'
 import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
 import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput'
 import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
@@ -172,6 +173,39 @@ const index = () => {
     { label: 'There are some restrictions', value: "b" },
     { label: 'It is against the rules', value: "c" },
   ]
+
+  const listOptions = {
+    "a": { id: "a", content: "A - use visuals" },
+    "b": { id: "b", content: "B - keep it short" },
+    "c": { id: "c", content: "C - involve other students" },
+    "d": { id: "d", content: "D - check the information is accurate" },
+    "e": { id: "e", content: "E - provide a handout" },
+    "f": { id: "f", content: "F - focus on one example" },
+    "g": { id: "g", content: "G - do online research" }
+  }
+
+  const columnsData = [
+    {
+      id: 26,
+      title: "Historical background"
+    },
+    {
+      id: 27,
+      title: "Geographical factors"
+    },
+    {
+      id: 28,
+      title: "Past mistakes"
+    },
+    {
+      id: 29,
+      title: "Future risks"
+    },
+    {
+      id: 30,
+      title: "International implications"
+    }
+  ];
 
   return (
     <>
@@ -367,12 +401,12 @@ const index = () => {
                   <Paper elevation={0}>
                     <Typography>
                       <strong> 26-30 </strong>
-                      <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
+                      <Typography sx={{ px: 1 }}> What decision do the students make about each of the following parts of their presentation? </Typography>
                     </Typography>
                   </Paper>
                   <Paper elevation={0}>
                     <Stack direction="row" alignItems="center">
-                      <Q26_30 />
+                      <IELTSDrag listOptions={listOptions} columnsData={columnsData} />
                     </Stack>
                   </Paper>
                 </Stack>
