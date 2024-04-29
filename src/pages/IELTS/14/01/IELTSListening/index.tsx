@@ -2,24 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { HashLink } from 'react-router-hash-link';
 
-// api
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
-// api
 
-// mtu
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import DoneIcon from '@mui/icons-material/Done';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-// mtu
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
-// store
 
 import IELTSDrag from '@/components/IELTS/QuestionTypes/IELTSDrag'
 import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
@@ -28,6 +18,7 @@ import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
 import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol'
 import IELTSQuestionTitle from '@/components/IELTS/QuestionTypes/IELTSQuestionTitle'
 import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
+import IELTSPartNavigation from '@/components/IELTS/QuestionTypes/IELTSPartNavigation';
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
@@ -35,8 +26,6 @@ import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
 
 import Title from '@/components/IELTS/Title';
-
-import Q26_30 from './Part3/DND';
 
 const index = () => {
   const dispatch = useAppDispatch()
@@ -83,49 +72,6 @@ const index = () => {
     setTest_id(localStorage.getItem('test_id'))
     test_id && refetchGetAnswer()
   }, [])
-
-  const questions = [
-    { number: 1, label: "1" },
-    { number: 2, label: "2" },
-    { number: 3, label: "3" },
-    { number: 4, label: "4" },
-    { number: 5, label: "5" },
-    { number: 6, label: "6" },
-    { number: 7, label: "7" },
-    { number: 8, label: "8" },
-    { number: 9, label: "9" },
-    { number: 10, label: "10" },
-    { number: 11, label: "11" },
-    { number: 12, label: "12" },
-    { number: 13, label: "13" },
-    { number: 14, label: "14" },
-    { number: 15, label: "15" },
-    { number: 16, label: "16" },
-    { number: 17, label: "17" },
-    { number: 18, label: "18" },
-    { number: 19, label: "19" },
-    { number: 20, label: "20" },
-    { number: 21, label: "21" },
-    { number: 22, label: "22" },
-    { number: 23, label: "23" },
-    { number: 24, label: "24" },
-    { number: 25, label: "25" },
-    { number: 26, label: "26" },
-    { number: 27, label: "27" },
-    { number: 28, label: "28" },
-    { number: 29, label: "29" },
-    { number: 30, label: "30" },
-    { number: 31, label: "31" },
-    { number: 32, label: "32" },
-    { number: 33, label: "33" },
-    { number: 34, label: "34" },
-    { number: 35, label: "35" },
-    { number: 36, label: "36" },
-    { number: 37, label: "37" },
-    { number: 38, label: "38" },
-    { number: 39, label: "39" },
-    { number: 40, label: "40" },
-  ]
 
   useEffect(() => {
 
@@ -208,7 +154,7 @@ const index = () => {
   ];
 
   return (
-    <>
+    <div>
       <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
 
       <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
@@ -397,7 +343,7 @@ const index = () => {
                 <IELTSQuestionTitle from="26" to="30" type="3" />
 
                 {/************* [26-30] *************/}
-                <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
+                {/* <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
                   <Paper elevation={0}>
                     <Typography>
                       <strong> 26-30 </strong>
@@ -406,10 +352,11 @@ const index = () => {
                   </Paper>
                   <Paper elevation={0}>
                     <Stack direction="row" alignItems="center">
-                      <IELTSDrag listOptions={listOptions} columnsData={columnsData} />
                     </Stack>
                   </Paper>
-                </Stack>
+                </Stack> */}
+                <IELTSDrag listOptions={listOptions} columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" />
+
               </>
             }
 
@@ -473,174 +420,9 @@ const index = () => {
             }
           </>
         }
-      </div >
-
-      <div className="ielts-navigation" id="ielts-listening-1401">
-        <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 1</span>
-          </div>
-          <div className="navigation-part-items">
-
-            {questions.slice(0, 10).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.number}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 1 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 1</div>
-              </>
-              :
-              <>
-                <div>Part 1</div>
-                <div> 0 of 10 </div>
-              </>
-            }
-          </div>
-        </div>
-
-        <div className={`navigation-part ${part === 2 && 'active'} ${part > 2 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 2</span>
-          </div>
-          <div className="navigation-part-items">
-            {questions.slice(10, 20).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.label}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 2 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 2</div>
-              </>
-              :
-              <>
-                <div>Part 2</div>
-                <div> 0 of 10 </div>
-              </>
-            }
-          </div>
-        </div>
-
-        <div className={`navigation-part ${part === 3 && 'active'} ${part > 3 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 3</span>
-          </div>
-          <div className="navigation-part-items">
-            {questions.slice(20, 30).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.label}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 3 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 3</div>
-              </>
-              :
-              <>
-                <div>Part 3</div>
-                <div> 0 of 10 </div>
-              </>
-            }
-          </div>
-        </div>
-
-        <div className={`navigation-part ${part === 4 && 'active'}`}>
-          <div className="navigation-part-title">
-            <span>Part 4</span>
-          </div>
-          <div className="navigation-part-items">
-            {questions.slice(30, 40).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.label}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.number))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            <div>Part 4</div>
-            <div> 0 of 10 </div>
-          </div>
-        </div>
       </div>
-    </>
+      <IELTSPartNavigation part={part} />
+    </div>
   );
 };
 
