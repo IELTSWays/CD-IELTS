@@ -14,7 +14,7 @@ const Container = styled("div")`
   display: flex;
   // background-color: ${props => (props?.isDraggingOver ? "#639ee2" : "inherit")};`;
 
-const DND = ({ listOptions, columnsData }) => {
+const DND = ({ listOptions, columnsData, question }) => {
 
   const dispatch = useAppDispatch();
 
@@ -227,55 +227,56 @@ const DND = ({ listOptions, columnsData }) => {
     });
   };
 
-  const qn = ["26", "27", "28", "29", "30"]
-
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="all-column" type="column" direction="horizontal">
-        {(provided, snapshot) => (
-          <Container
-            isDraggingOver={snapshot.isDraggingOver}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            <section className="dnd-cols" id={`q-26`}>
-              {(starter.columnOrder).slice(1)?.map((columnId, index) => {
-                const column = starter.columns[columnId];
-                const listOptions = column.taskIds.map(taskId => starter.listOptions[taskId]);
+    <>
+      <strong> {columnsData[0].id} - {columnsData[columnsData.length - 1].id} </strong>{question}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="all-column" type="column" direction="horizontal">
+          {(provided, snapshot) => (
+            <Container
+              isDraggingOver={snapshot.isDraggingOver}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              <section className="dnd-cols" id={`q-26`}>
+                {(starter.columnOrder).slice(1)?.map((columnId, index) => {
+                  const column = starter.columns[columnId];
+                  const listOptions = column.taskIds.map(taskId => starter.listOptions[taskId]);
 
-                return (
-                  <Column
-                    index={index}
-                    key={column.id}
-                    column={column}
-                    tasks={listOptions}
-                  />
-                );
-              })}
-            </section>
+                  return (
+                    <Column
+                      index={index}
+                      key={column.id}
+                      column={column}
+                      tasks={listOptions}
+                    />
+                  );
+                })}
+              </section>
 
-            <section className="dnd-options">
-              <div className="title"> Decisions </div>
-              {(starter.columnOrder).slice(0, 1)?.map((columnId, index) => {
-                const column = starter.columns[columnId];
-                const listOptions = column.taskIds.map(taskId => starter.listOptions[taskId]);
+              <section className="dnd-options">
+                <div className="title"> Decisions </div>
+                {(starter.columnOrder).slice(0, 1)?.map((columnId, index) => {
+                  const column = starter.columns[columnId];
+                  const listOptions = column.taskIds.map(taskId => starter.listOptions[taskId]);
 
-                return (
-                  <Column
-                    index={index}
-                    key={column.id}
-                    column={column}
-                    tasks={listOptions}
-                  />
-                );
-              })}
-            </section>
+                  return (
+                    <Column
+                      index={index}
+                      key={column.id}
+                      column={column}
+                      tasks={listOptions}
+                    />
+                  );
+                })}
+              </section>
 
-            {provided.placeholder}
-          </Container>
-        )}
-      </Droppable>
-    </DragDropContext>
+              {provided.placeholder}
+            </Container>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   );
 };
 
