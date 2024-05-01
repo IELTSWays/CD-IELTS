@@ -28,7 +28,7 @@ import useGetAnswer from '@/services/Requests/useGetAnswer';
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
 import iRight from '@/assets/images/CharmArrowRight.svg';
 
-import Title from '@/components/IELTS/Title';
+// import Title from '@/components/IELTS/Title';
 
 import Q00 from './Part1/Q00';
 import Q01 from './Part1/Q01';
@@ -202,7 +202,7 @@ const index = () => {
 
   return (
     <>
-      <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
+      {/* <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} /> */}
 
       <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
 

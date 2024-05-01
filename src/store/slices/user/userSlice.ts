@@ -11,6 +11,7 @@ export interface UserState {
   listCourses: any[];
   listCoursesStatus: any;
   currentQuestion: number;
+  part: number;
   answersOld: any;
   answersAll: any;
   testInfo: any;
@@ -33,6 +34,7 @@ const initialState: UserState = {
   listCourses: [],
   listCoursesStatus: "",
   currentQuestion: 1,
+  part: 1,
   answersOld: {},
   answersAll: {},
   testInfo: {},
@@ -89,6 +91,9 @@ export const userSlice = createSlice({
     setCurrentQuestion: (state, action: PayloadAction<any>) => {
       state.currentQuestion = action.payload;
     },
+    setPart: (state, action: PayloadAction<any>) => {
+      state.part = action.payload;
+    },
     setAnswersOld: (state, action: PayloadAction<any>) => {
       state.answersOld = action.payload;
     },
@@ -134,6 +139,7 @@ export const {
   setListCourses,
   setlistCoursesStatus,
   setCurrentQuestion,
+  setPart,
   setAnswersOld,
   setAnswersAll,
   setTestInfo,
@@ -158,6 +164,8 @@ export const selectListCoursesStatus = (state: RootState) =>
   state.user.listCoursesStatus;
 export const selectCurrentQuestion = (state: RootState) =>
   state.user.currentQuestion;
+export const selectPart = (state: RootState) =>
+  state.user.part;
 export const selectAnswersOld = (state: RootState) => state.user.answersOld;
 export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export const selectTestInfo = (state: RootState) => state.user.testInfo;

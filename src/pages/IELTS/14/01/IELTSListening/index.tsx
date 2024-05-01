@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { HashLink } from 'react-router-hash-link';
 
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
@@ -11,36 +10,25 @@ import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
 
-import IELTSDrag from '@/components/IELTS/QuestionTypes/IELTSDrag'
-import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
-import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput'
-import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
-import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol'
-import IELTSQuestionTitle from '@/components/IELTS/QuestionTypes/IELTSQuestionTitle'
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
-import IELTSPartNavigation from '@/components/IELTS/QuestionTypes/IELTSPartNavigation';
+import IELTSParts from '@/components/IELTS/IELTSParts';
+import IELTSTitle from '@/components/IELTS/IELTSTitle';
+import IELTSArrows from '@/components/IELTS/IELTSArrows';
+import IELTSDrag from '@/components/IELTS/QuestionTypes/IELTSDrag';
+import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput';
+import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
+import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol';
+import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
+import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation/Listening';
+import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
-
-import iLeft from '@/assets/images/CharmArrowLeft.svg';
-import iRight from '@/assets/images/CharmArrowRight.svg';
-
-import Title from '@/components/IELTS/Title';
 
 const index = () => {
   const dispatch = useAppDispatch()
 
-  const flags = useAppSelector((state: any) => state.user.flag)
   const fontSize = useAppSelector((state: any) => state.user.fontSize)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
-
-  const parts = [
-    { title: "Part 1", description: "Listen and answer question 1-10." },
-    { title: "Part 2", description: "Listen and answer question 11-20." },
-    { title: "Part 3", description: "Listen and answer question 21-30." },
-    { title: "Part 4", description: "Listen and answer question 31-40." },
-  ]
 
   const [test_id, setTest_id] = useState<any>('')
 
@@ -155,22 +143,10 @@ const index = () => {
 
   return (
     <div>
-      <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
+      <IELTSParts part={part} skill="listening" />
 
       <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
-
-        <div className='arrow-currentQuestion'>
-          <div className={currentQuestion == 1 && 'disable'}>
-            <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>
-              <img src={iLeft} />
-            </HashLink>
-          </div>
-          <div className={currentQuestion == 40 && 'disable'}>
-            <HashLink onClick={handleNext} smooth to={`#q-${currentQuestion + 1}`}>
-              <img src={iRight} />
-            </HashLink>
-          </div>
-        </div>
+        <IELTSArrows handlePrevious={handlePrevious} handleNext={handleNext} />
 
         {isLoading && <div> LOADING... </div>}
         {isSuccess &&
@@ -356,7 +332,6 @@ const index = () => {
                   </Paper>
                 </Stack> */}
                 <IELTSDrag listOptions={listOptions} columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" />
-
               </>
             }
 

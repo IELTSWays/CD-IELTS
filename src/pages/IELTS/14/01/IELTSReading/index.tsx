@@ -1,38 +1,27 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { HashLink } from 'react-router-hash-link';
 
-// api
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
-// api
 
-// mtu
 import Typography from '@mui/material/Typography';
-import DoneIcon from '@mui/icons-material/Done';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-// mtu
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
-import { setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
-// store
+import { setPart, setCurrentQuestion, setAnswersAll } from '@/store/slices/user/userSlice'
 
-import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio'
-import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput'
-import IELTSTitle from '@/components/IELTS/QuestionTypes/IELTSTitle'
-import IELTSTableOptions from '@/components/IELTS/QuestionTypes/IELTSTableOptions'
-import IELTSQuestionTitle from '@/components/IELTS/QuestionTypes/IELTSQuestionTitle'
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox'
+import IELTSTitle from '@/components/IELTS/IELTSTitle';
+import IELTSParts from '@/components/IELTS/IELTSParts';
+import IELTSArrows from '@/components/IELTS/IELTSArrows';
+import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
+import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput';
+import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
+import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation/Reading';
+import IELTSTableOptions from '@/components/IELTS/QuestionTypes/IELTSTableOptions';
+import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel'
 
-import iLeft from '@/assets/images/CharmArrowLeft.svg';
-import iRight from '@/assets/images/CharmArrowRight.svg';
-
 import IdeClone from "@/components/IELTS/IdeClone"
-
-import Title from '@/components/IELTS/Title';
 
 import Text1 from './Text/Text1';
 import Text2 from './Text/Text2';
@@ -42,16 +31,10 @@ const index = () => {
 
   const dispatch = useAppDispatch()
 
-  const flags = useAppSelector((state: any) => state.user.flag)
+  const part = useAppSelector((state) => state.user.part)
   const fontSize = useAppSelector((state) => state.user.fontSize)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
   const answersAll = useAppSelector((state) => state.user.answersAll)
-
-  const parts = [
-    { title: "Part 1", description: "Read the text and answer questions 1-13." },
-    { title: "Part 2", description: "Read the text and answer questions 13-20." },
-    { title: "Part 3", description: "Read the text and answer questions 21-40." },
-  ]
 
   const [test_id, setTest_id] = useState<any>('')
 
@@ -78,7 +61,7 @@ const index = () => {
     },
   })
 
-  const [part, setPart] = useState(1)
+  // const [part, setPart] = useState(1)
 
   useEffect(() => {
     test_id && getAnswer.isFetching
@@ -90,80 +73,21 @@ const index = () => {
     test_id && getAnswer.refetch()
   }, [])
 
-  const questions = [
-    { number: 1, label: "1" },
-    { number: 2, label: "2" },
-    { number: 3, label: "3" },
-    { number: 4, label: "4" },
-    { number: 5, label: "5" },
-    { number: 6, label: "6" },
-    { number: 7, label: "7" },
-    { number: 8, label: "8" },
-    { number: 9, label: "9" },
-    { number: 10, label: "10" },
-    { number: 11, label: "11" },
-    { number: 12, label: "12" },
-    { number: 13, label: "13" },
-    { number: 14, label: "14" },
-    { number: 15, label: "15" },
-    { number: 16, label: "16" },
-    { number: 17, label: "17" },
-    { number: 18, label: "18" },
-    { number: 19, label: "19" },
-    { number: 20, label: "20" },
-    { number: 21, label: "21" },
-    { number: 22, label: "22" },
-    { number: 23, label: "23" },
-    { number: 24, label: "24" },
-    { number: 25, label: "25" },
-    { number: 26, label: "26" },
-    { number: 27, label: "27" },
-    { number: 28, label: "28" },
-    { number: 29, label: "29" },
-    { number: 30, label: "30" },
-    { number: 31, label: "31" },
-    { number: 32, label: "32" },
-    { number: 33, label: "33" },
-    { number: 34, label: "34" },
-    { number: 35, label: "35" },
-    { number: 36, label: "36" },
-    { number: 37, label: "37" },
-    { number: 38, label: "38" },
-    { number: 38, label: "39" },
-    { number: 40, label: "40" },
-  ]
 
   useEffect(() => {
 
     if (currentQuestion > 0 && currentQuestion < 14) {
-      setPart(1);
+      dispatch(setPart(1))
     }
     if (currentQuestion > 13 && currentQuestion < 27) {
-      setPart(2);
+      dispatch(setPart(2))
     }
     if (currentQuestion > 26 && currentQuestion < 41) {
-      setPart(3)
+      dispatch(setPart(3))
     }
   }, [currentQuestion]);
 
-  // const handlePrevious = () => {
-  //   if (currentQuestion == 21 || currentQuestion == 23) {
-  //     dispatch(setCurrentQuestion(+currentQuestion - 2))
-  //   }
-  //   else {
-  //     dispatch(setCurrentQuestion(+currentQuestion - 1))
-  //   }
-  // }
-
-  // const handleNext = () => {
-  //   if (currentQuestion == 19 || currentQuestion == 21) {
-  //     dispatch(setCurrentQuestion(+currentQuestion + 2))
-  //   }
-  //   else {
-  //     dispatch(setCurrentQuestion(+currentQuestion + 1))
-  //   }
-  // }
-
+  
   const handlePrevious = () => {
     const stepBack = currentQuestion === 21 || currentQuestion === 23 ? 2 : 1;
     dispatch(setCurrentQuestion(Number(currentQuestion) - Number(stepBack)));
@@ -174,11 +98,7 @@ const index = () => {
     dispatch(setCurrentQuestion(Number(currentQuestion) + Number(stepForward)));
   };
 
-  useEffect(() => {
-    if (currentQuestion == 14 || currentQuestion == 27) {
-      window.scrollTo(0, 0)
-    }
-  }, [currentQuestion])
+
 
   const options_9_13 = [
     { label: 'TRUE', value: "a", },
@@ -196,21 +116,10 @@ const index = () => {
 
   return (
     <>
-      <Title title={parts[part - 1].title} description={parts[part - 1].description} />
+      <IELTSParts part={part} skill="reading" />
 
       <div className={`ielts-container ${fontSize}`} id="ielts-list-text-input">
-        <div className='arrow-currentQuestion'>
-          <div className={currentQuestion == 1 && 'disable'}>
-            <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>
-              <img src={iLeft} />
-            </HashLink>
-          </div>
-          <div className={currentQuestion == 40 && 'disable'}>
-            <HashLink onClick={handleNext} smooth to={`#q-${currentQuestion + 1}`}>
-              <img src={iRight} />
-            </HashLink>
-          </div>
-        </div>
+        <IELTSArrows handlePrevious={handlePrevious} handleNext={handleNext} />
 
         {getAnswer.isLoading && <div> LOADING... </div>}
         {getAnswer.isSuccess &&
@@ -419,139 +328,7 @@ almost as quickly as Provo left the bikes around the city, the" afterInput="Took
           />
         }
       </div>
-
-      <div className="ielts-navigation" id="ielts-reading-1401">
-        <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 1</span>
-          </div>
-          <div className="navigation-part-items">
-
-            {questions.slice(0, 13).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.number}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 1 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 1</div>
-              </>
-              :
-              <>
-                <div>Part 1</div>
-                <div> 0 of 13 </div>
-              </>
-            }
-          </div>
-        </div>
-
-        <div className={`navigation-part ${part === 2 && 'active'} ${part > 2 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 2</span>
-          </div>
-          <div className="navigation-part-items">
-            {questions.slice(13, 26).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.label}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 2 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 2</div>
-              </>
-              :
-              <>
-                <div>Part 2</div>
-                <div> 0 of 13 </div>
-              </>
-            }
-          </div>
-        </div>
-
-        <div className={`navigation-part ${part === 3 && 'active'} ${part > 3 && 'done'}`}>
-          <div className="navigation-part-title">
-            <span>Part 3</span>
-          </div>
-          <div className="navigation-part-items">
-            {questions.slice(26, 40).map((i) => {
-              return (
-                <div
-                  className={currentQuestion == `${i.label}` && 'active'}
-                  id={`item-${i.number}`}
-                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
-                >
-                  <HashLink
-                    onClick={() => dispatch(setCurrentQuestion(i.label))}
-                    smooth
-                    to={`#q-${i.label}`}
-                  >
-                    <span>
-                      <>
-                        {flags[i.number] && <BookmarkIcon color={'error'} />}
-                      </>
-                      {i.label}
-                    </span>
-                  </HashLink>
-                </div>
-              )
-            })}
-          </div>
-          <div className='navigation-part-counter'>
-            {part > 3 ?
-              <>
-                <DoneIcon color="success" sx={{ mr: 1 }} />
-                <div>Part 3</div>
-              </>
-              :
-              <>
-                <div>Part 3</div>
-                <div> 0 of 8 </div>
-              </>
-            }
-          </div>
-        </div>
-      </div>
-
+      <IELTSPartNavigation part={part} />
     </>
   );
 };
