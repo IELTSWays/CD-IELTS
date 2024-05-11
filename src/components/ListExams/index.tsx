@@ -125,6 +125,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                 <Box key={index}>
                   <Paper
                     variant="outlined"
+                    onMouseOver={() => localStorage.setItem('test_name', i.name)}
                     sx={{
                       my: 1.5,
                       '&:hover': {
@@ -173,7 +174,6 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             size="small"
                             sx={{ width: '120px' }}
                             onClick={() => continueExam()}
-                            onMouseOver={() => localStorage.setItem('test_name', i.name)}
                           >
                             go to test
                           </Button>

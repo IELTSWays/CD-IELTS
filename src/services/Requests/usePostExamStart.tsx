@@ -34,6 +34,7 @@ const usePostExamStart = (test: any) => {
       const data = await response.data
       const token: any = localStorage.getItem('token');
       const confirm: any = localStorage.getItem('confirm');
+      const test_name: any = localStorage.getItem('test_name');
       const profile: any = localStorage.getItem('is_profile_fill');
       dispatch(setAnswersAll({}))
       localStorage.clear();
@@ -41,6 +42,7 @@ const usePostExamStart = (test: any) => {
       localStorage.setItem('confirm', confirm);
       localStorage.setItem('test_id', data.test_id);
       localStorage.setItem('is_profile_fill', profile);
+      localStorage.setItem('test_name', test_name);
       dispatch(setCurrentQuestion('1'))
       dispatch(setTestInfo(data))
       dispatch(setAnswersAll(data.answers))

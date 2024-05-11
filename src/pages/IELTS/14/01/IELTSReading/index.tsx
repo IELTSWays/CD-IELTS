@@ -98,8 +98,6 @@ const index = () => {
     dispatch(setCurrentQuestion(Number(currentQuestion) + Number(stepForward)));
   };
 
-
-
   const options_9_13 = [
     { label: 'TRUE', value: "a", },
     { label: 'FALSE', value: "b", },
