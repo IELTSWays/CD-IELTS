@@ -347,7 +347,8 @@ const LayoutDashborad = ({ children }: any) => {
           ))}
         </List>
         <Divider />
-        <List sx={{ background: 'lightgoldenrodyellow' }}>
+        {/* Teacher */}
+        {/* <List sx={{ background: 'lightgoldenrodyellow' }}>
           <Typography variant="button" display="block" align="center" gutterBottom>
             <SchoolIcon/>
           </Typography>
@@ -385,7 +386,7 @@ const LayoutDashborad = ({ children }: any) => {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

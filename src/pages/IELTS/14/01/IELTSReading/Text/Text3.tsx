@@ -1,4 +1,6 @@
-import React from 'react';
+// mtu
+import Typography from '@mui/material/Typography';
+// mtu
 
 const Paragraphs = [
   {
@@ -42,18 +44,16 @@ const Paragraphs = [
 const Text3 = () => {
   return (
     <>
-      <div className="my-10">
+      <Typography sx={{ mb: 2.5 }}>
         <h3>
           <strong>
             Motivational factors and the hospitality industry
           </strong>
         </h3>
-      </div>
+      </Typography>
       {Paragraphs.map((i, index) => {
         return (
-          <div key={index} className="my-10">
-            {i.paragraph}
-          </div>
+          <Typography key={index} sx={{ mb: 1.5 }}> {i.paragraph} </Typography>
         )
       })}
     </>

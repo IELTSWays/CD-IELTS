@@ -216,10 +216,8 @@ const Otp = () => {
               >
                 Login With Google
               </Button>
+
             </Stack>
-            <Typography variant="body2" color="text.secondary" sx={{ py: 2 }}>
-              2024-04-24
-            </Typography>
           </Grid>
         </>
       )}

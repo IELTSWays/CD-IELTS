@@ -65,7 +65,7 @@ html[data-theme="YellowBlack"] {
 .ielts-main {
   height: calc(100vh - 112px);
   background: var(--color-01);
-  color: var(--color-02);
+  color: var(--color-02)
 }
 
 .ielts-container input {
@@ -269,12 +269,6 @@ p.MuiTypography-root {
   background: var(--color-04);
 }
 
-/* .left.ielts-scrollbar {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-} */
-
 /* [ ############################ END SCROLLBAR ############################ ] */
 html.ielts {
   height: 100vh;
@@ -293,25 +287,17 @@ html.ielts {
   padding: 0 20px;
 }
 
-/* .ic-left {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-} */
-
 .ielts-container.full-w {
-  height: calc(100vh - 235px);
+  height: calc(100vh - 240px);
   overflow-y: scroll;
 }
 
 .ielts-header {
-  height: 55px;
   padding: 10px 0;
   border-bottom: 3px solid #7f7f7f;
 }
 
 .ielts-footer {
-  height: 57px;
   padding: 10px 0;
   font-size: 18px;
   background: var(--color-05);
@@ -1580,6 +1566,7 @@ td {
 
 /* [ ############################ Selection Popover ############################ ] */
 
+/* highBlackWhite */
 .highBlackWhite ::selection {
   background: #F1F2ED;
   color: #fff;
@@ -1608,97 +1595,31 @@ td {
   clear: both;
 }
 
-.highBlackWhite-items > div:hover {
-  background: #bdbdbd;
-}
-
-.SelectionContent {
-  position: absolute;
-  top: 25px;
-}
-
-.highBlackWhite-items svg {
-  width: 20px;
-}
-
-.SelectionContent > .MuiPaper-elevation {
-  background: #F1F2ED;
-  display: flex;
-}
-
-.SelectionContent > .MuiPaper-elevation > div {
+.highBlackWhite-items > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  width: 65px;
+  padding: 2px;
+  width: 50px;
   cursor: pointer;
   border-radius: 5px !important;
 }
 
-.SelectionContent > .MuiPaper-elevation > div > p {
-font-size: 10px;
-padding-top: 5px;
+.highBlackWhite-items > div:hover {
+  background: #bdbdbd;
 }
 
-/* [ ############################ SIDEBAR (Note, Highlight) ############################ ] */
-
-.layout-with-sidebar {
-  display: grid;
-  grid-template-columns: 80% 20%;
+.highBlackWhite-items p {
+  margin-top: 5px;
+  font-size: 10px !important;
 }
 
-.layout-with-sidebar .arrow-currentQuestion {
-  right: calc(20% + 50px) !important;
+.SelectionContent {
+  position: absolute;
+  top: 20px;
 }
 
-.layout-with-sidebar .ielts-sidebar .ielts-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-left: 3px solid #7f7f7f;
-  background: #f1f2ed;
-}
-
-.layout-with-sidebar .ielts-container {
-  width: 100%;
-}
-
-.layout-with-sidebar .ielts-sidebar .ielts-main {
-  background: #f1f2ed;
-}
-
-.layout-with-sidebar .ielts-sidebar .ielts-ffoter {
-  background: #f1f2ed;
-}
-
-/* .ielts-sidebar-item {
-  padding: 15px;
-  background: lightskyblue;
-  -webkit-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none; 
-} */
-
-.ielts-sidebar-item span {
-  font-style: italic;
-}
-
-.ielts-sidebar-item textarea {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid rgb(49, 49, 255);
-  height: 60px;
-  margin: 10px 0;
-  padding: 5px;
-  resize: unset;
-}
-
-#selected-note {
-  background: #40AFA1;
-}
-
-.left.ielts-scrollbar .my-10 > span {
-  cursor: pointer;
+.highBlackWhite-items svg {
+  width: 20px;
 }

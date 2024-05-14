@@ -57,7 +57,7 @@ const SummaryReport = () => {
           <CardContent sx={{ py: 0 }}>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {dataGetReportFull?.full_data?.map((i: any, index: any) => {
+                {data?.full_data?.map((i: any, index: any) => {
                   return (
                     <Grid item xs={4} sm={8} md={4} key={index} sx={{ pt: '4px' }}>
                       <Box sx={{ flexGrow: 1, width: '100%' }}>
@@ -126,9 +126,9 @@ const SummaryReport = () => {
                 margin: 'auto'
               }}>
               <PieChart percent={[
-                (dataGetReportFull?.full_data?.filter((item: { is_correct: boolean; }) => item.is_correct == true).length / dataGetReportFull?.full_data?.length * 100).toFixed(2),
-                (dataGetReportFull?.full_data?.filter((item: { is_correct: boolean; }) => item.is_correct == false).length / dataGetReportFull?.full_data?.length * 100).toFixed(2),
-                (dataGetReportFull?.full_data?.filter((item: { is_correct: string; }) => item.is_correct == 'not-answer').length / dataGetReportFull?.full_data?.length * 100).toFixed(2)
+                (data?.full_data?.filter((item: { is_correct: boolean; }) => item.is_correct == true).length / data?.full_data?.length * 100).toFixed(2),
+                (data?.full_data?.filter((item: { is_correct: boolean; }) => item.is_correct == false).length / data?.full_data?.length * 100).toFixed(2),
+                (data?.full_data?.filter((item: { is_correct: string; }) => item.is_correct == 'not-answer').length / data?.full_data?.length * 100).toFixed(2)
               ]} />
             </div>
           </CardContent>

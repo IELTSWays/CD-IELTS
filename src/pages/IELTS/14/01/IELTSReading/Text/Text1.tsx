@@ -1,4 +1,6 @@
-import React from 'react';
+// mtu
+import Typography from '@mui/material/Typography';
+// mtu
 
 const Paragraphs = [
   {
@@ -49,29 +51,30 @@ const Paragraphs = [
   {
     paragraph: '‘Somehow the importance of play has been lost in recent decades. It’s regarded as something trivial, or even as something negative that contrasts with “work”. Let’s not lose sight of its benefits, and the fundamental contributions it makes to human achievements in the arts, sciences and technology. Let’s make sure children have a rich diet of play experiences.’'
   },
+
 ]
 
 const Text1 = () => {
 
   return (
     <>
-      <div className="my-10">
+      <Typography sx={{ mb: 2.5 }}>
         <h3>
           <strong>
             THE IMPORTANCE OF CHILDREN’S PLAY
           </strong>
         </h3>
-      </div>
+      </Typography>
       {Paragraphs.map((i, index) => {
         return (
-          <div key={index} className="my-10">
+          <Typography key={index} sx={{ mb: 1.5 }}>
             {i.paragraph}
-          </div>
+          </Typography>
         )
       })}
-      <div className="ielts-paragraph my-10">
+      <Typography sx={{ mb: 1.5 }} className="ielts-paragraph">
         * Lego: coloured plastic building blocks and other pieces that can be joined together
-      </div>
+      </Typography>
     </>
   );
 };

@@ -37,11 +37,6 @@
   justify-content: space-between;
 }
 
-.justify-content-flex-end {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .flex-col {
   display: flex;
   flex-direction: column !important;
@@ -55,20 +50,8 @@
   margin: 0 !important;
 }
 
-.mr-5 {
-  margin-right: 5px;
-}
-
-.mx-5 {
-  margin: 0 5px !important;
-}
-
 .mt-20 {
   margin-top: 20px;
-}
-
-.my-10 {
-  margin: 10px 0;
 }
 
 .ml-20 {

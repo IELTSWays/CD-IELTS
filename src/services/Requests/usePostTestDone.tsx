@@ -44,6 +44,12 @@ const usePostTestDone = () => {
     };
   }
 
+  for (let key in final) {
+    if (key.startsWith("000")) {
+      delete final[key];
+    }
+  }
+
   const { isLoading, isSuccess, data, isError, refetch } = useQuery({
     enabled: false,
     queryKey: ['postTestDone'],

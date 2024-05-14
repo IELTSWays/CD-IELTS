@@ -11,7 +11,6 @@ export interface UserState {
   listCourses: any[];
   listCoursesStatus: any;
   currentQuestion: number;
-  part: number;
   answersOld: any;
   answersAll: any;
   testInfo: any;
@@ -20,9 +19,6 @@ export interface UserState {
   flag: any;
   cart: any;
   showOptions: any;
-  sidebar: any[];
-  comments: any;
-  activeComment: any;
 }
 
 const initialState: UserState = {
@@ -34,7 +30,6 @@ const initialState: UserState = {
   listCourses: [],
   listCoursesStatus: "",
   currentQuestion: 1,
-  part: 1,
   answersOld: {},
   answersAll: {},
   testInfo: {},
@@ -58,9 +53,6 @@ const initialState: UserState = {
   },
   cart: [],
   showOptions: 0,
-  sidebar: [],
-  comments: [],
-  activeComment: {},
 };
 
 export const userSlice = createSlice({
@@ -91,9 +83,6 @@ export const userSlice = createSlice({
     setCurrentQuestion: (state, action: PayloadAction<any>) => {
       state.currentQuestion = action.payload;
     },
-    setPart: (state, action: PayloadAction<any>) => {
-      state.part = action.payload;
-    },
     setAnswersOld: (state, action: PayloadAction<any>) => {
       state.answersOld = action.payload;
     },
@@ -118,15 +107,6 @@ export const userSlice = createSlice({
     setShowOptions: (state, action: PayloadAction<any>) => {
       state.showOptions = action.payload;
     },
-    setSidebar: (state, action: PayloadAction<any>) => {
-      state.sidebar = { ...action.payload };
-    },
-    setComments: (state, action: PayloadAction<any>) => {
-      state.comments = [...action.payload];
-    },
-    setActiveComment: (state, action: PayloadAction<any>) => {
-      state.activeComment = { ...action.payload };
-    },
   },
 });
 
@@ -139,7 +119,6 @@ export const {
   setListCourses,
   setlistCoursesStatus,
   setCurrentQuestion,
-  setPart,
   setAnswersOld,
   setAnswersAll,
   setTestInfo,
@@ -147,10 +126,7 @@ export const {
   setAccordion,
   setFlags,
   setCart,
-  setShowOptions,
-  setSidebar,
-  setComments,
-  setActiveComment,
+  setShowOptions
 } = userSlice.actions;
 
 export const selectName = (state: RootState) => state.user.name;
@@ -164,8 +140,6 @@ export const selectListCoursesStatus = (state: RootState) =>
   state.user.listCoursesStatus;
 export const selectCurrentQuestion = (state: RootState) =>
   state.user.currentQuestion;
-export const selectPart = (state: RootState) =>
-  state.user.part;
 export const selectAnswersOld = (state: RootState) => state.user.answersOld;
 export const selectAnswersAll = (state: RootState) => state.user.answersAll;
 export const selectTestInfo = (state: RootState) => state.user.testInfo;
@@ -174,9 +148,5 @@ export const selectAccordion = (state: RootState) => state.user.accordion;
 export const selectFlags = (state: RootState) => state.user.flag;
 export const selectCart = (state: RootState) => state.user.cart;
 export const selectShowOptions = (state: RootState) => state.user.showOptions;
-export const selectSidebar = (state: RootState) => state.user.sidebar;
-export const selectComments = (state: RootState) => state.user.comments;
-export const selectActiveComment = (state: RootState) =>
-  state.user.activeComment;
 
 export default userSlice.reducer;

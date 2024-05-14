@@ -75,9 +75,6 @@ const FullReportFreeOne = () => {
     ...(dataGetReportFullFreeOne?.full_media_data.find((mediaData: { number: any; }) => mediaData.number === data.number) || {})
   }));
 
-
-  console.log('mergedDataReportFullFreeOne', mergedDataReportFullFreeOne);
-
   return (
     <CardContent sx={{ py: 0 }}>
       {mergedDataReportFullFreeOne?.map((i: any) => {

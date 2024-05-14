@@ -1,34 +1,90 @@
-import React from 'react';
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next';
+import { HashLink } from 'react-router-hash-link';
 
+// api
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
+// api
 
+// mtu
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import DoneIcon from '@mui/icons-material/Done';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+// mtu
 
+// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion } from '@/store/slices/user/userSlice'
-
-import IELTSParts from '@/components/IELTS/IELTSParts';
-import IELTSTitle from '@/components/IELTS/IELTSTitle';
-import IELTSArrows from '@/components/IELTS/IELTSArrows';
-import IELTSDrag from '@/components/IELTS/QuestionTypes/IELTSDrag';
-import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput';
-import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
-import IELTSTwoCol from '@/components/IELTS/QuestionTypes/IELTSTwoCol';
-import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
-import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation/Listening';
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
+// store
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
+import iLeft from '@/assets/images/CharmArrowLeft.svg';
+import iRight from '@/assets/images/CharmArrowRight.svg';
+
+import Title from '@/components/IELTS/Title';
+
+// QuestionTypes
+import Input from '@/components/IELTS/QuestionTypes/Input'
+import Radio from '@/components/IELTS/QuestionTypes/Radio'
+
+import Q00 from './Part1/Q00';
+import Q01 from './Part1/Q01';
+import Q02 from './Part1/Q02';
+import Q03 from './Part1/Q03';
+import Q04 from './Part1/Q04';
+import Q05 from './Part1/Q05';
+import Q06 from './Part1/Q06';
+import Q07 from './Part1/Q07';
+import Q08 from './Part1/Q08';
+import Q09 from './Part1/Q09';
+import Q10 from './Part1/Q10';
+import Q11_12 from './Part2/Q11_12';
+import Q13_14 from './Part2/Q13_14';
+import Q15 from './Part2/Q15';
+import Q16 from './Part2/Q16';
+import Q17 from './Part2/Q17';
+import Q18 from './Part2/Q18';
+import Q19 from './Part2/Q19';
+import Q20 from './Part2/Q20';
+import Q21 from './Part3/Q21';
+import Q22 from './Part3/Q22';
+import Q23 from './Part3/Q23';
+import Q24 from './Part3/Q24';
+import Q25 from './Part3/Q25';
+import Q26_30 from './Part3/DND';
+import Q31 from './Part4/Q31';
+import Q32 from './Part4/Q32';
+import Q33 from './Part4/Q33';
+import Q34 from './Part4/Q34';
+import Q35 from './Part4/Q35';
+import Q36 from './Part4/Q36';
+import Q37 from './Part4/Q37';
+import Q38 from './Part4/Q38';
+import Q39 from './Part4/Q39';
+import Q40 from './Part4/Q40';
+import React from 'react';
+
 const index = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch()
 
+  const flags = useAppSelector((state: any) => state.user.flag)
   const fontSize = useAppSelector((state: any) => state.user.fontSize)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
+
+  const parts = [
+    { title: "Part 1", description: "Listen and answer question 1-10." },
+    { title: "Part 2", description: "Listen and answer question 11-20." },
+    { title: "Part 3", description: "Listen and answer question 21-30." },
+    { title: "Part 4", description: "Listen and answer question 31-40." },
+  ]
 
   const [test_id, setTest_id] = useState<any>('')
 
@@ -47,7 +103,7 @@ const index = () => {
     },
   })
 
-  console.log((answersAll))
+  console.log(answersAll)
 
   const [part, setPart] = useState(1)
 
@@ -60,6 +116,49 @@ const index = () => {
     setTest_id(localStorage.getItem('test_id'))
     test_id && refetchGetAnswer()
   }, [])
+
+  const questions = [
+    { number: 1, label: "1" },
+    { number: 2, label: "2" },
+    { number: 3, label: "3" },
+    { number: 4, label: "4" },
+    { number: 5, label: "5" },
+    { number: 6, label: "6" },
+    { number: 7, label: "7" },
+    { number: 8, label: "8" },
+    { number: 9, label: "9" },
+    { number: 10, label: "10" },
+    { number: 11, label: "11" },
+    { number: 12, label: "12" },
+    { number: 13, label: "13" },
+    { number: 14, label: "14" },
+    { number: 15, label: "15" },
+    { number: 16, label: "16" },
+    { number: 17, label: "17" },
+    { number: 18, label: "18" },
+    { number: 19, label: "19" },
+    { number: 20, label: "20" },
+    { number: 21, label: "21" },
+    { number: 22, label: "22" },
+    { number: 23, label: "23" },
+    { number: 24, label: "24" },
+    { number: 25, label: "25" },
+    { number: 26, label: "26" },
+    { number: 27, label: "27" },
+    { number: 28, label: "28" },
+    { number: 29, label: "29" },
+    { number: 30, label: "30" },
+    { number: 31, label: "31" },
+    { number: 32, label: "32" },
+    { number: 33, label: "33" },
+    { number: 34, label: "34" },
+    { number: 35, label: "35" },
+    { number: 36, label: "36" },
+    { number: 37, label: "37" },
+    { number: 38, label: "38" },
+    { number: 39, label: "39" },
+    { number: 40, label: "40" },
+  ]
 
   useEffect(() => {
 
@@ -102,302 +201,519 @@ const index = () => {
     }
   }, [currentQuestion])
 
-  const options_15_20 = [
-    { label: 'It is encouraged', value: "a" },
-    { label: 'There are some restrictions', value: "b" },
-    { label: 'It is against the rules', value: "c" },
-  ]
-
-  const listOptions = {
-    "a": { id: "a", content: "A - use visuals" },
-    "b": { id: "b", content: "B - keep it short" },
-    "c": { id: "c", content: "C - involve other students" },
-    "d": { id: "d", content: "D - check the information is accurate" },
-    "e": { id: "e", content: "E - provide a handout" },
-    "f": { id: "f", content: "F - focus on one example" },
-    "g": { id: "g", content: "G - do online research" }
-  }
-
-  const columnsData = [
-    {
-      id: 26,
-      title: "Historical background"
-    },
-    {
-      id: 27,
-      title: "Geographical factors"
-    },
-    {
-      id: 28,
-      title: "Past mistakes"
-    },
-    {
-      id: 29,
-      title: "Future risks"
-    },
-    {
-      id: 30,
-      title: "International implications"
-    }
+  const options21 = [
+    { label: t('00052'), value: "a", },
+    { label: t('00053'), value: "b", },
+    { label: t('00054'), value: "c", },
   ];
 
   return (
-    <div>
-      <IELTSParts part={part} skill="listening" />
+    <>
+      <Title title={parts[part - 1]?.title} description={parts[part - 1]?.description} />
 
       <div className={`ielts-container full-w ${fontSize}`} id="ielts-list-text-input">
-        <IELTSArrows handlePrevious={handlePrevious} handleNext={handleNext} />
+
+        <div className='arrow-currentQuestion'>
+          <div className={currentQuestion == 1 && 'disable'}>
+            <HashLink onClick={handlePrevious} smooth to={`#q-${currentQuestion - 1}`}>
+              <img src={iLeft} />
+            </HashLink>
+          </div>
+          <div className={currentQuestion == 40 && 'disable'}>
+            <HashLink onClick={handleNext} smooth to={`#q-${currentQuestion + 1}`}>
+              <img src={iRight} />
+            </HashLink>
+          </div>
+        </div>
 
         {isLoading && <div> LOADING... </div>}
         {isSuccess &&
           <>
             {part === 1 &&
               <>
-                {/* ================================================================================ [01-10] */}
-                <IELTSQuestionTitle from="1" to="10" type="1" />
-                <IELTSTitle title="CRIME REPORT FORM" isHeader />
-                {/************* [0] *************/}
-                <IELTSTwoCol colLeft="Type of crime:" colRight="theft" />
-                <IELTSTitle title="Personal information" />
-                <Typography className='italic'>Example</Typography>
-                <IELTSInput qn="0" colLeft="Name:" beforeInput="Louise" disabled placeholder="Taylor" />
-                {/************* [1] *************/}
-                <IELTSInput qn="1" colLeft="Nationality" />
-                <IELTSTwoCol colLeft="Date of birth" colRight="14 Dec 1977" />
-                <IELTSTwoCol colLeft="Occupation" colRight="interior designer" />
-                {/************* [2] *************/}
-                <IELTSInput qn="2" colLeft="Reason for visit" beforeInput=" business to buy antique" />
-                <IELTSTwoCol colLeft="Length of staty" colRight="two months" />
-                {/************* [3] *************/}
-                <IELTSInput qn="3" colLeft="Current address" afterInput="Apartments (No 15)" />
-                <IELTSTitle title="Details of theft" />
-                {/************* [4] *************/}
-                <IELTSInput qn="4" colLeft="items stolen" beforeInput=" – a wallet contains approximately £" />
-                {/************* [5] *************/}
-                <IELTSInput qn="5" colLeft="&nbsp;&nbsp;" beforeInput=" – " />
-                {/************* [6] *************/}
-                <IELTSInput qn="6" colLeft="Date of theft" />
-                <IELTSTitle title="Possible time and place of theft" />
-                {/************* [7] *************/}
-                <IELTSInput qn="7" colLeft="Location" beforeInput="outside the" afterInput="am about 4 pm" />
-                {/************* [8] *************/}
-                <IELTSInput qn="8" colLeft="Details of suspect" beforeInput=" – some boys asked for the" afterInput="then ran off" />
-                <IELTSTwoCol colLeft="&nbsp;&nbsp;" colRight=" – one had a T-shirt with a piction of tiger" />
-                {/************* [9] *************/}
-                <IELTSInput qn="9" colLeft="&nbsp;&nbsp;" beforeInput=" – he was about 12, slim build with" afterInput="hair" />
-                {/************* [10] *************/}
-                <IELTSTitle title="Crime reference number allocated" />
-                <IELTSInput qn="10" colLeft="&nbsp;&nbsp;" />
+                <Box>
+                  <Typography>
+                    <h3> Questions 1 - 10 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> one word and/or a number </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
+                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
+                  </Typography>
+                  <div>
+                    {/************************* [0] *************************/}
+                    <Q00 />
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [1] *************************/}
+                      <Q01 qn={questions[0].label} />
+                      {/************************* [2] *************************/}
+                      <Q02 qn={questions[1].label} />
+                      {/************************* [3] *************************/}
+                      <Q03 qn={questions[2].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [4] *************************/}
+                      <Q04 qn={questions[3].label} />
+                      {/************************* [5] *************************/}
+                      <Q05 qn={questions[4].label} />
+                      {/************************* [6] *************************/}
+                      <Q06 qn={questions[5].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [7] *************************/}
+                      <Q07 qn={questions[6].label} />
+                      {/************************* [8] *************************/}
+                      <Q08 qn={questions[7].label} />
+                      {/************************* [9] *************************/}
+                      <Q09 qn={questions[8].label} />
+                    </Box>
+
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [10] *************************/}
+                      <Q10 qn={questions[9].label} />
+                    </Box>
+                  </div>
+                </Box>
               </>
             }
 
             {part === 2 &&
               <>
-                {/* ================================================================================ [11-14] */}
-                <IELTSQuestionTitle from="11" to="14" type="2" />
-                {/************* [11-12] *************/}
-                <IELTSMultiCheckbox
-                  qn="11"
-                  question="pieces of advice for the first week of an apprenticeship does the manager give?"
-                  checkList={[
-                    { label: 'get to know colleagues', value: "a", },
-                    { label: 'learn from any mistakes', value: "b", },
-                    { label: 'ask lots of questions', value: "c" },
-                    { label: 'react positively to feedback', value: "d", },
-                    { label: 'enjoy new challenges', value: "e", },
-                  ]}
-                />
-                {/************* [13-14] *************/}
-                <IELTSMultiCheckbox
-                  qn="13"
-                  question="things does the manager say mentors can help with?"
-                  checkList={[
-                    { label: 'confidence-building', value: "a", },
-                    { label: 'making career plans', value: "b", },
-                    { label: 'completing difficult tasks', value: "c" },
-                    { label: 'making a weekly timetable', value: "d", },
-                    { label: 'reviewing progress', value: "e", },
-                  ]}
-                />
-                {/* ================================================================================ [15-20] */}
-                <IELTSQuestionTitle from="15" to="20" type="3" />
-                {/************* [15] *************/}
-                <IELTSRadio
-                  qn="15"
-                  question="Using the internet"
-                  options={options_15_20}
-                />
-                {/************* [16] *************/}
-                <IELTSRadio
-                  qn="16"
-                  question="Flexible working"
-                  options={options_15_20}
-                />
-                {/************* [17] *************/}
-                <IELTSRadio
-                  qn="17"
-                  question="Booking holidays"
-                  options={options_15_20}
-                />
-                {/************* [18] *************/}
-                <IELTSRadio
-                  qn="18"
-                  question="Working overtime"
-                  options={options_15_20}
-                />
-                {/************* [19] *************/}
-                <IELTSRadio
-                  qn="19"
-                  question="Wearing trainers"
-                  options={options_15_20}
-                />
-                {/************* [20] *************/}
-                <IELTSRadio
-                  qn="20"
-                  question="Bringing food to work"
-                  options={options_15_20}
-                />
+                <Box>
+                  <Typography>
+                    <h3> Questions 11 - 14 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> two </strong> </Typography>
+                    correct answer.
+                  </Typography>
+                </Box>
+                <Box>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [11-12] *************************/}
+                      <Q11_12 qn="11-12" />
+
+                      {/************************* [13-14] *************************/}
+                      <Q13_14 qn="13-14" />
+                    </Box>
+                  </div>
+                </Box>
+
+                <Box>
+                  <Typography>
+                    <h3> Questions 15 - 20 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
+                </Box>
+                <Box>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [15] *************************/}
+                      <Q15 qn={questions[14].label} />
+                      {/************************* [16] *************************/}
+                      <Q16 qn={questions[15].label} />
+                      {/************************* [17] *************************/}
+                      <Q17 qn={questions[16].label} />
+                      {/************************* [18] *************************/}
+                      <Q18 qn={questions[17].label} />
+                      {/************************* [19] *************************/}
+                      <Q19 qn={questions[18].label} />
+                      {/************************* [20] *************************/}
+                      <Q20 qn={questions[19].label} />
+                    </Box>
+                  </div>
+                </Box>
               </>
             }
 
             {part === 3 &&
               <>
-                {/* ================================================================================ [21-25] */}
-                <IELTSQuestionTitle from="21" to="25" type="3" />
-                {/************* [21] *************/}
-                <IELTSRadio
-                  qn="21"
-                  question="Carla and Rob were surprised to learn that coastal cities"
-                  options={[
-                    { label: 'contain nearly half the world’s population.', value: "a" },
-                    { label: 'include most of the world’s largest cities.', value: "b" },
-                    { label: 'are growing twice as fast as other cities.', value: "c" },
-                  ]}
-                />
-                {/************* [22] *************/}
-                <IELTSRadio
-                  qn="22"
-                  question="According to Rob, building coastal cities near to rivers"
-                  options={[
-                    { label: 'may bring pollution to the cities.', value: "a" },
-                    { label: 'may reduce the land available for agriculture.', value: "b" },
-                    { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                  ]}
-                />
-                {/************* [23] *************/}
-                <IELTSRadio
-                  qn="23"
-                  question="What mistake was made when building water drainage channels in Miami in the 1950s?"
-                  options={[
-                    { label: 'may bring pollution to the cities.', value: "a" },
-                    { label: 'may reduce the land available for agriculture.', value: "b" },
-                    { label: 'may mean the countryside is spoiled by industry.', value: "c" },
-                  ]}
-                />
-                {/************* [24] *************/}
-                <IELTSRadio
-                  qn="24"
-                  question="What do Rob and Carla think that the authorities in Miami should do immediately?"
-                  options={[
-                    { label: 'take measures to restore ecosystems', value: "a" },
-                    { label: 'pay for a new flood prevention system', value: "b" },
-                    { label: 'stop disposing of waste materials into the ocean', value: "c" },
-                  ]}
-                />
-                {/************* [25] *************/}
-                <IELTSRadio
-                  qn="25"
-                  question="What do they agree should be the priority for international action?"
-                  options={[
-                    { label: 'greater coordination of activities', value: "a" },
-                    { label: 'more sharing of information', value: "b" },
-                    { label: 'agreement on shared policies', value: "c" },
-                  ]}
-                />
-
-                {/* ================================================================================ [26-30] */}
-                <IELTSQuestionTitle from="26" to="30" type="3" />
-
-                {/************* [26-30] *************/}
-                {/* <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
-                  <Paper elevation={0}>
-                    <Typography>
-                      <strong> 26-30 </strong>
-                      <Typography sx={{ px: 1 }}> What decision do the students make about each of the following parts of their presentation? </Typography>
-                    </Typography>
-                  </Paper>
-                  <Paper elevation={0}>
-                    <Stack direction="row" alignItems="center">
-                    </Stack>
-                  </Paper>
-                </Stack> */}
-                <IELTSDrag listOptions={listOptions} columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" />
+                <Box>
+                  <Typography>
+                    <h3> Questions 21 - 25 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [21] *************************/}
+                      <Q21 qn={questions[20].label} />
+                      {/************************* [22] *************************/}
+                      <Q22 qn={questions[21].label} />
+                      {/************************* [23] *************************/}
+                      <Q23 qn={questions[22].label} />
+                      {/************************* [24] *************************/}
+                      <Q24 qn={questions[23].label} />
+                      {/************************* [25] *************************/}
+                      <Q25 qn={questions[24].label} />
+                    </Box>
+                  </div>
+                </Box>
+                <Box>
+                  <Typography>
+                    <h3> Questions 26 - 30 </h3>
+                  </Typography>
+                  <Typography className='italic'>
+                    Choose the correct answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <div>
+                    <Box sx={{ p: 1 }}>
+                      {/************************* [26-30] *************************/}
+                      <Stack spacing={{ xs: 1, sm: 2 }} direction="column" useFlexGap flexWrap="wrap" sx={{ py: 1 }}>
+                        <Paper elevation={0}>
+                          <Typography>
+                            <strong> 26-30 </strong>
+                            <Typography sx={{ px: 1 }}> {t('00071')} </Typography>
+                          </Typography>
+                        </Paper>
+                        <Paper elevation={0}>
+                          <Stack direction="row" alignItems="center">
+                            <Q26_30 />
+                          </Stack>
+                        </Paper>
+                      </Stack>
+                    </Box>
+                  </div>
+                </Box>
               </>
             }
 
             {part === 4 &&
               <>
-                {/* ================================================================================ [31-40] */}
-                <IELTSQuestionTitle from="31" to="40" type="4" />
-                <IELTSTitle title="CRIME REPORT FORM" isHeader />
-                {/************* [31] *************/}
-                <IELTSTitle title="Introduction" />
-                <IELTSInput qn="31" beforeInput="More energy required because of growth in population and" />
-                <IELTSTitle title="What’s needed:" />
-                <Typography>● renewable energy sources</Typography>
-                <Typography sx={{ mb: 2 }}>● methods that won’t create pollution</Typography>
-                <IELTSTitle title="Wave energy" />
-                {/************* [32] *************/}
-                <IELTSInput qn="32" beforeInput="Advantage: waves provide a" afterInput="source of renewable energy" />
-                <Typography>
-                  Electricity can be generated using offshore or onshore systems
-                </Typography>
-                <Typography sx={{ mb: 2 }}>
-                  Onshore systems may use a reservoir
-                </Typography>
-                <IELTSTitle title="Problems:" />
-                {/************* [33] *************/}
-                <IELTSInput qn="33" beforeInput="● waves can move in any" />
-                {/************* [34] *************/}
-                <IELTSInput qn="34" beforeInput="● movement of sand, etc. on the" afterInput="of the ocean may be affected" />
-                <IELTSTitle title="Tidal energy" />
-                {/************* [35] *************/}
-                <IELTSInput qn="35" beforeInput="Tides are more" afterInput="than waves" />
-                <Typography>
-                  Planned tidal lagoon in Wales:
-                </Typography>
-                {/************* [36] *************/}
-                <IELTSInput qn="36" beforeInput="● will be created in a" afterInput="at Swansea" />
-                <Typography>
-                  ● breakwater (dam) containing 16 turbines
-                </Typography>
-                <Typography>
-                  ● rising tide forces water through turbines, generating electricity
-                </Typography>
-                {/************* [37] *************/}
-                <IELTSInput qn="37" beforeInput="● stored water is released through" afterInput="at Swansea" />
-                <IELTSTitle title="Advantages:" />
-                <IELTSTitle title="not dependent on weather" />
-                {/************* [38] *************/}
-                <IELTSInput qn="38" beforeInput="● no" afterInput="is required to make it work" />
-                {/************* [39] *************/}
-                <IELTSInput qn="39" beforeInput="● likely to create a number of" />
-                {/************* [40] *************/}
-                <IELTSInput qn="40" beforeInput="● may harm fish and birds, e.g. by affecting" afterInput="and building up silt" />
-                <IELTSTitle title="Ocean thermal energy conversion:" />
-                <Typography>
-                  Uses a difference in temperature between the surface and lower levels
-                </Typography>
-                <Typography>
-                  Water brought to the surface in a pipe
-                </Typography>
+                <Box>
+                  <Typography>
+                    <h3> Questions 31 - 40 </h3>
+                  </Typography>
+                  <Typography sx={{ my: 1.5 }}>
+                    Complete the notes below.
+                  </Typography>
+                  <Typography className='italic'>
+                    Write
+                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
+                    for each answer.
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 3 }}>
+                  <Typography align="center" sx={{ py: 2 }}>
+                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
+                  </Typography>
+                  <div>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography>
+                              <strong>Introduction</strong>
+                            </Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [31] *************************/}
+                        <Q31 qn={questions[30].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography><strong>Wave energy</strong></Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [32] *************************/}
+                        <Q32 qn={questions[31].label} />
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Electricity can be generated using offshore or onshore systems
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                Onshore systems may use a reservoir
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                <strong>
+                                  Problems:
+                                </strong>
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+
+                        {/************************* [33] *************************/}
+                        <Q33 qn={questions[32].label} />
+
+                        {/************************* [34] *************************/}
+                        <Q34 qn={questions[33].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      {/************************* [35] *************************/}
+                      <Q35 qn={questions[34].label} />
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [36] *************************/}
+                        <Q36 qn={questions[35].label} />
+
+                        {/************************* [37] *************************/}
+                        <Q37 qn={questions[36].label} />
+                      </Box>
+                    </section>
+
+                    <section>
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
+                          <Paper elevation={0}>
+                            <Typography>
+                              <strong>
+                                Advantages:
+                              </strong>
+                            </Typography>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap" sx={{ alignItems: 'center', py: 1 }}>
+                          <Paper elevation={0}>
+                            <Stack direction="row" alignItems="center">
+                              <Typography>
+                                <strong>
+                                  not dependent on weather
+                                </strong>
+                              </Typography>
+                            </Stack>
+                          </Paper>
+                        </Stack>
+                      </Box>
+
+                      <Box sx={{ px: 1 }}>
+                        {/************************* [38] *************************/}
+                        <Q38 qn={questions[37].label} />
+                        {/************************* [39] *************************/}
+                        <Q39 qn={questions[38].label} />
+                      </Box>
+                    </section>
+
+                    {/************************* [40] *************************/}
+                    <Q40 qn={questions[39].label} />
+                  </div>
+                </Box>
               </>
             }
           </>
         }
       </div>
-      <IELTSPartNavigation part={part} />
-    </div>
+
+      <div className="ielts-navigation" id="ielts-listening-1401">
+        <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
+          <div className="navigation-part-title">
+            <span>Part 1</span>
+          </div>
+          <div className="navigation-part-items">
+
+            {questions.slice(0, 10).map((i) => {
+              return (
+                <div
+                  className={currentQuestion == `${i.number}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
+                >
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
+                  </HashLink>
+                </div>
+              )
+            })}
+          </div>
+          <div className='navigation-part-counter'>
+            {part > 1 ?
+              <>
+                <DoneIcon color="success" sx={{ mr: 1 }} />
+                <div>Part 1</div>
+              </>
+              :
+              <>
+                <div>Part 1</div>
+                <div> 0 of 10 </div>
+              </>
+            }
+          </div>
+        </div>
+
+        <div className={`navigation-part ${part === 2 && 'active'} ${part > 2 && 'done'}`}>
+          <div className="navigation-part-title">
+            <span>Part 2</span>
+          </div>
+          <div className="navigation-part-items">
+            {questions.slice(10, 20).map((i) => {
+              return (
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
+                >
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
+                  </HashLink>
+                </div>
+              )
+            })}
+          </div>
+          <div className='navigation-part-counter'>
+            {part > 2 ?
+              <>
+                <DoneIcon color="success" sx={{ mr: 1 }} />
+                <div>Part 2</div>
+              </>
+              :
+              <>
+                <div>Part 2</div>
+                <div> 0 of 10 </div>
+              </>
+            }
+          </div>
+        </div>
+
+        <div className={`navigation-part ${part === 3 && 'active'} ${part > 3 && 'done'}`}>
+          <div className="navigation-part-title">
+            <span>Part 3</span>
+          </div>
+          <div className="navigation-part-items">
+            {questions.slice(20, 30).map((i) => {
+              return (
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
+                >
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.label))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
+                  </HashLink>
+                </div>
+              )
+            })}
+          </div>
+          <div className='navigation-part-counter'>
+            {part > 3 ?
+              <>
+                <DoneIcon color="success" sx={{ mr: 1 }} />
+                <div>Part 3</div>
+              </>
+              :
+              <>
+                <div>Part 3</div>
+                <div> 0 of 10 </div>
+              </>
+            }
+          </div>
+        </div>
+
+        <div className={`navigation-part ${part === 4 && 'active'}`}>
+          <div className="navigation-part-title">
+            <span>Part 4</span>
+          </div>
+          <div className="navigation-part-items">
+            {questions.slice(30, 40).map((i) => {
+              return (
+                <div
+                  className={currentQuestion == `${i.label}` && 'active'}
+                  id={`item-${i.number}`}
+                  data-answer={`${answersAll[i.label]?.length > 0 && 'answered'}`}
+                >
+                  <HashLink
+                    onClick={() => dispatch(setCurrentQuestion(i.number))}
+                    smooth
+                    to={`#q-${i.label}`}
+                  >
+                    <span>
+                      <>
+                        {flags[i.number] && <BookmarkIcon color={'error'} />}
+                      </>
+                      {i.label}
+                    </span>
+                  </HashLink>
+                </div>
+              )
+            })}
+          </div>
+          <div className='navigation-part-counter'>
+            <div>Part 4</div>
+            <div> 0 of 10 </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

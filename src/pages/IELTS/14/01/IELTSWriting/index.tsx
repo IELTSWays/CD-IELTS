@@ -12,7 +12,7 @@ import { useAppSelector } from '@/store/hooks'
 // store
 
 import IdeClone from "@/components/IELTS/IdeClone"
-// import Title from '@/components/IELTS/Title';
+import Title from '@/components/IELTS/Title';
 import QTextArea1 from '@/components/IELTS/QTextArea/Q1';
 import QTextArea2 from '@/components/IELTS/QTextArea/Q2';
 
@@ -33,7 +33,7 @@ const index = () => {
 
   return (
     <>
-      {/* <Title title={parts[part - 1].title} description={parts[part - 1].description} /> */}
+      <Title title={parts[part - 1].title} description={parts[part - 1].description} />
 
       <div className='arrow-currentQuestion'>
         <div className={part === 1 && 'disable'}>
