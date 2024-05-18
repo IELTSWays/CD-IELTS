@@ -1,64 +1,70 @@
-// mtu
+import React from 'react';
 import Typography from '@mui/material/Typography';
-// mtu
 
 const Paragraphs = [
   {
     alphabet: 'A',
-    paragraph: 'The original idea for an urban bike-sharing scheme dates back to a summer’s day in Amsterdam in 1965. Provo, the organization that came up with the idea, was a group of Dutch activists who wanted to change society. They believed the scheme, which was known as the Witte Fietsenplan, was an answer to the perceived threats of air pollution and consumerism. In the centre of Amsterdam, they painted a small number of used bikes white. They also distributed leaflets describing the dangers of cars and inviting people to use the white bikes. The bikes were then left unlocked at various locations around the city, to be used by anyone in need of transport.'
+    paragraph: 'The Recovery of Natural Environments in Architecture by Professor Alan Short is the culmination of 30 years of research and award-winning green building design by Short and colleagues in Architecture, Engineering, Applied Maths and Earth Sciences at the University of Cambridge. The crisis in building design is already here,’ said Short. ‘Policy makers think you can solve energy and building problems with gadgets. You can’t. As global temperatures continue to rise, we are going to continue to squander more and more energy on keeping our buildings mechanically cool until we have run out of capacity.'
   },
   {
     alphabet: 'B',
-    paragraph: 'Luud Schimmelpennink, a Dutch industrial engineer who still lives and cycles in Amsterdam, was heavily involved in the original scheme. He recalls how the scheme succeeded in attracting a great deal of attention – particularly when it came to publicising Provo’s aims – but struggled to get off the ground. The police were opposed to Provo’s initiatives and almost as soon as the white bikes were distributed around the city, they removed them. However, for Schimmelpennink and for bike-sharing schemes in general, this was just the beginning. ‘The first Witte Fietsenplan was just a symbolic thing,’ he says. ‘We painted a few bikes white, that was all. Things got more serious when I became a member of the Amsterdam city council two years later.’'
+    paragraph: 'Short is calling for a sweeping reinvention of how skyscrapers and major public buildings are designed – to end the reliance on sealed buildings which exist solely via the ‘life support’ system of vast air conditioning units. Instead, he shows it is entirely possible to accommodate natural ventilation and cooling in large buildings by looking into the past, before the widespread introduction of air conditioning systems, which were ‘relentlessly and aggressively marketed’ by their inventors.'
   },
   {
     alphabet: 'C',
-    paragraph: 'Schimmelpennink seized this opportunity to present a more elaborate Witte Fietsenplan to the city council. ‘My idea was that the municipality of Amsterdam would distribute 10,000 white bikes over the city, for everyone to use,’ he explains. ‘I made serious calculations. It turned out that a white bicycle – per person, per kilometer – would cost the municipality only 10% of what it contributed to public transport per person per kilometer.’ Nevertheless, the council unanimously rejected the plan. ‘They said that the bicycle belongs to the past. They saw a glorious future for the car,’ says Schimmelpennink. But he was not in the least discouraged.'
+    paragraph: 'Short points out that to make most contemporary buildings habitable, they have to be sealed and air conditioned. The energy use and carbon emissions this generates is spectacular and largely unnecessary. Buildings in the West account for 40-50% of electricity usage, generating substantial carbon emissions, and the rest of the world is catching up at a frightening rate. Short regards glass, steel and air-conditioned skyscrapers as symbols of status, rather than practical ways of meeting our requirements.'
   },
   {
     alphabet: 'D',
-    paragraph: 'Schimmelpennink never stopped believing in bike-sharing, and in the mid-90s, two Danes asked for his help to set up a system in Copenhagen. The result was the world’s first large-scale bike-share programme. It worked on a deposit: ‘You dropped a coin in the bike and when you returned it, you got your money back.’ After setting up the Danish system, Schimmelpennink decided to try his luck again in the Netherlands – and this time he succeeded in arousing the interest of the Dutch Ministry of Transport. ‘Times had changed,’ he recalls. ‘People had become more environmentally conscious, and the Danish experiment had proved that bike-sharing was a real possibility.’ A new Witte Fietsenplan was launched in 1999 in Amsterdam. However, riding a white bike was no longer free; it cost one guilder per trip and payment was made with a chip card developed by the Dutch bank Postbank. Schimmelpennink designed conspicuous, sturdy white bikes locked in special racks which could be opened with the chip card – the plan started with 250 bikes, distributed over five stations.'
+    paragraph: 'Short’s book highlights a developing and sophisticated art and science of ventilating buildings through the 19th and earlier-20th centuries, including the design of ingeniously ventilated hospitals. Of particular interest were those built to the designs of John Shaw Billings, including the first Johns Hopkins Hospital in the US city of Baltimore (1873-1889). ‘We spent three years digitally modelling Billings’ final designs,’ says Short. ‘We put pathogens* in the airstreams, modelled for someone with tuberculosis (TB) coughing in the wards and we found the ventilation systems in the room would have kept other patients safe from harm.'
   },
   {
     alphabet: 'E',
-    paragraph: 'Theo Molenaar, who was a system designer for the project, worked alongside Schimmelpennink. ‘I remember when we were testing the bike racks, he announced that he had already designed better ones. But of course, we had to go through with the ones we had.’ The system, however, was prone to vandalism and theft. ‘After every weekend there would always be a couple of bikes missing,’ Molenaar says. ‘I really have no idea what people did with them, because they could instantly be recognised as white bikes.’ But the biggest blow came when Postbank decided to abolish the chip card, because it wasn’t profitable. ‘That chip card was pivotal to the system,’ Molenaar says. ‘To continue the project we would have needed to set up another system, but the business partner had lost interest.'
+    paragraph: 'We discovered that 19th-century hospital wards could generate up to 24 air changes an hour – that’s similar to the performance of a modern-day, computer-controlled operating theatre. We believe you could build wards based on these principles now. Single rooms are not appropriate for all patients. Communal wards appropriate for certain patients – older people with dementia, for example – would work just as well in today’s hospitals, at a fraction of the energy cost.’ Professor Short contends the mindset and skill-sets behind these designs have been completely lost, lamenting the disappearance of expertly designed theatres, opera houses, and other buildings where up to half the volume of the building was given over to ensuring everyone got fresh air.'
   },
   {
     alphabet: 'F',
-    paragraph: 'Schimmelpennink was disappointed, but – characteristically – not for long. In 2002 he got a call from the French advertising corporation JC Decaux, who wanted to set up his bike-sharing scheme in Vienna. ‘That went really well. After Vienna, they set up a system in Lyon. Then in 2007, Paris followed. That was a decisive moment in the history of bike-sharing.’ The huge and unexpected success of the Parisian bike-sharing programme, which now boasts more than 20,000 bicycles, inspired cities all over the world to set up their own schemes, all modelled on Schimmelpennink’s. ‘It’s wonderful that this happened,’ he says. ‘But financially I didn’t really benefit from it, because I never filed for a patent.’'
+    paragraph: 'Much of the ingenuity present in 19th-century hospital and building design was driven by a panicked public clamouring for buildings that could protect against what was thought to be the lethal threat of miasmas – toxic air that spread disease. Miasmas were feared as the principal agents of disease and epidemics for centuries, and were used to explain the spread of infection from the Middle Ages right through to the cholera outbreaks in London and Paris during the 1850s. Foul air, rather than germs, was believed to be the main driver of ‘hospital fever’, leading to disease and frequent death. The prosperous steered clear of hospitals. While miasma theory has been long since disproved, Short has for the last 30 years advocated a return to some of the building design principles produced in its wake.'
   },
   {
     alphabet: 'G',
-    paragraph: 'n Amsterdam today, 38% of all trips are made by bike and, along with Copenhagen, it is regarded as one of the two most cycle-friendly capitals in the world – but the city never got another Witte Fietsenplan. Molenaar believes this may be because everybody in Amsterdam already has a bike. Schimmelpennink, however, cannot see that this changes Amsterdam’s need for a bike-sharing scheme. ‘People who travel on the underground don’t carry their bikes around. But often they need additional transport to reach their final destination.’ Although he thinks it is strange that a city like Amsterdam does not have a successful bike-sharing scheme, he is optimistic about the future. ‘In the ‘60s we didn’t stand a chance because people were prepared to give their lives to keep cars in the city. But that mentality has totally changed. Today everybody longs for cities that are not dominated by cars.’'
+    paragraph: 'Today, huge amounts of a building’s space and construction cost are given over to air conditioning. ‘But I have designed and built a series of buildings over the past three decades which have tried to reinvent some of these ideas and then measure what happens. ‘To go forward into our new low-energy, low-carbon future, we would be well advised to look back at design before our high-energy, high-carbon present appeared. What is surprising is what a rich legacy we have abandoned.’'
+  },
+  {
+    alphabet: 'H',
+    paragraph: 'Successful examples of Short’s approach include the Queen’s Building at De Montfort University in Leicester. Containing as many as 2,000 staff and students, the entire building is naturally ventilated, passively cooled and naturally lit, including the two largest auditoria, each seating more than 150 people. The award-winning building uses a fraction of the electricity of comparable buildings in the UK. Short contends that glass skyscrapers in London and around the world will become a liability over the next 20 or 30 years if climate modelling predictions and energy price rises come to pass as expected.'
+  },
+  {
+    alphabet: 'I',
+    paragraph: 'He is convinced that sufficiently cooled skyscrapers using the natural environment can be produced in almost any climate. He and his team have worked on hybrid buildings in the harsh climates of Beijing and Chicago – built with natural ventilation assisted by back-up air conditioning – which, surprisingly perhaps, can be switched off more than half the time on milder days and during the spring and autumn. Short looks at how we might reimagine the cities, offices and homes of the future. Maybe it’s time we changed our outlook.'
   },
 ]
 
 const Text2 = () => {
   return (
     <>
-      <Typography sx={{ mb: 2.5 }}>
-        <h3>
-          <strong>
-            The growth of bike-sharing schemes around the world
-          </strong>
-        </h3>
+      <Typography variant="h6" sx={{ my: 2.5 }}>
+        Back to the future of skyscraper design
       </Typography>
-      <Typography sx={{ mb: 2.5 }}>
-        How Dutch engineer Luud Schimmelpennink helped to devise urban bike-sharing schemes
+      <Typography sx={{ my: 2.5 }} className="italic">
+        Answers to the problem of excessive electricity use by skyscrapers and large public buildings can be found in ingenious but forgotten architectural designs of the 19th and early-20th centuries
       </Typography>
 
       {Paragraphs.map((i, index) => {
         return (
-          <Typography key={index} sx={{ mb: 1.5, display: 'flex' }}>
+          <>
             <Typography variant="h6" sx={{ px: 2 }}>
               {i.alphabet}
             </Typography>
-            <Typography>
+            <Typography key={index} sx={{ mb: 1.5 }}>
               {i.paragraph}
             </Typography>
-          </Typography>
+          </>
         )
       })}
+      <Typography sx={{ mb: 1.5 }} className="ielts-paragraph">
+        * pathogens: microorganisms that can cause disease
+      </Typography>
     </>
   );
 };

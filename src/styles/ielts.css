@@ -1040,7 +1040,8 @@ td {
   display: flex;
   flex-wrap: wrap;
   font-size: 15px;
-  color: var(--color-02)
+  color: var(--color-02);
+  height: auto;
 }
 
 .ielts-answersTable.top-labels .MuiChip-outlined {
@@ -1443,6 +1444,10 @@ td {
 
 .ielts-answersTable.top-labels .MuiChip-outlined:nth-child(8):before {
   content: "H";
+}
+
+.ielts-answersTable.top-labels .MuiChip-outlined:nth-child(9):before {
+  content: "I";
 }
 
 .dragbox-container ul {

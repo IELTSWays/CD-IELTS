@@ -1,6 +1,6 @@
 import React, { Box, Typography } from "@mui/material";
 
-const IELTSQuestionTitle = ({ to, from, type }) => {
+const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
 
   // Type 1: Complete the notes. Write one word and/or a number for each answer.
   // Type 2: Choose [two] correct answer.
@@ -8,6 +8,7 @@ const IELTSQuestionTitle = ({ to, from, type }) => {
   // Type 4: Complete the notes below. Write [ONE WORD ONLY] for each answer.
   // Type 5: Do the following statements agree with the information given in Reading Passage 1? [TRUE,FALSE,NOT-GIVEN]
   // TYpe 7: Write the correct letter, A-H, next to Questions 16-20
+  // Type 8: Write the correct letter, A-I, in boxes 14-18 on your answer sheet.
 
   return (
     <Box sx={{ py: 2 }}>
@@ -94,6 +95,38 @@ const IELTSQuestionTitle = ({ to, from, type }) => {
           </Typography>
         </>
       }
+      {type == 8 &&
+        <>
+          <Typography>
+            Reading Passage 2 has nine section, <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>
+          </Typography>
+          <Typography>
+            Which section contains the following information?
+          </Typography>
+          <Typography className='italic'>
+            Write the correct letter,
+            <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>, in boxes
+            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+          </Typography>
+        </>
+      }
+      {type == 9 &&
+        <>
+          <Typography>
+            Reading Passage 3 has eight sections, <strong className='uppercase'>&nbsp;A - H&nbsp;</strong>
+          </Typography>
+          <Typography>
+            Choose the correct heading for each section from the list of headings below.
+          </Typography>
+          <Typography className='italic'>
+            Write the correct number
+            <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>, in boxes
+            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+          </Typography>
+        </>
+      }
+
+
     </Box>
   );
 };

@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from '@/services/API'
 // api
 
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
@@ -20,7 +20,6 @@ import IELTSInput from '@/components/IELTS/QuestionTypes/IELTSInput';
 import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation/';
 import IELTSTableOptions from '@/components/IELTS/QuestionTypes/IELTSTableOptions';
-import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel'
 
 import IdeClone from "@/components/IELTS/IdeClone"
@@ -101,6 +100,13 @@ const index = () => {
     }
   }, [currentQuestion])
 
+
+  const options_1_8 = [
+    { label: 'TRUE', value: "a", },
+    { label: 'FALSE', value: "b", },
+    { label: 'NOT GIVEN', value: "c", },
+  ]
+
   const options_9_13 = [
     { label: 'TRUE', value: "a", },
     { label: 'FALSE', value: "b", },
@@ -139,188 +145,199 @@ const index = () => {
                 {part === 1 &&
                   <>
                     {/* ================================================================================ [01-08] */}
-                    <IELTSQuestionTitle from="1" to="8" type="4" />
-                    <IELTSTitle title="Children’s play" isHeader />
-                    <IELTSTitle title="Uses of children’s play" />
+                    <IELTSQuestionTitle from="1" to="8" type="5" />
                     {/************* [1] *************/}
-                    <IELTSInput qn="1" beforeInput="● building a ‘magical kingdom’ may help develop" />
-                    <IELTSInput qn="3" beforeInput="● hello" afterInput="bye" />
+                    <IELTSRadio
+                      qn="1"
+                      question="Henderson rarely visited the area around Press estate when he was younger."
+                      options={options_1_8}
+                    />
                     {/************* [2] *************/}
-                    <IELTSInput qn="2" beforeInput="● board games involve" afterInput="and turn-taking" />
-                    <IELTSTitle title="Recent changes affecting children’s play" />
+                    <IELTSRadio
+                      qn="2"
+                      question="Henderson pursued a business career because it was what his family wanted."
+                      options={options_1_8}
+                    />
                     {/************* [3] *************/}
-                    <IELTSInput qn="3" beforeInput="● population of" afterInput="have grown" />
+                    <IELTSRadio
+                      qn="3"
+                      question="Henderson and Notman were surprised by the results of their 1865 experiment."
+                      options={options_1_8}
+                    />
                     {/************* [4] *************/}
-                    <IELTSInput qn="4" beforeInput=" — fear of" />
+                    <IELTSRadio
+                      qn="4"
+                      question="There were many similarities between Henderson’s early landscapes and those of Notman."
+                      options={options_1_8}
+                    />
                     {/************* [5] *************/}
-                    <IELTSInput qn="5" beforeInput=" — fear of" />
+                    <IELTSRadio
+                      qn="5"
+                      question="The studio that Henderson opened in 1866 was close to his home."
+                      options={options_1_8}
+                    />
                     {/************* [6] *************/}
-                    <IELTSInput qn="6" beforeInput=" — increased" afterInput="in schools" />
-                    <IELTSTitle title="International policies on children’s play" />
+                    <IELTSRadio
+                      qn="6"
+                      question="Henderson gave up portraiture so that he could focus on taking photographs of scenery."
+                      options={options_1_8}
+                    />
                     {/************* [7] *************/}
-                    <IELTSInput qn="7" beforeInput="● it is difficult to find" afterInput="to support new policies" />
+                    <IELTSRadio
+                      qn="7"
+                      question="When Henderson began work for the Intercolonial Railway, the Montreal to Halifax line had been finished."
+                      options={options_1_8}
+                    />
                     {/************* [8] *************/}
-                    <IELTSInput qn="8" beforeInput="● research needs to study the impact of play on the rest of the child’s" />
-
+                    <IELTSRadio
+                      qn="8"
+                      question="Henderson’s last work as a photographer was with the Canadian Pacific Railway."
+                      options={options_1_8}
+                    />
                     {/* ================================================================================ [09-13] */}
-                    <IELTSQuestionTitle from="9" to="13" type="5" />
-                    {/************* [9] *************/}
-                    <IELTSRadio
-                      qn="9"
-                      question="Children with good self-control are known to be likely to do well at school later on."
-                      options={options_9_13}
-                    />
-                    {/************* [10] *************/}
-                    <IELTSRadio
-                      qn="10"
-                      question="The way a child plays may provide information about possible medical problems."
-                      options={options_9_13}
-                    />
-                    {/************* [11] *************/}
-                    <IELTSRadio
-                      qn="11"
-                      question="Playing with dolls was found to benefit girls’ writing more than boys’ writing"
-                      options={options_9_13}
-                    />
-                    {/************* [12] *************/}
-                    <IELTSRadio
-                      qn="12"
-                      question="Children had problems thinking up ideas when they first created the story with Lego."
-                      options={options_9_13}
-                    />
-                    {/************* [13] *************/}
-                    <IELTSRadio
-                      qn="13"
-                      question="People nowadays regard children’s play as less significant than they did in the past."
-                      options={options_9_13}
-                    />
+                    <IELTSQuestionTitle from="9" to="13" type="4" />
+                    <IELTSTitle title="Alexander Henderson" isHeader />
+                    <IELTSTitle title="Early life" />
+                    {/*********** [9] ***********/}
+                    <IELTSInput qn="9" beforeInput="● was born in Scotland in 1831 – father was a" />
+                    <Typography>● trained as an accountant, emigrated to Canada in 1855</Typography>
+                    {/*********** [10] ***********/}
+                    <IELTSTitle title="Start of a photographic career" isHeader />
+                    <Typography>● opened up a photographic studio in 1866</Typography>
+                    <Typography>● took photos of city life, but preferred landscape photography" </Typography>
+                    <IELTSInput qn="10" beforeInput="● people bought Henderson’s photos because photography took up considerable time and the" afterInput="was heavy" />
+                    {/*********** [11] ***********/}
+                    <IELTSInput qn="11" beforeInput="● the photographs Henderson sold were" afterInput="or souvenirs" />
+                    {/*********** [12] ***********/}
+                    <IELTSTitle title="Travelling as a professional photographer" isHeader />
+                    <Typography>● travelled widely in Quebec and Ontario in 1870s and 1880s</Typography>
+                    <IELTSInput qn="12" beforeInput="● took many trips along eastern rivers in a" />
+                    <Typography>● worked for Canadian railways between 1875 and 1897</Typography>
+                    {/*********** [13] ***********/}
+                    <IELTSInput qn="13" beforeInput="● worked for CPR in 1885 and photographed the" afterInput="and the railway at Rogers Pass" />
                   </>
                 }
                 {part === 2 &&
                   <>
                     {/* ================================================================================ [14-18] */}
-                    <IELTSQuestionTitle from="14" to="18" type="6" />
+                    <IELTSQuestionTitle from="14" to="18" type="8" />
                     {/************* [14-18] *************/}
                     <IELTSTableOptions
                       questions={[
-                        { id: 14, title: 'a description of how people misused a bike-sharing scheme' },
-                        { id: 15, title: 'an explanation of why a proposed bike-sharing scheme was turned down' },
-                        { id: 16, title: 'a reference to a person being unable to profit their work' },
-                        { id: 17, title: 'an explanation of the potential savings a bike-sharing scheme would bring' },
-                        { id: 18, title: 'a reference to the problems a bike-sharing scheme was intended to solve' }
-                      ]} />
-
-                    {/* ================================================================================ [19-22] */}
-                    <IELTSQuestionTitle from="19" to="22" type="2" />
-                    {/************* [19-20] *************/}
-                    <IELTSMultiCheckbox
-                      qn="19"
-                      question="the following statements are made in the text about the Amsterdam bike-sharing scheme of 1999?"
-                      checkList={[
-                        { label: 'It was initially opposed by a government department.', value: "a", },
-                        { label: 'It failed when a partner in the scheme withdrew support.', value: "b", },
-                        { label: 'It aimed to be more successful than the Copenhagen scheme.', value: "c", },
-                        { label: 'It was made possible by a change in people’s attitudes.', value: "d", },
-                        { label: 'It attracted interest from a range of bike designers.', value: "e", },
+                        { id: 14, title: 'why some people avoided hospitals in the 19th century' },
+                        { id: 15, title: 'a suggestion that the popularity of tall buildings is linked to prestige' },
+                        { id: 16, title: 'a comparison between the circulation of air in a 19th-century building and modern standards' },
+                        { id: 17, title: 'how Short tested the circulation of air in a 19th-century building' },
+                        { id: 18, title: 'an implication that advertising led to the large increase in the use of air conditioning' }
                       ]}
+                      options={
+                        [
+                          { label: 'A', value: "a", },
+                          { label: 'B', value: "b", },
+                          { label: 'C', value: "c", },
+                          { label: 'D', value: "d", },
+                          { label: 'E', value: "e", },
+                          { label: 'F', value: "f", },
+                          { label: 'G', value: "g", },
+                          { label: 'H', value: "h", },
+                          { label: 'I', value: "i", },
+                        ]
+                      }
                     />
-                    {/************* [21-22] *************/}
-                    <IELTSMultiCheckbox
-                      qn="21"
-                      question="of the following statements are made in the text about Amsterdam today?"
-                      checkList={[
-                        { label: 'The majority of residents would like to prevent all cars from entering the city.', value: "a", },
-                        { label: 'There is little likelihood of the city having another bike-sharing scheme.', value: "b", },
-                        { label: 'More trips in the city are made by bike than by any other form of transport.', value: "c", },
-                        { label: 'A bike-sharing scheme would benefit residents who use public transport.', value: "d", },
-                        { label: 'The city has a reputation as a place that welcomes cyclists.', value: "e", },
-                      ]}
-                    />
-
-                    {/* ================================================================================ [23-26] */}
-
-                    <IELTSQuestionTitle from="23" to="26" type="4" />
-                    <IELTSTitle title="he first urban bike-sharing scheme" />
+                    {/* ================================================================================ [19-26] */}
+                    <IELTSQuestionTitle from="19" to="26" type="4" />
+                    <IELTSTitle title="Ventilation in 19th-century hospital wards" isHeader />
+                    {/************* [19] *************/}
+                    <IELTSInput qn="19" beforeInput="Professor Alan Short examined the work of John Shaw Billings, who influenced the architectural" afterInput="of hospitals to ensure they had good ventilation." />
+                    {/************* [20] *************/}
+                    <IELTSInput qn="20" beforeInput="He calculated that" />
+                    {/************* [21] *************/}
+                    <IELTSInput qn="21" beforeInput="in the air coming from patients suffering form" afterInput="would not have harmed other patients" />
+                    {/************* [22] *************/}
+                    <IELTSInput qn="22" beforeInput="He also found that the air in" afterInput="In hospitals could change as often as in a modern operating theatre," />
                     {/************* [23] *************/}
-                    <IELTSInput qn="23" beforeInput="The first bike-sharing scheme was the idea of the Dutch group Provo. The people who belonged to this group were" />
+                    <IELTSInput qn="23" beforeInput="He suggests that energy use could be reduced by locating more patients in" afterInput="areas." />
                     {/************* [24] *************/}
-                    <IELTSInput qn="24" beforeInput="They were concerned about damage to the environment and about" afterInput="and believed that the bike-sharing scheme would draw attention to these issues." />
+                    <IELTSInput qn="24" beforeInput="A major reason for improving ventilation in 19th-century hospitals was the demand from the" afterInput="or protection against bad air," />
                     {/************* [25] *************/}
-                    <IELTSInput qn="25" beforeInput="As well as painting some bikes white, they handed out" afterInput="that condemned the use of cars." />
+                    <IELTSInput qn="25" beforeInput="known as" afterInput="These were blamed for the spread of disease for hundreds of years," />
                     {/************* [26] *************/}
-                    <IELTSInput qn="26" beforeInput="However, the scheme was not a great success:
-almost as quickly as Provo left the bikes around the city, the" afterInput="Took them away." />
-                    <Typography sx={{ mb: 2 }}>
-                      According to Schimmelpennink,the scheme was intended to be symbolic.The idea was to get people thinking about the issues.
-                    </Typography>
+                    <IELTSInput qn="26" beforeInput="including epidemics of" afterInput="in London and Paris in the middle of the 19th century." />
                   </>
                 }
 
                 {part === 3 &&
                   <>
                     {/* ================================================================================ [27-31] */}
-                    <IELTSQuestionTitle from="27" to="31" type="3" />
+                    <IELTSQuestionTitle from="27" to="34" type="9" />
                     {/************* [27-31] *************/}
                     <IELTSTableOptionsLabel
                       questions={
                         [
-                          { id: 27, title: 'Hotel managers need to know what would encourage good staff to remain.' },
-                          { id: 28, title: 'The actions of managers may make staff feel they shouldn’t move to a different employer.' },
-                          { id: 29, title: 'Little is done in the hospitality industry to help workers improve their skills.' },
-                          { id: 30, title: 'Staff are less likely to change jobs if cooperation is encouraged.' },
-                          { id: 31, title: 'Dissatisfaction with pay is not the only reason why hospitality workers change jobs.' }
+                          { id: 27, title: 'Section A' },
+                          { id: 28, title: 'Section B' },
+                          { id: 29, title: 'Section C' },
+                          { id: 30, title: 'Section D' },
+                          { id: 31, title: 'Section E' },
+                          { id: 32, title: 'Section F' },
+                          { id: 33, title: 'Section G' },
+                          { id: 34, title: 'Section H' }
                         ]
                       }
                       topLabels={[
-                        { title: "Pfeffer" },
-                        { title: "Lucas" },
-                        { title: "Maroudas et al" },
-                        { title: "Ng and Sorensen" },
-                        { title: "provide a handout" },
-                        { title: "Enz and Siguaw" },
-                        { title: "Deery" },
+                        { title: "Complaints about the impact of a certain approach" },
+                        { title: "Fundamental beliefs that are in fact incorrect" },
+                        { title: "Early recommendations concerning business activities" },
+                        { title: "Organisations that put a new approach into practice" },
+                        { title: "Companies that have suffered from changing their approach" },
+                        { title: "What people are increasingly expected to do" },
+                        { title: "How to achieve outcomes that are currently impossible" },
+                        { title: "Neither approach guarantees continuous improvement" },
+                        { title: "Evidence that a certain approach can have more disadvantages that advantages" },
                       ]
                       }
+                      options={
+                        [
+                          { label: 'A', value: "a", },
+                          { label: 'B', value: "b", },
+                          { label: 'C', value: "c", },
+                          { label: 'D', value: "d", },
+                          { label: 'E', value: "e", },
+                          { label: 'F', value: "f", },
+                          { label: 'G', value: "g", },
+                          { label: 'H', value: "h", },
+                          { label: 'I', value: "i", },
+                        ]
+                      }
                     />
-                    {/* ================================================================================ [32-35] */}
-                    <IELTSQuestionTitle from="32" to="35" type="5" />
-                    {/************* [32] *************/}
-                    <IELTSRadio
-                      qn="32"
-                      question="One reason for high staff turnover in the hospitality industry is poor morale."
-                      options={options_32_35}
-                    />
-                    {/************* [33] *************/}
-                    <IELTSRadio
-                      qn="33"
-                      question="Research has shown that staff have a tendency to dislike their workplace."
-                      options={options_32_35}
-                    />
-                    {/************* [34] *************/}
-                    <IELTSRadio
-                      qn="34"
-                      question="An improvement in working conditions and job security makes staff satisfied with their jobs."
-                      options={options_32_35}
-                    />
+                    {/* ================================================================================ [35-37] */}
+                    <IELTSQuestionTitle from="35" to="37" type="4" />
                     {/************* [35] *************/}
-                    <IELTSRadio
-                      qn="35"
-                      question="Staff should be allowed to choose when they take breaks during the working day"
-                      options={options_32_35}
-                    />
-                    {/* ================================================================================ [36-40] */}
-                    <IELTSQuestionTitle from="36" to="40" type="4" />
-                    <IELTSTitle title="Fun at work" />
+                    <IELTSInput qn="35" beforeInput="Numerous training sessions are aimed at people who feel they are not" afterInput="enough." />
                     {/************* [36] *************/}
-                    <IELTSInput qn="36" beforeInput="Tews, Michel and Stafford carried out research on staff in an American chain of" />
+                    <IELTSInput qn="36" beforeInput="Being organised appeals to people who regard themselves as" />
                     {/************* [37] *************/}
-                    <IELTSInput qn="37" beforeInput="They discovered that activities designed for staff to have fun improved their" />
+                    <IELTSInput qn="37" beforeInput="Many people feel" afterInput="with aspects of their work." />
+                    {/* ================================================================================ [38-40] */}
+                    <IELTSQuestionTitle from="38" to="40" type="5" />
                     {/************* [38] *************/}
-                    <IELTSInput qn="38" beforeInput=", and that management involvement led to lower staff" />
+                    <IELTSRadio
+                      qn="38"
+                      question="Both businesses and people aim at order without really considering its value."
+                      options={options_1_8}
+                    />
                     {/************* [39] *************/}
-                    <IELTSInput qn="39" beforeInput="They also found that the activities needed to fit with both the company’s" />
+                    <IELTSRadio
+                      qn="39"
+                      question="Innovation is most successful if the people involved have distinct roles."
+                      options={options_1_8}
+                    />
                     {/************* [40] *************/}
-                    <IELTSInput qn="40" beforeInput="and the" afterInput="Of the staff. A balance was required between a degree of freedom and maintaining work standards." />
+                    <IELTSRadio
+                      qn="40"
+                      question="Google was inspired to adopt flexibility by the success of General Electric."
+                      options={options_1_8}
+                    />
                   </>
                 }
               </div>
