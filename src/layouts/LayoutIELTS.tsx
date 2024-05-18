@@ -28,10 +28,14 @@ import useTimer from '@/components/useTimer';
 
 import { AudioPlayer } from "@/components/AudioPlayer";
 
-import listSongs from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
-
 import useGetTests from '@/services/Requests/useGetTests';
 import usePostTestDone from '@/services/Requests/usePostTestDone';
+import usePostTestDoneWriting from '@/services/Requests/usePostTestDoneWriting';
+
+import IELTS from "@/pages/IELTS"
+
+import B14LT1 from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
+import B14LT2 from '@/pages/IELTS/14/02/IELTSListening/Audio/song.json'
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -48,6 +52,10 @@ const LayoutIELTS = ({ children }: any) => {
   const {
     refetch: refetchGetTests,
   } = useGetTests<any>(localStorage.getItem('test_id'))
+
+  const {
+    refetch: refetchTestDoneWriting,
+  } = usePostTestDoneWriting<any>(localStorage.getItem('test_id'))
 
   function handlePlayStatusChange(isPlaying: any) {
     setIsPlaying(isPlaying);
@@ -102,10 +110,22 @@ const LayoutIELTS = ({ children }: any) => {
                   FINISH
                 </Button>
 
+                {/* {(location.pathname.includes('listening') || location.pathname.includes('reading')) &&
+                  <Button variant="outlined" onClick={() => refetch()} size="small">
+                    FINISH
+                  </Button>
+                } */}
+
+                {/* {location.pathname.includes('writing') &&
+                <Button variant="outlined" onClick={() => refetchTestDoneWriting()} size="small">
+                  FINISH Writing
+                </Button>
+                } */}
+
                 <div className='align-items-center g-20'>
-                  {location.pathname.includes('writing') &&
+                  {/* {location.pathname.includes('writing') &&
                     writingSaved === 'true' && 'Saved'
-                  }
+                  } */}
                   <WifiIcon color="action" fontSize="small" />
                   <NotificationsNoneIcon color="action" fontSize="small" />
                   {/* <ModalOptions fontSize="small" /> */}
@@ -118,7 +138,8 @@ const LayoutIELTS = ({ children }: any) => {
           </div>
 
           <div className='ielts-main'>
-            {children}
+            <IELTS />
+            {/* {children} */}
           </div>
 
           <div className='ielts-footer'>
@@ -133,10 +154,23 @@ const LayoutIELTS = ({ children }: any) => {
                   <div className='ielts-footer-btn'>
                     <WifiIcon color="action" fontSize="small" />
                   </div>
-                  {
+                  {/* {
                     (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
                     listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
+                  } */}
+                  {
+                    localStorage.getItem('test_name') === 'B14LT1' &&
+                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                    B14LT1.songs.length > 0 &&
+                    <AudioPlayer songs={B14LT1.songs} onPlayStatusChange={handlePlayStatusChange} />
                   }
+                  {
+                    localStorage.getItem('test_name') === 'B14LT2' &&
+                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                    B14LT2.songs.length > 0 &&
+                    <AudioPlayer songs={B14LT2.songs} onPlayStatusChange={handlePlayStatusChange} />
+                  }
+
                   <div className='ielts-footer-btn'>
                     Exit
                   </div>

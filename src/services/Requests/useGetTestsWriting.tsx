@@ -11,10 +11,17 @@ const useGetTestsWriting = () => {
     queryFn: async () => {
       const response = await api.get('exam/user-writing-tests')
       const data = await response.data
-      return data
+      const modifiedResults = data.results.map((item: any) => ({
+        ...item,
+        skill: 'writing'
+      }));
+      return {
+        ...data,
+        results: modifiedResults
+      };
     },
   })
-  return {isLoading, data, refetch};
+  return { isLoading, data, refetch };
 };
 
 export default useGetTestsWriting;

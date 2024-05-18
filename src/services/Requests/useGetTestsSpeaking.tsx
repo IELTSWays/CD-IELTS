@@ -11,7 +11,14 @@ const useGetTestsSpeaking = () => {
     queryFn: async () => {
       const response = await api.get('exam/user-speaking-tests')
       const data = await response.data
-      return data
+      const modifiedResults = data.results.map((item: any) => ({
+        ...item,
+        skill: 'speaking'
+      }));
+      return {
+        ...data,
+        results: modifiedResults
+      };
     },
   })
   return {isLoading, data, refetch};

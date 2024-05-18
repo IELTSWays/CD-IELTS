@@ -17,7 +17,7 @@ const useGetStart = () => {
 
   const { isLoading, isSuccess, data, refetch } = useQuery({
     enabled: false,
-    queryKey: ['getAnswer'],
+    queryKey: ['getStart'],
     queryFn: async () => {
       const response = await axiosInstance.get(`exam/answer/${localStorage.getItem('test_id')}`)
       const data = await response.data
@@ -26,11 +26,13 @@ const useGetStart = () => {
       const testId: any = localStorage.getItem('test_id');
       const profile: any = localStorage.getItem('is_profile_fill');
       const test_name: any = localStorage.getItem('test_name');
+      const test_skill: any = localStorage.getItem('test_skill');
 
       localStorage.clear();
       localStorage.setItem('token', token);
       localStorage.setItem('test_id', testId);
       localStorage.setItem('test_name', test_name);
+      localStorage.setItem('test_skill', test_skill);
       localStorage.setItem('is_profile_fill', profile);
       dispatch(setTestInfo(data.answers))
       dispatch(setCurrentQuestion(1))

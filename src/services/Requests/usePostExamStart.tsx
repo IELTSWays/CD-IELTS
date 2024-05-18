@@ -35,12 +35,15 @@ const usePostExamStart = (test: any) => {
       const token: any = localStorage.getItem('token');
       const confirm: any = localStorage.getItem('confirm');
       const test_name: any = localStorage.getItem('test_name');
+      const test_skill: any = localStorage.getItem('test_skill');
       const profile: any = localStorage.getItem('is_profile_fill');
+
       dispatch(setAnswersAll({}))
       localStorage.clear();
       localStorage.setItem('token', token);
       localStorage.setItem('confirm', confirm);
       localStorage.setItem('test_id', data.test_id);
+      localStorage.setItem('test_skill', test_skill);
       localStorage.setItem('is_profile_fill', profile);
       localStorage.setItem('test_name', test_name);
       dispatch(setCurrentQuestion('1'))

@@ -119,8 +119,6 @@ const DND = () => {
     answer30 && dispatch(setAnswersAll(Object.assign({}, answersAll, { '30': (Object.values(starter.columns)[4]?.taskIds).join("") })))
   }, [answer30])
 
-  console.log('answersAll', answersAll)
-
   const onDragEnd = ({ destination, source, draggableId }) => {
     if (!destination) return;
     // if (

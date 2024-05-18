@@ -9,7 +9,7 @@ import { useAppSelector } from '@/store/hooks'
 // store
 
 import IdeClone from "@/components/IELTS/IdeClone"
-import Title from '@/components/IELTS/Title';
+import IELTSParts from '@/components/IELTS/IELTSParts';
 import TextArea from '@/components/IELTS/TextArea';
 
 import iLeft from '@/assets/images/CharmArrowLeft.svg';
@@ -30,7 +30,7 @@ const index = () => {
 
   return (
     <>
-      <Title title={parts[part - 1].title} description={parts[part - 1].description} />
+      <IELTSParts part={part}/>
 
       <div className='arrow-currentQuestion'>
         <div className={part === 1 && 'disable'}>

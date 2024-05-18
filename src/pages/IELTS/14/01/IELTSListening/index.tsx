@@ -114,7 +114,7 @@ const index = () => {
 
   useEffect(() => {
     setTest_id(localStorage.getItem('test_id'))
-    test_id && refetchGetAnswer()
+    localStorage.getItem('test_id') && refetchGetAnswer()
   }, [])
 
   const questions = [
@@ -548,7 +548,7 @@ const index = () => {
         }
       </div>
 
-      <div className="ielts-navigation" id="ielts-listening-1401">
+      <div className="ielts-navigation" id="B14LT1">
         <div className={`navigation-part ${part === 1 && 'active'} ${part > 1 && 'done'}`}>
           <div className="navigation-part-title">
             <span>Part 1</span>

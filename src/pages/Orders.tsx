@@ -607,40 +607,44 @@ const Orders = () => {
                           GO TO SKYPE
                         </Button>
                         :
-                        <Button
-                          variant="contained"
-                          size="small"
-                          sx={{ width: { xs: '100%', sm: 'auto' } }}
-                          onClick={() => navigate('/exams')}
-                        >
-                          EXAM'S LIST
-                        </Button>
-                      }
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        color="success"
-                        sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}
-                      >
-                        PAID
-                      </Button>
-                    </CardContent>
+                        // <Button
+                        //   variant="contained"
+                        //   size="small"
+                        //   sx={{ width: { xs: '100%', sm: 'auto' } }}
+                        //   onClick={() => navigate('/exams')}
+                        // >
+                        //   EXAM'S LIST
+                        // </Button>
+                        <a href={`/exams`}
+                          className="btn">
+                            EXAM'S LIST
+                        </a>
+                  }
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="success"
+                    sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}
+                  >
+                    PAID
+                  </Button>
+                </CardContent>
                   }
 
-                  {/* pending */}
-                  {i.status === 'pending' &&
-                    <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
-                      <Button variant="outlined" size="small" fullWidth sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
-                        Checking payment information
-                      </Button>
-                    </CardContent>
-                  }
-                </Card>
+                {/* pending */}
+                {i.status === 'pending' &&
+                  <CardContent sx={{ display: 'flex', justifyContent: 'flex-end', pt: 0, gap: 1, flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}>
+                    <Button variant="outlined" size="small" fullWidth sx={{ pointerEvents: 'none', width: { xs: '100%', sm: 'auto' } }}>
+                      Checking payment information
+                    </Button>
+                  </CardContent>
+                }
+              </Card>
               </Grid>
-            )
+      )
           })
         }
-      </Grid>
+    </Grid >
     </>
   );
 };

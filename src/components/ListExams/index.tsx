@@ -122,7 +122,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
             )) :
             data?.map((i: any, index: number) => {
               return (
-                <Box key={index}>
+                <Box key={index} onMouseOver={() => localStorage.setItem('test_skill', i.skill)}>
                   <Paper
                     variant="outlined"
                     onMouseOver={() => localStorage.setItem('test_name', i.name)}
@@ -158,7 +158,8 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                           alignItems: 'center',
                           justifyContent: 'flex-end'
                         }}>
-                        {(!i.answers && !i.is_expired && !i.test_done) &&
+                        {
+                          i.name.includes('W') && (!i.answers && !i.is_expired && !i.test_done) &&
                           <Button
                             variant="contained"
                             size="small"
@@ -168,15 +169,16 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                             start
                           </Button>
                         }
-                        {(i.answers && !i.is_expired && !i.test_done) &&
-                          <Button
+                        {((i.name.includes('R') || i.name.includes('L')) && i.answers && !i.is_expired && !i.test_done) &&
+                          <a
                             variant="contained"
                             size="small"
                             sx={{ width: '120px' }}
-                            onClick={() => continueExam()}
+                            href={`/IELTS/${localStorage.getItem('test_skill')}`}
+                            className="btn"
                           >
                             go to test
-                          </Button>
+                          </a>
                         }
                         {(!i.test_done && i.is_expired) &&
                           <Button

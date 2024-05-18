@@ -13,13 +13,13 @@ const usePostTestDoneWriting = () => {
 
   const { isLoading, isSuccess, data, isError, refetch } = useQuery({
     enabled: false,
-    queryKey: ['postTestDone'],
+    queryKey: ['postTestDoneWriting'],
     queryFn: async () => {
       const response = await api.patch(`exam/answer-writing/${localStorage.getItem('test_id')}`, {
         "test_done": true,
         "confirm": true,
-        "task1": answersAll['00001'],
-        "task2": answersAll['00002'],
+        "task1": answersAll['1'],
+        "task2": answersAll['2'],
       })
       const data = await response.data
       navigate('/exams')

@@ -23,10 +23,7 @@ import ExaminerProfile from "@/pages/ExaminerProfile"
 
 import Confirm from "@/pages/Confirm";
 
-// Book14 Test 1
-import Book14_Test_1_Writing from "@/pages/IELTS/14/01/IELTSWriting";
-import Book14_Test_1_Reading from "@/pages/IELTS/14/01/IELTSReading";
-import Book14_Test_1_Listening from "@/pages/IELTS/14/01/IELTSListening";
+import IELTS from "@/pages/IELTS"
 
 const MainRoutes = () => {
   return (
@@ -49,10 +46,9 @@ const MainRoutes = () => {
           <Route element={<ExaminerProfile />} path="/examinerProfile" />
         </Route>
         <Route element={<IELTSRoutes />}>
-          {/* 14-01 */}
-          <Route element={<Book14_Test_1_Reading />} path="/IELTS/Reading" />
-          <Route element={<Book14_Test_1_Writing />} path="/IELTS/Writing" />
-          <Route element={<Book14_Test_1_Listening />} path="/IELTS/Listening" />
+          <Route element={<IELTS />} path="/IELTS/reading" />
+          <Route element={<IELTS />} path="/IELTS/writing" />
+          <Route element={<IELTS />} path="/IELTS/listening" />
         </Route>
 
         <Route element={<ConfirmRoutes />}>

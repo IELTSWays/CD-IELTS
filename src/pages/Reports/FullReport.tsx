@@ -208,7 +208,7 @@ const index = () => {
                       }}>
                       {i.number}
                     </Avatar>
-                    <Typography gutterBottom>
+                    <Typography gutterBottom variant="h4"> 
                       {i.question}
                     </Typography>
                   </Stack>
@@ -222,7 +222,7 @@ const index = () => {
                           fontSize: '30px',
                           borderRadius: '5px'
                         }} />
-                      <Typography sx={{ pt: '4px' }}>
+                      <Typography sx={{ pt: '4px' }} variant="h5">
                         {i.keywords}
                       </Typography>
                     </Stack>

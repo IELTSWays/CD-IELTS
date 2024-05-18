@@ -9,17 +9,17 @@
         {
           "id": "B10ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT1",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -31,17 +31,17 @@
         {
           "id": "B10ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT2",
           "skill": "writing",
-          "enable": true
+          "enable": false
         }
       ]
     },
@@ -53,12 +53,12 @@
         {
           "id": "B10ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT3",
@@ -75,12 +75,12 @@
         {
           "id": "B10ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B10AWT4",
@@ -99,12 +99,12 @@
         {
           "id": "B11ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT1",
@@ -121,12 +121,12 @@
         {
           "id": "B11ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT2",
@@ -143,12 +143,12 @@
         {
           "id": "B11ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT3",
@@ -165,12 +165,12 @@
         {
           "id": "B11ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B11AWT4",
@@ -189,12 +189,12 @@
         {
           "id": "B12ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT1",
@@ -211,12 +211,12 @@
         {
           "id": "B12ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT2",
@@ -233,12 +233,12 @@
         {
           "id": "B12ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT3",
@@ -255,12 +255,12 @@
         {
           "id": "B12ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B12AWT4",
@@ -279,12 +279,12 @@
         {
           "id": "B13ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT1",
@@ -301,12 +301,12 @@
         {
           "id": "B13ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT2",
@@ -323,12 +323,12 @@
         {
           "id": "B13ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT3",
@@ -345,12 +345,12 @@
         {
           "id": "B13ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B13AWT4",
@@ -379,7 +379,7 @@
         {
           "id": "B14AWT1",
           "skill": "writing",
-          "enable": false
+          "enable": true
         }
       ]
     },
@@ -396,7 +396,7 @@
         {
           "id": "B14ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT2",
@@ -413,12 +413,12 @@
         {
           "id": "B14ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT3",
@@ -435,12 +435,12 @@
         {
           "id": "B14ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B14AWT4",
@@ -459,12 +459,12 @@
         {
           "id": "B15ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART1",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT1",
@@ -481,12 +481,12 @@
         {
           "id": "B15ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART2",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT2",
@@ -503,12 +503,12 @@
         {
           "id": "B15ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART3",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT3",
@@ -525,12 +525,12 @@
         {
           "id": "B15ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15ART4",
           "skill": "reading",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B15AWT4",
@@ -549,7 +549,7 @@
         {
           "id": "B16ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART1",
@@ -571,7 +571,7 @@
         {
           "id": "B16ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART2",
@@ -593,7 +593,7 @@
         {
           "id": "B16ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART3",
@@ -615,7 +615,7 @@
         {
           "id": "B16ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B16ART4",
@@ -639,7 +639,7 @@
         {
           "id": "B17ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART1",
@@ -661,7 +661,7 @@
         {
           "id": "B17ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART2",
@@ -683,7 +683,7 @@
         {
           "id": "B17ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART3",
@@ -705,7 +705,7 @@
         {
           "id": "B17ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B17ART4",
@@ -728,7 +728,7 @@
         {
           "id": "B18ALT1",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART1",
@@ -750,7 +750,7 @@
         {
           "id": "B18ALT2",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART2",
@@ -772,7 +772,7 @@
         {
           "id": "B18ALT3",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART3",
@@ -794,7 +794,7 @@
         {
           "id": "B18ALT4",
           "skill": "listening",
-          "enable": true
+          "enable": false
         },
         {
           "id": "B18ART4",
