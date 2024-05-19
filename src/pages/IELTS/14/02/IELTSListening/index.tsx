@@ -310,8 +310,43 @@ const index = () => {
                 {/* ================================================================================ [25-30] */}
                 <IELTSQuestionTitle from="25" to="30" type="3" />
                 {/************* [25-30] *************/}
-                <IELTSDrag listOptions={listOptions}
-                columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" />
+                {/* <IELTSDrag listOptions={listOptions}
+                columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" /> */}
+                <IELTSTableOptionsLabel
+                  questions={
+                    [
+                      { id: 25, title: 'Introduction' },
+                      { id: 26, title: 'Discovery of the mammoth tooth' },
+                      { id: 27, title: 'Initial questions asked by the researchers' },
+                      { id: 28, title: 'Further research carried out on the island' },
+                      { id: 29, title: 'Findings and possible explanations' },
+                      { id: 30, title: 'Relevance to the present day' },
+                    ]
+                  }
+                  topLabels={[
+                    { title: "make it more interactive" },
+                    { title: "reduce visual input" },
+                    { title: "add personal opinions" },
+                    { title: "contact one of the researchers" },
+                    { title: "make detailed notes" },
+                    { title: "find information online" },
+                    { title: "check timing" },
+                    { title: "organise the content more clearly" },
+                  ]
+                  }
+                  options={
+                    [
+                      { label: 'A', value: "a", },
+                      { label: 'B', value: "b", },
+                      { label: 'C', value: "c", },
+                      { label: 'D', value: "d", },
+                      { label: 'E', value: "e", },
+                      { label: 'F', value: "f", },
+                      { label: 'G', value: "g", },
+                      { label: 'H', value: "h", },
+                    ]
+                  }
+                />
               </>
             }
 
