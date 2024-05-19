@@ -81,7 +81,7 @@ const index = ({ qn, question, checkList }: any) => {
               <strong className={`question-now mr-5 ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}>
                 {qn} - {parseInt(qn) + 1}
               </strong>
-              which <strong> TWO </strong> {question}
+              {question}
             </Typography>
           </Paper>
         </AccordionSummary>

@@ -90,7 +90,7 @@ const index = () => {
   }
 
   useEffect(() => {
-    if (currentQuestion == 11 || currentQuestion == 21 || currentQuestion == 31 || currentQuestion == 110) {
+    if (currentQuestion == 11 || currentQuestion == 21 || currentQuestion == 31 || currentQuestion == 101) {
       window.scrollTo(0, 0)
     }
   }, [currentQuestion])
@@ -187,15 +187,17 @@ const index = () => {
                 <IELTSQuestionTitle from="11" to="15" type="3" />
                 <IELTSTitle title="Visit to Branley Castle" />
                 {/************* [11] *************/}
-                <IELTSRadio
-                  qn="11"
-                  question="Before Queen Elizabeth I visited the castle in 1576,"
-                  options={[
-                    { label: 'repairs were carried out to the quest rooms.', value: "a" },
-                    { label: 'a new building was constructed for her', value: "b" },
-                    { label: 'a fire damaged part of the main hall.', value: "c" },
-                  ]}
-                />
+                <div id="q-101">
+                  <IELTSRadio
+                    qn="11"
+                    question="Before Queen Elizabeth I visited the castle in 1576,"
+                    options={[
+                      { label: 'repairs were carried out to the quest rooms.', value: "a" },
+                      { label: 'a new building was constructed for her', value: "b" },
+                      { label: 'a fire damaged part of the main hall.', value: "c" },
+                    ]}
+                  />
+                </div>
                 {/************* [12] *************/}
                 <IELTSRadio
                   qn="12"
@@ -348,7 +350,7 @@ const index = () => {
                     ]
                   }
                 /> */}
-                <DND/>
+                <DND />
               </>
             }
 

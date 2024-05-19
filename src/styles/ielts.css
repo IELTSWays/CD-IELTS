@@ -522,27 +522,31 @@ html.ielts {
 
 /* ielts-navigation- duplicates */
 
-/* [ ==================================== ielts-listening-1401 */
-
 .ielts-navigation#B14LT1 #item-11,
-.ielts-navigation#B14LT1 #item-13 {
+.ielts-navigation#B14LT1 #item-13,
+.ielts-navigation#B14LT3 #item-11,
+.ielts-navigation#B14LT3 #item-13 {
   width: 55px !important;
 }
 
 /* [12,14] */
 .ielts-navigation#B14LT1 #item-12,
-.ielts-navigation#B14LT1 #item-14 {
+.ielts-navigation#B14LT1 #item-14,
+.ielts-navigation#B14LT3 #item-12,
+.ielts-navigation#B14LT3 #item-14{
   display: none !important;
 }
 
 /* [11-12] */
-.ielts-navigation#B14LT1 #item-11 span:after {
+.ielts-navigation#B14LT1 #item-11 span:after,
+.ielts-navigation#B14LT3 #item-11 span:after {
   content: "-12";
   padding-top: 5px;
 }
 
 /* [13-14] */
-.ielts-navigation#B14LT1 #item-13 span:after {
+.ielts-navigation#B14LT1 #item-13 span:after,
+.ielts-navigation#B14LT3 #item-13 span:after {
   content: "-14";
   padding-top: 5px;
 }
