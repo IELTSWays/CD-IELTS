@@ -90,6 +90,23 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     return d - c;
   });
 
+  const token: any = localStorage.getItem('token');
+  const confirm: any = localStorage.getItem('confirm');
+  const test_name: any = localStorage.getItem('test_name');
+  const test_skill: any = localStorage.getItem('test_skill');
+  const profile: any = localStorage.getItem('is_profile_fill');
+  const test_id: any = localStorage.getItem('test_id');
+
+  const reset = () => {
+    localStorage.clear();
+    localStorage.setItem('token', token);
+    localStorage.setItem('confirm', confirm);
+    localStorage.setItem('test_id', test_id);
+    localStorage.setItem('test_skill', test_skill);
+    localStorage.setItem('is_profile_fill', profile);
+    localStorage.setItem('test_name', test_name);
+    };
+
   return (
     <Grid item xs={4} sm={8} md={6}>
       <Card variant="outlined">
@@ -171,9 +188,8 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                         }
                         {((i.name.includes('R') || i.name.includes('L')) && i.answers && !i.is_expired && !i.test_done) &&
                           <a
-                            variant="contained"
-                            size="small"
                             sx={{ width: '120px' }}
+                            onMouseOver={reset}
                             href={`/IELTS/${localStorage.getItem('test_skill')}`}
                             className="btn"
                           >
