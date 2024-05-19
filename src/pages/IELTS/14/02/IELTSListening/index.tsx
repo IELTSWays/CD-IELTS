@@ -21,6 +21,7 @@ import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
 import IELTSTableOptions from '@/components/IELTS/QuestionTypes/IELTSTableOptions';
 import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel'
+import DND from './DND'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
@@ -312,7 +313,7 @@ const index = () => {
                 {/************* [25-30] *************/}
                 {/* <IELTSDrag listOptions={listOptions}
                 columnsData={columnsData} question="What decision do the students make about each of the following parts of their presentation?" /> */}
-                <IELTSTableOptionsLabel
+                {/* <IELTSTableOptionsLabel
                   questions={
                     [
                       { id: 25, title: 'Introduction' },
@@ -346,7 +347,8 @@ const index = () => {
                       { label: 'H', value: "h", },
                     ]
                   }
-                />
+                /> */}
+                <DND/>
               </>
             }
 
