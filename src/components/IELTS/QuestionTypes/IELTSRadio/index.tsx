@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useTranslation } from 'react-i18next';
 
 // mtu
 import Paper from '@mui/material/Paper';
@@ -22,15 +21,13 @@ import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user
 
 const index = ({ qn, question, options }: any) => {
 
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
+  const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion)
 
   const [flag, setFlag] = useState(flags[qn])
-  // answer, setAnswer
   const [answer, setAnswer] = useState(answersAll[qn]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +68,7 @@ const index = ({ qn, question, options }: any) => {
               value={answer}
               onChange={handleChange}
             >
-              {options.map((i) => {
+              {options.map((i: any) => {
                 return (
                   <FormControlLabel
                     value={i.value}

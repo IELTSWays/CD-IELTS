@@ -121,7 +121,7 @@ const DND = ({ listOptions, columnsData, question }) => {
   }, [answers]);
 
 
-  console.log('answersAll', answersAll)
+  console.log('[answersAll-DRAG]', answersAll)
 
   const onDragEnd = ({ destination, source, draggableId }) => {
     if (!destination) return;

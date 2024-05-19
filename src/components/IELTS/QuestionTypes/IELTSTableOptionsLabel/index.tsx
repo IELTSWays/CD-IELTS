@@ -28,7 +28,6 @@ const index = ({ questions, options = defaultOptions, topLabels }) => {
 
   const handleChange = (event, id) => {
     const { value } = event.target;
-    setFlag({ ...flag, [id]: !flag[id] });
     dispatch(setAnswersAll({ ...answersAll, [id]: value }));
     dispatch(setCurrentQuestion(id));
   };
