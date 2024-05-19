@@ -1019,14 +1019,14 @@ td {
   margin-top: -10px !important;
 }
 
-#listening .ielts-answersTable {
-  max-width: 900px;
-}
-
-#listening .ielts-answersTable [role="radiogroup"] {
+.ielts-answersTable [role="radiogroup"] {
   flex-wrap: nowrap;
+  min-width: 300px;
 }
 
+#listening .ielts-answersTable {
+  max-width: 700px;
+}
 
 .ielts-answersTable .top-labels {
   flex-direction: row;

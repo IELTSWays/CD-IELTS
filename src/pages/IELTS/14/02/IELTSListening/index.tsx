@@ -90,7 +90,7 @@ const index = () => {
   }
 
   useEffect(() => {
-    if (currentQuestion == 11 || currentQuestion == 21 || currentQuestion == 31) {
+    if (currentQuestion == 11 || currentQuestion == 21 || currentQuestion == 31 || currentQuestion == 110) {
       window.scrollTo(0, 0)
     }
   }, [currentQuestion])

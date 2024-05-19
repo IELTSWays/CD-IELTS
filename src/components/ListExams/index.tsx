@@ -105,7 +105,7 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     localStorage.setItem('test_skill', test_skill);
     localStorage.setItem('is_profile_fill', profile);
     localStorage.setItem('test_name', test_name);
-    };
+  };
 
   return (
     <Grid item xs={4} sm={8} md={6}>

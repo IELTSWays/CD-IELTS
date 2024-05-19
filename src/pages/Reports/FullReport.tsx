@@ -154,7 +154,7 @@ const index = () => {
           titleTypographyProps={{ variant: 'h6' }}
           title="Full Report"
         />
-        <CardContent>
+        {/* <CardContent>
           <Stack direction="row" spacing={2}>
             <Button
               variant="contained"
@@ -186,7 +186,7 @@ const index = () => {
               Video
             </Button>
           </Stack>
-        </CardContent>
+        </CardContent> */}
 
         {/* <FullReportFreeOne /> */}
 
