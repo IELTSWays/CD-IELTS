@@ -107,10 +107,10 @@ const index = () => {
   useEffect(() => {
     refetchGetReport()
     refetchGetReportFull()
-    refetchGetReportAudio()
-    refetchGetReportVideo()
+    // refetchGetReportAudio()
+    // refetchGetReportVideo()
     refetchGetReportFullVerify()
-    refetchGetReportFullFreeOne()
+    // refetchGetReportFullFreeOne()
   }, [])
 
   useEffect(() => {
@@ -140,8 +140,6 @@ const index = () => {
     short_data: dataGetReport?.short_data,
     full_data: mergedFullData
   };
-
-  console.log(mergedReport);
 
   return (
     <Grid item xs={4} sm={8} md={12} sx={{ mt: 5 }}>
