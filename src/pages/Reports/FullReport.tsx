@@ -206,7 +206,7 @@ const index = () => {
                       }}>
                       {i.number}
                     </Avatar>
-                    <Typography gutterBottom variant="h4"> 
+                    <Typography gutterBottom variant="h4">
                       {i.question}
                     </Typography>
                   </Stack>
@@ -235,9 +235,11 @@ const index = () => {
                           fontSize: '30px',
                           borderRadius: '5px'
                         }} />
-                      {i.full_answer ? parse(`${i.full_answer}`) :
-                        <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
-                      }
+                      <div style={{ overflowX: 'auto' }}>
+                        {i.full_answer ? parse(`${i.full_answer}`) :
+                          <Typography sx={{ pt: '4px' }}>There is no explanation</Typography>
+                        }
+                      </div>
                     </Stack>
                   }
 
