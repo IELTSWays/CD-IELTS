@@ -38,10 +38,14 @@ const index = ({ questions, options = defaultOptions }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
     const { value } = event.target;
-    setFlag({ ...flag, [id]: !flag[id] });
     dispatch(setAnswersAll({ ...answersAll, [id]: value }));
     dispatch(setCurrentQuestion(id));
   };
+
+  const flagHandler = (i: number) => {
+    setFlag(!flag)
+    dispatch(setFlags(Object.assign({}, flags, { [i]: !flags[i] })))
+  }
 
   return (
     <Card variant="outlined" sx={{ width: 1 }}>
@@ -65,8 +69,14 @@ const index = ({ questions, options = defaultOptions }) => {
                   />
                 ))}
               </RadioGroup>
-              <div onClick={() => setFlag({ ...flag, [question.id]: !flag[question.id] })} className={`flag ${currentQuestion === question.id && 'active'}`}>
-                {flag[question.id] ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
+              <div
+                onClick={() => flagHandler(question.id)}
+                className={`flag ${currentQuestion == question.id && 'active'}`}>
+                {flags[question.id] ?
+                  <BookmarkIcon color={'error'} />
+                  :
+                  <BookmarkBorderIcon />
+                }
               </div>
             </Stack>
           ))}
