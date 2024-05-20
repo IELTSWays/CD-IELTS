@@ -125,8 +125,57 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
         </>
       }
-
-
+      {type == 10 &&
+        <>
+          <Typography>
+            Reading Passage 1 has ten sections, <strong className='uppercase'>&nbsp;A - J&nbsp;</strong>
+          </Typography>
+          <Typography>
+            Which section contains the following information?
+          </Typography>
+          <Typography className='italic'>
+            Write the correct number
+            <strong className='uppercase'>&nbsp;A - J&nbsp;</strong>, in boxes
+            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+          </Typography>
+        </>
+      }
+      {type == 11 &&
+        <>
+          <Typography>
+            Look at the following statements (Questions <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong>) and the list of theories below.
+          </Typography>
+          <Typography>
+            Match each statement with the correct theory, <strong>&nbsp;A&nbsp;</strong>, <strong>&nbsp;B&nbsp;</strong> or <strong>&nbsp;C&nbsp;</strong>.
+          </Typography>
+          <Typography className='italic'>
+            Write the correct letter,
+            <strong>&nbsp;A&nbsp;</strong>, <strong>&nbsp;B&nbsp;</strong> or <strong>&nbsp;C&nbsp;</strong>, in boxes
+            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+          </Typography>
+          <Typography>
+            NB  You may use any letter more than once.
+          </Typography>
+        </>
+      }
+      {type == 12 &&
+        <>
+          <Typography>
+            Look at the following statements (Questions <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong>) and the list of theories below.
+          </Typography>
+          <Typography>
+            Match each statement with the correct theory, <strong>&nbsp;A - G&nbsp;</strong>
+          </Typography>
+          <Typography className='italic'>
+            Write the correct letter,
+            <strong>&nbsp;A - G&nbsp;</strong> in boxes
+            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+          </Typography>
+          <Typography>
+            NB  You may use any letter more than once.
+          </Typography>
+        </>
+      }
     </Box>
   );
 };

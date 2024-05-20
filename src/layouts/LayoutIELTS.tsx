@@ -34,8 +34,8 @@ import usePostTestDoneWriting from '@/services/Requests/usePostTestDoneWriting';
 
 import IELTS from "@/pages/IELTS"
 
-import B14LT1 from '@/pages/IELTS/14/01/IELTSListening/Audio/song.json'
-import B14LT2 from '@/pages/IELTS/14/02/IELTSListening/Audio/song.json'
+import B14LT1 from '@/pages/IELTS/14/01/L/Audio/song.json'
+import B14LT2 from '@/pages/IELTS/14/02/L/Audio/song.json'
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -154,10 +154,6 @@ const LayoutIELTS = ({ children }: any) => {
                   <div className='ielts-footer-btn'>
                     <WifiIcon color="action" fontSize="small" />
                   </div>
-                  {/* {
-                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
-                    listSongs.songs.length > 0 && <AudioPlayer songs={listSongs.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  } */}
                   {
                     localStorage.getItem('test_name') === 'B14LT1' &&
                     (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&

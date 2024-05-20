@@ -4,7 +4,6 @@ import { useState } from "react";
 // mtu
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -59,10 +58,8 @@ const index = ({ qn, question, options = defaultOptions }: any) => {
     >
       <div className="align-items-start justify-content-space-between type-radio">
         <Paper elevation={0}>
-          <Typography>
             <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} </strong>
-            <Typography sx={{ px: 1 }} className="question"> {question} </Typography>
-          </Typography>
+            <span className="question"> {question} </span>
         </Paper>
         <div onClick={() => flagHandler()} className={`flag ${currentQuestion == qn && 'active'}`}>
           {flag ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}

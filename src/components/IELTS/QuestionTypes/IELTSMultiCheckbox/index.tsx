@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import {FormControlLabel, Checkbox, Paper, Typography, styled, AccordionSummary as MuiAccordionSummary} from '@mui/material';
+import { FormControlLabel, Checkbox, Paper, Typography, styled, AccordionSummary as MuiAccordionSummary } from '@mui/material';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
@@ -74,17 +74,10 @@ const index = ({ qn, question, checkList }: any) => {
       <div
         id={`q-${qn}`}
       >
-        <AccordionSummary
-        >
-          <Paper elevation={0} sx={{ cursor: 'default' }}>
-            <Typography>
-              <strong className={`question-now mr-5 ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}>
-                {qn} - {parseInt(qn) + 1}
-              </strong>
-              {question}
-            </Typography>
-          </Paper>
-        </AccordionSummary>
+        <Paper elevation={0}>
+          <strong className={`question-now ${flag && 'active-flag'} ${currentQuestion == qn && 'active'} `}> {qn} - {parseInt(qn) + 1} </strong>
+          <strong className="question"> {question} </strong>
+        </Paper>
         <div className="ielts-checkbox">
           {checkList.map((item, index) => (
             <Paper elevation={0} key={index}>

@@ -44,6 +44,14 @@ const usePostTestDone = () => {
     };
   }
 
+  if (testName === 'B14RT3') {
+    final = {
+      ...final,
+      "21": merge[21] && merge[21][0] ? merge[21][0] : null,
+      "22": merge[21] && merge[21][1] ? merge[21][1] : null
+    };
+  }
+
   if (testName === 'B14LT3') {
     final = {
       ...final,
@@ -65,12 +73,12 @@ const usePostTestDone = () => {
     queryKey: ['postTestDone'],
     queryFn: async () => {
       const response = await api.patch(`exam/answer/${localStorage.getItem('test_id')}`, {
-        "test_done": true,
+        // "test_done": true,
         "confirm": true,
         "answers": final,
       })
       const data = await response.data
-      navigate(`/reports/${localStorage.getItem('test_id')}`)
+      // navigate(`/reports/${localStorage.getItem('test_id')}`)
       return data
     },
   })

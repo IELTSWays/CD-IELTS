@@ -81,11 +81,21 @@ const index = () => {
 
 
   const handlePrevious = () => {
-    dispatch(setCurrentQuestion(+currentQuestion - 1))
+    if (currentQuestion == 15 || currentQuestion == 13 || currentQuestion == 21 || currentQuestion == 23) {
+      dispatch(setCurrentQuestion(+currentQuestion - 2))
+    }
+    else {
+      dispatch(setCurrentQuestion(+currentQuestion - 1))
+    }
   }
 
   const handleNext = () => {
-    dispatch(setCurrentQuestion(+currentQuestion + 1))
+    if (currentQuestion == 11 || currentQuestion == 13 || currentQuestion == 19 || currentQuestion == 21) {
+      dispatch(setCurrentQuestion(+currentQuestion + 2))
+    }
+    else {
+      dispatch(setCurrentQuestion(+currentQuestion + 1))
+    }
   }
 
   useEffect(() => {

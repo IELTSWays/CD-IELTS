@@ -554,13 +554,15 @@ html.ielts {
 /* [ ==================================== ielts-reading-1401 */
 
 .ielts-navigation#B14RT1 #item-19,
-.ielts-navigation#B14RT1 #item-21 {
+.ielts-navigation#B14RT1 #item-21,
+.ielts-navigation#B14RT3 #item-21 {
   width: 55px !important;
 }
 
 /* [20,22] */
 .ielts-navigation#B14RT1 #item-20,
-.ielts-navigation#B14RT1 #item-22 {
+.ielts-navigation#B14RT1 #item-22,
+.ielts-navigation#B14RT3 #item-22 {
   display: none !important;
 }
 
@@ -571,7 +573,8 @@ html.ielts {
 }
 
 /* [21-22] */
-.ielts-navigation#B14RT1 #item-21 span:after {
+.ielts-navigation#B14RT1 #item-21 span:after,
+.ielts-navigation#B14RT3 #item-21 span:after {
   content: "-22";
   padding-top: 5px;
 }
