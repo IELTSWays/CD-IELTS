@@ -102,21 +102,9 @@ const index = () => {
 
 
   const options_1_8 = [
-    { label: 'TRUE', value: "a", },
-    { label: 'FALSE', value: "b", },
-    { label: 'NOT GIVEN', value: "c", },
-  ]
-
-  const options_9_13 = [
-    { label: 'TRUE', value: "a", },
-    { label: 'FALSE', value: "b", },
-    { label: 'NOT GIVEN', value: "c", },
-  ]
-
-  const options_32_35 = [
-    { label: 'YES', value: "a", },
-    { label: 'NO', value: "b", },
-    { label: 'NOT GIVEN', value: "c", },
+    { label: 'TRUE', value: "true", },
+    { label: 'FALSE', value: "false", },
+    { label: 'NOT GIVEN', value: "not given", },
   ]
 
   return (
