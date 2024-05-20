@@ -19,7 +19,14 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
-const index = ({ qn, question, options }: any) => {
+const defaultOptions =
+  [
+    { label: 'TRUE', value: "true", },
+    { label: 'FALSE', value: "false", },
+    { label: 'NOT GIVEN', value: "not given", },
+  ]
+
+const index = ({ qn, question, options = defaultOptions }: any) => {
 
   const dispatch = useAppDispatch();
 
