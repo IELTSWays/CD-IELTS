@@ -73,12 +73,12 @@ const usePostTestDone = () => {
     queryKey: ['postTestDone'],
     queryFn: async () => {
       const response = await api.patch(`exam/answer/${localStorage.getItem('test_id')}`, {
-        // "test_done": true,
+        "test_done": true,
         "confirm": true,
         "answers": final,
       })
       const data = await response.data
-      // navigate(`/reports/${localStorage.getItem('test_id')}`)
+      navigate(`/reports/${localStorage.getItem('test_id')}`)
       return data
     },
   })

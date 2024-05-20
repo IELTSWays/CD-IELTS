@@ -32,6 +32,4 @@ export default {
 
 
 ## Build
-‍‍‍```
-  "include": ["src", "src/components/Chars/BarChart.tsx"],
-```
+‍‍‍```"include": ["src", "src/components/Chars/BarChart.tsx"],```
