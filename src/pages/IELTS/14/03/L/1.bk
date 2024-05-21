@@ -121,7 +121,7 @@ const index = () => {
                 <IELTSTitle title="Flanders Conference Hotel" isHeader />
                 {/************* [0] *************/}
                 <Typography className='italic'>Example</Typography>
-                <IELTSInput qn="0" beforeInput="Customer Services Manager:" disabled placeholder="Angela" />
+                <IELTSInput qn="0" beforeInput="Customer Services Manager:" disabled placeholder="Garcia" />
                 <IELTSTitle title="Date available" />
                 <Typography>
                   ● weekend beginning February 4th

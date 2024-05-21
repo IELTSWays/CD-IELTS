@@ -24,8 +24,6 @@ import DND_27_30 from './DND_27_30'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
-import Q1620 from '@/assets/images/ielts/B14LT2-Q16-20.jpg'
-
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -118,38 +116,36 @@ const index = () => {
               <>
                 {/* ================================================================================ [01-10] */}
                 <IELTSQuestionTitle from="1" to="10" type="1" />
-                <IELTSTitle title="Flanders Conference Hotel" isHeader />
-                {/************* [0] *************/}
-                <Typography className='italic'>Example</Typography>
-                <IELTSInput qn="0" beforeInput="Customer Services Manager:" disabled placeholder="Angela" />
-                <IELTSTitle title="Date available" />
+                <IELTSTitle title="Children’s Engineering Workshops" isHeader />
                 <Typography>
-                  ● weekend beginning February 4th
+                  Tiny Engineers (ages 4-5)
                 </Typography>
                 {/************* [1] *************/}
-                <IELTSTitle title="Conference facilities" />
-                <IELTSInput qn="1" beforeInput="● the" afterInput="room for talks" />
+                <IELTSTitle title="Activities" />
+                <IELTSInput qn="1" beforeInput="●   Create a cover for an" afterInput="so they can drop it from a height without breaking it." />
                 {/************* [2] *************/}
-                <IELTSInput qn="2" beforeInput="&nbsp; &nbsp;(projector and" afterInput="available)" />
+                <IELTSInput qn="2" beforeInput="Take part in a competition to build the tallest" />
                 {/************* [3] *************/}
-                <IELTSInput qn="3" beforeInput="● area for coffee and an" />
+                <IELTSTitle title="Junior Engineers (ages 6-8)" />
+                <Typography>
+                  Activities
+                </Typography>
+                <IELTSInput on="3" beforeInput="Make a" afterInput="powered by a balloon." />
                 {/************* [4] *************/}
-                <IELTSInput qn="4" beforeInput="● free" afterInput="throughout" />
+                <IELTSInput qn="4" beforeInput="Build model cars, trucks and" afterInput="and learn how to program them so they can move." />
                 {/************* [5] *************/}
-                <IELTSInput qn="5" beforeInput="● a standard buffet lunch costs" afterInput="including breakfast." />
+                <IELTSInput qn="5" beforeInput="Take part in a competition to build the longest" afterInput="using card and wood." />
                 {/************* [6] *************/}
-                <IELTSTitle title="Accommodation" />
-                <IELTSInput qn="6" beforeInput="● Rooms will cost $" afterInput="including breakfast." />
+                <IELTSInput qn="6" beforeInput="Create a short" afterInput="with special software." />
                 {/************* [7] *************/}
-                <IELTSTitle title="Other facilities" />
-                <IELTSInput qn="7" beforeInput="● The hotel also has a spa and rooftop" />
+                <IELTSInput on="7" beforeInput="Build," afterInput="and program a humanoid robot. Cost for a five-week block: £50" />
                 {/************* [8] *************/}
-                <IELTSInput qn="8" beforeInput="● There’s a free shuttle service to the" />
-                {/************* [9] *************/}
                 <IELTSTitle title="Location" />
-                <IELTSInput qn="9" beforeInput="● Wilby Street (quite near the" afterInput=")" />
+                <IELTSInput an="8" beforeInput="from 10 am to 11 am" afterInput="from 10 am to 11 am" />
+                {/************* [9] *************/}
+                <IELTSInput on="9" beforeInput="Building 10A," afterInput="Industrial Estate, Grasford" />
                 {/************* [10] *************/}
-                <IELTSInput qn="10" beforeInput="● near to restaurants and many" />
+                <IELTSInput qn="10" beforeInput="Plenty of" afterInput="is available." />
               </>
             }
 

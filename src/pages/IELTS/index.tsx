@@ -15,6 +15,9 @@ import B14LT3 from "@/pages/IELTS/14/03/L";
 import B14RT3 from "@/pages/IELTS/14/03/R";
 import B14WT3 from "@/pages/IELTS/14/03/W";
 
+// 14 Test 3
+import B14LT4 from "@/pages/IELTS/14/04/L";
+
 const IELTS = () => {
   return (
     <>
@@ -31,6 +34,9 @@ const IELTS = () => {
       {/* 14 Test 3 */}
       {localStorage.getItem('test_name') === 'B14LT3' && <B14LT3 />}
       {localStorage.getItem('test_name') === 'B14RT3' && <B14RT3 />}
+
+      {/* 14 Test 4 */}
+      {localStorage.getItem('test_name') === 'B14LT4' && <B14LT4 />}
     </>
   );
 };

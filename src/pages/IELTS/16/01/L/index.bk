@@ -1,0 +1,31 @@
+<IELTSQuestionTitle from="1" to="10" type="1" />
+<IELTSTitle title="Children’s Engineering Workshops" isHeader />
+<Typography>
+  Tiny Engineers (ages 4-5)
+</Typography>
+{/************* [1] *************/}
+<IELTSTitle title="Activities" />
+<IELTSInput qn="1" beforeInput="●   Create a cover for an" afterInput="so they can drop it from a height without breaking it." />
+{/************* [2] *************/}
+<IELTSInput qn="2" beforeInput="Take part in a competition to build the tallest" />
+{/************* [3] *************/}
+<IELTSTitle title="Junior Engineers (ages 6-8)" />
+<Typography>
+  Activities
+</Typography>
+<IELTSInput on="3" beforeInput="Make a" afterInput="powered by a balloon." />
+{/************* [4] *************/}
+<IELTSInput qn="4" beforeInput="Build model cars, trucks and" afterInput="and learn how to program them so they can move." />
+{/************* [5] *************/}
+<IELTSInput qn="5" beforeInput="Take part in a competition to build the longest" afterInput="using card and wood." />
+{/************* [6] *************/}
+<IELTSInput qn="6" beforeInput="Create a short" afterInput="with special software." />
+{/************* [7] *************/}
+<IELTSInput on="7" beforeInput="Build," afterInput="and program a humanoid robot. Cost for a five-week block: £50" />
+{/************* [8] *************/}
+<IELTSTitle title="Location" />
+<IELTSInput an="8" beforeInput="from 10 am to 11 am" afterInput="from 10 am to 11 am" />
+{/************* [9] *************/}
+<IELTSInput on="9" beforeInput="Building 10A," afterInput="Industrial Estate, Grasford" />
+{/************* [10] *************/}
+<IELTSInput qn="10" beforeInput="Plenty of" afterInput="is available." />

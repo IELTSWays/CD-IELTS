@@ -176,8 +176,55 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
         </>
       }
+      {type == 13 &&
+        <>
+          <Typography sx={{ py: 1 }}>
+            What is said about using each of the following hotel facilities?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>THREE</strong> answers from the box and write the correct letter, <strong>A, B</strong> or <strong>C</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+          </Typography>
+        </>
+      }
+      {type == 14 &&
+        <>
+          <Typography>
+            What information does the speaker give about each of the following excursions?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>SIX</strong> answers from the box and write the correct letter, <strong>A-H</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+          </Typography>
+        </>
+      }
+      {type == 15 &&
+        <>
+          <Typography>
+            Choose <strong>TWO</strong> letters, <strong>A-E</strong>
+          </Typography>
+        </>
+      }
+      {type == 16 &&
+        <>
+          <Typography>
+            Choose the correct letter, <strong>A, B</strong> or <strong>C.</strong>
+          </Typography>
+        </>
+      }
+      {type == 17 &&
+        <>
+          <Typography>
+            What comment is made about each of these stories?
+          </Typography>
+          <Typography>
+            Choose <strong>FIVE</strong> answers from the box and write the correct letter, <strong>A-G,</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+          </Typography>
+        </>
+      }
+
+
     </Box>
   );
 };
 
 export default IELTSQuestionTitle;
+

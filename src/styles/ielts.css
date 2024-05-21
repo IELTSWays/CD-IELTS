@@ -79,6 +79,10 @@ p.MuiTypography-root {
   background: var(--color-01);
 }
 
+.ielts p strong {
+  padding: 0 5px;
+}
+
 /* [ ############################ START RESIZE ############################ ] */
 
 #parent {
@@ -525,7 +529,9 @@ html.ielts {
 .ielts-navigation#B14LT1 #item-11,
 .ielts-navigation#B14LT1 #item-13,
 .ielts-navigation#B14LT3 #item-11,
-.ielts-navigation#B14LT3 #item-13 {
+.ielts-navigation#B14LT3 #item-13,
+.ielts-navigation#B14LT4 #item-17,
+.ielts-navigation#B14LT4 #item-19 {
   width: 55px !important;
 }
 
@@ -533,7 +539,9 @@ html.ielts {
 .ielts-navigation#B14LT1 #item-12,
 .ielts-navigation#B14LT1 #item-14,
 .ielts-navigation#B14LT3 #item-12,
-.ielts-navigation#B14LT3 #item-14{
+.ielts-navigation#B14LT3 #item-14,
+.ielts-navigation#B14LT4 #item-18,
+.ielts-navigation#B14LT4 #item-20 {
   display: none !important;
 }
 
@@ -551,11 +559,21 @@ html.ielts {
   padding-top: 5px;
 }
 
-/* [ ==================================== ielts-reading-1401 */
+.ielts-navigation#B14LT4 #item-17 span:after {
+  content: "-18";
+  padding-top: 5px;
+}
+
+.ielts-navigation#B14LT4 #item-19 span:after {
+  content: "-20";
+  padding-top: 5px;
+}
 
 .ielts-navigation#B14RT1 #item-19,
 .ielts-navigation#B14RT1 #item-21,
-.ielts-navigation#B14RT3 #item-21 {
+.ielts-navigation#B14RT3 #item-21,
+.ielts-navigation#B14LT4 #item-17,
+.ielts-navigation#B14LT4 #item-19 {
   width: 55px !important;
 }
 
