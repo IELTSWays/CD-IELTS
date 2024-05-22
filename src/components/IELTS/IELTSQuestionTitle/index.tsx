@@ -6,9 +6,12 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
   // Type 2: Choose [two] correct answer.
   // Type 3: Choose the correct answer.
   // Type 4: Complete the notes below. Write [ONE WORD ONLY] for each answer.
-  // Type 5: Do the following statements agree with the information given in Reading Passage 1? [TRUE,FALSE,NOT-GIVEN]
+  // Type 5: YES, NO, NOT GIVEN
   // TYpe 7: Write the correct letter, A-H, next to Questions 16-20
   // Type 8: Write the correct letter, A-I, in boxes 14-18 on your answer sheet.
+
+
+  // Type 100: TRUE, FALSE, NOT GIVEN
 
   return (
     <Box sx={{ py: 2 }}>
@@ -217,6 +220,17 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
           <Typography>
             Choose <strong>FIVE</strong> answers from the box and write the correct letter, <strong>A-G,</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+          </Typography>
+        </>
+      }
+
+      {type == 100 &&
+        <>
+          <Typography>
+            Do the following statements agree with the information given in Reading Passage 1?
+          </Typography>
+          <Typography>
+            Choose TRUE if the statement agrees with the information, Choose FALSE if the statement contradicts the information, or NOT GIVEN if there is no information on this
           </Typography>
         </>
       }

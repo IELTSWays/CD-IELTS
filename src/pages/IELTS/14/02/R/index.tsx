@@ -101,7 +101,7 @@ const index = () => {
   }, [currentQuestion])
 
 
-  const options_1_8 = [
+  const options_T_F_NG = [
     { label: 'TRUE', value: "true", },
     { label: 'FALSE', value: "false", },
     { label: 'NOT GIVEN', value: "not given", },
@@ -133,54 +133,54 @@ const index = () => {
                 {part === 1 &&
                   <>
                     {/* ================================================================================ [01-08] */}
-                    <IELTSQuestionTitle from="1" to="8" type="5" />
+                    <IELTSQuestionTitle from="1" to="8" type="100" />
                     {/************* [1] *************/}
                     <IELTSRadio
                       qn="1"
                       question="Henderson rarely visited the area around Press estate when he was younger."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [2] *************/}
                     <IELTSRadio
                       qn="2"
                       question="Henderson pursued a business career because it was what his family wanted."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [3] *************/}
                     <IELTSRadio
                       qn="3"
                       question="Henderson and Notman were surprised by the results of their 1865 experiment."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [4] *************/}
                     <IELTSRadio
                       qn="4"
                       question="There were many similarities between Henderson’s early landscapes and those of Notman."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [5] *************/}
                     <IELTSRadio
                       qn="5"
                       question="The studio that Henderson opened in 1866 was close to his home."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [6] *************/}
                     <IELTSRadio
                       qn="6"
                       question="Henderson gave up portraiture so that he could focus on taking photographs of scenery."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [7] *************/}
                     <IELTSRadio
                       qn="7"
                       question="When Henderson began work for the Intercolonial Railway, the Montreal to Halifax line had been finished."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [8] *************/}
                     <IELTSRadio
                       qn="8"
                       question="Henderson’s last work as a photographer was with the Canadian Pacific Railway."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/* ================================================================================ [09-13] */}
                     <IELTSQuestionTitle from="9" to="13" type="4" />
@@ -312,19 +312,19 @@ const index = () => {
                     <IELTSRadio
                       qn="38"
                       question="Both businesses and people aim at order without really considering its value."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [39] *************/}
                     <IELTSRadio
                       qn="39"
                       question="Innovation is most successful if the people involved have distinct roles."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                     {/************* [40] *************/}
                     <IELTSRadio
                       qn="40"
                       question="Google was inspired to adopt flexibility by the success of General Electric."
-                      options={options_1_8}
+                      options={options_T_F_NG}
                     />
                   </>
                 }

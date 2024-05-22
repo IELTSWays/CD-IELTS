@@ -112,6 +112,12 @@ const index = () => {
     }
   }, [currentQuestion])
 
+  const options_T_F_NG = [
+    { label: 'TRUE', value: "true", },
+    { label: 'FALSE', value: "false", },
+    { label: 'NOT GIVEN', value: "not given", },
+  ]
+
   return (
     <>
       <IELTSParts part={part} />
@@ -162,21 +168,24 @@ const index = () => {
                       }
                     />
                     {/* ================================================================================ [04-06] */}
-                    <IELTSQuestionTitle from="4" to="6" type="5" />
+                    <IELTSQuestionTitle from="4" to="6" type="100" />
                     {/************* [4] *************/}
                     <IELTSRadio
                       qn="4"
                       question="Slow language development in children is likely to prove disappointing to their parents."
+                      options = {options_T_F_NG}
                     />
                     {/************* [5] *************/}
                     <IELTSRadio
                       qn="5"
                       question="People’s expectations of what children should gain from education are universal."
+                      options = {options_T_F_NG}
                     />
                     {/************* [6] *************/}
                     <IELTSRadio
                       qn="6"
                       question="Scholars may discuss theories without fully understanding each other."
+                      options = {options_T_F_NG}
                     />
                     {/* ================================================================================ [07-13] */}
                     <IELTSQuestionTitle from="7" to="13" type="11" />
@@ -307,31 +316,36 @@ const index = () => {
                       }
                     />
                     {/* ================================================================================ [32-36] */}
-                    <IELTSQuestionTitle from="32" to="36" type="5" />
+                    <IELTSQuestionTitle from="32" to="36" type="100" />
                     {/************* [32] *************/}
                     <IELTSRadio
                       qn="32"
                       question="Children need toys in order to play."
+                      options = {options_T_F_NG}
                     />
                     {/************* [33] *************/}
                     <IELTSRadio
                       qn="33"
                       question="It is a mistake to treat play and learning as separate types of activities."
+                      options = {options_T_F_NG}
                     />
                     {/************* [34] *************/}
                     <IELTSRadio
                       qn="34"
                       question="Play helps children to develop their artistic talents."
+                      options = {options_T_F_NG}
                     />
                     {/************* [35] *************/}
                     <IELTSRadio
                       qn="35"
                       question="Researchers have agreed on a definition of play."
+                      options = {options_T_F_NG}
                     />
                     {/************* [36] *************/}
                     <IELTSRadio
                       qn="36"
                       question="Work and play differ in terms of whether or not they have a target."
+                      options = {options_T_F_NG}
                     />
                     {/* ================================================================================ [37-40] */}
                     <IELTSQuestionTitle from="37" to="40" type="4" />
@@ -357,5 +371,3 @@ const index = () => {
 };
 
 export default index;
-
-

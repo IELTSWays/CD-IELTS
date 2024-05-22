@@ -20,8 +20,8 @@ import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user
 
 const defaultOptions =
   [
-    { label: 'TRUE', value: "true", },
-    { label: 'FALSE', value: "false", },
+    { label: 'YES', value: "yes", },
+    { label: 'NO', value: "no", },
     { label: 'NOT GIVEN', value: "not given", },
   ]
 
