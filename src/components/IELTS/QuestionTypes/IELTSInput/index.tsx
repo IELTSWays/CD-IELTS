@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 // store
 
-const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled = false, placeholder = "" }: any) => {
+const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled = false, placeholder = "", beforeInputStrong = false, afterInputStrong = false }: any) => {
 
   const dispatch = useAppDispatch()
 
@@ -55,7 +55,7 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled =
         <Paper elevation={0}>
           <Stack direction="row" alignItems="center" sx={{ flexWrap: 'wrap' }}>
             {beforeInput.length > 1 &&
-              <Typography sx={{ pr: 1 }}> {beforeInput} </Typography>
+              <Typography sx={{ pr: 1 }} className={beforeInputStrong && 'strong'}> {beforeInput} </Typography>
             }
 
             <div className={`text-field ${currentQuestion == qn && 'active'} first`}>
@@ -73,7 +73,7 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled =
             </div>
 
             {afterInput.length > 1 &&
-              <Typography sx={{ pl: 1 }}> {afterInput} </Typography>
+              <Typography sx={{ pl: 1 }} className={afterInputStrong && 'strong'}> {afterInput} </Typography>
             }
           </Stack>
         </Paper>

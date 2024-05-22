@@ -81,6 +81,11 @@ p.MuiTypography-root {
 
 .ielts p strong {
   padding: 0 5px;
+  font-weight: 700;
+}
+
+.ielts p.strong {
+  font-weight: 700;
 }
 
 /* [ ############################ START RESIZE ############################ ] */
