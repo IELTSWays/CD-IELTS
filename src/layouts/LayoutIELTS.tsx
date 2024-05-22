@@ -34,8 +34,10 @@ import usePostTestDoneWriting from '@/services/Requests/usePostTestDoneWriting';
 
 import IELTS from "@/pages/IELTS"
 
-import B14LT1 from '@/pages/IELTS/14/01/L/Audio/song.json'
-import B14LT2 from '@/pages/IELTS/14/02/L/Audio/song.json'
+import B14LT1 from '@/pages/IELTS/Audios/B14LT1.json'
+import B14LT2 from '@/pages/IELTS/Audios/B14LT2.json'
+import B14LT3 from '@/pages/IELTS/Audios/B14LT3.json'
+import B14LT4 from '@/pages/IELTS/Audios/B14LT4.json'
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -156,17 +158,28 @@ const LayoutIELTS = ({ children }: any) => {
                   </div>
                   {
                     localStorage.getItem('test_name') === 'B14LT1' &&
-                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                    ((/listening/i.test(location.pathname))) &&
                     B14LT1.songs.length > 0 &&
                     <AudioPlayer songs={B14LT1.songs} onPlayStatusChange={handlePlayStatusChange} />
                   }
                   {
                     localStorage.getItem('test_name') === 'B14LT2' &&
-                    (location.pathname.includes('Listening') || location.pathname.includes('listening')) &&
+                    ((/listening/i.test(location.pathname))) &&
                     B14LT2.songs.length > 0 &&
                     <AudioPlayer songs={B14LT2.songs} onPlayStatusChange={handlePlayStatusChange} />
                   }
-
+                  {
+                    localStorage.getItem('test_name') === 'B14LT3' &&
+                    ((/listening/i.test(location.pathname))) &&
+                    B14LT3.songs.length > 0 &&
+                    <AudioPlayer songs={B14LT3.songs} onPlayStatusChange={handlePlayStatusChange} />
+                  }
+                  {
+                    localStorage.getItem('test_name') === 'B14LT4' &&
+                    ((/listening/i.test(location.pathname))) &&
+                    B14LT4.songs.length > 0 &&
+                    <AudioPlayer songs={B14LT4.songs} onPlayStatusChange={handlePlayStatusChange} />
+                  }
                   <div className='ielts-footer-btn'>
                     Exit
                   </div>
