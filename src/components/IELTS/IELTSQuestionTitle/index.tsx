@@ -14,7 +14,7 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
   // Type 100: TRUE, FALSE, NOT GIVEN
 
   return (
-    <Box sx={{ py: 2 }}>
+    <Box sx={{ py: 2 }} id={`q-${from}`}>
       <Typography>
         <h3> Questions {from} - {to} </h3>
       </Typography>

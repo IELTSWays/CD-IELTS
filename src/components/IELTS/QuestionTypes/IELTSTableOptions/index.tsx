@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useLocation } from 'react-router-dom';
+
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Radio from '@mui/material/Radio';
@@ -10,11 +12,8 @@ import CardContent from '@mui/material/CardContent';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-// store
 import { useAppSelector, useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
-// store
-
 
 const defaultOptions =
   [
@@ -30,9 +29,12 @@ const defaultOptions =
 const index = ({ questions, options = defaultOptions }) => {
 
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const flags = useAppSelector((state: any) => state.user.flag);
   const answersAll = useAppSelector((state: any) => state.user.answersAll);
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion);
+  const reading = location.pathname.includes('reading')
+  const listening = location.pathname.includes('listening')
 
   const [flag, setFlag] = useState({});
 
