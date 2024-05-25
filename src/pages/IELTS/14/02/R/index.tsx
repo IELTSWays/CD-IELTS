@@ -307,7 +307,7 @@ const index = () => {
                     {/************* [37] *************/}
                     <IELTSInput qn="37" beforeInput="Many people feel" afterInput="with aspects of their work." />
                     {/* ================================================================================ [38-40] */}
-                    <IELTSQuestionTitle from="38" to="40" type="5" />
+                    <IELTSQuestionTitle from="38" to="40" type="100" />
                     {/************* [38] *************/}
                     <IELTSRadio
                       qn="38"

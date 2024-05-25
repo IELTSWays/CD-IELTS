@@ -444,12 +444,12 @@ const index = () => {
                         </Typography>
                         <Typography sx={{ display: 'flex', flexWrap: 'wrap' }}>
                           Choose
-                          <Typography sx={{ px: 1 }}> <strong className='uppercase'> true </strong> </Typography>
+                          <Typography sx={{ px: 1 }}> <strong className='uppercase'> yes </strong> </Typography>
                           if the statement agrees with the information,
                         </Typography>
                         <Typography sx={{ display: 'flex', flexWrap: 'wrap' }}>
                           Choose
-                          <Typography sx={{ px: 1 }}> <strong className='uppercase'> false </strong> </Typography>
+                          <Typography sx={{ px: 1 }}> <strong className='uppercase'> no </strong> </Typography>
                           if the statement contradicts the information, or
                           <Typography sx={{ px: 1 }}> <strong className='uppercase'> not given </strong> </Typography>
                           if there is no information on this
