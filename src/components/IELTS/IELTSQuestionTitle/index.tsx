@@ -9,8 +9,6 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
   // Type 5: YES, NO, NOT GIVEN
   // TYpe 7: Write the correct letter, A-H, next to Questions 16-20
   // Type 8: Write the correct letter, A-I, in boxes 14-18 on your answer sheet.
-
-
   // Type 100: TRUE, FALSE, NOT GIVEN
 
   return (
@@ -146,10 +144,10 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
       {type == 11 &&
         <>
           <Typography>
-            Look at the following statements (Questions <strong className='uppercase'>{from} - {to}</strong>) and the list of theories below.
+            Look at the following statements (Questions <strong className='uppercase'>{from} - {to}</strong>)and the list of theories below.
           </Typography>
           <Typography>
-            Match each statement with the correct theory, <strong>A</strong>, <strong>B</strong> or <strong>C</strong>.
+            Match each statement with the correct theory,<strong>A</strong>, <strong>B</strong> or <strong>C</strong>.
           </Typography>
           <Typography className='italic'>
             Write the correct letter,
