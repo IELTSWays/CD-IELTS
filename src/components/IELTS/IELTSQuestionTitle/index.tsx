@@ -74,7 +74,7 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
             Do the following statements agree with the information given in Reading Passage 1?
           </Typography>
           <Typography>
-            Choose TRUE if the statement agrees with the information, Choose FALSE if the statement contradicts the information, or NOT GIVEN if there is no information on this
+            Choose <strong>YES</strong> if the statement agrees with the information, Choose <strong>NO</strong> if the statement contradicts the information, or <strong>NOT GIVEN</strong> if there is no information on this
           </Typography>
         </>
       }
@@ -94,67 +94,67 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
 
           <Typography>
-            Write the correct letter, A-H, next to Questions {from} - {to}
+            Write the correct letter, A-H, next to Questions <strong className='uppercase'>{from} - {to}</strong>
           </Typography>
         </>
       }
       {type == 8 &&
         <>
           <Typography>
-            Reading Passage 2 has nine section, <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>
+            Reading Passage 2 has nine section, <strong className='uppercase'>A - I</strong>
           </Typography>
           <Typography>
             Which section contains the following information?
           </Typography>
           <Typography className='italic'>
             Write the correct letter,
-            <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>, in boxes
-            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+            <strong className='uppercase'>A - I</strong>, in boxes
+            <strong className='uppercase'>{from} - {to}</strong>on your answer sheet.
           </Typography>
         </>
       }
       {type == 9 &&
         <>
           <Typography>
-            Reading Passage 3 has eight sections, <strong className='uppercase'>&nbsp;A - H&nbsp;</strong>
+            Reading Passage 3 has eight sections, <strong className='uppercase'>A - H</strong>
           </Typography>
           <Typography>
             Choose the correct heading for each section from the list of headings below.
           </Typography>
           <Typography className='italic'>
             Write the correct number
-            <strong className='uppercase'>&nbsp;A - I&nbsp;</strong>, in boxes
-            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+            <strong className='uppercase'>A - I</strong>, in boxes
+            <strong className='uppercase'>{from} - {to}</strong> on your answer sheet.
           </Typography>
         </>
       }
       {type == 10 &&
         <>
           <Typography>
-            Reading Passage 1 has ten sections, <strong className='uppercase'>&nbsp;A - J&nbsp;</strong>
+            Reading Passage 1 has ten sections, <strong className='uppercase'>A - J</strong>
           </Typography>
           <Typography>
             Which section contains the following information?
           </Typography>
           <Typography className='italic'>
             Write the correct number
-            <strong className='uppercase'>&nbsp;A - J&nbsp;</strong>, in boxes
-            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+            <strong className='uppercase'>A - J</strong>, in boxes
+            <strong className='uppercase'>{from} - {to}</strong> on your answer sheet.
           </Typography>
         </>
       }
       {type == 11 &&
         <>
           <Typography>
-            Look at the following statements (Questions <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong>) and the list of theories below.
+            Look at the following statements (Questions <strong className='uppercase'>{from} - {to}</strong>) and the list of theories below.
           </Typography>
           <Typography>
-            Match each statement with the correct theory, <strong>&nbsp;A&nbsp;</strong>, <strong>&nbsp;B&nbsp;</strong> or <strong>&nbsp;C&nbsp;</strong>.
+            Match each statement with the correct theory, <strong>A</strong>, <strong>B</strong> or <strong>C</strong>.
           </Typography>
           <Typography className='italic'>
             Write the correct letter,
-            <strong>&nbsp;A&nbsp;</strong>, <strong>&nbsp;B&nbsp;</strong> or <strong>&nbsp;C&nbsp;</strong>, in boxes
-            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+            <strong>A</strong>, <strong>B</strong> or <strong>C</strong>, in boxes
+            <strong className='uppercase'>{from} - {to}</strong> on your answer sheet.
           </Typography>
           <Typography>
             NB  You may use any letter more than once.
@@ -164,15 +164,15 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
       {type == 12 &&
         <>
           <Typography>
-            Look at the following statements (Questions <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong>) and the list of theories below.
+            Look at the following statements (Questions <strong className='uppercase'>{from} - {to}</strong>) and the list of theories below.
           </Typography>
           <Typography>
-            Match each statement with the correct theory, <strong>&nbsp;A - G&nbsp;</strong>
+            Match each statement with the correct theory, <strong>A - G</strong>
           </Typography>
           <Typography className='italic'>
             Write the correct letter,
-            <strong>&nbsp;A - G&nbsp;</strong> in boxes
-            <strong className='uppercase'>&nbsp;{from} - {to}&nbsp;</strong> on your answer sheet.
+            <strong>A - G</strong> in boxes
+            <strong className='uppercase'>{from} - {to}</strong> on your answer sheet.
           </Typography>
           <Typography>
             NB  You may use any letter more than once.
@@ -181,11 +181,11 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
       }
       {type == 13 &&
         <>
-          <Typography sx={{ py: 1 }}>
+          <Typography>
             What is said about using each of the following hotel facilities?
           </Typography>
           <Typography sx={{ py: 1 }}>
-            Choose <strong>THREE</strong> answers from the box and write the correct letter, <strong>A, B</strong> or <strong>C</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+            Choose <strong>THREE</strong> answers from the box and write the correct letter, <strong>A, B</strong> or <strong>C</strong> next to Questions <strong>{from} - {to}</strong>
           </Typography>
         </>
       }
@@ -195,7 +195,7 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
             What information does the speaker give about each of the following excursions?
           </Typography>
           <Typography sx={{ py: 1 }}>
-            Choose <strong>SIX</strong> answers from the box and write the correct letter, <strong>A-H</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+            Choose <strong>SIX</strong> answers from the box and write the correct letter, <strong>A-H</strong> next to Questions <strong>{from} - {to}</strong>
           </Typography>
         </>
       }
@@ -219,7 +219,7 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
             What comment is made about each of these stories?
           </Typography>
           <Typography>
-            Choose <strong>FIVE</strong> answers from the box and write the correct letter, <strong>A-G,</strong> next to Questions <strong>&nbsp;{from} - {to}&nbsp;</strong>
+            Choose <strong>FIVE</strong> answers from the box and write the correct letter, <strong>A-G,</strong> next to Questions <strong>{from} - {to}</strong>
           </Typography>
         </>
       }
@@ -230,7 +230,7 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
             Do the following statements agree with the information given in Reading Passage 1?
           </Typography>
           <Typography>
-            Choose TRUE if the statement agrees with the information, Choose FALSE if the statement contradicts the information, or NOT GIVEN if there is no information on this
+            Choose <strong className='uppercase'>True</strong> if the statement agrees with the information, Choose <strong className='uppercase'>False</strong> if the statement contradicts the information, or <strong className='uppercase'>NOT GIVEN</strong> if there is no information on this
           </Typography>
         </>
       }
