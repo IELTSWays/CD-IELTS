@@ -1504,6 +1504,11 @@ td {
   /* padding: 0 8px; */
 }
 
+.ielts-container .question {
+  font-weight: bold;
+  padding: 0 4px;
+}
+
 .ielts-container .type-radio > div {
   background: transparent;
 }

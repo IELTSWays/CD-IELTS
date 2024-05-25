@@ -312,6 +312,7 @@ ul#payment-details > li {
   color: #fff;
   text-transform: uppercase;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .btn:hover {
