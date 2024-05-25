@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import Column from "./Column";
+import Column from "@/components/IELTS/QuestionTypes/IELTSDargDrop/Column";
 
 // store
 import { useAppSelector } from '@/store/hooks'
@@ -18,9 +18,7 @@ const DND = () => {
 
   const dispatch = useAppDispatch();
 
-  const flags = useAppSelector((state: any) => state.user.flag)
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
-  const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
   const init = {
     tasks: {
@@ -32,7 +30,6 @@ const DND = () => {
       "f": { id: "f", content: "F - find information online" },
       "g": { id: "g", content: "G - check timing" },
       "h": { id: "h", content: "H - organise the content more clearly" }
-
     },
     columns: {
       "column-1": {
@@ -83,7 +80,6 @@ const DND = () => {
   }
 
   const [starter, setStarter] = useState(init);
-  const [flag, setFlag] = useState(flags['25'])
 
   const [answer25, setAnswer25] = useState(localStorage.getItem('25'));
   const [answer26, setAnswer26] = useState(localStorage.getItem('26'));
@@ -133,6 +129,7 @@ const DND = () => {
   useEffect(() => {
     answer30 && dispatch(setAnswersAll(Object.assign({}, answersAll, { '30': (Object.values(starter.columns)[5]?.taskIds).join("") })))
   }, [answer30])
+
 
   const onDragEnd = ({ destination, source, draggableId }) => {
     if (!destination) return;

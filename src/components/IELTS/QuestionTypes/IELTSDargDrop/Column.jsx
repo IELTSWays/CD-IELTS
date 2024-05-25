@@ -42,7 +42,7 @@ const Column = ({ tasks, column, index }) => {
   const flags = useAppSelector((state) => state.user.flag)
   const currentQuestion = useAppSelector((state) => state.user.currentQuestion)
 
-  const [flag, setFlag] = useState()
+  const [flag, setFlag] = useState(flags[tasks?.id])
   const [id, setId] = useState()
 
   const flagHandler = () => {
@@ -61,8 +61,8 @@ const Column = ({ tasks, column, index }) => {
             {...provided.dragHandleProps}
           >
             <Title className="dnd-text-before" id={`q-${column.id}`}>
-              <strong className={`question-now  ${flag && 'active-flag'} ${currentQuestion == column.id && 'active'} `}> 
-                {column.id} 
+              <strong className={`question-now ${flag && 'active-flag'} active`}>
+                {column.id}
               </strong>
               &nbsp;
               {column.title}
@@ -84,7 +84,6 @@ const Column = ({ tasks, column, index }) => {
             <div onClick={() => flagHandler()} onMouseOver={() => setId(column.id)} className={`dnd-flag flag active`}>
               {flags[column.id] ? <BookmarkIcon color={'error'} /> : <BookmarkBorderIcon />}
             </div>
-
           </Container>
         </>
       )}
