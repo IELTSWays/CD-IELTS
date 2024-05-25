@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import Column from "./Column";
+import Column from "@/components/IELTS/QuestionTypes/IELTSDargDrop/Column";
 
 // store
 import { useAppSelector } from '@/store/hooks'

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-// mtu
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -12,13 +12,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-// mtu
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
-// store
 
 const index = ({ qn }: any) => {
 
@@ -51,13 +48,22 @@ const index = ({ qn }: any) => {
 
   return (
     <div id="q-201">
+
+      <Box id={`q-${qn}`}>
+        <Typography>
+          <h3> Questions 21 - 25 </h3>
+        </Typography>
+        <Typography className='italic'>
+          Choose the correct answer.
+        </Typography>
+      </Box>
+
       <Stack
         spacing={{ xs: 1, sm: 2 }}
         direction="column"
         useFlexGap
         flexWrap="wrap"
         sx={{ py: 1 }}
-        id={`q-${qn}`}
         className="radio-select"
       >
         <div className="align-items-start justify-content-space-between type-radio">

@@ -343,14 +343,6 @@ const index = () => {
 
             {part === 3 &&
               <>
-                <Box>
-                  <Typography>
-                    <h3> Questions 21 - 25 </h3>
-                  </Typography>
-                  <Typography className='italic'>
-                    Choose the correct answer.
-                  </Typography>
-                </Box>
                 <Box sx={{ mt: 3 }}>
                   <div>
                     <Box sx={{ p: 1 }}>
@@ -400,41 +392,10 @@ const index = () => {
 
             {part === 4 &&
               <>
-                <Box>
-                  <Typography>
-                    <h3> Questions 31 - 40 </h3>
-                  </Typography>
-                  <Typography sx={{ my: 1.5 }}>
-                    Complete the notes below.
-                  </Typography>
-                  <Typography className='italic'>
-                    Write
-                    <Typography sx={{ px: 1 }}> <strong className='uppercase'> ONE WORD ONLY </strong> </Typography>
-                    for each answer.
-                  </Typography>
-                </Box>
                 <Box sx={{ mt: 3 }}>
-                  <Typography align="center" sx={{ py: 2 }}>
-                    <h3 className='uppercase'>CRIME REPORT FORM</h3>
-                  </Typography>
                   <div>
-
-                    <section>
-                      <Box sx={{ px: 1 }}>
-                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                          <Paper elevation={0}>
-                            <Typography>
-                              <strong>Introduction</strong>
-                            </Typography>
-                          </Paper>
-                        </Stack>
-                      </Box>
-
-                      <Box sx={{ px: 1 }}>
-                        {/************************* [31] *************************/}
-                        <Q31 qn={questions[30].label} />
-                      </Box>
-                    </section>
+                    {/************************* [31] *************************/}
+                    <Q31 qn={questions[30].label} />
 
                     <section>
                       <Box sx={{ px: 1 }}>

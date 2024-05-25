@@ -2,13 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import Column from "./Column";
+import Column from "@/components/IELTS/QuestionTypes/IELTSDargDrop/Column";
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setAnswersAll } from '@/store/slices/user/userSlice'
-// store
 
 const Container = styled("div")`
   display: flex;

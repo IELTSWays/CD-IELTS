@@ -4,11 +4,9 @@ import styled from "@emotion/styled";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Column from "@/components/IELTS/QuestionTypes/IELTSDargDrop/Column";
 
-// store
 import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setAnswersAll } from '@/store/slices/user/userSlice'
-// store
 
 const Container = styled("div")`
   display: flex;
@@ -17,7 +15,6 @@ const Container = styled("div")`
 const DND = () => {
 
   const dispatch = useAppDispatch();
-
   const answersAll = useAppSelector((state: any) => state.user.answersAll)
 
   const init = {
