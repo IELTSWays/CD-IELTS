@@ -105,6 +105,12 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
     localStorage.setItem('test_skill', test_skill);
     localStorage.setItem('is_profile_fill', profile);
     localStorage.setItem('test_name', test_name);
+
+    // Set a 2-second delay before redirecting
+    setTimeout(() => {
+      const testSkill = localStorage.getItem('test_skill');
+      window.location.href = `/IELTS/${testSkill}`;
+    }, 2000);
   };
 
   return (
@@ -188,9 +194,9 @@ const ListExams = ({ data, skill, icon, isLoading }: any) => {
                         }
                         {((i.name.includes('R') || i.name.includes('L')) && i.answers && !i.is_expired && !i.test_done) &&
                           <a
-                            sx={{ width: '120px' }}
-                            onMouseOver={reset}
-                            href={`/IELTS/${localStorage.getItem('test_skill')}`}
+                            onClick={reset}
+                            // onMouseOver={reset}
+                            // href={`/IELTS/${localStorage.getItem('test_skill')}`}
                             className="btn"
                           >
                             go to test
