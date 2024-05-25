@@ -241,7 +241,7 @@ const index = () => {
                 {/* ================================================================================ [16-20] */}
                 <IELTSQuestionTitle from="16" to="20" type="7" />
                 <div className="d-flex">
-                  <img src={Q1620} width="600" />
+                  <img src={Q1620} width="650" />
                   <IELTSTableOptions
                     options={
                       [
