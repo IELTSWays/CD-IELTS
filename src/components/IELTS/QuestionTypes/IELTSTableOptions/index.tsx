@@ -26,7 +26,7 @@ const defaultOptions =
     { label: 'G', value: "g", },
   ]
 
-const index = ({ questions, options = defaultOptions }) => {
+const index = ({ questions, disableId = false, options = defaultOptions }) => {
 
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -53,10 +53,26 @@ const index = ({ questions, options = defaultOptions }) => {
     <Card variant="outlined" sx={{ width: 1 }}>
       <CardContent sx={{ p: 3 }}>
         <div className='ielts-answersTable'>
-          {questions.map((question) => (
-            <Stack key={question.id} direction="row" spacing={2} id={`q-${question.id}`}>
+          {questions.map((question: any) => (
+            <Stack
+              key={question.id}
+              direction="row"
+              spacing={2}
+              id={
+                (reading && (question.id === 1 || question.id === 14 || question.id === 27))
+                  ||
+                  (listening && (question.id === 1 || question.id === 11 || question.id === 21 || question.id === 31))
+                  ||
+                  (disableId && question.id[0])
+                  ? null :
+                  `q-${question.id}`
+              }
+            >
               <Paper>
-                <strong className={`question-now ${flag[question.id] && 'active-flag'} ${currentQuestion === question.id && 'active'}`}>
+                <strong className={`question-now 
+                  ${flag[question.id] && 'active-flag'} 
+                  ${currentQuestion === question.id && 'active'}`}
+                >
                   {question.id}
                 </strong>
                 <Typography sx={{ px: 1 }}> {question.title} </Typography>

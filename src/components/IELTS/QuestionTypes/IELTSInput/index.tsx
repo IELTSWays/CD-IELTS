@@ -13,7 +13,18 @@ import { useAppSelector } from '@/store/hooks'
 import { useAppDispatch } from '@/store/hooks'
 import { setCurrentQuestion, setAnswersAll, setFlags } from '@/store/slices/user/userSlice'
 
-const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled = false, placeholder = "", beforeInputStrong = false, afterInputStrong = false }: any) => {
+const index = ({
+  qn,
+  disableId = false,
+  noDefaultSpacing = false,
+  colLeft = "",
+  beforeInput = "",
+  afterInput = "",
+  disabled = false,
+  placeholder = "",
+  beforeInputStrong = false,
+  afterInputStrong = false
+}: any) => {
 
   const dispatch = useAppDispatch()
   const location = useLocation();
@@ -37,7 +48,7 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled =
   }
 
   return (
-    <div className="align-items-start justify-content-space-between">
+    <div className={`align-items-start justify-content-space-between ${noDefaultSpacing && 'noDefaultSpacing'}`}>
       <Stack
         spacing={{ xs: 1, sm: 2 }}
         direction="row"
@@ -48,6 +59,8 @@ const index = ({ qn, colLeft = "", beforeInput = "", afterInput = "", disabled =
           (reading && (qn === 1 || qn === 14 || qn === 27))
             ||
             (listening && (qn === 1 || qn === 11 || qn === 21 || qn === 31))
+            ||
+            (disableId)
             ? null :
             `q-${qn}`
         }>

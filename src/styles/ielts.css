@@ -878,6 +878,10 @@ html.ielts {
   margin: 0 !important;
 }
 
+.noDefaultSpacing {
+  margin-top: -15px !important;
+}
+
 .ielts-container .text-field input, .ielts-container .MuiInputBase-input {
   height: 15px !important;
   border-radius: 5px !important;
@@ -1497,7 +1501,7 @@ td {
 
 .ielts-container .type-radio .question {
   font-weight: bold;
-  padding: 0 8px;
+  /* padding: 0 8px; */
 }
 
 .ielts-container .type-radio > div {

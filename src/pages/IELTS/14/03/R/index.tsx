@@ -257,15 +257,18 @@ const index = () => {
                     {/* ================================================================================ [23-26] */}
                     <IELTSQuestionTitle from="23" to="26" type="4" />
                     <IELTSTitle title="Research at Aberystwyth University" isHeader />
-                    {/*********** [23] ***********/}
-                    <IELTSInput qn="23" beforeInput="Ross Piper and fellow zoologists at Aberystwyth University are using their expertise in" afterInput="when undertaking bioprospecting with insects." />
+                    {/* ********** [23] ********** */}
+                    <IELTSInput
+                      qn="23"
+                      beforeInput="Ross Piper and fellow zoologists at Aberystwyth University are using their expertise in"
+                      afterInput="when undertaking bioprospecting with insects."
+                    />
                     {/*********** [24] ***********/}
                     <IELTSInput qn="24" beforeInput="They are especially interested in the compounds that insects produce to overpower and preserve their" afterInput="They are also interested in compounds which insects use to protect" />
                     {/*********** [25] ***********/}
-                    <IELTSInput qn="25" beforeInput="themselves from pathogenic bacteria and fungi found in their" afterInput="Piper hopes" />
+                    <IELTSInput qn="25" noDefaultSpacing beforeInput="themselves from pathogenic bacteria and fungi found in their" afterInput="Piper hopes" />
                     {/*********** [26] ***********/}
                     <IELTSInput qn="26" beforeInput="that these substances will be useful in the development of drugs such as" />
-
                   </>
                 }
 

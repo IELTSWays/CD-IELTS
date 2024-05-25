@@ -22,7 +22,7 @@ const defaultOptions =
     { label: 'NOT GIVEN', value: "not given", },
   ]
 
-const index = ({ qn, question, options = defaultOptions }: any) => {
+const index = ({ qn, disableId = false, question, options = defaultOptions }: any) => {
 
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -57,6 +57,8 @@ const index = ({ qn, question, options = defaultOptions }: any) => {
         (reading && (qn === 1 || qn === 14 || qn === 27))
           ||
           (listening && (qn === 1 || qn === 11 || qn === 21 || qn === 31))
+          ||
+          (disableId)
           ? null :
           `q-${qn}`
       }>

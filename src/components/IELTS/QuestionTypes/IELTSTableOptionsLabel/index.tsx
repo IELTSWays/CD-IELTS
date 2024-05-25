@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Paper, Stack, Radio, RadioGroup, FormControlLabel, Typography, Card, CardContent, Chip } from '@mui/material';
 
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -18,36 +19,53 @@ const defaultOptions =
     { label: 'G', value: "g", },
   ]
 
-const index = ({ questions, options = defaultOptions, topLabels }) => {
+const index = ({ questions, disableId = false, options = defaultOptions, topLabels }) => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const flags = useAppSelector((state: any) => state.user.flag);
   const answersAll = useAppSelector((state: any) => state.user.answersAll);
   const currentQuestion = useAppSelector((state: any) => state.user.currentQuestion);
+  const reading = location.pathname.includes('reading')
+  const listening = location.pathname.includes('listening')
 
   const [flag, setFlag] = useState({});
 
-  const handleChange = (event, id) => {
+  const handleChange = (event: any, id: any) => {
     const { value } = event.target;
     dispatch(setAnswersAll({ ...answersAll, [id]: value }));
     dispatch(setCurrentQuestion(id));
   };
 
-  const flagHandler = (id) => {
+  const flagHandler = (id: any) => {
     setFlag({ ...flag, [id]: !flag[id] });
     dispatch(setFlags({ ...flags, [id]: !flag[id] }));
   };
 
-  const renderQuestion = (question) => (
-    <div key={question.id} id={`q-${question.id}`}>
-      <Stack direction="row" spacing={2}>
+  const renderQuestion = (question: any) => (
+    <div key={question.id}>
+      <Stack 
+        direction="row" 
+        spacing={2} 
+        id={
+        (reading && (question.id === 1 || question.id === 14 || question.id === 27))
+          ||
+          (listening && (question.id === 1 || question.id === 11 || question.id === 21 || question.id === 31))
+          ||
+          (disableId && question.id[0])
+          ? null :
+          `q-${question.id}`
+      }
+      >
         <Paper>
-          <strong className={`question-now ${flag[question.id] && 'active-flag'} ${currentQuestion === question.id && 'active'}`}>
+          <strong 
+            className={`question-now ${flag[question.id] && 'active-flag'} 
+            ${currentQuestion === question.id && 'active'}`}>
             {question.id}
           </strong>
           <Typography sx={{ px: 1 }}> {question.title} </Typography>
         </Paper>
         <RadioGroup row value={answersAll[question.id] || ''} onChange={(event) => handleChange(event, question.id)}>
-          {options.map((option) => (
+          {options.map((option: any) => (
             <FormControlLabel
               key={option.value}
               value={option.value}
@@ -65,7 +83,7 @@ const index = ({ questions, options = defaultOptions, topLabels }) => {
 
   const renderTopLabels = () => (
     <div className="ielts-answersTable top-labels">
-      {topLabels.map((label, index) => (
+      {topLabels.map((label: any, index: any) => (
         <Chip key={index} label={label.title} variant="outlined" />
       ))}
     </div>
