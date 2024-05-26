@@ -74,7 +74,8 @@ const index = ({ qn, disableId = false, question, checkList }: any) => {
   }, [checked]);
 
   return (
-    <div className="justify-content-space-between">
+    <div className="justify-content-space-between" id={`q-${Number(qn) + 1}`}
+    >
       <div
         id={
           (reading && (qn === 1 || qn === 14 || qn === 27))

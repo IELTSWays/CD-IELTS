@@ -548,7 +548,8 @@ html.ielts {
 .ielts-navigation#B14RT3 #item-21,
 .ielts-navigation#B14LT4 #item-17,
 .ielts-navigation#B14LT4 #item-19,
-.ielts-navigation#B17LT2 #item-21 {
+.ielts-navigation#B17LT2 #item-21,
+.ielts-navigation#B17LT3 #item-11 {
   width: 55px !important;
 }
 
@@ -568,13 +569,15 @@ html.ielts {
 .ielts-navigation#B14RT1 #item-20,
 .ielts-navigation#B14RT1 #item-22,
 .ielts-navigation#B14RT3 #item-22,
-.ielts-navigation#B17LT2 #item-22 {
+.ielts-navigation#B17LT2 #item-22,
+.ielts-navigation#B17LT3 #item-12 {
   display: none !important;
 }
 
 .ielts-navigation#B14LT1 #item-11 span:after,
 .ielts-navigation#B14LT3 #item-11 span:after,
-.ielts-navigation#B16LT3 #item-11 span:after {
+.ielts-navigation#B16LT3 #item-11 span:after,
+.ielts-navigation#B17LT3 #item-11 span:after {
   content: "-12";
   padding-top: 5px;
 }

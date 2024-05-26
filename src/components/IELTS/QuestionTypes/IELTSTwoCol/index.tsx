@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-const index = ({ colLeft = "", colRight=""}: any) => {
+const index = ({ colLeft = "", colRight="", colLeftStrong = null}: any) => {
 
   return (
     <div className="align-items-start justify-content-space-between">
@@ -17,7 +17,7 @@ const index = ({ colLeft = "", colRight=""}: any) => {
       >
         {colLeft.length > 1 &&
           <Paper elevation={0} sx={{ width: '200px' }}>
-            <Typography>{colLeft}</Typography>
+            <Typography> {colLeftStrong ? <strong>{colLeft}</strong> : colLeft }</Typography>
           </Paper>
         }
         {colRight.length > 1 &&
