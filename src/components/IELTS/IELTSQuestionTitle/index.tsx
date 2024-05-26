@@ -2,14 +2,16 @@ import React, { Box, Typography } from "@mui/material";
 
 const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
 
-  // Type 1: Complete the notes. Write one word and/or a number for each answer.
-  // Type 2: Choose [two] correct answer.
-  // Type 3: Choose the correct answer.
-  // Type 4: Complete the notes below. Write [ONE WORD ONLY] for each answer.
-  // Type 5: YES, NO, NOT GIVEN
-  // TYpe 7: Write the correct letter, A-H, next to Questions 16-20
-  // Type 8: Write the correct letter, A-I, in boxes 14-18 on your answer sheet.
+  // Type 1:   Complete the notes. Write one word and/or a number for each answer.
+  // Type 2:   Choose [two] correct answer.
+  // Type 3:   Choose the correct answer.
+  // Type 4:   Complete the notes below. Write [ONE WORD ONLY] for each answer.
+  // Type 5:   YES, NO, NOT GIVEN
+  // TYpe 7:   Write the correct letter, A-H, next to Questions 16-20
+  // Type 8:   Write the correct letter, A-I, in boxes 14-18 on your answer sheet.
+  // Type 16:  Choose the correct letter, A, B or C.
   // Type 100: TRUE, FALSE, NOT GIVEN
+  // Type 101: Choose TWO letters, A-E
 
   return (
     <Box sx={{ py: 2 }} id={`q-${from}`}>
@@ -229,6 +231,23 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
           <Typography>
             Choose <strong className='uppercase'>True</strong> if the statement agrees with the information, Choose <strong className='uppercase'>False</strong> if the statement contradicts the information, or <strong className='uppercase'>NOT GIVEN</strong> if there is no information on this
+          </Typography>
+        </>
+      }
+      {type == 101 &&
+        <>
+          <Typography>
+            Choose TWO letters,<strong className='uppercase'>A - E</strong>
+          </Typography>
+        </>
+      }
+      {type == 102 &&
+        <>
+          <Typography>
+            What information does Megan give about each of the following job opportunities?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>THREE</strong> answers from the box and write the correct letter, <strong>A, B</strong> or <strong>C</strong> next to Questions <strong>{from} - {to}</strong>
           </Typography>
         </>
       }

@@ -593,7 +593,7 @@
         {
           "id": "B16ALT3",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B16ART3",

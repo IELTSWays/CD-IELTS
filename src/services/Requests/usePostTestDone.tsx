@@ -28,7 +28,7 @@ const usePostTestDone = () => {
     final = {
       ...final,
       "11": merge[11] && merge[11][0] ? merge[11][0] : null,
-      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+      "22": merge[22] && merge[22][1] ? merge[22][1] : null,
       "13": merge[13] && merge[13][0] ? merge[13][0] : null,
       "14": merge[13] && merge[13][1] ? merge[13][1] : null
     };
@@ -69,6 +69,20 @@ const usePostTestDone = () => {
       "18": merge[17] && merge[17][1] ? merge[17][1] : null,
       "19": merge[19] && merge[19][0] ? merge[19][0] : null,
       "20": merge[19] && merge[19][1] ? merge[19][1] : null
+    };
+  }
+
+  if (testName === 'B16LT3') {
+    final = {
+      ...final,
+      "11": merge[11] && merge[11][0] ? merge[11][0] : null,
+      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+      "13": merge[13] && merge[13][0] ? merge[13][0] : null,
+      "14": merge[13] && merge[13][1] ? merge[13][1] : null,
+      "21": merge[21] && merge[21][0] ? merge[21][0] : null,
+      "22": merge[22] && merge[22][1] ? merge[22][1] : null,
+      "23": merge[23] && merge[23][0] ? merge[23][0] : null,
+      "24": merge[24] && merge[24][1] ? merge[24][1] : null
     };
   }
 
