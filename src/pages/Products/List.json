@@ -639,7 +639,7 @@
         {
           "id": "B17ALT1",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B17ART1",

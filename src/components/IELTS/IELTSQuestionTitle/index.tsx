@@ -251,11 +251,19 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
         </>
       }
-
+      {type == 103 &&
+        <>
+          <Typography>
+            What opinion do the students give about each of the following modules on their veterinary science course?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>FOUR</strong> answers from the box and write the correct letter, <strong>A - F</strong> next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
 
     </Box>
   );
 };
 
 export default IELTSQuestionTitle;
-
