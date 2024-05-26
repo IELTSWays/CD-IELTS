@@ -22,8 +22,6 @@ import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableO
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
-import DND_15_20 from './DND_15_20'
-
 const index = () => {
   const dispatch = useAppDispatch()
 

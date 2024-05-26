@@ -105,6 +105,14 @@ const usePostTestDone = () => {
     };
   }
 
+  if (testName === 'B17LT2') {
+    final = {
+      ...final,
+      "21": merge[21] && merge[21][0] ? merge[21][0] : null,
+      "22": merge[21] && merge[21][1] ? merge[21][1] : null,
+    };
+  }
+
   for (let key in final) {
     if (key.startsWith("000")) {
       delete final[key];

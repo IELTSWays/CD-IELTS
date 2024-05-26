@@ -1,6 +1,13 @@
 import React, { Box, Typography } from "@mui/material";
 
-const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
+const IELTSQuestionTitle = ({
+  to,
+  from,
+  type = 0,
+  title = null,
+  numberOfAnswers = null,
+  alphabet = null
+}) => {
 
   // Type 1:   Complete the notes. Write one word and/or a number for each answer.
   // Type 2:   Choose [two] correct answer.
@@ -261,7 +268,38 @@ const IELTSQuestionTitle = ({ to, from, type = 0 }) => {
           </Typography>
         </>
       }
-
+      {type == 104 &&
+        <>
+          <Typography>
+            Which activity is offered at each of the following locations on the farm?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>SIX</strong> answers from the box and write the correct letter, <strong>A - H</strong> next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
+      {type == 104 &&
+        <>
+          <Typography>
+            Which opinion do the speakers give about each of the following aspects of The Emporium’s production of Romeo and Juliet?
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong>FIVE</strong> answers from the box and write the correct letter, <strong>A - G</strong> next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
+      {type == 200 &&
+        <>
+          <Typography>
+            {title}
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Choose <strong className="uppercase">{numberOfAnswers}</strong>
+            answers from the box and write the correct letter,
+            <strong className="uppercase">A - {alphabet}</strong> next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
     </Box>
   );
 };
