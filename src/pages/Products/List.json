@@ -728,7 +728,7 @@
         {
           "id": "B18ALT1",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B18ART1",

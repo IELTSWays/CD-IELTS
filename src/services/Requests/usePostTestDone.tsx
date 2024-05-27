@@ -40,7 +40,7 @@ const usePostTestDone = () => {
       ...final,
       "19": merge[19] && merge[19][0] ? merge[19][0] : null,
       "20": merge[19] && merge[19][1] ? merge[19][1] : null,
-      
+
       "21": merge[21] && merge[21][0] ? merge[21][0] : null,
       "22": merge[21] && merge[21][1] ? merge[21][1] : null
     };
@@ -133,6 +133,21 @@ const usePostTestDone = () => {
       "24": merge[23] && merge[23][1] ? merge[23][1] : null
     };
   }
+
+  if (testName === 'B18LT1') {
+    final = {
+      ...final,
+      "14": merge[14] && merge[14][0] ? merge[14][0] : null,
+      "15": merge[14] && merge[14][1] ? merge[14][1] : null,
+
+      "27": merge[27] && merge[27][0] ? merge[27][0] : null,
+      "28": merge[27] && merge[27][1] ? merge[27][1] : null,
+
+      "29": merge[29] && merge[29][0] ? merge[29][0] : null,
+      "30": merge[29] && merge[29][1] ? merge[29][1] : null
+    };
+  }
+
 
   for (let key in final) {
     if (key.startsWith("000")) {

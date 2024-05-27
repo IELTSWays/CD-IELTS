@@ -666,6 +666,21 @@ html.ielts {
 #B17LT4 #item-23 {width: 55px !important;}
 #B17LT4 #item-23 span:after {content: "-24"; padding-top: 5px;}
 
+/* B18LT1 - [14-15] */
+#B18LT1 #item-14 + #item-15 {display: none;}
+#B18LT1 #item-14 {width: 55px !important;}
+#B18LT1 #item-14 span:after {content: "-15"; padding-top: 5px;}
+
+/* B18LT1 - [27-28] */
+#B18LT1 #item-27 + #item-28 {display: none;}
+#B18LT1 #item-27 {width: 55px !important;}
+#B18LT1 #item-27 span:after {content: "-28"; padding-top: 5px;}
+
+/* B18LT1 - [29-30] */
+#B18LT1 #item-29 + #item-30 {display: none;}
+#B18LT1 #item-29 {width: 55px !important;}
+#B18LT1 #item-29 span:after {content: "-30"; padding-top: 5px;}
+
 
 /* [ ############################ MODAL OPTIONS ############################ ] */
 
