@@ -655,6 +655,16 @@ html.ielts {
   padding-top: 5px;
 }
 
+/* B13LT2 - [17-18]*/
+#B13LT2 #item-17 + #item-18 {display: none;}
+#B13LT2 #item-17 {width: 55px !important;}
+#B13LT2 #item-17 span:after {content: "-18"; padding-top: 5px;}
+
+/* B13LT2 - [19-20]*/
+#B13LT2 #item-19 + #item-20 {display: none;}
+#B13LT2 #item-19 {width: 55px !important;}
+#B13LT2 #item-19 span:after {content: "-20"; padding-top: 5px;}
+
 /* B13LT4 - [27-28] */
 #B13LT4 #item-27 + #item-28 {display: none;}
 #B13LT4 #item-27 {width: 55px !important;}
@@ -689,8 +699,6 @@ html.ielts {
 #B18LT1 #item-29 + #item-30 {display: none;}
 #B18LT1 #item-29 {width: 55px !important;}
 #B18LT1 #item-29 span:after {content: "-30"; padding-top: 5px;}
-
-
 
 /* [ ############################ MODAL OPTIONS ############################ ] */
 
