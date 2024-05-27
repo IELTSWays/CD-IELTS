@@ -18,7 +18,7 @@ import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
 import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
-import IELTSTableOptions from '@/components/IELTS/QuestionTypes/IELTSTableOptions';
+import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel';
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
@@ -200,7 +200,7 @@ const index = () => {
                 {/* ================================================================================ [15-20] */}
                 <IELTSQuestionTitle from="15" to="20" type="201" title="Which way of reducing staff turnover was used in each of the following hotels?" />
                 {/************* [15-20] *************/}
-                <IELTSTableOptions
+                <IELTSTableOptionsLabel
                   questions={
                     [
                       { id: 15, title: 'The Sun Club' },
@@ -208,7 +208,7 @@ const index = () => {
                       { id: 17, title: 'Bluewater Hotels' },
                       { id: 18, title: 'Pentlow Hotels' },
                       { id: 19, title: 'Green Planet' },
-                      { id: 20, title: 'The Amesbury' },
+                      { id: 20, title: 'The Amesburyللل' },
                     ]
                   }
                   topLabels={[
