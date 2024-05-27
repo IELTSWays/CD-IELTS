@@ -18,9 +18,11 @@ import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
 import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
-import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
+
+import DND_15_20 from './DND_15_20'
+import DND_23_27 from './DND_23_27'
 
 const index = () => {
   const dispatch = useAppDispatch()
@@ -192,42 +194,7 @@ const index = () => {
                   alphabet="h"
                   type="200"
                 />
-                {/************* [15-20] *************/}
-                <IELTSTableOptionsLabel
-                  questions={
-                    [
-                      { id: 15, title: 'dairy' },
-                      { id: 16, title: 'large barn' },
-                      { id: 17, title: 'small barn' },
-                      { id: 18, title: 'stables' },
-                      { id: 19, title: 'shed' },
-                      { id: 20, title: 'parkland' },
-                    ]
-                  }
-                  topLabels={[
-                    { title: "shopping" },
-                    { title: "watching cows being milked" },
-                    { title: "seeing old farming equipment" },
-                    { title: "eating and drinking" },
-                    { title: "starting a trip" },
-                    { title: "seeing rare breeds of animals" },
-                    { title: "helping to look after animals" },
-                    { title: "using farming tools" },
-                  ]
-                  }
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                      { label: 'H', value: "h", },
-                    ]
-                  }
-                />
+                <DND_15_20 />
               </>
             }
 
@@ -257,39 +224,7 @@ const index = () => {
                   type="200"
                 />
                 {/************* [23-27] *************/}
-                <IELTSTableOptionsLabel
-                  questions={
-                    [
-                      { id: 15, title: 'dairy' },
-                      { id: 16, title: 'large barn' },
-                      { id: 17, title: 'small barn' },
-                      { id: 18, title: 'stables' },
-                      { id: 19, title: 'shed' },
-                      { id: 20, title: 'parkland' },
-                    ]
-                  }
-                  topLabels={[
-                    { title: "They both expected this to be more traditional." },
-                    { title: "They both thought this was original." },
-                    { title: "They agree this created the right atmosphere." },
-                    { title: "They agree this was a major strength." },
-                    { title: "They were both disappointed by this." },
-                    { title: "They disagree about why this was an issue." },
-                    { title: "They disagree about how this could be improved." },
-                  ]
-                  }
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                    ]
-                  }
-                />
+                <DND_23_27 />
                 {/* ================================================================================ [28-30] */}
                 <IELTSQuestionTitle from="28" to="30" type="16" />
                 {/************* [28] *************/}

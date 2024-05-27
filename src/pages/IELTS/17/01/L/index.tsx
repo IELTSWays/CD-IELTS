@@ -22,6 +22,8 @@ import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableO
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
+import DND_27_30 from './DND_27_30'
+
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -304,38 +306,16 @@ const index = () => {
                   ]}
                 />
                 {/* ================================================================================ [27-30] */}
-                <IELTSQuestionTitle from="27" to="30" type="103" />
-                <strong> Modules on Veterinary Science course </strong>
-                {/************* [27-30] *************/}
-                <IELTSTableOptionsLabel
-                  questions={
-                    [
-                      { id: 27, title: 'Medical terminology' },
-                      { id: 28, title: 'Diet and nutrition' },
-                      { id: 29, title: 'Animal disease' },
-                      { id: 30, title: 'Wildlife medication' },
-                    ]
-                  }
-                  topLabels={[
-                    { title: "Tim found this easier than expected." },
-                    { title: "Tim thought this was not very clearly organised." },
-                    { title: "Diana may do some further study on this." },
-                    { title: "They both found the reading required for this was difficult." },
-                    { title: "Tim was shocked at something he learned on this module." },
-                    { title: "They were both surprised how little is known about some aspects of this." },
-                  ]
-                  }
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                    ]
-                  }
+                <IELTSQuestionTitle
+                  from="27"
+                  to="30"
+                  title="What opinion do the students give about each of the following modules on their veterinary science course?"
+                  numberOfAnswers="four"
+                  alphabet="f"
+                  type="200"
                 />
+                {/************* [27-30] *************/}
+                <DND_27_30 />
               </>
             }
 
