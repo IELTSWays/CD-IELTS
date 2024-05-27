@@ -34,6 +34,10 @@ import usePostTestDoneWriting from '@/services/Requests/usePostTestDoneWriting';
 
 import IELTS from "@/pages/IELTS"
 
+// 13
+import B13LT2 from '@/pages/IELTS/Audios/B13LT2.json'
+import B13LT4 from '@/pages/IELTS/Audios/B13LT4.json'
+
 // 14
 import B14LT1 from '@/pages/IELTS/Audios/B14LT1.json'
 import B14LT2 from '@/pages/IELTS/Audios/B14LT2.json'
@@ -47,6 +51,10 @@ import B16LT3 from '@/pages/IELTS/Audios/B16LT3.json'
 import B17LT1 from '@/pages/IELTS/Audios/B17LT1.json'
 import B17LT2 from '@/pages/IELTS/Audios/B17LT2.json'
 import B17LT3 from '@/pages/IELTS/Audios/B17LT3.json'
+import B17LT4 from '@/pages/IELTS/Audios/B17LT4.json'
+
+// 18
+import B18LT1 from '@/pages/IELTS/Audios/B18LT1.json'
 
 const LayoutIELTS = ({ children }: any) => {
 
@@ -79,6 +87,21 @@ const LayoutIELTS = ({ children }: any) => {
   const contrast = useAppSelector((state: any) => state.user.contrast)
   const showOptions = useAppSelector((state: any) => state.user.showOptions)
   const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
+
+  const tests = {
+    'B13LT2': B13LT2,
+    'B13LT4': B13LT4,
+    'B14LT1': B14LT1,
+    'B14LT2': B14LT2,
+    'B14LT3': B14LT3,
+    'B14LT4': B14LT4,
+    'B16LT3': B16LT3,
+    'B17LT1': B17LT1,
+    'B17LT2': B17LT2,
+    'B17LT3': B17LT3,
+    'B17LT4': B17LT4,
+    'B18LT1': B18LT1
+  };
 
   return (
     <html data-theme={contrast} className='ielts'>
@@ -165,56 +188,14 @@ const LayoutIELTS = ({ children }: any) => {
                   <div className='ielts-footer-btn'>
                     <WifiIcon color="action" fontSize="small" />
                   </div>
-                  {/* 14 */}
                   {
-                    localStorage.getItem('test_name') === 'B14LT1' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B14LT1.songs.length > 0 &&
-                    <AudioPlayer songs={B14LT1.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {
-                    localStorage.getItem('test_name') === 'B14LT2' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B14LT2.songs.length > 0 &&
-                    <AudioPlayer songs={B14LT2.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {
-                    localStorage.getItem('test_name') === 'B14LT3' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B14LT3.songs.length > 0 &&
-                    <AudioPlayer songs={B14LT3.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {
-                    localStorage.getItem('test_name') === 'B14LT4' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B14LT4.songs.length > 0 &&
-                    <AudioPlayer songs={B14LT4.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {/* 16 */}
-                  {
-                    localStorage.getItem('test_name') === 'B16LT3' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B16LT3.songs.length > 0 &&
-                    <AudioPlayer songs={B16LT3.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {/* 17 */}
-                  {
-                    localStorage.getItem('test_name') === 'B17LT1' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B17LT1.songs.length > 0 &&
-                    <AudioPlayer songs={B17LT1.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {
-                    localStorage.getItem('test_name') === 'B17LT2' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B17LT2.songs.length > 0 &&
-                    <AudioPlayer songs={B17LT2.songs} onPlayStatusChange={handlePlayStatusChange} />
-                  }
-                  {
-                    localStorage.getItem('test_name') === 'B17LT3' &&
-                    ((/listening/i.test(location.pathname))) &&
-                    B17LT3.songs.length > 0 &&
-                    <AudioPlayer songs={B17LT3.songs} onPlayStatusChange={handlePlayStatusChange} />
+                    (/listening/i.test(location.pathname)) && (() => {
+                      const testName: any = localStorage.getItem('test_name');
+                      const testData = tests[testName];
+                      return testData && testData.songs && testData.songs.length > 0 && (
+                        <AudioPlayer songs={testData.songs} onPlayStatusChange={handlePlayStatusChange} />
+                      );
+                    })()
                   }
                   <div className='ielts-footer-btn'>
                     Exit
