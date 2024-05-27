@@ -24,6 +24,17 @@ const usePostTestDone = () => {
 
   const testName = localStorage.getItem('test_name');
 
+  if (testName === 'B13LT4') {
+    final = {
+      ...final,
+      "27": merge[27] && merge[27][0] ? merge[27][0] : null,
+      "28": merge[27] && merge[27][1] ? merge[27][1] : null,
+
+      "29": merge[29] && merge[29][0] ? merge[29][0] : null,
+      "30": merge[29] && merge[29][1] ? merge[29][1] : null
+    };
+  }
+
   if (testName === 'B14LT1') {
     final = {
       ...final,
@@ -103,7 +114,7 @@ const usePostTestDone = () => {
       "18": merge[17] && merge[17][1] ? merge[17][1] : null,
 
       "19": merge[19] && merge[19][0] ? merge[19][0] : null,
-      "29": merge[19] && merge[19][1] ? merge[19][1] : null,
+      "20": merge[19] && merge[19][1] ? merge[19][1] : null,
     };
   }
 
