@@ -22,6 +22,9 @@ import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableO
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
+import DND_16_20 from './DND_16_20'
+import DND_25_30 from './DND_25_30'
+
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -205,38 +208,7 @@ const index = () => {
                   type="200"
                 />
                 {/************* [16-20] *************/}
-                <IELTSTableOptionsLabel
-                  questions={
-                    [
-                      { id: 16, title: 'Spanish' },
-                      { id: 17, title: 'Music' },
-                      { id: 18, title: 'Painting' },
-                      { id: 19, title: 'Yoga' },
-                      { id: 20, title: 'Cooking' },
-                    ]
-                  }
-                  topLabels={[
-                    { title: "has limited availability" },
-                    { title: "is no longer available" },
-                    { title: "is for over 8s only" },
-                    { title: "requires help from parents" },
-                    { title: "involves an additional fee" },
-                    { title: "is a new activity" },
-                    { title: "was requested by children" },
-                  ]
-                  }
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                    ]
-                  }
-                />
+                <DND_16_20/>
               </>
             }
 
@@ -294,42 +266,8 @@ const index = () => {
                   alphabet="h"
                   type="200"
                 />
-                {/************* [25-30] *************/}
-                <IELTSTableOptionsLabel
-                  questions={
-                    [
-                      { id: 25, title: 'Communication' },
-                      { id: 26, title: 'Organisation' },
-                      { id: 27, title: 'Time management' },
-                      { id: 28, title: 'Creativity' },
-                      { id: 29, title: 'Leadership' },
-                      { id: 30, title: 'Networking' },
-                    ]
-                  }
-                  topLabels={[
-                    { title: "being flexible" },
-                    { title: "focusing on details" },
-                    { title: "having a smart appearance" },
-                    { title: "hiding your emotions" },
-                    { title: "relying on experts" },
-                    { title: "trusting your own views" },
-                    { title: "doing one thing at a time" },
-                    { title: "thinking of the future" },
-                  ]
-                  }
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                      { label: 'H', value: "h", },
-                    ]
-                  }
-                />
+                {/************* [16-20] *************/}
+                <DND_25_30/>
               </>
             }
 

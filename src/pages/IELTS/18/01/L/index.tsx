@@ -18,7 +18,6 @@ import IELTSRadio from '@/components/IELTS/QuestionTypes/IELTSRadio';
 import IELTSMultiCheckbox from '@/components/IELTS/QuestionTypes/IELTSMultiCheckbox';
 import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
-import IELTSTableOptionsLabel from '@/components/IELTS/QuestionTypes/IELTSTableOptionsLabel'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
