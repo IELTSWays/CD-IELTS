@@ -548,8 +548,9 @@ html.ielts {
 .ielts-navigation#B14RT3 #item-21,
 .ielts-navigation#B14LT4 #item-17,
 .ielts-navigation#B14LT4 #item-19,
-.ielts-navigation#B17LT2 #item-21,
-.ielts-navigation#B17LT3 #item-11 {
+.ielts-navigation#B17LT2 #item-21
+/* .ielts-navigation#B17LT3 #item-11 */
+ {
   width: 55px !important;
 }
 
@@ -569,15 +570,17 @@ html.ielts {
 .ielts-navigation#B14RT1 #item-20,
 .ielts-navigation#B14RT1 #item-22,
 .ielts-navigation#B14RT3 #item-22,
-.ielts-navigation#B17LT2 #item-22,
-.ielts-navigation#B17LT3 #item-12 {
+.ielts-navigation#B17LT2 #item-22
+/* .ielts-navigation#B17LT3 #item-12  */
+{
   display: none !important;
 }
 
 .ielts-navigation#B14LT1 #item-11 span:after,
 .ielts-navigation#B14LT3 #item-11 span:after,
-.ielts-navigation#B16LT3 #item-11 span:after,
-.ielts-navigation#B17LT3 #item-11 span:after {
+.ielts-navigation#B16LT3 #item-11 span:after
+/* .ielts-navigation#B17LT3 #item-11 span:after */
+ {
   content: "-12";
   padding-top: 5px;
 }
@@ -651,6 +654,18 @@ html.ielts {
   content: "-22";
   padding-top: 5px;
 }
+
+
+/* B17LT4 - [21-22]*/
+#B17LT4 #item-21 + #item-22 {display: none;}
+#B17LT4 #item-21 {width: 55px !important;}
+#B17LT4 #item-21 span:after {content: "-22"; padding-top: 5px;}
+
+/* B17LT4 - [23-24]*/
+#B17LT4 #item-23 + #item-24 {display: none;}
+#B17LT4 #item-23 {width: 55px !important;}
+#B17LT4 #item-23 span:after {content: "-24"; padding-top: 5px;}
+
 
 /* [ ############################ MODAL OPTIONS ############################ ] */
 

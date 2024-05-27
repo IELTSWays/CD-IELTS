@@ -1,3 +1,5 @@
+import React from "react";
+
 const partsData = {
   reading: [
     { title: "Part 1", description: "Read the text and answer questions 1-13." },

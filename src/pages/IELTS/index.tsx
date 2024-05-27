@@ -2,17 +2,16 @@ import React from "react";
 
 // ============================== 14 ==============================
 import B14LT1 from "@/pages/IELTS/14/01/L";
-import B14RT1 from "@/pages/IELTS/14/01/R";
-import B14WT1 from "@/pages/IELTS/14/01/W";
-
 import B14LT2 from "@/pages/IELTS/14/02/L";
-import B14RT2 from "@/pages/IELTS/14/02/R";
-import B14WT2 from "@/pages/IELTS/14/02/W";
-
 import B14LT3 from "@/pages/IELTS/14/03/L";
+import B14LT4 from "@/pages/IELTS/14/04/L";
+
+import B14RT1 from "@/pages/IELTS/14/01/R";
+import B14RT2 from "@/pages/IELTS/14/02/R";
 import B14RT3 from "@/pages/IELTS/14/03/R";
 
-import B14LT4 from "@/pages/IELTS/14/04/L";
+import B14WT1 from "@/pages/IELTS/14/01/W";
+import B14WT2 from "@/pages/IELTS/14/02/W";
 
 // ============================== 15 ==============================
 
@@ -23,6 +22,7 @@ import B16LT3 from "@/pages/IELTS/16/03/L";
 import B17LT1 from "@/pages/IELTS/17/01/L";
 import B17LT2 from "@/pages/IELTS/17/02/L";
 import B17LT3 from "@/pages/IELTS/17/03/L";
+import B17LT4 from "@/pages/IELTS/17/04/L";
 
 const IELTS = () => {
   return (
@@ -49,6 +49,7 @@ const IELTS = () => {
       {localStorage.getItem('test_name') === 'B17LT1' && <B17LT1 />}
       {localStorage.getItem('test_name') === 'B17LT2' && <B17LT2 />}
       {localStorage.getItem('test_name') === 'B17LT3' && <B17LT3 />}
+      {localStorage.getItem('test_name') === 'B17LT4' && <B17LT4 />}
     </>
   );
 };

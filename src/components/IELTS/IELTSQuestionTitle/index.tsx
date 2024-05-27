@@ -300,6 +300,17 @@ const IELTSQuestionTitle = ({
           </Typography>
         </>
       }
+      {type == 201 &&
+        <>
+          <Typography>
+            {title}
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Write the correct letter, A, B or C,
+            next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
     </Box>
   );
 };
