@@ -2,6 +2,7 @@ import React from "react";
 
 // ============================== 10 ==============================
 import B10LT1 from "@/pages/IELTS/10/01/L";
+import B10LT2 from "@/pages/IELTS/10/02/L";
 
 // ============================== 13 ==============================
 import B13LT2 from "@/pages/IELTS/13/02/L";
@@ -40,6 +41,7 @@ const IELTS = () => {
 
       {/* // ============================== 10 ============================== */}
       {localStorage.getItem('test_name') === 'B10LT1' && <B10LT1 />}
+      {localStorage.getItem('test_name') === 'B10LT2' && <B10LT2 />}
 
       {/* // ============================== 13 ============================== */}
       {localStorage.getItem('test_name') === 'B13LT2' && <B13LT2 />}

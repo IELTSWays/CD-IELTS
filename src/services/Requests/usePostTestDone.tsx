@@ -32,6 +32,17 @@ const usePostTestDone = () => {
     };
   }
 
+  if (testName === 'B10LT2') {
+    final = {
+      ...final,
+      "21": merge[21] && merge[21][0] ? merge[21][0] : null,
+      "22": merge[21] && merge[21][1] ? merge[21][1] : null,
+
+      "23": merge[23] && merge[23][0] ? merge[23][0] : null,
+      "24": merge[23] && merge[23][1] ? merge[23][1] : null
+    };
+  }
+
   if (testName === 'B13LT2') {
     final = {
       ...final,
