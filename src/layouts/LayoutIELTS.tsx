@@ -34,6 +34,12 @@ import usePostTestDoneWriting from '@/services/Requests/usePostTestDoneWriting';
 
 import IELTS from "@/pages/IELTS"
 
+// 10
+import B10LT1 from '@/pages/IELTS/Audios/B10LT1.json'
+import B10LT2 from '@/pages/IELTS/Audios/B10LT2.json'
+import B10LT3 from '@/pages/IELTS/Audios/B10LT3.json'
+import B10LT4 from '@/pages/IELTS/Audios/B10LT4.json'
+
 // 13
 import B13LT2 from '@/pages/IELTS/Audios/B13LT2.json'
 import B13LT4 from '@/pages/IELTS/Audios/B13LT4.json'
@@ -89,6 +95,10 @@ const LayoutIELTS = ({ children }: any) => {
   const writingSaved = useAppSelector((state: any) => state.user.writingSaved)
 
   const tests = {
+    'B10LT1': B10LT1,
+    'B10LT2': B10LT2,
+    'B10LT3': B10LT3,
+    'B10LT4': B10LT4,
     'B13LT2': B13LT2,
     'B13LT4': B13LT4,
     'B14LT1': B14LT1,
