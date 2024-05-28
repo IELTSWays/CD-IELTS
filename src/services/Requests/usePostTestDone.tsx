@@ -166,7 +166,7 @@ const usePostTestDone = () => {
     };
   }
 
-  if (testName === 'B17LT4') {
+  if (testName === 'B17LT4' || testName === 'B10LT4' ) {
     final = {
       ...final,
       "21": merge[21] && merge[21][0] ? merge[21][0] : null,
