@@ -24,6 +24,14 @@ const usePostTestDone = () => {
 
   const testName = localStorage.getItem('test_name');
 
+  if (testName === 'B10LT1') {
+    final = {
+      ...final,
+      "11": merge[11] && merge[11][0] ? merge[11][0] : null,
+      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+    };
+  }
+
   if (testName === 'B13LT2') {
     final = {
       ...final,

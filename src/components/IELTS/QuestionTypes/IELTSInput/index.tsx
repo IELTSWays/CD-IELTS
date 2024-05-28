@@ -23,7 +23,8 @@ const index = ({
   disabled = false,
   placeholder = "",
   beforeInputStrong = false,
-  afterInputStrong = false
+  afterInputStrong = false,
+  colLeftStrong = false
 }: any) => {
 
   const dispatch = useAppDispatch()
@@ -66,7 +67,7 @@ const index = ({
         }>
         {colLeft.length > 1 &&
           <Paper elevation={0} sx={{ width: '200px' }}>
-            <Typography>{colLeft}</Typography>
+            <Typography className={colLeftStrong && 'strong'}>{colLeft}</Typography>
           </Paper>
         }
         <Paper elevation={0}>

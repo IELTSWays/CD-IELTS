@@ -311,6 +311,20 @@ const IELTSQuestionTitle = ({
           </Typography>
         </>
       }
+      {type == 202 &&
+        <>
+          <Typography>
+            Complete the notes below.
+          </Typography>
+          <Typography className='italic'>
+            Write
+            <Typography sx={{ px: 1 }}>
+              <strong className='uppercase'> NO MORE THEN TWO WORDS </strong>
+            </Typography>
+            for each answer.
+          </Typography>
+        </>
+      }
     </Box>
   );
 };
