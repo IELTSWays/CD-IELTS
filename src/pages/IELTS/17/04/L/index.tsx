@@ -208,7 +208,7 @@ const index = () => {
                       { id: 17, title: 'Bluewater Hotels' },
                       { id: 18, title: 'Pentlow Hotels' },
                       { id: 19, title: 'Green Planet' },
-                      { id: 20, title: 'The Amesburyللل' },
+                      { id: 20, title: 'The Amesbury' },
                     ]
                   }
                   topLabels={[
