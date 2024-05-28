@@ -3,6 +3,7 @@ import React from "react";
 // ============================== 10 ==============================
 import B10LT1 from "@/pages/IELTS/10/01/L";
 import B10LT2 from "@/pages/IELTS/10/02/L";
+import B10LT3 from "@/pages/IELTS/10/03/L";
 
 // ============================== 13 ==============================
 import B13LT2 from "@/pages/IELTS/13/02/L";
@@ -42,6 +43,7 @@ const IELTS = () => {
       {/* // ============================== 10 ============================== */}
       {localStorage.getItem('test_name') === 'B10LT1' && <B10LT1 />}
       {localStorage.getItem('test_name') === 'B10LT2' && <B10LT2 />}
+      {localStorage.getItem('test_name') === 'B10LT3' && <B10LT3 />}
 
       {/* // ============================== 13 ============================== */}
       {localStorage.getItem('test_name') === 'B13LT2' && <B13LT2 />}
@@ -49,17 +51,17 @@ const IELTS = () => {
 
       {/* // ============================== 14 ============================== */}
       {localStorage.getItem('test_name') === 'B14LT1' && <B14LT1 />}
-      {localStorage.getItem('test_name') === 'B14RT1' && <B14RT1 />}
-      {localStorage.getItem('test_name') === 'B14AWT1' && <B14WT1 />}
-
       {localStorage.getItem('test_name') === 'B14LT2' && <B14LT2 />}
-      {localStorage.getItem('test_name') === 'B14RT2' && <B14RT2 />}
-      {localStorage.getItem('test_name') === 'B14WT2' && <B14WT2 />}
-
       {localStorage.getItem('test_name') === 'B14LT3' && <B14LT3 />}
+      {localStorage.getItem('test_name') === 'B14LT4' && <B14LT4 />}
+
+      {localStorage.getItem('test_name') === 'B14RT1' && <B14RT1 />}
+      {localStorage.getItem('test_name') === 'B14RT2' && <B14RT2 />}
       {localStorage.getItem('test_name') === 'B14RT3' && <B14RT3 />}
 
-      {localStorage.getItem('test_name') === 'B14LT4' && <B14LT4 />}
+      {localStorage.getItem('test_name') === 'B14WT2' && <B14WT2 />}
+      {localStorage.getItem('test_name') === 'B14AWT1' && <B14WT1 />}
+
       {/* // ============================== 15 ============================== */}
 
       {/* // ============================== 16 ============================== */}

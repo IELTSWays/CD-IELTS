@@ -24,11 +24,24 @@ const usePostTestDone = () => {
 
   const testName = localStorage.getItem('test_name');
 
-  if (testName === 'B10LT1') {
+  // [11-12]
+  if (testName === 'B10LT1' || testName === 'B10LT3') {
     final = {
       ...final,
       "11": merge[11] && merge[11][0] ? merge[11][0] : null,
       "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+    };
+  }
+
+  // [13-14]
+  if (testName === 'B14LT1') {
+    final = {
+      ...final,
+      "11": merge[11] && merge[11][0] ? merge[11][0] : null,
+      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+
+      "13": merge[13] && merge[13][0] ? merge[13][0] : null,
+      "14": merge[13] && merge[13][1] ? merge[13][1] : null
     };
   }
 
@@ -62,17 +75,6 @@ const usePostTestDone = () => {
 
       "29": merge[29] && merge[29][0] ? merge[29][0] : null,
       "30": merge[29] && merge[29][1] ? merge[29][1] : null
-    };
-  }
-
-  if (testName === 'B14LT1') {
-    final = {
-      ...final,
-      "11": merge[11] && merge[11][0] ? merge[11][0] : null,
-      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
-
-      "13": merge[13] && merge[13][0] ? merge[13][0] : null,
-      "14": merge[13] && merge[13][1] ? merge[13][1] : null
     };
   }
 

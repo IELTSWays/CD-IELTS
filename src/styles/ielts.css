@@ -660,6 +660,10 @@ html.ielts {
 #B10LT1 #item-11 {width: 55px !important;}
 #B10LT1 #item-11 span:after {content: "-12"; padding-top: 5px;}
 
+#B10LT3 #item-11 + #item-12 {display: none;}
+#B10LT3 #item-11 {width: 55px !important;}
+#B10LT3 #item-11 span:after {content: "-12"; padding-top: 5px;}
+
 /* [14-15] */
 #B18LT1 #item-14 + #item-15 {display: none;}
 #B18LT1 #item-14 {width: 55px !important;}
