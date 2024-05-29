@@ -708,6 +708,10 @@ html.ielts {
 #B10LT4 #item-21 {width: 55px !important;}
 #B10LT4 #item-21 span:after {content: "-22"; padding-top: 5px;}
 
+#B11LT4 #item-21 + #item-22 {display: none;}
+#B11LT4 #item-21 {width: 55px !important;}
+#B11LT4 #item-21 span:after {content: "-22"; padding-top: 5px;}
+
 /* [23-24]*/
 #B17LT4 #item-23 + #item-24 {display: none;}
 #B17LT4 #item-23 {width: 55px !important;}
@@ -720,6 +724,15 @@ html.ielts {
 #B10LT4 #item-23 + #item-24 {display: none;}
 #B10LT4 #item-23 {width: 55px !important;}
 #B10LT4 #item-23 span:after {content: "-24"; padding-top: 5px;}
+
+#B11LT4 #item-23 + #item-24 {display: none;}
+#B11LT4 #item-23 {width: 55px !important;}
+#B11LT4 #item-23 span:after {content: "-24"; padding-top: 5px;}
+
+/* [25-26] */
+#B11LT4 #item-25 + #item-26 {display: none;}
+#B11LT4 #item-25 {width: 55px !important;}
+#B11LT4 #item-25 span:after {content: "-26"; padding-top: 5px;}
 
 /* [27-28] */
 #B13LT4 #item-27 + #item-28 {display: none;}

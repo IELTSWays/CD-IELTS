@@ -165,7 +165,7 @@
         {
           "id": "B11ALT4",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B11ART4",

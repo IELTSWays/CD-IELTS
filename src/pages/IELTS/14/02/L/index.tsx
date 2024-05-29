@@ -25,7 +25,7 @@ import DND from './DND'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
-import Q1620 from '@/assets/images/ielts/B14LT2-Q16-20.jpg'
+import img_question_16_20 from '@/assets/images/ielts/B14LT2-Q16-20.jpg'
 
 const index = () => {
   const dispatch = useAppDispatch()
@@ -241,7 +241,7 @@ const index = () => {
                 {/* ================================================================================ [16-20] */}
                 <IELTSQuestionTitle from="16" to="20" type="7" />
                 <div className="d-flex">
-                  <img src={Q1620} width="650" />
+                  <img src={img_question_16_20} width="650" />
                   <IELTSTableOptions
                     options={
                       [

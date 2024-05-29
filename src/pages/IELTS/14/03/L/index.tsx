@@ -24,8 +24,6 @@ import DND_27_30 from './DND_27_30'
 
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
-import Q1620 from '@/assets/images/ielts/B14LT2-Q16-20.jpg'
-
 const index = () => {
   const dispatch = useAppDispatch()
 

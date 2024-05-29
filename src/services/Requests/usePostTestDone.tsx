@@ -209,6 +209,20 @@ const usePostTestDone = () => {
     };
   }
 
+  if (testName === 'B11LT4') {
+    final = {
+      ...final,
+      "21": merge[21] && merge[21][0] ? merge[21][0] : null,
+      "22": merge[21] && merge[21][1] ? merge[21][1] : null,
+
+      "23": merge[23] && merge[23][0] ? merge[23][0] : null,
+      "24": merge[23] && merge[23][1] ? merge[23][1] : null,
+
+      "25": merge[25] && merge[25][0] ? merge[25][0] : null,
+      "26": merge[25] && merge[25][1] ? merge[25][1] : null,
+    };
+  }
+
   for (let key in final) {
     if (key.startsWith("000")) {
       delete final[key];
