@@ -325,6 +325,17 @@ const IELTSQuestionTitle = ({
           </Typography>
         </>
       }
+      {type == 203 &&
+        <>
+          <Typography>
+            Label the map below.
+          </Typography>
+
+          <Typography>
+            Write the correct letter, <strong className="uppercase">A - {alphabet}</strong>, next to Questions <strong className='uppercase'>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
     </Box>
   );
 };
