@@ -24,7 +24,6 @@ const usePostTestDone = () => {
 
   const testName = localStorage.getItem('test_name');
 
-  // [11-12]
   if (testName === 'B10LT1' || testName === 'B10LT3') {
     final = {
       ...final,
@@ -33,7 +32,6 @@ const usePostTestDone = () => {
     };
   }
 
-  // [13-14]
   if (testName === 'B14LT1') {
     final = {
       ...final,
@@ -158,6 +156,26 @@ const usePostTestDone = () => {
     };
   }
 
+  if (testName === 'B11LT2') {
+    final = {
+      ...final,
+      "11": merge[11] && merge[11][0] ? merge[11][0] : null,
+      "12": merge[11] && merge[11][1] ? merge[11][1] : null,
+
+      "13": merge[13] && merge[13][0] ? merge[13][0] : null,
+      "14": merge[13] && merge[13][1] ? merge[13][1] : null,
+
+      "15": merge[15] && merge[15][0] ? merge[15][0] : null,
+      "16": merge[15] && merge[15][1] ? merge[15][1] : null,
+
+      "27": merge[27] && merge[27][0] ? merge[27][0] : null,
+      "28": merge[27] && merge[27][1] ? merge[27][1] : null,
+
+      "29": merge[29] && merge[29][0] ? merge[29][0] : null,
+      "30": merge[29] && merge[29][1] ? merge[29][1] : null
+    };
+  }
+
   if (testName === 'B17LT3') {
     final = {
       ...final,
@@ -166,7 +184,7 @@ const usePostTestDone = () => {
     };
   }
 
-  if (testName === 'B17LT4' || testName === 'B10LT4' ) {
+  if (testName === 'B17LT4' || testName === 'B10LT4') {
     final = {
       ...final,
       "21": merge[21] && merge[21][0] ? merge[21][0] : null,
@@ -190,7 +208,6 @@ const usePostTestDone = () => {
       "30": merge[29] && merge[29][1] ? merge[29][1] : null
     };
   }
-
 
   for (let key in final) {
     if (key.startsWith("000")) {

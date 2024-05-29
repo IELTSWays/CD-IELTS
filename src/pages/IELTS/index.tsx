@@ -8,6 +8,7 @@ import B10LT4 from "@/pages/IELTS/10/04/L";
 
 // ============================== 11 ==============================
 import B11LT1 from "@/pages/IELTS/11/01/L";
+import B11LT2 from "@/pages/IELTS/11/02/L";
 
 // ============================== 13 ==============================
 import B13LT2 from "@/pages/IELTS/13/02/L";
@@ -46,6 +47,7 @@ const testComponents = {
   'B10LT3': B10LT3,
   'B10LT4': B10LT4,
   'B11LT1': B11LT1,
+  'B11LT2': B11LT2,
   'B13LT2': B13LT2,
   'B13LT4': B13LT4,
   'B14LT1': B14LT1,

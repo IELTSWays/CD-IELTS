@@ -121,7 +121,7 @@
         {
           "id": "B11ALT2",
           "skill": "listening",
-          "enable": false
+          "enable": true
         },
         {
           "id": "B11ART2",

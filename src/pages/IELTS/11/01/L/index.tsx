@@ -20,8 +20,6 @@ import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
-// import DND_26_30 from './DND_26_30'
-
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -77,21 +75,11 @@ const index = () => {
 
 
   const handlePrevious = () => {
-    if (currentQuestion == 13) {
-      dispatch(setCurrentQuestion(+currentQuestion - 2))
-    }
-    else {
-      dispatch(setCurrentQuestion(+currentQuestion - 1))
-    }
+    dispatch(setCurrentQuestion(+currentQuestion - 1))
   }
 
   const handleNext = () => {
-    if (currentQuestion == 11) {
-      dispatch(setCurrentQuestion(+currentQuestion + 2))
-    }
-    else {
-      dispatch(setCurrentQuestion(+currentQuestion + 1))
-    }
+    dispatch(setCurrentQuestion(+currentQuestion + 1))
   }
 
   useEffect(() => {
