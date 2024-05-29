@@ -336,6 +336,17 @@ const IELTSQuestionTitle = ({
           </Typography>
         </>
       }
+      {type == 204 &&
+        <>
+          <Typography>
+            {title}
+          </Typography>
+          <Typography sx={{ py: 1 }}>
+            Write the correct letter, <strong className="uppercase">A - {alphabet}</strong>,
+            next to Questions <strong>{from} - {to}</strong>
+          </Typography>
+        </>
+      }
     </Box>
   );
 };
