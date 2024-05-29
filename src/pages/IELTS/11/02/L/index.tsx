@@ -21,6 +21,8 @@ import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
+import img_question_17_20 from '@/assets/images/ielts/B11LT2-Q17-20.png'
+
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -195,26 +197,28 @@ const index = () => {
                   type="203"
                 />
                 {/************* [17-20] *************/}
-
-                <IELTSTableOptions
-                  questions={[
-                    { id: 17, title: 'box office' },
-                    { id: 18, title: 'theatre manager’s office' },
-                    { id: 19, title: 'lighting box' },
-                    { id: 20, title: 'artistic director’s offices' }
-                  ]}
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                    ]
-                  }
-                />
+                <div className="d-flex">
+                  <img src={img_question_17_20} width="650" />
+                  <IELTSTableOptions
+                    questions={[
+                      { id: 17, title: 'box office' },
+                      { id: 18, title: 'theatre manager’s office' },
+                      { id: 19, title: 'lighting box' },
+                      { id: 20, title: 'artistic director’s offices' }
+                    ]}
+                    options={
+                      [
+                        { label: 'A', value: "a", },
+                        { label: 'B', value: "b", },
+                        { label: 'C', value: "c", },
+                        { label: 'D', value: "d", },
+                        { label: 'E', value: "e", },
+                        { label: 'F', value: "f", },
+                        { label: 'G', value: "g", },
+                      ]
+                    }
+                  />
+                </div>
               </>
             }
 

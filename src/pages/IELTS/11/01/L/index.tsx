@@ -20,6 +20,8 @@ import IELTSQuestionTitle from '@/components/IELTS/IELTSQuestionTitle';
 import IELTSPartNavigation from '@/components/IELTS/IELTSPartNavigation';
 import useGetAnswer from '@/services/Requests/useGetAnswer';
 
+import img_question_15_20 from '@/assets/images/ielts/B11LT1-Q15-20.png'
+
 const index = () => {
   const dispatch = useAppDispatch()
 
@@ -173,30 +175,32 @@ const index = () => {
                   type="203"
                 />
                 {/************* [15-20] *************/}
-
-                <IELTSTableOptions
-                  questions={[
-                    { id: 15, title: 'Scarecrow' },
-                    { id: 16, title: 'Maze' },
-                    { id: 17, title: 'Café' },
-                    { id: 18, title: 'Black Barn' },
-                    { id: 19, title: 'Covered picnic area' },
-                    { id: 20, title: 'Fiddy House' }
-                  ]}
-                  options={
-                    [
-                      { label: 'A', value: "a", },
-                      { label: 'B', value: "b", },
-                      { label: 'C', value: "c", },
-                      { label: 'D', value: "d", },
-                      { label: 'E', value: "e", },
-                      { label: 'F', value: "f", },
-                      { label: 'G', value: "g", },
-                      { label: 'H', value: "h", },
-                      { label: 'I', value: "i", },
-                    ]
-                  }
-                />
+                <div className="d-flex">
+                  <img src={img_question_15_20} width="650" />
+                  <IELTSTableOptions
+                    questions={[
+                      { id: 15, title: 'Scarecrow' },
+                      { id: 16, title: 'Maze' },
+                      { id: 17, title: 'Café' },
+                      { id: 18, title: 'Black Barn' },
+                      { id: 19, title: 'Covered picnic area' },
+                      { id: 20, title: 'Fiddy House' }
+                    ]}
+                    options={
+                      [
+                        { label: 'A', value: "a", },
+                        { label: 'B', value: "b", },
+                        { label: 'C', value: "c", },
+                        { label: 'D', value: "d", },
+                        { label: 'E', value: "e", },
+                        { label: 'F', value: "f", },
+                        { label: 'G', value: "g", },
+                        { label: 'H', value: "h", },
+                        { label: 'I', value: "i", },
+                      ]
+                    }
+                  />
+                </div>
               </>
             }
 
